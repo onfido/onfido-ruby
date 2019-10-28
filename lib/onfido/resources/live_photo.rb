@@ -12,19 +12,16 @@ module Onfido
       )
     end
 
-    def find(applicant_id, live_photo_id)
-      query_string = "applicant_id=#{applicant_id}"
-      get(url: url_for("live_photos/#{live_photo_id}?#{query_string}"))
+    def find(live_photo_id)
+      get(url: url_for("live_photos/#{live_photo_id}"))
     end
 
-    def download(applicant_id, live_photo_id)
-      query_string = "applicant_id=#{applicant_id}"
-      get(url: url_for("live_photos/#{live_photo_id}/download?#{query_string}"))
+    def download(live_photo_id)
+      get(url: url_for("live_photos/#{live_photo_id}/download"))
     end
 
     def all(applicant_id)
-      query_string = "applicant_id=#{applicant_id}"
-      get(url: url_for("live_photos?#{query_string}"))
+      get(url: url_for("live_photos?applicant_id=#{applicant_id}"))
     end
   end
 end

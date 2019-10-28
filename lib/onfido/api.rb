@@ -28,10 +28,6 @@ module Onfido
       Onfido::Report.new(@api_key)
     end
 
-    def report_type_group
-      Onfido::ReportTypeGroup.new(@api_key)
-    end
-
     def sdk_token
       Onfido::SdkToken.new(@api_key)
     end

@@ -3,7 +3,7 @@ require 'onfido/errors/connection_error'
 describe Onfido::Resource do
   subject(:resource) { described_class.new }
 
-  let(:endpoint) { 'https://api.onfido.com/v2/' }
+  let(:endpoint) { 'https://api.onfido.com/v3/' }
   let(:path)     { 'addresses/pick' }
   let(:url)      { endpoint + path }
   let(:payload)  { { postcode: 'SE1 4NG' } }

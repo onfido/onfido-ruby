@@ -1,18 +1,15 @@
 module Onfido
   class LiveVideo < Resource
-    def find(applicant_id, live_video_id)
-      query_string = "applicant_id=#{applicant_id}"
-      get(url: url_for("live_videos/#{live_video_id}?#{query_string}"))
+    def find(live_video_id)
+      get(url: url_for("live_videos/#{live_video_id}"))
     end
 
-    def download(applicant_id, live_video_id)
-      query_string = "applicant_id=#{applicant_id}"
-      get(url: url_for("live_videos/#{live_video_id}/download?#{query_string}"))
+    def download(live_video_id)
+      get(url: url_for("live_videos/#{live_video_id}/download"))
     end
 
     def all(applicant_id)
-      query_string = "applicant_id=#{applicant_id}"
-      get(url: url_for("live_videos?#{query_string}"))
+      get(url: url_for("live_videos?applicant_id=#{applicant_id}"))
     end
   end
 end

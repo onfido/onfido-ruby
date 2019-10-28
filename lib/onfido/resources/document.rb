@@ -4,23 +4,24 @@ module Onfido
 
     def create(applicant_id, payload)
       validate_file!(payload.fetch(:file))
+      payload[:applicant_id] = applicant_id
 
       post(
-        url: url_for("applicants/#{applicant_id}/documents"),
+        url: url_for("documents"),
         payload: payload
       )
     end
 
-    def find(applicant_id, document_id)
-      get(url: url_for("applicants/#{applicant_id}/documents/#{document_id}"))
+    def find(document_id)
+      get(url: url_for("documents/#{document_id}"))
     end
 
-    def download(applicant_id, document_id)
-      get(url: url_for("applicants/#{applicant_id}/documents/#{document_id}/download"))
+    def download(document_id)
+      get(url: url_for("documents/#{document_id}/download"))
     end
 
     def all(applicant_id)
-      get(url: url_for("applicants/#{applicant_id}/documents"))
+      get(url: url_for("documents?applicant_id=#{applicant_id}"))
     end
   end
 end

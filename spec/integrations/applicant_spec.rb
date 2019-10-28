@@ -5,34 +5,19 @@ describe Onfido::Applicant do
       'title' => 'Mr',
       'first_name' => 'Chandler',
       'last_name' => 'Bing',
-      'gender' => 'male',
       'middle_name' => 'Muriel',
       'dob' => '1968-04-08',
-      'telephone' => '555555555',
-      'mobile' => '77777777',
       'email' => 'chandler_bing_6@friends.com',
-      'addresses' => [
-        {
-          'flat_number' => '4',
-          'building_number' => '100',
-          'building_name' => 'Awesome Building',
-          'street' => 'Main Street',
-          'sub_street' => 'A sub street',
-          'town' => 'London',
-          'postcode' => 'SW4 6EH',
-          'country' => 'GBR'
-        },
-        {
-          'flat_number' => '1',
-          'building_number' => '10',
-          'building_name' => 'Great Building',
-          'street' => 'Old Street',
-          'sub_street' => 'Sub Street',
-          'town' => 'London',
-          'postcode' => 'SW1 4NG',
-          'country' => 'GBR'
-        }
-      ]
+      'address' => {
+        'flat_number' => '4',
+        'building_number' => '100',
+        'building_name' => 'Awesome Building',
+        'street' => 'Main Street',
+        'sub_street' => 'A sub street',
+        'town' => 'London',
+        'postcode' => 'SW4 6EH',
+        'country' => 'GBR'
+      }
     }
   end
 

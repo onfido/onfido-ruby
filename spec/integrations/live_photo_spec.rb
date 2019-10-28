@@ -16,6 +16,7 @@ describe Onfido::LivePhoto do
 
       it 'creates a new photo' do
         response = live_photo.create('foobar', params)
+
         expect(response['id']).not_to be_nil
       end
     end
@@ -31,30 +32,28 @@ describe Onfido::LivePhoto do
   end
 
   describe '#find' do
-    let(:applicant_id) { '1030303-123123-123123' }
-    let(:live_photo_id) { '3538c8f6-fdce-4745-9d34-fc246bc05aa1' }
-
     it 'returns the expected live photo' do
-      response = live_photo.find(applicant_id, live_photo_id)
+      live_photo_id = '3538c8f6-fdce-4745-9d34-fc246bc05aa1'
+      response = live_photo.find(live_photo_id)
+
       expect(response['id']).to eq(live_photo_id)
     end
   end
 
   describe '#all' do
-    let(:applicant_id) { '1030303-123123-123123' }
-
     it 'returns list of documents' do
+      applicant_id = '1030303-123123-123123'
       response = live_photo.all(applicant_id)
+
       expect(response['live_photos']).not_to be_empty
     end
   end
 
   describe '#download' do
-    let(:applicant_id) { '1030303-123123-123123' }
-    let(:live_photo_id) { '3538c8f6-fdce-4745-9d34-fc246bc05aa1' }
-
     it 'returns the file data' do
-      response = live_photo.download(applicant_id, live_photo_id)
+      live_photo_id = '3538c8f6-fdce-4745-9d34-fc246bc05aa1'
+      response = live_photo.download(live_photo_id)
+
       expect(response).not_to be_nil
     end
   end

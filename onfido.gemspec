@@ -10,11 +10,11 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Pericles Theodorou', 'Grey Baker']
   spec.email         = ['periclestheo@gmail.com', 'grey@gocardless.com']
   spec.summary       = 'A wrapper for Onfido API'
-  spec.description   = "A thin wrapper for Onfido's API. This gem supports "\
-                       "both v1 and v2 of the Onfido API. Refer to Onfido's "\
+  spec.description   = "A thin wrapper for Onfido's API. This gem only supports "\
+                       "v3 of the Onfido API. Refer to Onfido's "\
                        "API documentation for details of the expected "\
                        "requests and responses for both."
-  spec.homepage      = 'http://github.com/hvssle/onfido'
+  spec.homepage      = 'http://github.com/onfido/onfido'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
