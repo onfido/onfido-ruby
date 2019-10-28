@@ -1,3 +1,5 @@
+:warning: **Under development**
+
 # Onfido
 
 A thin wrapper for Onfido's API.
@@ -19,12 +21,11 @@ The gem is compatible with Ruby 2.2.0 and onwards. Earlier versions of Ruby have
 
 ## Configuration
 
-There are 6 configuration options:
+There are 5 configuration options:
 
 ```ruby
 Onfido.configure do |config|
   config.api_key = 'MY_API_KEY'
-  config.api_version = 'v2'
   config.logger = Logger.new(STDOUT)
   config.open_timeout = 30
   config.read_timeout = 80
@@ -59,7 +60,7 @@ api = Onfido::API.new(api_key: 'API_KEY')
 
 All resources share the same interface when making API calls. Use `.create` to create a resource, `.find` to find one, and `.all` to fetch all resources.
 
-**Note:** *All param keys should be a symbol e.g. `{ type: 'express', reports: [{ name: 'identity' }] }`*
+**Note:** *All param keys should be a symbol e.g. `{ report_names: ['document'] }`*
 
 #### Applicants
 
@@ -83,8 +84,8 @@ Documents provide supporting evidence for Onfido checks.
 
 ```ruby
 api.document.create('applicant_id', file: 'http://example.com', type: 'passport') # => Creates a document
-api.document.find('applicant_id', 'document_id') # => Finds a document
-api.document.download('applicant_id', 'document_id') # => Downloads a document as a binary data
+api.document.find('document_id') # => Finds a document
+api.document.download('document_id') # => Downloads a document as a binary data
 api.document.all('applicant_id') # => Returns all applicant's documents
 ```
 
@@ -99,8 +100,8 @@ Live Photos, like documents, can provide supporting evidence for Onfido checks.
 
 ```ruby
 api.live_photo.create('applicant_id', file: 'http://example.com')
-api.live_photo.find(applicant_id, live_photo_id) # => Finds a live photo
-api.live_photo.download(applicant_id, live_photo_id) # => Downloads a live photo as binary data
+api.live_photo.find(live_photo_id) # => Finds a live photo
+api.live_photo.download(live_photo_id) # => Downloads a live photo as binary data
 api.live_photo.all(applicant_id) # => Returns all applicant's live photos
 ```
 
@@ -115,9 +116,8 @@ Checks are requests for Onfido to check an applicant, by commissioning one or
 more "reports" on them.
 
 ```ruby
-api.check.create('applicant_id', type: 'express', reports: [{ name: 'identity' }])
-api.check.find('applicant_id', 'check_id')
-api.check.find_by_url('applicants/a90e7a17-677a-49ab-a171-281f96c77bde/checks/c9f41bef-0610-4d2f-9982-ae9387876edc')
+api.check.create('applicant_id', report_names: ['document'])
+api.check.find('check_id')
 api.check.resume('check_id')
 api.check.all('applicant_id')
 ```
@@ -130,20 +130,10 @@ finding and listing them. For paused reports specifically, additional support fo
  cancelling reports is also available.
 
 ```ruby
-api.report.find('check_id', 'report_id')
+api.report.find('report_id')
 api.report.all('check_id')
-api.report.resume('check_id', 'report_id')
-api.report.cancel('check_id', 'report_id')
-```
-
-#### Report Type Groups
-
-Report type groups provide a convenient way to group and organize different types of reports.
- The Onfido API only provides support for finding and listing them.
-
-```ruby
-api.report_type_group.find('report_type_group_id')
-api.report_type_group.all()
+api.report.resume('report_id')
+api.report.cancel('report_id')
 ```
 
 #### Address Lookups
@@ -175,11 +165,6 @@ with Onfido's [JavaScript SDK](https://github.com/onfido/onfido-sdk-ui).
 ```ruby
 api.sdk_token.create(applicant_id: 'applicant_id', referrer: 'referrer')
 ```
-
-### Pagination
-
-All resources that support an `all` method also support pagination. By default,
-the first 20 records are fetched.
 
 ### Error Handling
 
@@ -224,7 +209,7 @@ end
 
 ## Contributing
 
-1. Fork it ( https://github.com/hvssle/onfido/fork )
+1. Fork it ( https://github.com/onfido/onfido/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
