@@ -5,7 +5,7 @@
 A thin wrapper for Onfido's API.
 
 [![Gem Version](https://badge.fury.io/rb/onfido.svg)](http://badge.fury.io/rb/onfido)
-[![Build Status](https://travis-ci.org/hvssle/onfido.svg?branch=master)](https://travis-ci.org/hvssle/onfido)
+[![Build Status](https://travis-ci.org/onfido/onfido.svg?branch=master)](https://travis-ci.org/onfido/onfido)
 
 This gem supports both `v1` and `v2` of the Onfido API. Refer to Onfido's [API documentation](https://onfido.com/documentation#introduction) for details of the expected requests and responses for both.
 
