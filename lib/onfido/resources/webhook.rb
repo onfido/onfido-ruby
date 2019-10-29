@@ -2,17 +2,17 @@ module Onfido
   class Webhook < Resource
     def create(payload)
       post(
-        url: 'webhooks',
+        path: 'webhooks',
         payload: payload
       )
     end
 
     def find(webhooks_id)
-      get(url: "webhooks/#{webhooks_id}")
+      get(path: "webhooks/#{webhooks_id}")
     end
 
     def all(page: 1, per_page: 20)
-      get(url: "webhooks?page=#{page}&per_page=#{per_page}")
+      get(path: "webhooks?page=#{page}&per_page=#{per_page}")
     end
 
     # As well as being a normal resource, Onfido::Webhook also supports

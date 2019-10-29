@@ -11,7 +11,7 @@ module Onfido
       define_method method do |*args|
         make_request(
           method: method.to_sym,
-          url: Onfido.endpoint + args.first.fetch(:url),
+          url: Onfido.endpoint + args.first.fetch(:path),
           payload: build_query(args.first.fetch(:payload, {}))
         )
       end

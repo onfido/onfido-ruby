@@ -3,21 +3,21 @@ module Onfido
     def create(applicant_id, payload)
       payload[:applicant_id] = applicant_id
       post(
-        url: 'checks',
+        path: 'checks',
         payload: payload
       )
     end
 
     def find(check_id)
-      get(url: "checks/#{check_id}")
+      get(path: "checks/#{check_id}")
     end
 
     def all(applicant_id)
-      get(url: "checks?applicant_id=#{applicant_id}")
+      get(path: "checks?applicant_id=#{applicant_id}")
     end
 
     def resume(check_id)
-      post(url: "checks/#{check_id}/resume")
+      post(path: "checks/#{check_id}/resume")
     end
   end
 end

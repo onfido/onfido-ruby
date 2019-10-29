@@ -30,7 +30,7 @@ describe Onfido::Resource do
       context "for unsupported HTTP method: #{method}" do
         it 'raises an error' do
           expect do
-            resource.public_send(method, url: endpoint)
+            resource.public_send(method, path: endpoint)
           end.to raise_error(NoMethodError)
         end
       end
@@ -58,7 +58,7 @@ describe Onfido::Resource do
       let(:specific_api_key) { "specific_key" }
 
       it "uses that key when making the request" do
-        resource.get(url: path, payload: payload)
+        resource.get(path: path, payload: payload)
 
         expect(WebMock).to have_requested(:get, url).with(
           headers: {
@@ -73,7 +73,7 @@ describe Onfido::Resource do
       let(:specific_api_key) { nil }
 
       it "uses the general config key when making the request" do
-        resource.get(url: path, payload: payload)
+        resource.get(path: path, payload: payload)
 
         expect(WebMock).to have_requested(:get, url).with(
           headers: {
@@ -107,7 +107,7 @@ describe Onfido::Resource do
           end
 
           it 'makes a request to an endpoint' do
-            expect(resource.public_send(method, url: path, payload: payload)).
+            expect(resource.public_send(method, path: path, payload: payload)).
               to eq(response)
           end
         end
@@ -121,7 +121,7 @@ describe Onfido::Resource do
           end
 
           it "raises a ConnectionError" do
-            expect { resource.public_send(method, url: path, payload: payload) }.
+            expect { resource.public_send(method, path: path, payload: payload) }.
               to raise_error(Onfido::ConnectionError)
           end
         end
