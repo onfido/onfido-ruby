@@ -1,11 +1,10 @@
 module Onfido
   class Check < Resource
-    def create(applicant_id, payload)
+    def create(applicant_id:, report_names:, **payload)
       payload[:applicant_id] = applicant_id
-      post(
-        path: 'checks',
-        payload: payload
-      )
+      payload[:report_names] = report_names
+
+      post(path: 'checks', payload: payload)
     end
 
     def find(check_id)

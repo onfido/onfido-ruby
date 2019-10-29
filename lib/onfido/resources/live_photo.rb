@@ -2,14 +2,12 @@ module Onfido
   class LivePhoto < Resource
     # with open-uri the file can be a link or an actual file
 
-    def create(applicant_id, payload)
-      validate_file!(payload.fetch(:file))
+    def create(applicant_id:, file:, **payload)
+      validate_file!(file)
       payload[:applicant_id] = applicant_id
+      payload[:file] = file
 
-      post(
-        path: 'live_photos',
-        payload: payload
-      )
+      post(path: 'live_photos', payload: payload)
     end
 
     def find(live_photo_id)

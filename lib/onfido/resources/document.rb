@@ -2,14 +2,13 @@ module Onfido
   class Document < Resource
     # with open-uri the file can be a link or an actual file
 
-    def create(applicant_id, payload)
-      validate_file!(payload.fetch(:file))
+    def create(applicant_id:, file:, type:, **payload)
+      validate_file!(file)
       payload[:applicant_id] = applicant_id
+      payload[:file] = file
+      payload[:type] = type
 
-      post(
-        path: 'documents',
-        payload: payload
-      )
+      post(path: 'documents', payload: payload)
     end
 
     def find(document_id)

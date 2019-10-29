@@ -3,10 +3,11 @@ describe Onfido::Check do
   let(:applicant_id) { '61f659cb-c90b-4067-808a-6136b5c01351' }
 
   describe '#create' do
-    let(:params) { { report_names: ['identity_enhanced'] } }
-
     it 'creates a new check for an applicant' do
-      response = check.create(applicant_id, params)
+      response = check.create(
+        applicant_id: applicant_id,
+        report_names: ['identity_enhanced']
+      )
       expect(response['id']).not_to be_nil
     end
   end

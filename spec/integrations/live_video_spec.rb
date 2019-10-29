@@ -8,6 +8,7 @@ describe Onfido::LiveVideo do
 
     it 'returns the expected live photo' do
       response = live_video.find(live_video_id)
+
       expect(response['id']).to eq(live_video_id)
     end
   end
@@ -26,6 +27,7 @@ describe Onfido::LiveVideo do
 
     it 'returns the file data' do
       response = live_video.download(live_video_id)
+
       expect(response).not_to be_nil
     end
   end

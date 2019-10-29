@@ -1,10 +1,8 @@
 module Onfido
   class Webhook < Resource
-    def create(payload)
-      post(
-        path: 'webhooks',
-        payload: payload
-      )
+    def create(url:, **payload)
+      payload[:url] = url
+      post(path: 'webhooks', payload: payload)
     end
 
     def find(webhooks_id)

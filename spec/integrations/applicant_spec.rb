@@ -46,6 +46,7 @@ describe Onfido::Applicant do
 
     it 'updates an applicant' do
       response = applicant.update(applicant_id, params)
+
       expect(response['id']).to eq(applicant_id)
     end
   end
@@ -55,6 +56,7 @@ describe Onfido::Applicant do
 
     it 'returns the applicant' do
       response = applicant.find(applicant_id)
+
       expect(response['id']).to eq(applicant_id)
     end
   end
@@ -71,6 +73,7 @@ describe Onfido::Applicant do
     context 'with the default page and per page params' do
       it 'returns all the applicants' do
         response = applicant.all
+
         expect(response['applicants'].size).to eq(2)
       end
     end
@@ -78,6 +81,7 @@ describe Onfido::Applicant do
     context 'with specific range of results for a page' do
       it 'returns the specified applicants' do
         response = applicant.all(page: 1, per_page: 1)
+
         expect(response['applicants'].size).to eq(1)
       end
     end
