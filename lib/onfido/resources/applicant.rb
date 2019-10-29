@@ -1,27 +1,27 @@
 module Onfido
   class Applicant < Resource
     def create(payload)
-      post(url: url_for('applicants'), payload: payload)
+      post(url: 'applicants', payload: payload)
     end
 
     def update(applicant_id, payload)
-      put(url: url_for("applicants/#{applicant_id}"), payload: payload)
+      put(url: "applicants/#{applicant_id}", payload: payload)
     end
 
     def destroy(applicant_id)
-      delete(url: url_for("applicants/#{applicant_id}"))
+      delete(url: "applicants/#{applicant_id}")
     end
 
     def find(applicant_id)
-      get(url: url_for("applicants/#{applicant_id}"))
+      get(url: "applicants/#{applicant_id}")
     end
 
     def all(page: 1, per_page: 20)
-      get(url: url_for("applicants?page=#{page}&per_page=#{per_page}"))
+      get(url: "applicants?page=#{page}&per_page=#{per_page}")
     end
 
     def restore(applicant_id)
-      post(url: url_for("applicants/#{applicant_id}/restore"))
+      post(url: "applicants/#{applicant_id}/restore")
     end
   end
 end

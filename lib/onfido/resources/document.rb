@@ -7,21 +7,21 @@ module Onfido
       payload[:applicant_id] = applicant_id
 
       post(
-        url: url_for("documents"),
+        url: 'documents',
         payload: payload
       )
     end
 
     def find(document_id)
-      get(url: url_for("documents/#{document_id}"))
+      get(url: "documents/#{document_id}")
     end
 
     def download(document_id)
-      get(url: url_for("documents/#{document_id}/download"))
+      get(url: "documents/#{document_id}/download")
     end
 
     def all(applicant_id)
-      get(url: url_for("documents?applicant_id=#{applicant_id}"))
+      get(url: "documents?applicant_id=#{applicant_id}")
     end
   end
 end

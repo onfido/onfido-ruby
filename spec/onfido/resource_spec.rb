@@ -25,12 +25,6 @@ describe Onfido::Resource do
   before { allow(Onfido).to receive(:endpoint).and_return(endpoint) }
   before { allow(Onfido).to receive(:api_key).and_return(api_key) }
 
-  describe '#url_for' do
-    it 'composes the full api url' do
-      expect(resource.url_for(path)).to eq(endpoint + path)
-    end
-  end
-
   describe '#method_missing' do
     %i(patch).each do |method|
       context "for unsupported HTTP method: #{method}" do
@@ -64,7 +58,7 @@ describe Onfido::Resource do
       let(:specific_api_key) { "specific_key" }
 
       it "uses that key when making the request" do
-        resource.get(url: url, payload: payload)
+        resource.get(url: path, payload: payload)
 
         expect(WebMock).to have_requested(:get, url).with(
           headers: {
@@ -79,7 +73,7 @@ describe Onfido::Resource do
       let(:specific_api_key) { nil }
 
       it "uses the general config key when making the request" do
-        resource.get(url: url, payload: payload)
+        resource.get(url: path, payload: payload)
 
         expect(WebMock).to have_requested(:get, url).with(
           headers: {
@@ -113,7 +107,7 @@ describe Onfido::Resource do
           end
 
           it 'makes a request to an endpoint' do
-            expect(resource.public_send(method, url: url, payload: payload)).
+            expect(resource.public_send(method, url: path, payload: payload)).
               to eq(response)
           end
         end
@@ -127,7 +121,7 @@ describe Onfido::Resource do
           end
 
           it "raises a ConnectionError" do
-            expect { resource.public_send(method, url: url, payload: payload) }.
+            expect { resource.public_send(method, url: path, payload: payload) }.
               to raise_error(Onfido::ConnectionError)
           end
         end

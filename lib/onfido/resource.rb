@@ -7,15 +7,11 @@ module Onfido
       @api_key = api_key || Onfido.api_key
     end
 
-    def url_for(path)
-      Onfido.endpoint + path
-    end
-
     VALID_HTTP_METHODS.each do |method|
       define_method method do |*args|
         make_request(
           method: method.to_sym,
-          url: args.first.fetch(:url),
+          url: Onfido.endpoint + args.first.fetch(:url),
           payload: build_query(args.first.fetch(:payload, {}))
         )
       end

@@ -1,6 +1,5 @@
 describe Onfido::Resource do
   let(:resource) { described_class.new }
-  let(:url) { Onfido.endpoint + path }
   let(:api_key) { 'some_key' }
   let(:payload) { { postcode: 'SE1 4NG' } }
 
@@ -10,7 +9,7 @@ describe Onfido::Resource do
     let(:path) { '4xx_response' }
 
     it 'raises a custom error' do
-      expect { resource.get(url: url, payload: payload) }.
+      expect { resource.get(url: path, payload: payload) }.
         to raise_error(Onfido::RequestError, 'Something went wrong')
     end
   end
@@ -19,7 +18,7 @@ describe Onfido::Resource do
     let(:path) { 'unexpected_error_format' }
 
     it 'raises a custom error' do
-      expect { resource.get(url: url, payload: payload) }.
+      expect { resource.get(url: path, payload: payload) }.
         to raise_error(Onfido::RequestError, /response code was 400/)
     end
   end
@@ -28,7 +27,7 @@ describe Onfido::Resource do
     let(:path) { 'unparseable_response' }
 
     it 'raises a server error' do
-      expect { resource.get(url: url, payload: payload) }.
+      expect { resource.get(url: path, payload: payload) }.
         to raise_error(Onfido::ServerError, /response code was 504/)
     end
   end
