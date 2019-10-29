@@ -1,5 +1,6 @@
 describe Onfido::Applicant do
   subject(:applicant) { described_class.new }
+  let(:applicant_id) { '61f659cb-c90b-4067-808a-6136b5c01351' }
   let(:params) do
     {
       'title' => 'Mr',
@@ -28,7 +29,7 @@ describe Onfido::Applicant do
 
     it 'serializes the payload correctly' do
       WebMock.after_request do |request_signature, _response|
-        if request_signature.uri.path == 'v2/applicants'
+        if request_signature.uri.path == 'v3/applicants'
           expect(Rack::Utils.parse_nested_query(request_signature.body)).
             to eq(params)
         end
@@ -42,8 +43,6 @@ describe Onfido::Applicant do
   end
 
   describe '#update' do
-    let(:applicant_id) { '61f659cb-c90b-4067-808a-6136b5c01351' }
-
     it 'updates an applicant' do
       response = applicant.update(applicant_id, params)
 
@@ -52,8 +51,6 @@ describe Onfido::Applicant do
   end
 
   describe '#find' do
-    let(:applicant_id) { '61f659cb-c90b-4067-808a-6136b5c01351' }
-
     it 'returns the applicant' do
       response = applicant.find(applicant_id)
 
@@ -62,8 +59,6 @@ describe Onfido::Applicant do
   end
 
   describe '#destroy' do
-    let(:applicant_id) { '61f659cb-c90b-4067-808a-6136b5c01351' }
-
     it 'returns success code' do
       expect { applicant.destroy(applicant_id) }.not_to raise_error
     end
@@ -89,17 +84,15 @@ describe Onfido::Applicant do
 
   describe '#restore' do
     context 'an applicant scheduled for deletion' do
-      let(:applicant_id) { '61f659cb-c90b-4067-808a-6136b5c01351' }
-
       it 'returns nil' do
         expect(applicant.restore(applicant_id)).to be_nil
       end
     end
 
     context 'an applicant not scheduled for deletion' do
-      let(:applicant_id) { 'a2fb9c62-ab10-4898-a8ec-342c4b552ad5' }
-
       it 'returns an error' do
+        applicant_id = 'a2fb9c62-ab10-4898-a8ec-342c4b552ad5'
+
         expect { applicant.restore(applicant_id) }.to raise_error { |error|
           expect(error).to be_a(Onfido::RequestError)
           expect(error.message).to eq('There was a validation error on this request')

@@ -4,12 +4,7 @@ describe Onfido::LivePhoto do
   subject(:live_photo) { described_class.new }
 
   describe '#create' do
-    let(:arguments) do
-      {
-        applicant_id: '123456',
-        file: file
-      }
-    end
+    let(:params) { { applicant_id: '123456', file: file } }
 
     context 'with a File-like object to upload' do
       let(:file) { Tempfile.new(['passport', '.jpg']) }
@@ -20,7 +15,7 @@ describe Onfido::LivePhoto do
       end
 
       it 'creates a new photo' do
-        response = live_photo.create(arguments)
+        response = live_photo.create(params)
 
         expect(response['id']).not_to be_nil
       end
@@ -30,7 +25,7 @@ describe Onfido::LivePhoto do
       let(:file) { 'https://onfido.com/images/photo.jpg' }
 
       it 'raises an ArgumentError' do
-        expect { live_photo.create(arguments) }.
+        expect { live_photo.create(params) }.
           to raise_error(ArgumentError, /must be a `File`-like object/)
       end
     end

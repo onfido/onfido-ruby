@@ -6,27 +6,27 @@ describe Onfido::Resource do
   before { allow(Onfido).to receive(:api_key).and_return(api_key) }
 
   context '4xx response' do
-    let(:path) { '4xx_response' }
-
     it 'raises a custom error' do
+      path = '4xx_response'
+
       expect { resource.get(path: path, payload: payload) }.
         to raise_error(Onfido::RequestError, 'Something went wrong')
     end
   end
 
   context 'unexpected error format' do
-    let(:path) { 'unexpected_error_format' }
-
     it 'raises a custom error' do
+      path = 'unexpected_error_format'
+
       expect { resource.get(path: path, payload: payload) }.
         to raise_error(Onfido::RequestError, /response code was 400/)
     end
   end
 
   context 'unparseable JSON 5xx' do
-    let(:path) { 'unparseable_response' }
-
     it 'raises a server error' do
+      path = 'unparseable_response'
+
       expect { resource.get(path: path, payload: payload) }.
         to raise_error(Onfido::ServerError, /response code was 504/)
     end
