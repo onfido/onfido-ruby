@@ -9,8 +9,8 @@ module Onfido
       get(path: "webhooks/#{webhooks_id}")
     end
 
-    def all(page: 1, per_page: 20)
-      get(path: "webhooks?page=#{page}&per_page=#{per_page}")
+    def all
+      get(path: 'webhooks')
     end
 
     # As well as being a normal resource, Onfido::Webhook also supports
