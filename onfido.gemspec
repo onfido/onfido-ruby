@@ -13,8 +13,8 @@ Gem::Specification.new do |spec|
   spec.description   = "A thin wrapper for Onfido's API. This gem only supports "\
                        "v3 of the Onfido API. Refer to Onfido's "\
                        "API documentation for details of the expected "\
-                       "requests and responses for both."
-  spec.homepage      = 'http://github.com/onfido/onfido'
+                       "requests and responses."
+  spec.homepage      = 'http://github.com/onfido/onfido-ruby'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
