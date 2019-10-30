@@ -7,10 +7,8 @@ describe Onfido::Webhook do
         url: "https://webhookendpoint.url",
         enabled: true,
         events: [
-          "report completion",
-          "report withdrawal",
-          "check completion",
-          "check in progress"
+          "report.completed",
+          "check.completed"
         ]
       }
     end

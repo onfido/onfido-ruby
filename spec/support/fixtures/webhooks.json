@@ -9,7 +9,9 @@
         "live"
       ],
       "events": [
-        "check in progress"
+        "report.completed",
+        "report.withdrawn",
+        "check.completed"
       ]
     },
     {
@@ -21,10 +23,8 @@
         "live"
       ],
       "events": [
-        "report completion",
-        "report withdrawal",
-        "check in progress",
-        "check completion"
+        "report.completed",
+        "check.completed"
       ]
     }
   ]
