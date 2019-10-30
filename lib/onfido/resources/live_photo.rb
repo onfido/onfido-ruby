@@ -2,29 +2,24 @@ module Onfido
   class LivePhoto < Resource
     # with open-uri the file can be a link or an actual file
 
-    def create(applicant_id, payload)
-      validate_file!(payload.fetch(:file))
+    def create(applicant_id:, file:, **payload)
+      validate_file!(file)
       payload[:applicant_id] = applicant_id
+      payload[:file] = file
 
-      post(
-        url: url_for("/live_photos"),
-        payload: payload
-      )
+      post(path: 'live_photos', payload: payload)
     end
 
-    def find(applicant_id, live_photo_id)
-      query_string = "applicant_id=#{applicant_id}"
-      get(url: url_for("live_photos/#{live_photo_id}?#{query_string}"))
+    def find(live_photo_id)
+      get(path: "live_photos/#{live_photo_id}")
     end
 
-    def download(applicant_id, live_photo_id)
-      query_string = "applicant_id=#{applicant_id}"
-      get(url: url_for("live_photos/#{live_photo_id}/download?#{query_string}"))
+    def download(live_photo_id)
+      get(path: "live_photos/#{live_photo_id}/download")
     end
 
     def all(applicant_id)
-      query_string = "applicant_id=#{applicant_id}"
-      get(url: url_for("live_photos?#{query_string}"))
+      get(path: "live_photos?applicant_id=#{applicant_id}")
     end
   end
 end

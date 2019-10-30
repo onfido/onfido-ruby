@@ -4,7 +4,7 @@ module Onfido
       us: "api.us.onfido.com"
     }.freeze
 
-    attr_accessor :api_key, :region, :open_timeout, :read_timeout, :api_version
+    attr_accessor :api_key, :region, :open_timeout, :read_timeout
 
     def self.extended(base)
       base.reset
@@ -19,7 +19,6 @@ module Onfido
       self.region = nil
       self.open_timeout = 30
       self.read_timeout = 80
-      self.api_version = 'v2'
       RestClient.log = nil
     end
 
@@ -41,7 +40,7 @@ module Onfido
         raise "The region \"#{region.downcase}\" is not currently supported"
       end
 
-      "https://#{region_host}/#{api_version}/"
+      "https://#{region_host}/v3/"
     end
   end
 end

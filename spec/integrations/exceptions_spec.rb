@@ -1,34 +1,33 @@
 describe Onfido::Resource do
   let(:resource) { described_class.new }
-  let(:url) { Onfido.endpoint + path }
   let(:api_key) { 'some_key' }
   let(:payload) { { postcode: 'SE1 4NG' } }
 
   before { allow(Onfido).to receive(:api_key).and_return(api_key) }
 
   context '4xx response' do
-    let(:path) { '4xx_response' }
-
     it 'raises a custom error' do
-      expect { resource.get(url: url, payload: payload) }.
+      path = '4xx_response'
+
+      expect { resource.get(path: path, payload: payload) }.
         to raise_error(Onfido::RequestError, 'Something went wrong')
     end
   end
 
   context 'unexpected error format' do
-    let(:path) { 'unexpected_error_format' }
-
     it 'raises a custom error' do
-      expect { resource.get(url: url, payload: payload) }.
+      path = 'unexpected_error_format'
+
+      expect { resource.get(path: path, payload: payload) }.
         to raise_error(Onfido::RequestError, /response code was 400/)
     end
   end
 
   context 'unparseable JSON 5xx' do
-    let(:path) { 'unparseable_response' }
-
     it 'raises a server error' do
-      expect { resource.get(url: url, payload: payload) }.
+      path = 'unparseable_response'
+
+      expect { resource.get(path: path, payload: payload) }.
         to raise_error(Onfido::ServerError, /response code was 504/)
     end
   end
@@ -41,7 +40,7 @@ describe Onfido::Resource do
     end
 
     it 'raises a ConnectionError' do
-      expect { resource.get(url: Onfido.endpoint, payload: payload) }.
+      expect { resource.get(path: Onfido.endpoint, payload: payload) }.
         to raise_error(Onfido::ConnectionError, /Could not connect/)
     end
   end
@@ -54,7 +53,7 @@ describe Onfido::Resource do
     end
 
     it 'raises a ConnectionError' do
-      expect { resource.get(url: Onfido.endpoint, payload: payload) }.
+      expect { resource.get(path: Onfido.endpoint, payload: payload) }.
         to raise_error(Onfido::ConnectionError, /connection to the server/)
     end
   end
@@ -67,7 +66,7 @@ describe Onfido::Resource do
     end
 
     it 'raises a ConnectionError' do
-      expect { resource.get(url: Onfido.endpoint, payload: payload) }.
+      expect { resource.get(path: Onfido.endpoint, payload: payload) }.
         to raise_error(Onfido::ConnectionError, /SSL certificate/)
     end
   end

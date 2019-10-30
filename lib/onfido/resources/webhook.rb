@@ -1,18 +1,16 @@
 module Onfido
   class Webhook < Resource
-    def create(payload)
-      post(
-        url: url_for('webhooks'),
-        payload: payload
-      )
+    def create(url:, **payload)
+      payload[:url] = url
+      post(path: 'webhooks', payload: payload)
     end
 
     def find(webhooks_id)
-      get(url: url_for("webhooks/#{webhooks_id}"))
+      get(path: "webhooks/#{webhooks_id}")
     end
 
-    def all(page: 1, per_page: 20)
-      get(url: url_for("webhooks?page=#{page}&per_page=#{per_page}"))
+    def all
+      get(path: 'webhooks')
     end
 
     # As well as being a normal resource, Onfido::Webhook also supports
@@ -29,7 +27,7 @@ module Onfido
     end
 
     def self.generate_signature(request_body, token)
-      OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), token, request_body)
+      OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), token, request_body)
     end
     private_class_method :generate_signature
   end

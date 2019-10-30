@@ -11,7 +11,7 @@ describe Onfido do
 
       describe ".endpoint" do
         subject { onfido.endpoint }
-        it { is_expected.to eq('https://api.onfido.com/v2/') }
+        it { is_expected.to eq('https://api.onfido.com/v3/') }
       end
 
       describe ".logger" do
@@ -27,18 +27,10 @@ describe Onfido do
       end
     end
 
-    describe "setting the API version" do
-      it 'changes the configuration to the new value' do
-        onfido.api_version = 'v1'
-        expect(onfido.api_version).to eq('v1')
-        expect(onfido.endpoint).to eq('https://api.onfido.com/v1/')
-      end
-    end
-
     describe 'using the US region' do
       it 'should change endpoint' do
         onfido.region = 'us'
-        expect(onfido.endpoint).to eq('https://api.us.onfido.com/v2/')
+        expect(onfido.endpoint).to eq('https://api.us.onfido.com/v3/')
       end
     end
 
@@ -53,7 +45,7 @@ describe Onfido do
     describe 'using an old API token' do
       it 'should use old endpoint' do
         onfido.api_key = "live_asdfghjkl1234567890qwertyuiop"
-        expect(onfido.endpoint).to eq('https://api.onfido.com/v2/')
+        expect(onfido.endpoint).to eq('https://api.onfido.com/v3/')
       end
     end
 
