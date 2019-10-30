@@ -7,8 +7,8 @@ require 'onfido/version'
 Gem::Specification.new do |spec|
   spec.name          = 'onfido'
   spec.version       = Onfido::VERSION
-  spec.authors       = ['Pericles Theodorou', 'Grey Baker']
-  spec.email         = ['periclestheo@gmail.com', 'grey@gocardless.com']
+  spec.authors       = ['Onfido']
+  spec.email         = ['engineering@onfido.com']
   spec.summary       = 'A wrapper for Onfido API'
   spec.description   = "A thin wrapper for Onfido's API. This gem only supports "\
                        "v3 of the Onfido API. Refer to Onfido's "\
