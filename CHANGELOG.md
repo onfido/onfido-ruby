@@ -1,3 +1,8 @@
+## v1.0.0, 13 Jan 2020
+
+- Support Onfido API version 3
+- Drop support for Onfido API version 2
+
 ## v0.15.0, 4 Feb 2019
 
 - Add Check#find_by_url method (@ctrlaltdylan)
