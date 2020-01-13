@@ -1,5 +1,3 @@
-:warning: **Under development**
-
 # Onfido
 
 A thin wrapper for Onfido's API.
@@ -7,14 +5,17 @@ A thin wrapper for Onfido's API.
 [![Gem Version](https://badge.fury.io/rb/onfido.svg)](http://badge.fury.io/rb/onfido)
 [![Build Status](https://travis-ci.org/onfido/onfido-ruby.svg?branch=master)](https://travis-ci.org/onfido/onfido-ruby)
 
-This gem supports both `v1` and `v2` of the Onfido API. Refer to Onfido's [API documentation](https://onfido.com/documentation#introduction) for details of the expected requests and responses for both.
+This gem supports only `v3` of Onfido's API from version `1.0.0` ownards.
+The latest version that supports `v2` of Onfido's API is `0.15.0`. `v1` of Onfido's API is deprecated
+Refer to Onfido's [API documentation](https://documentation.onfido.com) for details of the expected requests and responses.
+
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'onfido', '~> 0.15.0'
+gem 'onfido', '~> 1.0.0'
 ```
 
 The gem is compatible with Ruby 2.2.0 and onwards. Earlier versions of Ruby have [reached end-of-life](https://www.ruby-lang.org/en/news/2017/04/01/support-of-ruby-2-1-has-ended/), are no longer supported and no longer receive security fixes.
