@@ -2,6 +2,7 @@
 
 - Support Onfido API version 3
 - Drop support for Onfido API version 2
+- To upgrade from 0.15.0 see the v2 to v3 migration [guide](https://developers.onfido.com/guide/v2-to-v3-migration-guide)
 
 ## v0.15.0, 4 Feb 2019
 
