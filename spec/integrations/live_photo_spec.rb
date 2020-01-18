@@ -15,7 +15,7 @@ describe Onfido::LivePhoto do
       end
 
       it 'creates a new photo' do
-        response = live_photo.create(params)
+        response = live_photo.create(**params)
 
         expect(response['id']).not_to be_nil
       end
@@ -25,7 +25,7 @@ describe Onfido::LivePhoto do
       let(:file) { 'https://onfido.com/images/photo.jpg' }
 
       it 'raises an ArgumentError' do
-        expect { live_photo.create(params) }.
+        expect { live_photo.create(**params) }.
           to raise_error(ArgumentError, /must be a `File`-like object/)
       end
     end

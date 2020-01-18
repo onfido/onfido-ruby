@@ -14,13 +14,13 @@ describe Onfido::Webhook do
     end
 
     it "creates the webhook" do
-      response = webhook.create(params)
+      response = webhook.create(**params)
 
       expect(response['id']).to_not be_nil
     end
 
     it "responds with the right url" do
-      response = webhook.create(params)
+      response = webhook.create(**params)
 
       expect(response["url"]).to eq params[:url]
     end
