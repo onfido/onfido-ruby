@@ -5,10 +5,11 @@ A thin wrapper for Onfido's API.
 [![Gem Version](https://badge.fury.io/rb/onfido.svg)](http://badge.fury.io/rb/onfido)
 [![Build Status](https://travis-ci.org/onfido/onfido-ruby.svg?branch=master)](https://travis-ci.org/onfido/onfido-ruby)
 
-This gem supports only `v3` of Onfido's API from version `1.0.0` ownards. The latest version that supports `v2` of Onfido's API is `0.15.0`. `v1` of Onfido's API is deprecated.
+This gem supports only `v3` of Onfido's API from version `1.0.0` onwards. The latest version that supports `v2` of Onfido's API is `0.15.0`. `v1` of Onfido's API is deprecated.
+
+The gem is compatible with Ruby 2.2.0 and onwards. Earlier versions of Ruby have [reached end-of-life](https://www.ruby-lang.org/en/news/2017/04/01/support-of-ruby-2-1-has-ended/), are no longer supported and no longer receive security fixes.
 
 Refer to Onfido's [API documentation](https://documentation.onfido.com) for details of the expected requests and responses.
-
 
 ## Installation
 
@@ -18,15 +19,13 @@ Add this line to your application's Gemfile:
 gem 'onfido', '~> 1.0.0'
 ```
 
-The gem is compatible with Ruby 2.2.0 and onwards. Earlier versions of Ruby have [reached end-of-life](https://www.ruby-lang.org/en/news/2017/04/01/support-of-ruby-2-1-has-ended/), are no longer supported and no longer receive security fixes.
-
 ## Configuration
 
 There are 5 configuration options:
 
 ```ruby
 Onfido.configure do |config|
-  config.api_key = 'MY_API_KEY'
+  config.api_key = '<YOUR_API_KEY>'
   config.logger = Logger.new(STDOUT)
   config.open_timeout = 30
   config.read_timeout = 80
@@ -48,20 +47,20 @@ See https://documentation.onfido.com/#regions for supported regions.
 You can make API calls by using an instance of the `API` class:
 
 ```ruby
-api = Onfido::API.new
+api_instance = Onfido::API.new
 ```
 
-Alternatively, you can set an API key here instead of in the initializer:
+You can also set an API key as follows, instead of in the initializer configuration:
 
 ```ruby
-api = Onfido::API.new(api_key: 'API_KEY')
+api_instance = Onfido::API.new(api_key: '<YOUR_API_KEY>')
 ```
 
 ### Resources
 
 All resources share the same interface when making API calls. Use `.create` to create a resource, `.find` to find one, and `.all` to fetch all resources.
 
-**Note:** *All param keys should be a symbol e.g. `{ report_names: ['document'] }`*
+**Note:** *All param keys should be symbols e.g. `{ report_names: ['document'] }`*
 
 #### Applicants
 
@@ -69,10 +68,10 @@ Applicants are the object upon which Onfido checks are performed.
 
 ```ruby
 api.applicant.create(params)                  # => Creates an applicant
-api.applicant.update('applicant_id', params)  # => Updates an applicant
-api.applicant.destroy('applicant_id')         # => Schedule an applicant for deletion
-api.applicant.restore('applicant_id')         # => Restore an applicant scheduled for deletion
-api.applicant.find('applicant_id')            # => Finds a single applicant
+api.applicant.update('<APPLICANT_ID>', params)  # => Updates an applicant
+api.applicant.destroy('<APPLICANT_ID>')         # => Schedule an applicant for deletion
+api.applicant.restore('<APPLICANT_ID>')         # => Restore an applicant scheduled for deletion
+api.applicant.find('<APPLICANT_ID>')            # => Finds a single applicant
 api.applicant.all                             # => Returns all applicants
 ```
 
@@ -81,13 +80,13 @@ See https://documentation.onfido.com/#delete-applicant for more information.
 
 #### Documents
 
-Documents provide supporting evidence for Onfido checks.
+Some report types require identity documents (passport, driving licence etc.) in order to be processed.
 
 ```ruby
-api.document.create('applicant_id', file: 'http://example.com', type: 'passport') # => Creates a document
-api.document.find('document_id') # => Finds a document
-api.document.download('document_id') # => Downloads a document as a binary data
-api.document.all('applicant_id') # => Returns all applicant's documents
+api.document.create(applicant_id: '<APPLICANT_ID>', file: <FILE>, type: 'passport') # => Creates a document
+api.document.find('<DOCUMENT_ID>')      # => Finds a document
+api.document.download('<DOCUMENT_ID>')  # => Downloads a document as a binary data
+api.document.all('<APPLICANT_ID>')      # => Returns all documents belonging to an applicant
 ```
 
 **Note:** The file parameter must be a `File`-like object which responds to `#read` and `#path`.
@@ -95,15 +94,17 @@ Previous versions of this gem supported providing a URL to a file accessible ove
 to a file in the local filesystem. You should instead load the file yourself and then pass it in
 to `#create`.
 
+See https://documentation.onfido.com/#document-types for example document types.
+
 #### Live Photos
 
-Live Photos, like documents, can provide supporting evidence for Onfido checks.
+Live photos are images of the applicant’s face, typically taken at the same time as documents are provided. These photos are used to perform Facial Similarity Photo reports on the applicant.
 
 ```ruby
-api.live_photo.create('applicant_id', file: 'http://example.com')
-api.live_photo.find(live_photo_id) # => Finds a live photo
-api.live_photo.download(live_photo_id) # => Downloads a live photo as binary data
-api.live_photo.all(applicant_id) # => Returns all applicant's live photos
+api.live_photo.create(applicant_id: '<APPLICANT_ID>', file: <FILE>) # => Creates a live photo
+api.live_photo.find('<LIVE_PHOTO_ID>')      # => Finds a live photo
+api.live_photo.download('<LIVE_PHOTO_ID>')  # => Downloads a live photo as binary data
+api.live_photo.all('<APPLICANT_ID>')        # => Returns all live photos belonging to an applicant
 ```
 
 **Note:** The file parameter must be a `File`-like object which responds to `#read` and `#path`.
@@ -113,38 +114,37 @@ to `#create`.
 
 #### Checks
 
-Checks are requests for Onfido to check an applicant, by commissioning one or
-more "reports" on them.
+Checks are performed on an applicant. Depending on the type of check you wish to perform, different information will be required when you create an applicant. A check consists of one or more reports.
 
 ```ruby
-api.check.create('applicant_id', report_names: ['document'])
-api.check.find('check_id')
-api.check.resume('check_id')
-api.check.all('applicant_id')
+api.check.create(applicant_id: '<APPLICANT_ID>', report_names: ['document', 'facial_similarity_photo']) # => Creates a check
+api.check.find('<CHECK_ID>')    # => Finds a check
+api.check.resume('<CHECK_ID>')  # => Resumes a paused check
+api.check.all('<APPLICANT_ID>') # => Returns all an applicant's checks
 ```
 
 #### Reports
 
-Reports provide details of the results of some part of a "check". They are
+Reports provide details of the results of some part of a check. They are
 created when a check is created, so the Onfido API only provides support for
 finding and listing them. For paused reports specifically, additional support for resuming and
  cancelling reports is also available.
 
 ```ruby
-api.report.find('report_id')
-api.report.all('check_id')
-api.report.resume('report_id')
-api.report.cancel('report_id')
+api.report.find('<REPORT_ID>')    # => Finds a report
+api.report.all('<CHECK_ID>')      # => Returns all the reports in a check
+api.report.resume('<REPORT_ID>')  # => Resumes a paused report
+api.report.cancel('<REPORT_ID>')  # => Cancels a paused report
 ```
 
 #### Address Lookups
 
 Onfido provides an address lookup service, to help ensure well-formatted
-addresses are provided when creating "applicants". To search for addresses
+addresses are provided when creating applicants. To search for addresses
 by postcode, use:
 
 ```ruby
-api.address.all('SE1 4NG')
+api.address.all('SE1 4NG') # => Returns all addresses in a given postcode
 ```
 
 #### Webhook Endpoints
@@ -153,9 +153,9 @@ Onfido allows you to set up and view your webhook endpoints via the API, as well
 as through the dashboard.
 
 ```ruby
-api.webhook.create(params)          # => Creates a webhook endpoint
-api.webhook.find('webhook_id')      # => Finds a single webhook endpoint
-api.webhook.all                     # => Returns all webhook endpoints
+api.webhook.create(url: "https://webhook.url", events: ['report.completed, check.completed']) # => Registers a webhook endpoint
+api.webhook.find('<WEBHOOK_ID>')  # => Finds a single webhook endpoint
+api.webhook.all                 # => Returns all webhook endpoints
 ```
 
 #### SDK Tokens
@@ -164,17 +164,17 @@ Onfido allows you to generate JSON Web Tokens via the API in order to authentica
 with Onfido's [JavaScript SDK](https://github.com/onfido/onfido-sdk-ui).
 
 ```ruby
-api.sdk_token.create(applicant_id: 'applicant_id', referrer: 'referrer')
+api.sdk_token.create(applicant_id: 'applicant_id', referrer: 'referrer') # => Creates a JWT
 ```
 
 ### Error Handling
 
-There are three classes of errors raised by the library, all of which subclass `Onfido::OnfidoError`:
+There are 3 classes of errors raised by the library, all of which subclass `Onfido::OnfidoError`:
 - `Onfido::ServerError` is raised whenever Onfido returns a `5xx` response
 - `Onfido::RequestError` is raised whenever Onfido returns any other kind of error
 - `Onfido::ConnectionError` is raised whenever a network error occurs (e.g., a timeout)
 
-All three error classes provide the `response_code`, `response_body`, `json_body`, `type` and `fields` of the error (although for `Onfido::ServerError` and `Onfido::ConnectionError` the last three are likely to be `nil`).
+All 3 error classes provide the `response_code`, `response_body`, `json_body`, `type` and `fields` of the error (although for `Onfido::ServerError` and `Onfido::ConnectionError` the last 3 are likely to be `nil`).
 
 ```ruby
 def create_applicant
@@ -188,13 +188,13 @@ end
 
 ## Webhooks
 
-Each webhook endpoint has a secret token, generated automatically and [exposed](https://onfido.com/documentation#register-webhook) in the API. When sending a request, Onfido includes a signature computed using the request body and this token in the `X-Signature` header.
+Each webhook endpoint has a secret token, generated automatically and [exposed](https://onfido.com/documentation#register-webhook) in the API. When sending a request, Onfido includes a signature computed using the request body and this token in the `X-SHA2-Signature` header.
 
-This provided signature [should](https://onfido.com/documentation#webhook-security) be compared to one you generate yourself with the token to check that a webhook is a genuine request from Onfido.
+You should compare this provided signature to one you generate yourself with the token to verify that a webhook is a genuine request from Onfido.
 
 ```ruby
 if Onfido::Webhook.valid?(request.raw_post,
-                          request.headers["X-Signature"],
+                          request.headers["X-SHA2-Signature"],
                           ENV['ONFIDO_WEBHOOK_TOKEN'])
   process_webhook
 else
@@ -202,15 +202,11 @@ else
 end
 ```
 
-## Roadmap
-
-- Improve test coverage with more scenarios
-- Add custom errors based on the response code
-- Improve pagination handling (use information passed in link header)
+Read more at https://onfido.com/documentation#webhook-security 
 
 ## Contributing
 
-1. Fork it ( https://github.com/onfido/onfido/fork )
+1. Fork it ( https://github.com/onfido/onfido-ruby/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
