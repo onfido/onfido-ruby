@@ -67,15 +67,15 @@ All resources share the same interface when making API calls. Use `.create` to c
 Applicants are the object upon which Onfido checks are performed.
 
 ```ruby
-api.applicant.create(params)                  # => Creates an applicant
-api.applicant.update('<APPLICANT_ID>', params)  # => Updates an applicant
-api.applicant.destroy('<APPLICANT_ID>')         # => Schedule an applicant for deletion
-api.applicant.restore('<APPLICANT_ID>')         # => Restore an applicant scheduled for deletion
-api.applicant.find('<APPLICANT_ID>')            # => Finds a single applicant
-api.applicant.all                             # => Returns all applicants
+api_instance.applicant.create(params)                  # => Creates an applicant
+api_instance.applicant.update('<APPLICANT_ID>', params)  # => Updates an applicant
+api_instance.applicant.destroy('<APPLICANT_ID>')         # => Schedule an applicant for deletion
+api_instance.applicant.restore('<APPLICANT_ID>')         # => Restore an applicant scheduled for deletion
+api_instance.applicant.find('<APPLICANT_ID>')            # => Finds a single applicant
+api_instance.applicant.all                             # => Returns all applicants
 ```
 
-**Note:** Calling `api.applicant.destroy` adds the applicant and all associated documents, photos, videos, checks, and reports to the deletion queue. They will be deleted 20 days after the request is made. An applicant that is scheduled for deletion can be restored but applicants that have been permanently deleted cannot.
+**Note:** Calling `api_instance.applicant.destroy` adds the applicant and all associated documents, photos, videos, checks, and reports to the deletion queue. They will be deleted 20 days after the request is made. An applicant that is scheduled for deletion can be restored but applicants that have been permanently deleted cannot.
 See https://documentation.onfido.com/#delete-applicant for more information.
 
 #### Documents
@@ -83,10 +83,10 @@ See https://documentation.onfido.com/#delete-applicant for more information.
 Some report types require identity documents (passport, driving licence etc.) in order to be processed.
 
 ```ruby
-api.document.create(applicant_id: '<APPLICANT_ID>', file: <FILE>, type: 'passport') # => Creates a document
-api.document.find('<DOCUMENT_ID>')      # => Finds a document
-api.document.download('<DOCUMENT_ID>')  # => Downloads a document as a binary data
-api.document.all('<APPLICANT_ID>')      # => Returns all documents belonging to an applicant
+api_instance.document.create(applicant_id: '<APPLICANT_ID>', file: <FILE>, type: 'passport') # => Creates a document
+api_instance.document.find('<DOCUMENT_ID>')      # => Finds a document
+api_instance.document.download('<DOCUMENT_ID>')  # => Downloads a document as a binary data
+api_instance.document.all('<APPLICANT_ID>')      # => Returns all documents belonging to an applicant
 ```
 
 **Note:** The file parameter must be a `File`-like object which responds to `#read` and `#path`.
@@ -101,10 +101,10 @@ See https://documentation.onfido.com/#document-types for example document types.
 Live photos are images of the applicant’s face, typically taken at the same time as documents are provided. These photos are used to perform Facial Similarity Photo reports on the applicant.
 
 ```ruby
-api.live_photo.create(applicant_id: '<APPLICANT_ID>', file: <FILE>) # => Creates a live photo
-api.live_photo.find('<LIVE_PHOTO_ID>')      # => Finds a live photo
-api.live_photo.download('<LIVE_PHOTO_ID>')  # => Downloads a live photo as binary data
-api.live_photo.all('<APPLICANT_ID>')        # => Returns all live photos belonging to an applicant
+api_instance.live_photo.create(applicant_id: '<APPLICANT_ID>', file: <FILE>) # => Creates a live photo
+api_instance.live_photo.find('<LIVE_PHOTO_ID>')      # => Finds a live photo
+api_instance.live_photo.download('<LIVE_PHOTO_ID>')  # => Downloads a live photo as binary data
+api_instance.live_photo.all('<APPLICANT_ID>')        # => Returns all live photos belonging to an applicant
 ```
 
 **Note:** The file parameter must be a `File`-like object which responds to `#read` and `#path`.
@@ -117,10 +117,10 @@ to `#create`.
 Checks are performed on an applicant. Depending on the type of check you wish to perform, different information will be required when you create an applicant. A check consists of one or more reports.
 
 ```ruby
-api.check.create(applicant_id: '<APPLICANT_ID>', report_names: ['document', 'facial_similarity_photo']) # => Creates a check
-api.check.find('<CHECK_ID>')    # => Finds a check
-api.check.resume('<CHECK_ID>')  # => Resumes a paused check
-api.check.all('<APPLICANT_ID>') # => Returns all an applicant's checks
+api_instance.check.create(applicant_id: '<APPLICANT_ID>', report_names: ['document', 'facial_similarity_photo']) # => Creates a check
+api_instance.check.find('<CHECK_ID>')    # => Finds a check
+api_instance.check.resume('<CHECK_ID>')  # => Resumes a paused check
+api_instance.check.all('<APPLICANT_ID>') # => Returns all an applicant's checks
 ```
 
 #### Reports
@@ -131,10 +131,10 @@ finding and listing them. For paused reports specifically, additional support fo
  cancelling reports is also available.
 
 ```ruby
-api.report.find('<REPORT_ID>')    # => Finds a report
-api.report.all('<CHECK_ID>')      # => Returns all the reports in a check
-api.report.resume('<REPORT_ID>')  # => Resumes a paused report
-api.report.cancel('<REPORT_ID>')  # => Cancels a paused report
+api_instance.report.find('<REPORT_ID>')    # => Finds a report
+api_instance.report.all('<CHECK_ID>')      # => Returns all the reports in a check
+api_instance.report.resume('<REPORT_ID>')  # => Resumes a paused report
+api_instance.report.cancel('<REPORT_ID>')  # => Cancels a paused report
 ```
 
 #### Address Lookups
@@ -144,7 +144,7 @@ addresses are provided when creating applicants. To search for addresses
 by postcode, use:
 
 ```ruby
-api.address.all('SE1 4NG') # => Returns all addresses in a given postcode
+api_instance.address.all('SE1 4NG') # => Returns all addresses in a given postcode
 ```
 
 #### Webhook Endpoints
@@ -153,9 +153,9 @@ Onfido allows you to set up and view your webhook endpoints via the API, as well
 as through the dashboard.
 
 ```ruby
-api.webhook.create(url: "https://webhook.url", events: ['report.completed, check.completed']) # => Registers a webhook endpoint
-api.webhook.find('<WEBHOOK_ID>')  # => Finds a single webhook endpoint
-api.webhook.all                 # => Returns all webhook endpoints
+api_instance.webhook.create(url: "https://webhook.url", events: ['report.completed, check.completed']) # => Registers a webhook endpoint
+api_instance.webhook.find('<WEBHOOK_ID>')  # => Finds a single webhook endpoint
+api_instance.webhook.all                 # => Returns all webhook endpoints
 ```
 
 #### SDK Tokens
@@ -164,7 +164,7 @@ Onfido allows you to generate JSON Web Tokens via the API in order to authentica
 with Onfido's [JavaScript SDK](https://github.com/onfido/onfido-sdk-ui).
 
 ```ruby
-api.sdk_token.create(applicant_id: 'applicant_id', referrer: 'referrer') # => Creates a JWT
+api_instance.sdk_token.create(applicant_id: 'applicant_id', referrer: 'referrer') # => Creates a JWT
 ```
 
 ### Error Handling
@@ -178,7 +178,7 @@ All 3 error classes provide the `response_code`, `response_body`, `json_body`, `
 
 ```ruby
 def create_applicant
-  api.applicant.create(params)
+  api_instance.applicant.create(params)
 rescue Onfido::RequestError => e
   e.type          # => 'validation_error'
   e.fields        # => { "email": { "messages": ["invalid format"] } }
