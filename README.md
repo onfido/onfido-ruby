@@ -47,13 +47,13 @@ See https://documentation.onfido.com/#regions for supported regions.
 You can make API calls by using an instance of the `API` class:
 
 ```ruby
-api_instance = Onfido::API.new
+onfido = Onfido::API.new
 ```
 
 You can also set an API key as follows, instead of in the initializer configuration:
 
 ```ruby
-api_instance = Onfido::API.new(api_key: '<YOUR_API_KEY>')
+onfido = Onfido::API.new(api_key: '<YOUR_API_KEY>')
 ```
 
 ### Resources
@@ -67,15 +67,15 @@ All resources share the same interface when making API calls. Use `.create` to c
 Applicants are the object upon which Onfido checks are performed.
 
 ```ruby
-api.applicant.create(params)                  # => Creates an applicant
-api.applicant.update('<APPLICANT_ID>', params)  # => Updates an applicant
-api.applicant.destroy('<APPLICANT_ID>')         # => Schedule an applicant for deletion
-api.applicant.restore('<APPLICANT_ID>')         # => Restore an applicant scheduled for deletion
-api.applicant.find('<APPLICANT_ID>')            # => Finds a single applicant
-api.applicant.all                             # => Returns all applicants
+onfido.applicant.create(params)                  # => Creates an applicant
+onfido.applicant.update('<APPLICANT_ID>', params)  # => Updates an applicant
+onfido.applicant.destroy('<APPLICANT_ID>')         # => Schedule an applicant for deletion
+onfido.applicant.restore('<APPLICANT_ID>')         # => Restore an applicant scheduled for deletion
+onfido.applicant.find('<APPLICANT_ID>')            # => Finds a single applicant
+onfido.applicant.all                             # => Returns all applicants
 ```
 
-**Note:** Calling `api.applicant.destroy` adds the applicant and all associated documents, photos, videos, checks, and reports to the deletion queue. They will be deleted 20 days after the request is made. An applicant that is scheduled for deletion can be restored but applicants that have been permanently deleted cannot.
+**Note:** Calling `onfido.applicant.destroy` adds the applicant and all associated documents, photos, videos, checks, and reports to the deletion queue. They will be deleted 20 days after the request is made. An applicant that is scheduled for deletion can be restored but applicants that have been permanently deleted cannot.
 See https://documentation.onfido.com/#delete-applicant for more information.
 
 #### Documents
@@ -83,10 +83,10 @@ See https://documentation.onfido.com/#delete-applicant for more information.
 Some report types require identity documents (passport, driving licence etc.) in order to be processed.
 
 ```ruby
-api.document.create(applicant_id: '<APPLICANT_ID>', file: <FILE>, type: 'passport') # => Creates a document
-api.document.find('<DOCUMENT_ID>')      # => Finds a document
-api.document.download('<DOCUMENT_ID>')  # => Downloads a document as a binary data
-api.document.all('<APPLICANT_ID>')      # => Returns all documents belonging to an applicant
+onfido.document.create(applicant_id: '<APPLICANT_ID>', file: <FILE>, type: 'passport') # => Creates a document
+onfido.document.find('<DOCUMENT_ID>')      # => Finds a document
+onfido.document.download('<DOCUMENT_ID>')  # => Downloads a document as a binary data
+onfido.document.all('<APPLICANT_ID>')      # => Returns all documents belonging to an applicant
 ```
 
 **Note:** The file parameter must be a `File`-like object which responds to `#read` and `#path`.
@@ -101,10 +101,10 @@ See https://documentation.onfido.com/#document-types for example document types.
 Live photos are images of the applicant’s face, typically taken at the same time as documents are provided. These photos are used to perform Facial Similarity Photo reports on the applicant.
 
 ```ruby
-api.live_photo.create(applicant_id: '<APPLICANT_ID>', file: <FILE>) # => Creates a live photo
-api.live_photo.find('<LIVE_PHOTO_ID>')      # => Finds a live photo
-api.live_photo.download('<LIVE_PHOTO_ID>')  # => Downloads a live photo as binary data
-api.live_photo.all('<APPLICANT_ID>')        # => Returns all live photos belonging to an applicant
+onfido.live_photo.create(applicant_id: '<APPLICANT_ID>', file: <FILE>) # => Creates a live photo
+onfido.live_photo.find('<LIVE_PHOTO_ID>')      # => Finds a live photo
+onfido.live_photo.download('<LIVE_PHOTO_ID>')  # => Downloads a live photo as binary data
+onfido.live_photo.all('<APPLICANT_ID>')        # => Returns all live photos belonging to an applicant
 ```
 
 **Note:** The file parameter must be a `File`-like object which responds to `#read` and `#path`.
@@ -117,10 +117,10 @@ to `#create`.
 Checks are performed on an applicant. Depending on the type of check you wish to perform, different information will be required when you create an applicant. A check consists of one or more reports.
 
 ```ruby
-api.check.create(applicant_id: '<APPLICANT_ID>', report_names: ['document', 'facial_similarity_photo']) # => Creates a check
-api.check.find('<CHECK_ID>')    # => Finds a check
-api.check.resume('<CHECK_ID>')  # => Resumes a paused check
-api.check.all('<APPLICANT_ID>') # => Returns all an applicant's checks
+onfido.check.create(applicant_id: '<APPLICANT_ID>', report_names: ['document', 'facial_similarity_photo']) # => Creates a check
+onfido.check.find('<CHECK_ID>')    # => Finds a check
+onfido.check.resume('<CHECK_ID>')  # => Resumes a paused check
+onfido.check.all('<APPLICANT_ID>') # => Returns all an applicant's checks
 ```
 
 #### Reports
@@ -131,10 +131,10 @@ finding and listing them. For paused reports specifically, additional support fo
  cancelling reports is also available.
 
 ```ruby
-api.report.find('<REPORT_ID>')    # => Finds a report
-api.report.all('<CHECK_ID>')      # => Returns all the reports in a check
-api.report.resume('<REPORT_ID>')  # => Resumes a paused report
-api.report.cancel('<REPORT_ID>')  # => Cancels a paused report
+onfido.report.find('<REPORT_ID>')    # => Finds a report
+onfido.report.all('<CHECK_ID>')      # => Returns all the reports in a check
+onfido.report.resume('<REPORT_ID>')  # => Resumes a paused report
+onfido.report.cancel('<REPORT_ID>')  # => Cancels a paused report
 ```
 
 #### Address Lookups
@@ -144,7 +144,7 @@ addresses are provided when creating applicants. To search for addresses
 by postcode, use:
 
 ```ruby
-api.address.all('SE1 4NG') # => Returns all addresses in a given postcode
+onfido.address.all('SE1 4NG') # => Returns all addresses in a given postcode
 ```
 
 #### Webhook Endpoints
@@ -153,9 +153,9 @@ Onfido allows you to set up and view your webhook endpoints via the API, as well
 as through the dashboard.
 
 ```ruby
-api.webhook.create(url: "https://webhook.url", events: ['report.completed, check.completed']) # => Registers a webhook endpoint
-api.webhook.find('<WEBHOOK_ID>')  # => Finds a single webhook endpoint
-api.webhook.all                 # => Returns all webhook endpoints
+onfido.webhook.create(url: "https://webhook.url", events: ['report.completed, check.completed']) # => Registers a webhook endpoint
+onfido.webhook.find('<WEBHOOK_ID>')  # => Finds a single webhook endpoint
+onfido.webhook.all                 # => Returns all webhook endpoints
 ```
 
 #### SDK Tokens
@@ -164,7 +164,7 @@ Onfido allows you to generate JSON Web Tokens via the API in order to authentica
 with Onfido's [JavaScript SDK](https://github.com/onfido/onfido-sdk-ui).
 
 ```ruby
-api.sdk_token.create(applicant_id: 'applicant_id', referrer: 'referrer') # => Creates a JWT
+onfido.sdk_token.create(applicant_id: 'applicant_id', referrer: 'referrer') # => Creates a JWT
 ```
 
 ### Error Handling
@@ -178,7 +178,7 @@ All 3 error classes provide the `response_code`, `response_body`, `json_body`, `
 
 ```ruby
 def create_applicant
-  api.applicant.create(params)
+  onfido.applicant.create(params)
 rescue Onfido::RequestError => e
   e.type          # => 'validation_error'
   e.fields        # => { "email": { "messages": ["invalid format"] } }
