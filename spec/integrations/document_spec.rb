@@ -22,7 +22,7 @@ describe Onfido::Document do
       end
 
       it 'creates a new document' do
-        response = document.create(params)
+        response = document.create(**params)
 
         expect(response['id']).not_to be_nil
       end
@@ -32,7 +32,7 @@ describe Onfido::Document do
       let(:file) { 'https://onfido.com/images/logo.png' }
 
       it 'raises an ArgumentError' do
-        expect { document.create(params) }.
+        expect { document.create(**params) }.
           to raise_error(ArgumentError, /must be a `File`-like object/)
       end
     end
