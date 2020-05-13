@@ -16,7 +16,7 @@ Refer to Onfido's [API documentation](https://documentation.onfido.com) for deta
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'onfido', '~> 1.0.0'
+gem 'onfido', '~> 1.1.0'
 ```
 
 ## Configuration
@@ -39,6 +39,9 @@ The gem will use the default region if no region is specified.
 
 To specify the US region do:
 `config.region = :us`
+
+To specify the CA region do:
+`config.region = :ca`
 
 See https://documentation.onfido.com/#regions for supported regions.
 
@@ -202,7 +205,7 @@ else
 end
 ```
 
-Read more at https://onfido.com/documentation#webhook-security 
+Read more at https://onfido.com/documentation#webhook-security
 
 ## Contributing
 
