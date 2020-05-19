@@ -1,3 +1,7 @@
+## v1.1.0, 13 May 2020
+
+- Add support for CA region
+
 ## v1.0.0, 13 Jan 2020
 
 - Support Onfido API version 3

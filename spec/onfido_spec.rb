@@ -34,6 +34,13 @@ describe Onfido do
       end
     end
 
+    describe 'using the CA region' do
+      it 'should change endpoint' do
+        onfido.region = 'ca'
+        expect(onfido.endpoint).to eq('https://api.ca.onfido.com/v3/')
+      end
+    end
+
     describe 'using an unsupported region' do
       it 'should change endpoint' do
         onfido.region = 'de'

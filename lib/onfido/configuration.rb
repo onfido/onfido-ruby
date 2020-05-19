@@ -1,7 +1,8 @@
 module Onfido
   module Configuration
     REGION_HOSTS = {
-      us: "api.us.onfido.com"
+      us: "api.us.onfido.com",
+      ca: "api.ca.onfido.com"
     }.freeze
 
     attr_accessor :api_key, :region, :open_timeout, :read_timeout
