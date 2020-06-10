@@ -96,6 +96,10 @@ class FakeOnfidoAPI < Sinatra::Base
     params["applicant_id"].nil? ? status(422) : json_response(201, 'check.json')
   end
 
+  post '/v3/extractions' do
+    params["document_id"].nil? ? status(422) : json_response(201, 'extraction.json')
+  end
+
   get '/v3/checks/:id' do
     json_response(200, "check.json")
   end

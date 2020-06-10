@@ -16,6 +16,10 @@ module Onfido
       Onfido::Document.new(@api_key)
     end
 
+    def extraction
+      Onfido::Extraction.new(@api_key)
+    end
+
     def live_photo
       Onfido::LivePhoto.new(@api_key)
     end

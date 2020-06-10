@@ -1,0 +1,18 @@
+{
+  "document_id": "7568415-123123-123123",
+  "document_classification": {
+    "issuing_country": "FRA",
+    "document_type": "national_identity_card"
+  },
+  "extracted_data": {
+    "date_of_birth": "1990-07-21",
+    "date_of_expiry": "2025-07-07",
+    "document_number": "200407512345",
+    "first_name": "AMANDINE CHANTAL",
+    "gender": "Female",
+    "last_name": "MAVARINE",
+    "mrz_line1": "IDFRAMAVARINE<<<<<<<<<<<<<<<<<075123",
+    "mrz_line2": "2004075123457AMANDINE<CHANT9007219F5",
+    "nationality": "FRA"
+  }
+}
