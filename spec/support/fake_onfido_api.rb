@@ -136,6 +136,11 @@ class FakeOnfidoAPI < Sinatra::Base
     json_response(200, 'webhook.json')
   end
 
+  delete '/v3/webhooks/:id' do
+    content_type "application/json; charset=utf-8"
+    status 204
+  end
+
   get '/v3/webhooks' do
     json_response(200, 'webhooks.json')
   end
