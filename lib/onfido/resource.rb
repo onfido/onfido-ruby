@@ -65,7 +65,8 @@ module Onfido
     def headers
       {
         'Authorization' => "Token token=#{@api_key}",
-        'Accept' => "application/json"
+        'Accept' => "application/json",
+        'User-Agnet' => "onfido-ruby/#{Onfido::VERSION}"
       }
     end
 

@@ -63,7 +63,8 @@ describe Onfido::Resource do
         expect(WebMock).to have_requested(:get, url).with(
           headers: {
             'Authorization' => "Token token=#{specific_api_key}",
-            'Accept' => "application/json"
+            'Accept' => "application/json",
+            'User-Agent' => "onfido-ruby/#{Onfido::VERSION}"
           }
         )
       end
@@ -78,7 +79,8 @@ describe Onfido::Resource do
         expect(WebMock).to have_requested(:get, url).with(
           headers: {
             'Authorization' => "Token token=#{api_key}",
-            'Accept' => "application/json"
+            'Accept' => "application/json",
+            'User-Agent' => "onfido-ruby/#{Onfido::VERSION}"
           }
         )
       end
