@@ -66,7 +66,7 @@ module Onfido
       {
         'Authorization' => "Token token=#{@api_key}",
         'Accept' => "application/json",
-        'User-Agnet' => "onfido-ruby/#{Onfido::VERSION}"
+        'User-Agent' => "onfido-ruby/#{Onfido::VERSION}"
       }
     end
 
