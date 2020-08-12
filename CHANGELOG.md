@@ -1,9 +1,6 @@
-## v1.2.0, 6 Aug 2020
+## v1.1.0, 6 Aug 2020
 
 - Add User-Agent header
-
-## v1.1.0, 13 May 2020
-
 - Add support for CA region
 
 ## v1.0.0, 13 Jan 2020
