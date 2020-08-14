@@ -1,7 +1,9 @@
-## v1.1.0, 6 Aug 2020
+## v1.1.0, 14 Aug 2020
 
 - Add User-Agent header
 - Add support for CA region
+- Add extractions endpoint
+- Add webhook deletion endpoint
 
 ## v1.0.0, 13 Jan 2020
 
