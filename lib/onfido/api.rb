@@ -39,5 +39,9 @@ module Onfido
     def address
       Onfido::Address.new(@api_key)
     end
+
+    def extraction
+      Onfido::Extraction.new(@api_key)
+    end
   end
 end
