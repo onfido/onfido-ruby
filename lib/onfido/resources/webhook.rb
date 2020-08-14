@@ -13,6 +13,10 @@ module Onfido
       get(path: 'webhooks')
     end
 
+    def destroy(webhook_id)
+      delete(path: "webhooks/#{webhook_id}")
+    end
+
     # As well as being a normal resource, Onfido::Webhook also supports
     # verifying the authenticity of a webhook by comparing the signature on the
     # request to one computed from the body

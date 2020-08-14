@@ -36,6 +36,13 @@ describe Onfido::Webhook do
     end
   end
 
+  describe "#destroy" do
+    it "removes the webhook" do
+      webhook_id = 'fcb73186-0733-4f6f-9c57-d9d5ef979443'
+      expect { webhook.destroy(webhook_id) }.not_to raise_error
+    end
+  end
+
   describe "#all" do
     it "returns all the registered webhooks" do
       response = webhook.all
