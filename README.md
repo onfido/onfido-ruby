@@ -156,7 +156,7 @@ Onfido allows you to set up and view your webhook endpoints via the API, as well
 as through the dashboard.
 
 ```ruby
-onfido.webhook.create(url: "https://webhook.url", events: ['report.completed, check.completed']) # => Registers a webhook endpoint
+onfido.webhook.create(url: "https://webhook.url", events: ['report.completed', 'check.completed']) # => Registers a webhook endpoint
 onfido.webhook.find('<WEBHOOK_ID>')  # => Finds a single webhook endpoint
 onfido.webhook.all                 # => Returns all webhook endpoints
 ```
