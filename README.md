@@ -16,7 +16,7 @@ Refer to Onfido's [API documentation](https://documentation.onfido.com) for deta
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'onfido', '~> 1.1.0'
+gem 'onfido', '~> 1.1.1'
 ```
 
 ## Configuration

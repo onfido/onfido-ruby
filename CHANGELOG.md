@@ -1,3 +1,7 @@
+## v1.1.1, 12 March 2021
+
+- Send the postcode in the query string for the address picker endpoint
+
 ## v1.1.0, 14 Aug 2020
 
 - Add User-Agent header
