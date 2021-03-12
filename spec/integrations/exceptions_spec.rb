@@ -1,7 +1,6 @@
 describe Onfido::Resource do
   let(:resource) { described_class.new }
   let(:api_key) { 'some_key' }
-  let(:payload) { { postcode: 'SE1 4NG' } }
 
   before { allow(Onfido).to receive(:api_key).and_return(api_key) }
 
@@ -9,7 +8,7 @@ describe Onfido::Resource do
     it 'raises a custom error' do
       path = '4xx_response'
 
-      expect { resource.get(path: path, payload: payload) }.
+      expect { resource.get(path: path) }.
         to raise_error(Onfido::RequestError, 'Something went wrong')
     end
   end
@@ -18,7 +17,7 @@ describe Onfido::Resource do
     it 'raises a custom error' do
       path = 'unexpected_error_format'
 
-      expect { resource.get(path: path, payload: payload) }.
+      expect { resource.get(path: path) }.
         to raise_error(Onfido::RequestError, /response code was 400/)
     end
   end
@@ -27,7 +26,7 @@ describe Onfido::Resource do
     it 'raises a server error' do
       path = 'unparseable_response'
 
-      expect { resource.get(path: path, payload: payload) }.
+      expect { resource.get(path: path) }.
         to raise_error(Onfido::ServerError, /response code was 504/)
     end
   end
@@ -40,7 +39,7 @@ describe Onfido::Resource do
     end
 
     it 'raises a ConnectionError' do
-      expect { resource.get(path: Onfido.endpoint, payload: payload) }.
+      expect { resource.get(path: Onfido.endpoint) }.
         to raise_error(Onfido::ConnectionError, /Could not connect/)
     end
   end
@@ -53,7 +52,7 @@ describe Onfido::Resource do
     end
 
     it 'raises a ConnectionError' do
-      expect { resource.get(path: Onfido.endpoint, payload: payload) }.
+      expect { resource.get(path: Onfido.endpoint) }.
         to raise_error(Onfido::ConnectionError, /connection to the server/)
     end
   end
@@ -66,7 +65,7 @@ describe Onfido::Resource do
     end
 
     it 'raises a ConnectionError' do
-      expect { resource.get(path: Onfido.endpoint, payload: payload) }.
+      expect { resource.get(path: Onfido.endpoint) }.
         to raise_error(Onfido::ConnectionError, /SSL certificate/)
     end
   end
