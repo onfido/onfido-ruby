@@ -18,5 +18,9 @@ module Onfido
     def resume(check_id)
       post(path: "checks/#{check_id}/resume")
     end
+
+    def download(check_id)
+      get(path: "checks/#{check_id}/download")
+    end
   end
 end

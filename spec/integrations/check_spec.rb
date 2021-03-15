@@ -48,4 +48,12 @@ describe Onfido::Check do
       expect { check.resume(check_id) }.not_to raise_error
     end
   end
+
+  describe '#download' do
+  it 'returns the file data' do
+    response = check.download(check_id)
+
+    expect(response).not_to be_nil
+  end
+end
 end

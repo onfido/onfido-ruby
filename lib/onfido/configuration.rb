@@ -41,7 +41,7 @@ module Onfido
         raise "The region \"#{region.downcase}\" is not currently supported"
       end
 
-      "https://#{region_host}/v3/"
+      "https://#{region_host}/v3.1/"
     end
   end
 end

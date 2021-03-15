@@ -29,7 +29,7 @@ describe Onfido::Applicant do
 
     it 'serializes the payload correctly' do
       WebMock.after_request do |request_signature, _response|
-        if request_signature.uri.path == 'v3/applicants'
+        if request_signature.uri.path == 'v3.1/applicants'
           expect(Rack::Utils.parse_nested_query(request_signature.body)).
             to eq(params)
         end

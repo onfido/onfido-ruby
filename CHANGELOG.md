@@ -1,3 +1,7 @@
+## v1.2.0, <DATE_TO_GO_HERE>
+
+- Support Onfido API version 3.1
+
 ## v1.1.1, 12 March 2021
 
 - Send the postcode in the query string for the address picker endpoint
