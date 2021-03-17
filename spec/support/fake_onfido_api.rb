@@ -112,6 +112,12 @@ class FakeOnfidoAPI < Sinatra::Base
     status 204 # no_content
   end
 
+  get '/v3.1/checks/:id/download' do
+    status 200
+    content_type 'application/pdf'
+    "\x01\x02\x03" # acts as binary file data
+  end
+
   get '/v3.1/reports' do
     json_response(200, 'reports.json')
   end
