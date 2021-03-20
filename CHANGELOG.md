@@ -1,6 +1,7 @@
-## v1.2.0, <DATE_TO_GO_HERE>
+## v2.0.0, <DATE_TO_GO_HERE>
 
 - Support Onfido API version 3.1
+- Drop support for Ruby 2.2 and 2.3
 
 ## v1.1.1, 12 March 2021
 

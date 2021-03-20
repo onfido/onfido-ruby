@@ -1,13 +1,11 @@
 # Onfido
 
-A thin wrapper for Onfido's API.
+The official Ruby library for integrating with the Onfido API.
 
 [![Gem Version](https://badge.fury.io/rb/onfido.svg)](http://badge.fury.io/rb/onfido)
 [![Build Status](https://travis-ci.org/onfido/onfido-ruby.svg?branch=master)](https://travis-ci.org/onfido/onfido-ruby)
 
-This gem supports only `v3` of Onfido's API from version `1.0.0` onwards. The latest version that supports `v2` of Onfido's API is `0.15.0`. `v1` of Onfido's API is deprecated.
-
-The gem is compatible with Ruby 2.2.0 and onwards. Earlier versions of Ruby have [reached end-of-life](https://www.ruby-lang.org/en/news/2017/04/01/support-of-ruby-2-1-has-ended/), are no longer supported and no longer receive security fixes.
+This version of the gem uses `v3.1` of the Onfido API and is compatible with Ruby 2.4 onwards.
 
 Refer to Onfido's [API documentation](https://documentation.onfido.com) for details of the expected requests and responses.
 
@@ -16,7 +14,7 @@ Refer to Onfido's [API documentation](https://documentation.onfido.com) for deta
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'onfido', '~> 1.2.0'
+gem 'onfido', '~> 2.0.0'
 ```
 
 ## Configuration
@@ -173,8 +171,9 @@ onfido.sdk_token.create(applicant_id: 'applicant_id', referrer: 'referrer') # =>
 ### Error Handling
 
 There are 3 classes of errors raised by the library, all of which subclass `Onfido::OnfidoError`:
+
+- `Onfido::RequestError` is raised whenever Onfido returns a `4xx` response
 - `Onfido::ServerError` is raised whenever Onfido returns a `5xx` response
-- `Onfido::RequestError` is raised whenever Onfido returns any other kind of error
 - `Onfido::ConnectionError` is raised whenever a network error occurs (e.g., a timeout)
 
 All 3 error classes provide the `response_code`, `response_body`, `json_body`, `type` and `fields` of the error (although for `Onfido::ServerError` and `Onfido::ConnectionError` the last 3 are likely to be `nil`).
