@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Onfido::Report do
   subject(:report) { described_class.new }
   describe '#find' do

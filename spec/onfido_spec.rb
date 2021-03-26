@@ -1,26 +1,28 @@
+# frozen_string_literal: true
+
 describe Onfido do
   subject(:onfido) { described_class }
   after(:each) { onfido.reset }
 
   context 'configuration' do
-    describe "default values" do
-      describe ".api_key" do
+    describe 'default values' do
+      describe '.api_key' do
         subject { onfido.api_key }
         it { is_expected.to be_nil }
       end
 
-      describe ".endpoint" do
+      describe '.endpoint' do
         subject { onfido.endpoint }
         it { is_expected.to eq('https://api.onfido.com/v3.1/') }
       end
 
-      describe ".logger" do
+      describe '.logger' do
         subject { onfido.logger }
         it { is_expected.to be_an_instance_of(Onfido::NullLogger) }
       end
     end
 
-    describe "setting an API key" do
+    describe 'setting an API key' do
       it 'changes the configuration to the new value' do
         onfido.api_key = 'some_key'
         expect(onfido.api_key).to eq('some_key')
@@ -44,14 +46,14 @@ describe Onfido do
     describe 'using an unsupported region' do
       it 'should change endpoint' do
         onfido.region = 'de'
-        expect { onfido.endpoint }.
-          to raise_error('The region "de" is not currently supported')
+        expect { onfido.endpoint }
+          .to raise_error('The region "de" is not currently supported')
       end
     end
 
     describe 'using an old API token' do
       it 'should use old endpoint' do
-        onfido.api_key = "live_asdfghjkl1234567890qwertyuiop"
+        onfido.api_key = 'live_asdfghjkl1234567890qwertyuiop'
         expect(onfido.endpoint).to eq('https://api.onfido.com/v3.1/')
       end
     end
@@ -71,8 +73,8 @@ describe Onfido do
           let(:non_logger) { double('NotLogger') }
 
           it 'raises an error' do
-            expect { onfido.logger = non_logger }.
-              to raise_error(
+            expect { onfido.logger = non_logger }
+              .to raise_error(
                 "#{non_logger.class} doesn't seem to behave like a logger!"
               )
           end

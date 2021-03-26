@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Onfido::SdkToken do
   subject(:sdk_token) { described_class.new }
 

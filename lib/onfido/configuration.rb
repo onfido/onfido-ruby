@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module Onfido
   module Configuration
     REGION_HOSTS = {
-      us: "api.us.onfido.com",
-      ca: "api.ca.onfido.com"
+      us: 'api.us.onfido.com',
+      ca: 'api.ca.onfido.com'
     }.freeze
 
     attr_accessor :api_key, :region, :open_timeout, :read_timeout
@@ -24,9 +26,7 @@ module Onfido
     end
 
     def logger=(log)
-      unless log.respond_to?(:<<)
-        raise "#{log.class} doesn't seem to behave like a logger!"
-      end
+      raise "#{log.class} doesn't seem to behave like a logger!" unless log.respond_to?(:<<)
 
       RestClient.log = log
     end
@@ -36,10 +36,8 @@ module Onfido
     end
 
     def endpoint
-      region_host = region ? REGION_HOSTS[region.downcase.to_sym] : "api.onfido.com"
-      unless region_host
-        raise "The region \"#{region.downcase}\" is not currently supported"
-      end
+      region_host = region ? REGION_HOSTS[region.downcase.to_sym] : 'api.onfido.com'
+      raise "The region \"#{region.downcase}\" is not currently supported" unless region_host
 
       "https://#{region_host}/v3.1/"
     end

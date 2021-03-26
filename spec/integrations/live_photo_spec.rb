@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'tempfile'
 
 describe Onfido::LivePhoto do
@@ -25,8 +27,8 @@ describe Onfido::LivePhoto do
       let(:file) { 'https://onfido.com/images/photo.jpg' }
 
       it 'raises an ArgumentError' do
-        expect { live_photo.create(**params) }.
-          to raise_error(ArgumentError, /must be a `File`-like object/)
+        expect { live_photo.create(**params) }
+          .to raise_error(ArgumentError, /must be a `File`-like object/)
       end
     end
   end

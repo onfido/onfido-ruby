@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'onfido/errors/connection_error'
 
 describe Onfido::Resource do
@@ -26,7 +28,7 @@ describe Onfido::Resource do
   before { allow(Onfido).to receive(:api_key).and_return(api_key) }
 
   describe '#method_missing' do
-    %i(patch).each do |method|
+    %i[patch].each do |method|
       context "for unsupported HTTP method: #{method}" do
         it 'raises an error' do
           expect do
@@ -37,7 +39,7 @@ describe Onfido::Resource do
     end
   end
 
-  describe "API key" do
+  describe 'API key' do
     subject(:resource) { described_class.new(specific_api_key) }
 
     before do
@@ -50,36 +52,36 @@ describe Onfido::Resource do
         timeout: 80
       ).and_call_original
 
-      WebMock.stub_request(:get, url).
-        to_return(body: response.to_json, status: 200)
+      WebMock.stub_request(:get, url)
+             .to_return(body: response.to_json, status: 200)
     end
 
-    context "when using a specific key" do
-      let(:specific_api_key) { "specific_key" }
+    context 'when using a specific key' do
+      let(:specific_api_key) { 'specific_key' }
 
-      it "uses that key when making the request" do
+      it 'uses that key when making the request' do
         resource.get(path: path, payload: payload)
 
         expect(WebMock).to have_requested(:get, url).with(
           headers: {
             'Authorization' => "Token token=#{specific_api_key}",
-            'Accept' => "application/json",
+            'Accept' => 'application/json',
             'User-Agent' => "onfido-ruby/#{Onfido::VERSION}"
           }
         )
       end
     end
 
-    context "when not using a specific key" do
+    context 'when not using a specific key' do
       let(:specific_api_key) { nil }
 
-      it "uses the general config key when making the request" do
+      it 'uses the general config key when making the request' do
         resource.get(path: path, payload: payload)
 
         expect(WebMock).to have_requested(:get, url).with(
           headers: {
             'Authorization' => "Token token=#{api_key}",
-            'Accept' => "application/json",
+            'Accept' => 'application/json',
             'User-Agent' => "onfido-ruby/#{Onfido::VERSION}"
           }
         )
@@ -87,13 +89,13 @@ describe Onfido::Resource do
     end
   end
 
-  describe "valid http methods" do
-    %i(get post put delete).each do |method|
+  describe 'valid http methods' do
+    %i[get post put delete].each do |method|
       context "for supported HTTP method: #{method}" do
-        context "with a success response" do
+        context 'with a success response' do
           before do
-            expect(RestClient::Request).to receive(:execute).
-              with(
+            expect(RestClient::Request).to receive(:execute)
+              .with(
                 url: url,
                 payload: Rack::Utils.build_query(payload),
                 method: method,
@@ -102,29 +104,29 @@ describe Onfido::Resource do
                 timeout: 80
               ).and_call_original
 
-            WebMock.stub_request(method, url).
-              to_return(body: response.to_json,
-                        status: 200,
-                        headers: { "Content-Type" => "application/json" })
+            WebMock.stub_request(method, url)
+                   .to_return(body: response.to_json,
+                              status: 200,
+                              headers: { 'Content-Type' => 'application/json' })
           end
 
           it 'makes a request to an endpoint' do
-            expect(resource.public_send(method, path: path, payload: payload)).
-              to eq(response)
+            expect(resource.public_send(method, path: path, payload: payload))
+              .to eq(response)
           end
         end
 
-        context "with a timeout error response" do
+        context 'with a timeout error response' do
           before do
-            allow_any_instance_of(RestClient::ExceptionWithResponse).
-              to receive(:response).and_return(double(body: "", code: "408"))
-            expect(RestClient::Request).to receive(:execute).
-              and_raise(RestClient::ExceptionWithResponse)
+            allow_any_instance_of(RestClient::ExceptionWithResponse)
+              .to receive(:response).and_return(double(body: '', code: '408'))
+            expect(RestClient::Request).to receive(:execute)
+              .and_raise(RestClient::ExceptionWithResponse)
           end
 
-          it "raises a ConnectionError" do
-            expect { resource.public_send(method, path: path, payload: payload) }.
-              to raise_error(Onfido::ConnectionError)
+          it 'raises a ConnectionError' do
+            expect { resource.public_send(method, path: path, payload: payload) }
+              .to raise_error(Onfido::ConnectionError)
           end
         end
       end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Onfido
   class LivePhoto < Resource
     # with open-uri the file can be a link or an actual file
