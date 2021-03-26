@@ -11,8 +11,3 @@ rvm:
 script:
   - bundle exec rubocop
   - bundle exec rspec spec
-
-# safelist
-branches:
-  only:
-  - master

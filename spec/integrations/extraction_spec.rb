@@ -13,7 +13,7 @@ describe Onfido::Extraction do
     end
 
     it 'creates a new extraction' do
-      response = extraction.create(params)
+      response = extraction.create(**params)
 
       expect(response['document_id']).to eq('7568415-123123-123123')
     end
