@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Onfido::Address do
   subject(:api) { Onfido::API.new }
 

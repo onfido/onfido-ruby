@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Onfido::RequestError do
   subject(:error) do
     described_class.new(
@@ -20,8 +22,8 @@ describe Onfido::RequestError do
   end
 
   it 'returns the right message' do
-    expect { raise error }.
-      to raise_error('Authorization error: please re-check your credentials')
+    expect { raise error }
+      .to raise_error('Authorization error: please re-check your credentials')
   end
 
   its(:type) { is_expected.to eq('authorization_error') }

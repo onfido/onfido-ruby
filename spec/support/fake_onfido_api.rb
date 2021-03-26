@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'sinatra/base'
 
-class FakeOnfidoAPI < Sinatra::Base
+class FakeOnfidoAPI < Sinatra::Base # rubocop:disable Metrics/ClassLength
   get '/v3.1/addresses/pick' do
     json_response(200, 'addresses.json')
   end
@@ -27,7 +29,7 @@ class FakeOnfidoAPI < Sinatra::Base
   end
 
   post '/v3.1/applicants/:id/restore' do
-    if params["id"] == "a2fb9c62-ab10-4898-a8ec-342c4b552ad5"
+    if params['id'] == 'a2fb9c62-ab10-4898-a8ec-342c4b552ad5'
       json_response(422, 'not_scheduled_for_deletion_error.json')
     else
       status 204
@@ -65,10 +67,10 @@ class FakeOnfidoAPI < Sinatra::Base
   end
 
   get '/v3.1/live_photos' do
-    if params["applicant_id"] != "1030303-123123-123123"
-      status 404
-    else
+    if params['applicant_id'] == '1030303-123123-123123'
       json_response(200, 'live_photos.json')
+    else
+      status 404
     end
   end
 
@@ -83,10 +85,10 @@ class FakeOnfidoAPI < Sinatra::Base
   end
 
   get '/v3.1/live_videos' do
-    if params["applicant_id"] != "1030303-123123-123123"
-      status 404
-    else
+    if params['applicant_id'] == '1030303-123123-123123'
       json_response(200, 'live_videos.json')
+    else
+      status 404
     end
   end
 
@@ -97,15 +99,15 @@ class FakeOnfidoAPI < Sinatra::Base
   end
 
   post '/v3.1/checks' do
-    params["applicant_id"].nil? ? status(422) : json_response(201, 'check.json')
+    params['applicant_id'].nil? ? status(422) : json_response(201, 'check.json')
   end
 
   get '/v3.1/checks/:id' do
-    json_response(200, "check.json")
+    json_response(200, 'check.json')
   end
 
   get '/v3.1/checks' do
-    json_response(200, "checks.json")
+    json_response(200, 'checks.json')
   end
 
   post '/v3.1/checks/:id/resume' do
@@ -147,7 +149,7 @@ class FakeOnfidoAPI < Sinatra::Base
   end
 
   delete '/v3.1/webhooks/:id' do
-    content_type "application/json; charset=utf-8"
+    content_type 'application/json; charset=utf-8'
     status 204
   end
 
@@ -172,9 +174,9 @@ class FakeOnfidoAPI < Sinatra::Base
   private
 
   def json_response(response_code, file_name)
-    content_type "application/json; charset=utf-8"
+    content_type 'application/json; charset=utf-8'
     status response_code
-    File.open(File.dirname(__FILE__) + '/fixtures/' + file_name, 'rb').read
+    File.open("#{File.dirname(__FILE__)}/fixtures/#{file_name}", 'rb').read
   end
 
   def pagination_range

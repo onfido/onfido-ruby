@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Onfido
   class Applicant < Resource
     def create(payload)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Onfido
   class Webhook < Resource
     def create(url:, **payload)
@@ -22,8 +24,8 @@ module Onfido
     # request to one computed from the body
     def self.valid?(request_body, request_signature, token)
       if [request_body, request_signature, token].any?(&:nil?)
-        raise ArgumentError, "A request body, request signature and token " \
-                             "must be provided"
+        raise ArgumentError, 'A request body, request signature and token ' \
+                             'must be provided'
       end
 
       computed_signature = generate_signature(request_body, token)

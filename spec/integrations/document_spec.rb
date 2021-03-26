@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'tempfile'
 
 describe Onfido::Document do
@@ -32,8 +34,8 @@ describe Onfido::Document do
       let(:file) { 'https://onfido.com/images/logo.png' }
 
       it 'raises an ArgumentError' do
-        expect { document.create(**params) }.
-          to raise_error(ArgumentError, /must be a `File`-like object/)
+        expect { document.create(**params) }
+          .to raise_error(ArgumentError, /must be a `File`-like object/)
       end
     end
   end

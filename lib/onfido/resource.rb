@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module Onfido
-  class Resource
-    VALID_HTTP_METHODS = %i(get post put delete).freeze
+  class Resource # rubocop:todo Metrics/ClassLength
+    VALID_HTTP_METHODS = %i[get post put delete].freeze
     REQUEST_TIMEOUT_HTTP_CODE = 408
 
     def initialize(api_key = nil)
@@ -19,7 +21,7 @@ module Onfido
 
     private
 
-    def make_request(options)
+    def make_request(options) # rubocop:todo Metrics/MethodLength, Metrics/AbcSize
       url = options.fetch(:url)
       payload = options.fetch(:payload)
       method = options.fetch(:method)
@@ -37,19 +39,19 @@ module Onfido
 
       # response should be parsed only when there is a response expected
       parse(response) unless response.code == 204 # no_content
-    rescue RestClient::ExceptionWithResponse => error
-      if error.response && !timeout_response?(error.response)
-        handle_api_error(error.response)
+    rescue RestClient::ExceptionWithResponse => e
+      if e.response && !timeout_response?(e.response)
+        handle_api_error(e.response)
       else
-        handle_restclient_error(error, url)
+        handle_restclient_error(e, url)
       end
-    rescue RestClient::Exception, Errno::ECONNREFUSED => error
-      handle_restclient_error(error, url)
+    rescue RestClient::Exception, Errno::ECONNREFUSED => e
+      handle_restclient_error(e, url)
     end
 
     def parse(response)
       content_type = response.headers[:content_type]
-      if content_type && content_type.include?("application/json")
+      if content_type&.include?('application/json')
         JSON.parse(response.body.to_s)
       else
         response.body
@@ -65,7 +67,7 @@ module Onfido
     def headers
       {
         'Authorization' => "Token token=#{@api_key}",
-        'Accept' => "application/json",
+        'Accept' => 'application/json',
         'User-Agent' => "onfido-ruby/#{Onfido::VERSION}"
       }
     end
@@ -85,12 +87,12 @@ module Onfido
     def handle_api_error(response)
       parsed_response = parse(response)
 
-      general_api_error(response.code, response.body) unless parsed_response["error"]
+      general_api_error(response.code, response.body) unless parsed_response['error']
 
       error_class = response.code.to_i >= 500 ? ServerError : RequestError
 
       raise error_class.new(
-        parsed_response["error"]['message'],
+        parsed_response['error']['message'],
         response_code: response.code,
         response_body: response.body
       )
@@ -107,10 +109,10 @@ module Onfido
       )
     end
 
-    def handle_restclient_error(error, url)
+    def handle_restclient_error(error, url) # rubocop:todo Metrics/MethodLength
       connection_message =
-        "Please check your internet connection and try again. " \
-        "If this problem persists, you should let us know at info@onfido.com."
+        'Please check your internet connection and try again. ' \
+        'If this problem persists, you should let us know at info@onfido.com.'
 
       message =
         case error
@@ -123,30 +125,30 @@ module Onfido
 
         when RestClient::SSLCertificateNotVerified
           "Could not verify Onfido's SSL certificate. Please make sure " \
-          "that your network is not intercepting certificates. " \
+          'that your network is not intercepting certificates. ' \
           "(Try going to #{Onfido.endpoint} in your browser.) " \
-          "If this problem persists, let us know at info@onfido.com."
+          'If this problem persists, let us know at info@onfido.com.'
 
         when SocketError
-          "Unexpected error when trying to connect to Onfido. " \
-          "You may be seeing this message because your DNS is not working. " \
+          'Unexpected error when trying to connect to Onfido. ' \
+          'You may be seeing this message because your DNS is not working. ' \
           "To check, try running 'host onfido.com' from the command line."
 
         else
-          "Unexpected error communicating with Onfido. " \
-          "If this problem persists, let us know at info@onfido.com."
+          'Unexpected error communicating with Onfido. ' \
+          'If this problem persists, let us know at info@onfido.com.'
         end
 
       full_message = message + "\n\n(Network error: #{error.message})"
 
-      raise ConnectionError.new(full_message)
+      raise ConnectionError, full_message
     end
 
     def validate_file!(file)
       return if file.respond_to?(:read) && file.respond_to?(:path)
 
-      raise ArgumentError, "File must be a `File`-like object which responds to " \
-                           "`#read` and `#path`"
+      raise ArgumentError, 'File must be a `File`-like object which responds to ' \
+                           '`#read` and `#path`'
     end
   end
 end

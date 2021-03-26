@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Onfido
   class SdkToken < Resource
     def create(applicant_id:, **payload)

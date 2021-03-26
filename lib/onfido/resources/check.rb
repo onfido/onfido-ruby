@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Onfido
   class Check < Resource
     def create(applicant_id:, report_names:, **payload)

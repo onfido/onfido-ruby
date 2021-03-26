@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Onfido
   class LiveVideo < Resource
     def find(live_video_id)
