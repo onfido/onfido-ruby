@@ -1,5 +1,7 @@
 ## v2.0.0, <DATE_TO_GO_HERE>
 
+- Remove global configuration, all configuration is now per `Onfido::API` instance
+- Region is now a required argument (it previously defaulted to `:eu`)
 - Support Onfido API version 3.1
 - Drop support for Ruby 2.2 and 2.3
 
