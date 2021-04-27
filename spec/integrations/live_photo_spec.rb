@@ -3,7 +3,9 @@
 require 'tempfile'
 
 describe Onfido::LivePhoto do
-  subject(:live_photo) { described_class.new }
+  include_context 'fake onfido api'
+
+  subject(:live_photo) { onfido.live_photo }
 
   describe '#create' do
     let(:params) { { applicant_id: '123456', file: file } }

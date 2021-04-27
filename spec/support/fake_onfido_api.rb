@@ -2,6 +2,12 @@
 
 require 'sinatra/base'
 
+RSpec.shared_context 'fake onfido api' do
+  let(:onfido) { Onfido::API.new(api_key: 'test', region: :eu) }
+
+  before { stub_request(:any, /api.eu.onfido.com/).to_rack(FakeOnfidoAPI) }
+end
+
 class FakeOnfidoAPI < Sinatra::Base # rubocop:disable Metrics/ClassLength
   get '/v3.1/addresses/pick' do
     json_response(200, 'addresses.json')

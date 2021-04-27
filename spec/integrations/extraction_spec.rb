@@ -3,7 +3,9 @@
 require 'tempfile'
 
 describe Onfido::Extraction do
-  subject(:extraction) { described_class.new }
+  include_context 'fake onfido api'
+
+  subject(:extraction) { onfido.extraction }
 
   describe '#create' do
     let(:params) do

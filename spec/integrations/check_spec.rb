@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 describe Onfido::Check do
-  subject(:check) { described_class.new }
+  include_context 'fake onfido api'
+
+  subject(:check) { onfido.check }
+
   let(:applicant_id) { '61f659cb-c90b-4067-808a-6136b5c01351' }
   let(:check_id) { '8546921-123123-123123' }
 
