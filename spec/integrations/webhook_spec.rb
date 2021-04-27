@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 describe Onfido::Webhook do
-  subject(:webhook) { described_class.new }
+  include_context 'fake onfido api'
+
+  subject(:webhook) { onfido.webhook }
 
   describe '#create' do
     let(:params) do

@@ -5,37 +5,32 @@ module Onfido
     VALID_HTTP_METHODS = %i[get post put delete].freeze
     REQUEST_TIMEOUT_HTTP_CODE = 408
 
-    def initialize(api_key = nil)
-      @api_key = api_key || Onfido.api_key
-    end
-
-    VALID_HTTP_METHODS.each do |method|
-      define_method method do |*args|
-        make_request(
-          method: method.to_sym,
-          url: Onfido.endpoint + args.first.fetch(:path),
-          payload: build_query(args.first.fetch(:payload, {}))
-        )
-      end
+    def initialize(options)
+      @rest_client = options.rest_client
     end
 
     private
 
-    def make_request(options) # rubocop:todo Metrics/MethodLength, Metrics/AbcSize
-      url = options.fetch(:url)
-      payload = options.fetch(:payload)
-      method = options.fetch(:method)
+    attr_reader :rest_client
 
-      request_options = {
-        url: url,
-        payload: payload,
-        method: method,
-        headers: headers,
-        open_timeout: Onfido.open_timeout,
-        timeout: Onfido.read_timeout
-      }
+    def get(path:)
+      handle_request { rest_client[path].get }
+    end
 
-      response = RestClient::Request.execute(request_options)
+    def post(path:, payload: nil)
+      handle_request { rest_client[path].post(payload) }
+    end
+
+    def put(path:, payload: nil)
+      handle_request { rest_client[path].put(payload) }
+    end
+
+    def delete(path:)
+      handle_request { rest_client[path].delete }
+    end
+
+    def handle_request
+      response = yield
 
       # response should be parsed only when there is a response expected
       parse(response) unless response.code == 204 # no_content
@@ -43,10 +38,10 @@ module Onfido
       if e.response && !timeout_response?(e.response)
         handle_api_error(e.response)
       else
-        handle_restclient_error(e, url)
+        handle_restclient_error(e)
       end
     rescue RestClient::Exception, Errno::ECONNREFUSED => e
-      handle_restclient_error(e, url)
+      handle_restclient_error(e)
     end
 
     def parse(response)
@@ -62,14 +57,6 @@ module Onfido
 
     def timeout_response?(response)
       response.code.to_i == REQUEST_TIMEOUT_HTTP_CODE
-    end
-
-    def headers
-      {
-        'Authorization' => "Token token=#{@api_key}",
-        'Accept' => 'application/json',
-        'User-Agent' => "onfido-ruby/#{Onfido::VERSION}"
-      }
     end
 
     # There seems to be a serialization issue with the HTTP client
@@ -109,7 +96,7 @@ module Onfido
       )
     end
 
-    def handle_restclient_error(error, url) # rubocop:todo Metrics/MethodLength
+    def handle_restclient_error(error) # rubocop:todo Metrics/MethodLength
       connection_message =
         'Please check your internet connection and try again. ' \
         'If this problem persists, you should let us know at info@onfido.com.'
@@ -117,17 +104,14 @@ module Onfido
       message =
         case error
         when RestClient::RequestTimeout
-          "Could not connect to Onfido (#{url}). #{connection_message}"
+          "Could not connect to Onfido . #{connection_message}"
 
         when RestClient::ServerBrokeConnection
-          "The connection to the server (#{url}) broke before the " \
-          "request completed. #{connection_message}"
+          "The connection to the server broke before the request completed. #{connection_message}"
 
         when RestClient::SSLCertificateNotVerified
           "Could not verify Onfido's SSL certificate. Please make sure " \
-          'that your network is not intercepting certificates. ' \
-          "(Try going to #{Onfido.endpoint} in your browser.) " \
-          'If this problem persists, let us know at info@onfido.com.'
+          'that your network is not intercepting certificates. '
 
         when SocketError
           'Unexpected error when trying to connect to Onfido. ' \

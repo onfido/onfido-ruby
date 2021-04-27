@@ -1,35 +1,22 @@
 # frozen_string_literal: true
 
 describe Onfido::API do
-  subject(:api) { described_class.new }
-
-  describe 'given a single-word resource' do
-    specify { expect(api.address).to be_a(Onfido::Address) }
+  before do
+    allow(Onfido::Options).to receive(:new).and_call_original
   end
 
-  describe 'given a multi-word resource' do
-    specify { expect(api.live_photo).to be_a(Onfido::LivePhoto) }
+  let(:options) do
+    {
+      api_key: 'test',
+      region: :eu,
+      open_timeout: 1,
+      read_timeout: 2
+    }
   end
 
-  describe 'given an unknown resource' do
-    specify { expect { api.blood_test }.to raise_error(NameError) }
-  end
+  it 'passes through options' do
+    described_class.new(**options)
 
-  describe 'given no API key' do
-    it 'uses nil for the resource API key' do
-      expect(Onfido::Address).to receive(:new).with(nil)
-      api.address
-    end
-  end
-
-  describe 'given an API key' do
-    let(:api_key) { 'some_key' }
-
-    subject(:api) { described_class.new(api_key: api_key) }
-
-    it 'uses that key to create the resource' do
-      expect(Onfido::Address).to receive(:new).with(api_key)
-      api.address
-    end
+    expect(Onfido::Options).to have_received(:new).with(**options)
   end
 end

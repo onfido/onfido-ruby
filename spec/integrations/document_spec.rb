@@ -3,7 +3,9 @@
 require 'tempfile'
 
 describe Onfido::Document do
-  subject(:document) { described_class.new }
+  include_context 'fake onfido api'
+
+  subject(:document) { onfido.document }
 
   describe '#create' do
     let(:params) do
