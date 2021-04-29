@@ -7,7 +7,7 @@ The official Ruby library for integrating with the Onfido API.
 
 Documentation can be found at https://documentation.onfido.com
 
-This version uses Onfido API v3.1 and is compatible with Ruby 2.4 onwards. Refer to our API versioning guide for details of which client library versions use which versions of the API.
+This version uses Onfido API v3.1 and is compatible with Ruby 2.4 onwards. Refer to our [API versioning guide](https://developers.onfido.com/guide/api-versioning-policy#client-libraries) for details of which client library versions use which versions of the API.
 
 ## Installation
 
@@ -30,6 +30,8 @@ onfido = Onfido::API.new(
 ```
 
 All resources share the same interface when making API calls. Use `.create` to create a resource, `.find` to find one, and `.all` to fetch all resources.
+
+For example, to create an applicant:
 
 ```ruby
 onfido.applicant.create(
