@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
-Dir[File.dirname(__FILE__).concat("/support/**/*.rb")].each { |f| require f }
+Dir[File.dirname(__FILE__).concat('/support/**/*.rb')].sort.each { |f| require f }
 
 require 'onfido'
 require 'webmock/rspec'
@@ -40,8 +42,4 @@ RSpec.configure do |config|
   # test failures related to randomization by passing the same `--seed` value
   # as the one that triggered the failure.
   Kernel.srand config.seed
-
-  config.before(:each) do
-    stub_request(:any, /onfido.com/).to_rack(FakeOnfidoAPI)
-  end
 end

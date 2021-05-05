@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Onfido
   class OnfidoError < StandardError
     attr_accessor :response_code, :response_body

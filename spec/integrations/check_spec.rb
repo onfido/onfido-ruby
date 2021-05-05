@@ -1,5 +1,10 @@
+# frozen_string_literal: true
+
 describe Onfido::Check do
-  subject(:check) { described_class.new }
+  include_context 'fake onfido api'
+
+  subject(:check) { onfido.check }
+
   let(:applicant_id) { '61f659cb-c90b-4067-808a-6136b5c01351' }
   let(:check_id) { '8546921-123123-123123' }
 
@@ -20,7 +25,7 @@ describe Onfido::Check do
       expect(response['id']).to eq(check_id)
     end
 
-    it "returns report_ids" do
+    it 'returns report_ids' do
       response = check.find(check_id)
 
       expect(response['report_ids'].first).to be_a(String)
@@ -36,16 +41,24 @@ describe Onfido::Check do
       end
     end
 
-    it "returns report_ids" do
+    it 'returns report_ids' do
       response = check.all(applicant_id)
 
       expect(response['checks'].first['report_ids'].first).to be_a(String)
     end
   end
 
-  describe "#resume" do
+  describe '#resume' do
     it 'returns success response' do
       expect { check.resume(check_id) }.not_to raise_error
+    end
+  end
+
+  describe '#download' do
+    it 'returns the file data' do
+      response = check.download(check_id)
+
+      expect(response).not_to be_nil
     end
   end
 end

@@ -1,7 +1,11 @@
+# frozen_string_literal: true
+
 require 'tempfile'
 
 describe Onfido::LivePhoto do
-  subject(:live_photo) { described_class.new }
+  include_context 'fake onfido api'
+
+  subject(:live_photo) { onfido.live_photo }
 
   describe '#create' do
     let(:params) { { applicant_id: '123456', file: file } }
@@ -25,8 +29,8 @@ describe Onfido::LivePhoto do
       let(:file) { 'https://onfido.com/images/photo.jpg' }
 
       it 'raises an ArgumentError' do
-        expect { live_photo.create(**params) }.
-          to raise_error(ArgumentError, /must be a `File`-like object/)
+        expect { live_photo.create(**params) }
+          .to raise_error(ArgumentError, /must be a `File`-like object/)
       end
     end
   end

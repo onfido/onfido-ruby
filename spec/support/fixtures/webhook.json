@@ -3,7 +3,7 @@
   "url": "https://webhookendpoint.url",
   "token": "yV85IsmuYwmjQGlZ",
   "enabled": true,
-  "href": "/v3/webhooks/fcb73186-0733-4f6f-9c57-d9d5ef979443",
+  "href": "/v3.1/webhooks/fcb73186-0733-4f6f-9c57-d9d5ef979443",
   "environments": [
     "live"
   ],

@@ -1,16 +1,18 @@
+# frozen_string_literal: true
+
 require 'json'
 require 'rack'
 require 'rest-client'
 require 'openssl'
 
 require 'onfido/version'
-require 'onfido/configuration'
 require 'onfido/errors/onfido_error'
 require 'onfido/errors/request_error'
 require 'onfido/errors/server_error'
 require 'onfido/errors/connection_error'
 require 'onfido/null_logger'
 require 'onfido/api'
+require 'onfido/options'
 require 'onfido/resource'
 require 'onfido/resources/address'
 require 'onfido/resources/applicant'
@@ -24,5 +26,4 @@ require 'onfido/resources/sdk_token'
 require 'onfido/resources/webhook'
 
 module Onfido
-  extend Configuration
 end

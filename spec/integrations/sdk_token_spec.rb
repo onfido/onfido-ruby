@@ -1,5 +1,9 @@
+# frozen_string_literal: true
+
 describe Onfido::SdkToken do
-  subject(:sdk_token) { described_class.new }
+  include_context 'fake onfido api'
+
+  subject(:sdk_token) { onfido.sdk_token }
 
   describe '#create' do
     it 'creates a new SDK token for the applicant' do

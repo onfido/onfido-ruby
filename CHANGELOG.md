@@ -1,3 +1,10 @@
+## v2.0.0, 5 May 2021
+
+- Remove global configuration, all configuration is now per `Onfido::API` instance
+- Region is now a required argument (it previously defaulted to `:eu`)
+- Support Onfido API version 3.1
+- Drop support for Ruby 2.2 and 2.3
+
 ## v1.1.1, 12 March 2021
 
 - Send the postcode in the query string for the address picker endpoint

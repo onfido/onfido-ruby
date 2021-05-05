@@ -1,47 +1,53 @@
+# frozen_string_literal: true
+
 module Onfido
   class API
-    def initialize(options = {})
-      @api_key = options[:api_key]
+    def initialize(api_key:, region:, **extra_options)
+      @options = Onfido::Options.new(api_key: api_key, region: region, **extra_options)
     end
 
     def applicant
-      Onfido::Applicant.new(@api_key)
+      @applicant ||= Onfido::Applicant.new(options)
     end
 
     def check
-      Onfido::Check.new(@api_key)
+      @check ||= Onfido::Check.new(options)
     end
 
     def document
-      Onfido::Document.new(@api_key)
+      @document ||= Onfido::Document.new(options)
     end
 
     def live_photo
-      Onfido::LivePhoto.new(@api_key)
+      @live_photo ||= Onfido::LivePhoto.new(options)
     end
 
     def live_video
-      Onfido::LiveVideo.new(@api_key)
+      @live_video ||= Onfido::LiveVideo.new(options)
     end
 
     def report
-      Onfido::Report.new(@api_key)
+      @report ||= Onfido::Report.new(options)
     end
 
     def sdk_token
-      Onfido::SdkToken.new(@api_key)
+      @sdk_token ||= Onfido::SdkToken.new(options)
     end
 
     def webhook
-      Onfido::Webhook.new(@api_key)
+      @webhook ||= Onfido::Webhook.new(options)
     end
 
     def address
-      Onfido::Address.new(@api_key)
+      @address ||= Onfido::Address.new(options)
     end
 
     def extraction
-      Onfido::Extraction.new(@api_key)
+      @extraction ||= Onfido::Extraction.new(options)
     end
+
+    private
+
+    attr_reader :options
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Onfido
   class Check < Resource
     def create(applicant_id:, report_names:, **payload)
@@ -17,6 +19,10 @@ module Onfido
 
     def resume(check_id)
       post(path: "checks/#{check_id}/resume")
+    end
+
+    def download(check_id)
+      get(path: "checks/#{check_id}/download")
     end
   end
 end

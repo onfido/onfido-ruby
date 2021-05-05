@@ -1,7 +1,12 @@
+# frozen_string_literal: true
+
 require 'tempfile'
 
 describe Onfido::LiveVideo do
-  subject(:live_video) { described_class.new }
+  include_context 'fake onfido api'
+
+  subject(:live_video) { onfido.live_video }
+
   let(:live_video_id) { 'c9701e9b-83aa-442f-995b-20320ee8fb01' }
 
   describe '#find' do

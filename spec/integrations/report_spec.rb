@@ -1,5 +1,10 @@
+# frozen_string_literal: true
+
 describe Onfido::Report do
-  subject(:report) { described_class.new }
+  include_context 'fake onfido api'
+
+  subject(:report) { onfido.report }
+
   describe '#find' do
     it 'returns a report for an existing check' do
       report_id = '6951786-123123-422221'

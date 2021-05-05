@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Onfido
   class Extraction < Resource
     def create(document_id:)
