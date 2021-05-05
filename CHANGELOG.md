@@ -1,4 +1,4 @@
-## v2.0.0, <DATE_TO_GO_HERE>
+## v2.0.0, 5 May 2021
 
 - Remove global configuration, all configuration is now per `Onfido::API` instance
 - Region is now a required argument (it previously defaulted to `:eu`)
