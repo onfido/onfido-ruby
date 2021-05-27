@@ -1,3 +1,7 @@
+## v2.0.1, 27 May 2021
+
+- Remove onfido/null_logger
+
 ## v2.0.0, 5 May 2021
 
 - Remove global configuration, all configuration is now per `Onfido::API` instance
