@@ -14,7 +14,7 @@ This version uses Onfido API v3.1 and is compatible with Ruby 2.4 onwards. Refer
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'onfido', '~> 2.0.0'
+gem 'onfido', '~> 2.0.1'
 ```
 
 ## Getting started
