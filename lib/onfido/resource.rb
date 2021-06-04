@@ -113,6 +113,9 @@ module Onfido
           "Could not verify Onfido's SSL certificate. Please make sure " \
           'that your network is not intercepting certificates. '
 
+        when RestClient::BadGateway
+          "Could not connect to Onfido. Server may be overloaded." \
+
         when SocketError
           'Unexpected error when trying to connect to Onfido. ' \
           'You may be seeing this message because your DNS is not working. ' \
