@@ -51,6 +51,19 @@ describe Onfido::Resource do
     end
   end
 
+  context 'RestClient : BadGateway' do
+    before do
+      allow(RestClient::Request)
+        .to receive(:execute)
+        .and_raise(RestClient::BadGateway)
+    end
+
+    it 'raises a ConnectionError' do
+      expect { resource.get(path: '') }
+        .to raise_error(Onfido::ConnectionError, /Could not connect/)
+    end
+  end
+
   context 'broken connection' do
     before do
       allow(RestClient::Request)
