@@ -1,3 +1,7 @@
+## v2.0.2, 10 June 2021
+
+- Add error coverage for errors RestClient:BadGateway
+
 ## v2.0.1, 27 May 2021
 
 - Remove onfido/null_logger
