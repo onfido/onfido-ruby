@@ -1,4 +1,4 @@
-## v2.0.3, 23 June 2021
+## v2.1.0, 23 June 2021
 
 - Support Onfido API version 3.2
 
