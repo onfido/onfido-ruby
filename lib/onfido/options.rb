@@ -32,7 +32,7 @@ module Onfido
     attr_reader :api_key, :open_timeout, :read_timeout
 
     def base_url
-      @unknown_api_url || "https://api.#{@region}.onfido.com/v3.1/"
+      @unknown_api_url || "https://api.#{@region}.onfido.com/v3.2/"
     end
   end
 end
