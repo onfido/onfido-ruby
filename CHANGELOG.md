@@ -1,3 +1,7 @@
+## v2.1.0, 23 June 2021
+
+- Support Onfido API version 3.2
+
 ## v2.0.2, 10 June 2021
 
 - Add error coverage for errors RestClient:BadGateway
