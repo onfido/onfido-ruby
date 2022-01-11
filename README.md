@@ -90,7 +90,7 @@ else
 end
 ```
 
-Read more at https://onfido.com/documentation#webhook-security
+Read more at https://developers.onfido.com/guide/manual-webhook-signature-verification#webhook-security
 
 ## Contributing
 
