@@ -10,7 +10,7 @@ module Onfido
       payload[:file] = file
       payload[:type] = type
 
-      post(path: 'documents', payload: payload)
+      post(path: 'documents', payload: payload, send_json: false)
     end
 
     def find(document_id)
