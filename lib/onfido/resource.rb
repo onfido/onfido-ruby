@@ -18,11 +18,11 @@ module Onfido
     end
 
     def post(path:, payload: nil)
-      handle_request { rest_client[path].post(payload) }
+      handle_request { rest_client[path].post(payload.to_json) }
     end
 
     def put(path:, payload: nil)
-      handle_request { rest_client[path].put(payload) }
+      handle_request { rest_client[path].put(payload.to_json) }
     end
 
     def delete(path:)

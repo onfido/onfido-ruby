@@ -21,6 +21,7 @@ describe Onfido::Options do
       expect(rest_client.options[:headers]).to eq(
         'Accept' => 'application/json',
         'Authorization' => 'Token token=test',
+        'Content-Type' => 'application/json; charset=utf-8',
         'User-Agent' => "onfido-ruby/#{Onfido::VERSION}"
       )
     end

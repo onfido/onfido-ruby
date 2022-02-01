@@ -22,7 +22,8 @@ module Onfido
         headers: {
           'Authorization' => "Token token=#{api_key}",
           'Accept' => 'application/json',
-          'User-Agent' => "onfido-ruby/#{Onfido::VERSION}"
+          'User-Agent' => "onfido-ruby/#{Onfido::VERSION}",
+          'Content-Type' => 'application/json; charset=utf-8'
         }
       )
     end

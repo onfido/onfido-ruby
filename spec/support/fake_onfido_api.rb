@@ -9,6 +9,14 @@ RSpec.shared_context 'fake onfido api' do
 end
 
 class FakeOnfidoAPI < Sinatra::Base # rubocop:disable Metrics/ClassLength
+  before do
+    if request.content_type == "application/json; charset=utf-8"
+      body_parameters = JSON.parse(request.body.read)
+      params.merge!(body_parameters) if body_parameters
+    end
+  rescue JSON::ParserError
+  end
+
   get '/v3.2/addresses/pick' do
     json_response(200, 'addresses.json')
   end
@@ -155,7 +163,6 @@ class FakeOnfidoAPI < Sinatra::Base # rubocop:disable Metrics/ClassLength
   end
 
   delete '/v3.2/webhooks/:id' do
-    content_type 'application/json; charset=utf-8'
     status 204
   end
 
