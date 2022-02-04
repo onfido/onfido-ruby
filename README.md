@@ -76,7 +76,7 @@ onfido = Onfido::API.new(
 
 ## Verifying webhooks
 
-Each webhook endpoint has a secret token, generated automatically and [exposed](https://onfido.com/documentation#register-webhook) in the API. When sending a request, Onfido includes a signature computed using the request body and this token in the `X-SHA2-Signature` header.
+Each webhook endpoint has a secret token, generated automatically and [exposed](https://documentation.onfido.com/#register-webhook) in the API. When sending a request, Onfido includes a signature computed using the request body and this token in the `X-SHA2-Signature` header.
 
 You should compare this provided signature to one you generate yourself with the token to verify that a webhook is a genuine request from Onfido.
 

@@ -1,3 +1,9 @@
+## v2.1.1, 01 February 2022
+
+- Send params as json
+- Remove .travis.yml
+- Update README.md link
+
 ## v2.1.0, 23 June 2021
 
 - Support Onfido API version 3.2

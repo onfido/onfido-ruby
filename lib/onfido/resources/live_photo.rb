@@ -9,7 +9,7 @@ module Onfido
       payload[:applicant_id] = applicant_id
       payload[:file] = file
 
-      post(path: 'live_photos', payload: payload)
+      post(path: 'live_photos', payload: payload, send_json: false)
     end
 
     def find(live_photo_id)

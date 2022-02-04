@@ -4,6 +4,7 @@ module Onfido
   class Resource # rubocop:todo Metrics/ClassLength
     VALID_HTTP_METHODS = %i[get post put delete].freeze
     REQUEST_TIMEOUT_HTTP_CODE = 408
+    ADDITIONAL_HEADERS = { 'Content-Type' => 'application/json; charset=utf-8' }.freeze
 
     def initialize(options)
       @rest_client = options.rest_client
@@ -14,19 +15,22 @@ module Onfido
     attr_reader :rest_client
 
     def get(path:)
-      handle_request { rest_client[path].get }
+      handle_request { rest_client[path].get(ADDITIONAL_HEADERS) }
     end
 
-    def post(path:, payload: nil)
-      handle_request { rest_client[path].post(payload) }
+    def post(path:, payload: nil, send_json: true)
+      parsed_payload = send_json ? payload.to_json : payload
+      additional_headers = send_json ? ADDITIONAL_HEADERS : {}
+
+      handle_request { rest_client[path].post(parsed_payload, additional_headers) }
     end
 
     def put(path:, payload: nil)
-      handle_request { rest_client[path].put(payload) }
+      handle_request { rest_client[path].put(payload.to_json, ADDITIONAL_HEADERS) }
     end
 
     def delete(path:)
-      handle_request { rest_client[path].delete }
+      handle_request { rest_client[path].delete(ADDITIONAL_HEADERS) }
     end
 
     def handle_request
