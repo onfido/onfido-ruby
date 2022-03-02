@@ -1,3 +1,7 @@
+## v2.2.0, 02 March 2022
+
+- Support Onfido API version 3.3
+
 ## v2.1.1, 01 February 2022
 
 - Send params as json
