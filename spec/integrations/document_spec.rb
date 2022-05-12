@@ -13,7 +13,11 @@ describe Onfido::Document do
         applicant_id: '1030303-123123-123123',
         type: 'driving_licence',
         file: file,
-        side: 'front'
+        side: 'front',
+        location: {
+          ip_address: '127.0.0.1',
+          country_of_residence: 'GBR'
+        }
       }
     end
 

@@ -1,3 +1,7 @@
+## v2.3.0, 02 March 2022
+
+- Updated to use API v3.4, for more details please see our [release notes](https://developers.onfido.com/release-notes#api-v34). 
+
 ## v2.2.0, 02 March 2022
 
 - Support Onfido API version 3.3
