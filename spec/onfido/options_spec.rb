@@ -26,7 +26,7 @@ describe Onfido::Options do
     end
 
     it 'configures with region' do
-      expect(rest_client.url).to eq 'https://api.us.onfido.com/v3.3/'
+      expect(rest_client.url).to eq 'https://api.us.onfido.com/v3.4/'
     end
 
     it 'configures with timeouts' do

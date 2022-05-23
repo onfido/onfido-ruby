@@ -4,7 +4,7 @@
       "id": "dd0a89e4-d44e-417a-aec4-01137d01ae59",
       "url": "https://demo.com",
       "enabled":false,
-      "href": "/v3.3/webhooks/dd0a89e4-d44e-417a-aec4-01137d01ae59",
+      "href": "/v3.4/webhooks/dd0a89e4-d44e-417a-aec4-01137d01ae59",
       "environments": [
         "live"
       ],
@@ -18,7 +18,7 @@
       "id": "bfc727a8-f7bf-4073-b123-ed70a70f58e5",
       "url": "https://demo2.com",
       "enabled": true,
-      "href": "/v3.3/webhooks/bfc727a8-f7bf-4073-b123-ed70a70f58e5",
+      "href": "/v3.4/webhooks/bfc727a8-f7bf-4073-b123-ed70a70f58e5",
       "environments": [
         "live"
       ],

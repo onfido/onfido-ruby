@@ -23,7 +23,12 @@ describe Onfido::Applicant do
         'town' => 'London',
         'postcode' => 'SW4 6EH',
         'country' => 'GBR'
-      }
+      },
+      'location' => {
+        'ip_address' => '127.0.0.1',
+        'country_of_residence' => 'GBR'
+      },
+      'phone_number' => '910100100'
     }
   end
 
@@ -34,7 +39,7 @@ describe Onfido::Applicant do
 
     it 'serializes the payload correctly' do
       WebMock.after_request do |request_signature, _response|
-        if request_signature.uri.path == 'v3.3/applicants'
+        if request_signature.uri.path == 'v3.4/applicants'
           expect(Rack::Utils.parse_nested_query(request_signature.body))
             .to eq(params)
         end

@@ -7,7 +7,7 @@
   "last_name":"Bing",
   "email":"chandler_bing_6@friends.com",
   "dob":"1968-04-08",
-  "href":"/v3.3/applicants/61f659cb-c90b-4067-808a-6136b5c01351",
+  "href":"/v3.4/applicants/61f659cb-c90b-4067-808a-6136b5c01351",
   "id_numbers":[],
   "address": {
     "flat_number":"4",
@@ -19,5 +19,10 @@
     "state":"",
     "postcode":"SW4 6EH",
     "country":"GBR"
-  }
+  },
+  "location": {
+    "ip_address": "127.0.0.1",
+    "country_of_residence": "GBR"
+  },
+  "phone_number": "910100100"
 }
