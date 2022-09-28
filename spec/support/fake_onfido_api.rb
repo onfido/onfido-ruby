@@ -216,6 +216,18 @@ class FakeOnfidoAPI < Sinatra::Base # rubocop:disable Metrics/ClassLength
     json_response(200, 'webhooks.json')
   end
 
+  post '/v3.5/workflow_runs' do
+    json_response(201, 'workflow_run.json')
+  end
+
+  get '/v3.5/workflow_runs/:id' do
+    json_response(200, 'workflow_run.json')
+  end
+
+  get '/v3.5/workflow_runs' do
+    json_response(200, 'workflow_runs.json')
+  end
+
   get '/v3.5/4xx_response' do
     json_response(422, '4xx_response.json')
   end

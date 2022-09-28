@@ -54,6 +54,10 @@ module Onfido
       @extraction ||= Onfido::Extraction.new(options)
     end
 
+    def workflow_run
+      @workflow_run ||= Onfido::WorkflowRun.new(options)
+    end
+
     private
 
     attr_reader :options
