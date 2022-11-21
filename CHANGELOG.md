@@ -1,3 +1,7 @@
+## v2.5.0, 22 October 2022
+
+- Added Motion capture support
+
 ## v2.4.0, 05 October 2022
 
 - Updated to use API v3.5, for more details please see our [release notes](https://developers.onfido.com/release-notes#api-v35). 
