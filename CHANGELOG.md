@@ -1,3 +1,7 @@
+## v2.6.0, 22 November 2022
+
+- Added support for [Monitors](https://documentation.onfido.com/#monitors)
+
 ## v2.5.0, 22 October 2022
 
 - Added Motion capture support
