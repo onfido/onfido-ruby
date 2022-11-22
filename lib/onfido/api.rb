@@ -26,6 +26,10 @@ module Onfido
       @live_video ||= Onfido::LiveVideo.new(options)
     end
 
+    def monitor
+      @monitor ||= Onfido::Monitor.new(options)
+    end
+
     def motion_capture
       @motion_capture ||= Onfido::MotionCapture.new(options)
     end
