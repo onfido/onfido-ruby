@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'tempfile'
-
 describe Onfido::Monitor do
   include_context 'fake onfido api'
 
