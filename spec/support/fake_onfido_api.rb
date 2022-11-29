@@ -114,6 +114,30 @@ class FakeOnfidoAPI < Sinatra::Base # rubocop:disable Metrics/ClassLength
     "\x01\x02\x03" # acts as binary file data
   end
 
+  get '/v3.5/motion_captures/:id' do
+    json_response(200, 'motion_capture.json')
+  end
+
+  get '/v3.5/motion_captures' do
+    if params['applicant_id'] == '1030303-123123-123123'
+      json_response(200, 'motion_captures.json')
+    else
+      status 404
+    end
+  end
+
+  get '/v3.5/motion_captures/:id/download' do
+    status 200
+    content_type 'video/mp4'
+    "\x01\x02\x03" # acts as binary file data
+  end
+
+  get '/v3.5/motion_captures/:id/frame' do
+    status 200
+    content_type 'image/jpeg'
+    "\x01\x02\x03" # acts as binary file data
+  end
+
   post '/v3.5/checks' do
     params['applicant_id'].nil? ? status(422) : json_response(201, 'check.json')
   end
