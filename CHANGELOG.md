@@ -1,3 +1,7 @@
+## v2.7.0, 22 November 2022
+
+- Added support for [Workflow Runs](https://documentation.onfido.com/#workflow-runs)
+
 ## v2.6.0, 22 November 2022
 
 - Added support for [Monitors](https://documentation.onfido.com/#monitors)
