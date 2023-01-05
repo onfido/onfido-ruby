@@ -25,6 +25,7 @@ require 'onfido/resources/motion_capture'
 require 'onfido/resources/report'
 require 'onfido/resources/sdk_token'
 require 'onfido/resources/webhook'
+require 'onfido/resources/workflow_run'
 
 module Onfido
 end

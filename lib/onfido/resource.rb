@@ -141,5 +141,9 @@ module Onfido
       raise ArgumentError, 'File must be a `File`-like object which responds to ' \
                            '`#read` and `#path`'
     end
+
+    def stringify_query_params(hashed_params)
+      URI.encode_www_form_component(hashed_params.map{ |k,v| "#{k}=#{v}" }.join("&"))
+    end
   end
 end
