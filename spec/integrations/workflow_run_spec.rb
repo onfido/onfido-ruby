@@ -15,7 +15,7 @@ describe Onfido::WorkflowRun do
   describe '#create' do
     it 'serializes the payload correctly' do
       WebMock.after_request do |request_signature, _response|
-        if request_signature.uri.path == 'v3.5/workflow_run'
+        if request_signature.uri.path == 'v3.6/workflow_run'
           expect(Rack::Utils.parse_nested_query(request_signature.body))
             .to eq(params)
         end

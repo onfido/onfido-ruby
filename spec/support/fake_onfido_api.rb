@@ -19,32 +19,32 @@ class FakeOnfidoAPI < Sinatra::Base # rubocop:disable Metrics/ClassLength
     end
   end
 
-  get '/v3.5/addresses/pick' do
+  get '/v3.6/addresses/pick' do
     json_response(200, 'addresses.json')
   end
 
-  post '/v3.5/applicants' do
+  post '/v3.6/applicants' do
     json_response(201, 'applicant.json')
   end
 
-  put '/v3.5/applicants/:id' do
+  put '/v3.6/applicants/:id' do
     json_response(200, 'applicant.json')
   end
 
-  get '/v3.5/applicants/:id' do
+  get '/v3.6/applicants/:id' do
     json_response(200, 'applicant.json')
   end
 
-  get '/v3.5/applicants' do
+  get '/v3.6/applicants' do
     response = json_response(200, 'applicants.json')
     { applicants: JSON.parse(response)['applicants'][pagination_range] }.to_json
   end
 
-  delete '/v3.5/applicants/:id' do
+  delete '/v3.6/applicants/:id' do
     status 204
   end
 
-  post '/v3.5/applicants/:id/restore' do
+  post '/v3.6/applicants/:id/restore' do
     if params['id'] == 'a2fb9c62-ab10-4898-a8ec-342c4b552ad5'
       json_response(422, 'not_scheduled_for_deletion_error.json')
     else
@@ -52,37 +52,37 @@ class FakeOnfidoAPI < Sinatra::Base # rubocop:disable Metrics/ClassLength
     end
   end
 
-  post '/v3.5/documents' do
+  post '/v3.6/documents' do
     json_response(201, 'document.json')
   end
 
-  post '/v3.5/extractions' do
+  post '/v3.6/extractions' do
     json_response(201, 'extraction.json')
   end
 
-  get '/v3.5/documents/:id' do
+  get '/v3.6/documents/:id' do
     json_response(200, 'document.json')
   end
 
-  get '/v3.5/documents' do
+  get '/v3.6/documents' do
     json_response(200, 'documents.json')
   end
 
-  get '/v3.5/documents/:id/download' do
+  get '/v3.6/documents/:id/download' do
     status 200
     content_type 'application/octet-stream'
     "\x01\x02\x03" # acts as binary file data
   end
 
-  post '/v3.5/live_photos' do
+  post '/v3.6/live_photos' do
     json_response(201, 'live_photo.json')
   end
 
-  get '/v3.5/live_photos/:id' do
+  get '/v3.6/live_photos/:id' do
     json_response(200, 'live_photo.json')
   end
 
-  get '/v3.5/live_photos' do
+  get '/v3.6/live_photos' do
     if params['applicant_id'] == '1030303-123123-123123'
       json_response(200, 'live_photos.json')
     else
@@ -90,17 +90,17 @@ class FakeOnfidoAPI < Sinatra::Base # rubocop:disable Metrics/ClassLength
     end
   end
 
-  get '/v3.5/live_photos/:id/download' do
+  get '/v3.6/live_photos/:id/download' do
     status 200
     content_type 'image/jpeg'
     "\x01\x02\x03" # acts as binary file data
   end
 
-  get '/v3.5/live_videos/:id' do
+  get '/v3.6/live_videos/:id' do
     json_response(200, 'live_video.json')
   end
 
-  get '/v3.5/live_videos' do
+  get '/v3.6/live_videos' do
     if params['applicant_id'] == '1030303-123123-123123'
       json_response(200, 'live_videos.json')
     else
@@ -108,21 +108,21 @@ class FakeOnfidoAPI < Sinatra::Base # rubocop:disable Metrics/ClassLength
     end
   end
 
-  get '/v3.5/live_videos/:id/download' do
+  get '/v3.6/live_videos/:id/download' do
     status 200
     content_type 'video/quicktime'
     "\x01\x02\x03" # acts as binary file data
   end
 
-  post '/v3.5/watchlist_monitors' do
+  post '/v3.6/watchlist_monitors' do
     json_response(201, 'monitor.json')
   end
 
-  get '/v3.5/watchlist_monitors/:id' do
+  get '/v3.6/watchlist_monitors/:id' do
     json_response(200, 'monitor.json')
   end
 
-  get '/v3.5/watchlist_monitors' do
+  get '/v3.6/watchlist_monitors' do
     if params['applicant_id'] == '1030303-123123-123123'
       json_response(200, 'monitors.json')
     else
@@ -130,11 +130,11 @@ class FakeOnfidoAPI < Sinatra::Base # rubocop:disable Metrics/ClassLength
     end
   end
 
-  delete '/v3.5/watchlist_monitors/:id' do
+  delete '/v3.6/watchlist_monitors/:id' do
     status 204
   end
 
-  get '/v3.5/watchlist_monitors/:monitor_id/matches' do
+  get '/v3.6/watchlist_monitors/:monitor_id/matches' do
     if params['monitor_id'] == '2748c4fc-c6b8-4c1e-a383-21efa241ce1e'
       json_response(200, 'monitor_matches.json')
     else
@@ -142,7 +142,7 @@ class FakeOnfidoAPI < Sinatra::Base # rubocop:disable Metrics/ClassLength
     end
   end
 
-  patch '/v3.5/watchlist_monitors/:monitor_id/matches' do
+  patch '/v3.6/watchlist_monitors/:monitor_id/matches' do
     if params['monitor_id'] == '2748c4fc-c6b8-4c1e-a383-21efa241ce1e'
       enabled, disabled = params.values_at('enabled', 'disabled')
       if enabled&.any? || disabled&.any?
@@ -159,11 +159,11 @@ class FakeOnfidoAPI < Sinatra::Base # rubocop:disable Metrics/ClassLength
     end
   end
 
-  get '/v3.5/motion_captures/:id' do
+  get '/v3.6/motion_captures/:id' do
     json_response(200, 'motion_capture.json')
   end
 
-  get '/v3.5/motion_captures' do
+  get '/v3.6/motion_captures' do
     if params['applicant_id'] == '1030303-123123-123123'
       json_response(200, 'motion_captures.json')
     else
@@ -171,97 +171,97 @@ class FakeOnfidoAPI < Sinatra::Base # rubocop:disable Metrics/ClassLength
     end
   end
 
-  get '/v3.5/motion_captures/:id/download' do
+  get '/v3.6/motion_captures/:id/download' do
     status 200
     content_type 'video/mp4'
     "\x01\x02\x03" # acts as binary file data
   end
 
-  get '/v3.5/motion_captures/:id/frame' do
+  get '/v3.6/motion_captures/:id/frame' do
     status 200
     content_type 'image/jpeg'
     "\x01\x02\x03" # acts as binary file data
   end
 
-  post '/v3.5/checks' do
+  post '/v3.6/checks' do
     params['applicant_id'].nil? ? status(422) : json_response(201, 'check.json')
   end
 
-  get '/v3.5/checks/:id' do
+  get '/v3.6/checks/:id' do
     json_response(200, 'check.json')
   end
 
-  get '/v3.5/checks' do
+  get '/v3.6/checks' do
     json_response(200, 'checks.json')
   end
 
-  post '/v3.5/checks/:id/resume' do
+  post '/v3.6/checks/:id/resume' do
     status 204 # no_content
   end
 
-  get '/v3.5/checks/:id/download' do
+  get '/v3.6/checks/:id/download' do
     status 200
     content_type 'application/pdf'
     "\x01\x02\x03" # acts as binary file data
   end
 
-  get '/v3.5/reports' do
+  get '/v3.6/reports' do
     json_response(200, 'reports.json')
   end
 
-  get '/v3.5/reports/:id' do
+  get '/v3.6/reports/:id' do
     json_response(200, 'report.json')
   end
 
-  post '/v3.5/reports/:id/resume' do
+  post '/v3.6/reports/:id/resume' do
     status 204
   end
 
-  post '/v3.5/reports/:id/cancel' do
+  post '/v3.6/reports/:id/cancel' do
     status 204
   end
 
-  post '/v3.5/sdk_token' do
+  post '/v3.6/sdk_token' do
     json_response(201, 'sdk_token.json')
   end
 
-  post '/v3.5/webhooks' do
+  post '/v3.6/webhooks' do
     json_response(201, 'webhook.json')
   end
 
-  get '/v3.5/webhooks/:id' do
+  get '/v3.6/webhooks/:id' do
     json_response(200, 'webhook.json')
   end
 
-  delete '/v3.5/webhooks/:id' do
+  delete '/v3.6/webhooks/:id' do
     status 204
   end
 
-  get '/v3.5/webhooks' do
+  get '/v3.6/webhooks' do
     json_response(200, 'webhooks.json')
   end
 
-  post '/v3.5/workflow_runs' do
+  post '/v3.6/workflow_runs' do
     json_response(201, 'workflow_run.json')
   end
 
-  get '/v3.5/workflow_runs/:id' do
+  get '/v3.6/workflow_runs/:id' do
     json_response(200, 'workflow_run.json')
   end
 
-  get '/v3.5/workflow_runs' do
+  get '/v3.6/workflow_runs' do
     json_response(200, 'workflow_runs.json')
   end
 
-  get '/v3.5/4xx_response' do
+  get '/v3.6/4xx_response' do
     json_response(422, '4xx_response.json')
   end
 
-  get '/v3.5/unexpected_error_format' do
+  get '/v3.6/unexpected_error_format' do
     json_response(400, 'unexpected_error_format.json')
   end
 
-  get '/v3.5/unparseable_response' do
+  get '/v3.6/unparseable_response' do
     content_type :json
     status 504
     ''
