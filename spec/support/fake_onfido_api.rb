@@ -134,6 +134,31 @@ class FakeOnfidoAPI < Sinatra::Base # rubocop:disable Metrics/ClassLength
     status 204
   end
 
+  get '/v3.5/watchlist_monitors/:monitor_id/matches' do
+    if params['monitor_id'] == '2748c4fc-c6b8-4c1e-a383-21efa241ce1e'
+      json_response(200, 'monitor_matches.json')
+    else
+      status 404
+    end
+  end
+
+  patch '/v3.5/watchlist_monitors/:monitor_id/matches' do
+    if params['monitor_id'] == '2748c4fc-c6b8-4c1e-a383-21efa241ce1e'
+      enabled, disabled = params.values_at('enabled', 'disabled')
+      if enabled&.any? || disabled&.any?
+        if (enabled.to_a & disabled.to_a).any?
+          json_response(422, '4xx_response.json')
+        else
+          json_response(200, 'monitor_matches.json')
+        end
+      else
+        status 204
+      end
+    else
+      status 404
+    end
+  end
+
   get '/v3.5/motion_captures/:id' do
     json_response(200, 'motion_capture.json')
   end

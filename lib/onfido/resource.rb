@@ -29,6 +29,10 @@ module Onfido
       handle_request { rest_client[path].put(payload.to_json, ADDITIONAL_HEADERS) }
     end
 
+    def patch(path:, payload: nil)
+      handle_request { rest_client[path].patch(payload.to_json, ADDITIONAL_HEADERS) }
+    end
+
     def delete(path:)
       handle_request { rest_client[path].delete(ADDITIONAL_HEADERS) }
     end
