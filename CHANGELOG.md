@@ -1,3 +1,8 @@
+## v2.8.0, 24 January 2023
+
+- Updated to use API v3.6, for more details please see our [release notes](https://developers.onfido.com/release-notes#api-v36).
+- Add Monitor support
+
 ## v2.7.0, 22 November 2022
 
 - Added support for [Workflow Runs](https://documentation.onfido.com/#workflow-runs)
