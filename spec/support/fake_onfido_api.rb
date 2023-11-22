@@ -11,7 +11,7 @@ end
 class FakeOnfidoAPI < Sinatra::Base # rubocop:disable Metrics/ClassLength
   before do
     begin
-      if request.content_type == "application/json; charset=utf-8"
+      if request.content_type == 'application/json; charset=utf-8'
         body_parameters = JSON.parse(request.body.read)
         params.merge!(body_parameters) if body_parameters
       end
@@ -249,6 +249,10 @@ class FakeOnfidoAPI < Sinatra::Base # rubocop:disable Metrics/ClassLength
     json_response(200, 'workflow_run.json')
   end
 
+  get '/v3.6/workflow_runs/:id/signed_evidence_file' do
+    pdf_response(200, 'signed_workflow_run.pdf')
+  end
+
   get '/v3.6/workflow_runs' do
     json_response(200, 'workflow_runs.json')
   end
@@ -270,9 +274,17 @@ class FakeOnfidoAPI < Sinatra::Base # rubocop:disable Metrics/ClassLength
   private
 
   def json_response(response_code, file_name)
-    content_type 'application/json; charset=utf-8'
+    fixture_response(response_code, file_name, 'application/json')
+  end
+
+  def fixture_response(response_code, file_name, custom_content_type)
+    content_type "#{custom_content_type}; charset=utf-8"
     status response_code
-    File.open("#{File.dirname(__FILE__)}/fixtures/#{file_name}", 'rb').read
+    File.binread("#{File.dirname(__FILE__)}/fixtures/#{file_name}")
+  end
+
+  def pdf_response(response_code, file_name)
+    fixture_response(response_code, file_name, 'application/pdf')
   end
 
   def pagination_range
