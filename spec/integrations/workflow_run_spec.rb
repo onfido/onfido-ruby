@@ -38,9 +38,17 @@ describe Onfido::WorkflowRun do
 
   describe '#all' do
     it 'returns the workflow runs' do
-      response = workflow_run.all({ page: 1, sort: "asc" })
+      response = workflow_run.all({ page: 1, sort: 'asc' })
 
       expect(response.count).to eq(2)
+    end
+  end
+
+  describe '#evidence' do
+    it 'returns the signed PDF' do
+      response = workflow_run.evidence(workflow_run_id)
+
+      expect(response[0..4]).to eq('%PDF-')
     end
   end
 end

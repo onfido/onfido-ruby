@@ -13,5 +13,9 @@ module Onfido
     def all(query_params = {})
       get(path: "workflow_runs?#{stringify_query_params(query_params)}")
     end
+
+    def evidence(workflow_run_id)
+      get(path: "workflow_runs/#{workflow_run_id}/signed_evidence_file")
+    end
   end
 end
