@@ -1,3 +1,7 @@
+## v2.9.0 24 November 2023
+
+- Added `signed_evidence_file` method for WorkflowRuns
+
 ## v2.8.0, 24 January 2023
 
 - Updated to use API v3.6, for more details please see our [release notes](https://developers.onfido.com/release-notes#api-v36).
