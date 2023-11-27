@@ -100,6 +100,14 @@ Read more at https://developers.onfido.com/guide/manual-webhook-signature-verifi
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
 
+## Support
+
+Should you encounter any technical issues during integration, please contact Onfido’s Customer Support team
+via [email](mailto:support@onfido.com), including the word ISSUE: at the start of the subject line.
+
+Alternatively, you can search the support documentation available via the customer experience
+portal, [public.support.onfido.com](http://public.support.onfido.com).
+
 ## More documentation
 
 More documentation and code examples can be found at https://documentation.onfido.com
