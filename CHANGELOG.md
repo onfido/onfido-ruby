@@ -1,8 +1,8 @@
 # Changelog
 
-## v3.0.0 15th May 2024
+## v3.0.0 31th May 2024
 
-- Refresh library up to commit: [ef28a11](https://github.com/onfido/onfido-openapi-spec/commit/ef28a11bfaa531784d3c961807643617fba3a827)
+- Make library auto-generated and based on [Onfido OpenAPI spec](https://github.com/onfido/onfido-openapi-spec)
 
 ## v2.9.0 24 November 2023
 
