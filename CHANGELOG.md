@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.0.0 15th May 2024
+
+- Refresh library up to commit: [ef28a11](https://github.com/onfido/onfido-openapi-spec/commit/ef28a11bfaa531784d3c961807643617fba3a827)
+
 ## v2.9.0 24 November 2023
 
 - Added `signed_evidence_file` method for WorkflowRuns
@@ -23,11 +27,11 @@
 
 ## v2.4.0, 05 October 2022
 
-- Updated to use API v3.5, for more details please see our [release notes](https://developers.onfido.com/release-notes#api-v35). 
+- Updated to use API v3.5, for more details please see our [release notes](https://developers.onfido.com/release-notes#api-v35).
 
 ## v2.3.0, 02 March 2022
 
-- Updated to use API v3.4, for more details please see our [release notes](https://developers.onfido.com/release-notes#api-v34). 
+- Updated to use API v3.4, for more details please see our [release notes](https://developers.onfido.com/release-notes#api-v34).
 
 ## v2.2.0, 02 March 2022
 
@@ -94,7 +98,7 @@
 ## v0.11.0, 18 April 2018
 
 - Automatically detect the correct Onfido API region to use based on the provided API
-key (#49) (@tpinto)
+  key (#49) (@tpinto)
 
 ## v0.10.0, 3 April 2018
 
@@ -108,7 +112,7 @@ key (#49) (@tpinto)
 ## v0.8.4, 29 January 2018
 
 - Replace use of `method_missing` with explicitly-defined accessors when accessing
-resources from an `Onfido::API` instance (@hmac)
+  resources from an `Onfido::API` instance (@hmac)
 
 ## v0.8.3, 16 January 2018
 

@@ -2672,7 +2672,7 @@ module Onfido
     # Lists all the live videos that belong to an applicant. 
     # @param applicant_id [String] The id of the applicant the live videos belong to.
     # @param [Hash] opts the optional parameters
-    # @return [LiveoVideosList]
+    # @return [LiveVideosList]
     def list_live_videos(applicant_id, opts = {})
       data, _status_code, _headers = list_live_videos_with_http_info(applicant_id, opts)
       data
@@ -2682,7 +2682,7 @@ module Onfido
     # Lists all the live videos that belong to an applicant. 
     # @param applicant_id [String] The id of the applicant the live videos belong to.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(LiveoVideosList, Integer, Hash)>] LiveoVideosList data, response status code and response headers
+    # @return [Array<(LiveVideosList, Integer, Hash)>] LiveVideosList data, response status code and response headers
     def list_live_videos_with_http_info(applicant_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.list_live_videos ...'
@@ -2710,7 +2710,7 @@ module Onfido
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'LiveoVideosList'
+      return_type = opts[:debug_return_type] || 'LiveVideosList'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['Token']

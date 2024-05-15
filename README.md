@@ -78,9 +78,9 @@ Webhook events payload needs to be verified before it can be accessed. Library a
     event = verifier.read_payload('{"payload":{"r...3"}}', signature)
 
   rescue Onfido::OnfidoInvalidSignatureError => e
-    e.type         
-    e.fields        
-    e.response_code 
+    e.type
+    e.fields
+    e.response_code
   end
 ```
 
@@ -90,7 +90,7 @@ This library is automatically generated using [OpenAPI Generator](https://openap
 
 For contributions to the tests instead, please follow the steps below:
 
-1. [Fork](<https://github.com/onfido/onfido-ruby/fork>) repository
+1. [Fork](https://github.com/onfido/onfido-ruby/fork) repository
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Make your changes
 4. Commit your changes (`git commit -am 'Add some feature'`)
@@ -102,5 +102,6 @@ For contributions to the tests instead, please follow the steps below:
 More documentation and code examples can be found at <https://documentation.onfido.com>.
 
 ## Support
+
 Should you encounter any technical issues during integration, please contact Onfido's Customer Support team
 via the [Customer Experience Portal](https://public.support.onfido.com/) which also includes support documentation.

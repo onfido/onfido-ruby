@@ -96,6 +96,11 @@ module Onfido
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
       pattern = Regexp.new(/^[0-9a-z-_]+$/)
+      if !@id.nil? && @id !~ pattern
+        invalid_properties.push("invalid value for \"id\", must conform to the pattern #{pattern}.")
+      end
+
+      pattern = Regexp.new(/^[0-9a-z-_]+$/)
       if !@task_def_id.nil? && @task_def_id !~ pattern
         invalid_properties.push("invalid value for \"task_def_id\", must conform to the pattern #{pattern}.")
       end
@@ -107,8 +112,24 @@ module Onfido
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if !@id.nil? && @id !~ Regexp.new(/^[0-9a-z-_]+$/)
       return false if !@task_def_id.nil? && @task_def_id !~ Regexp.new(/^[0-9a-z-_]+$/)
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] id Value to be assigned
+    def id=(id)
+      if id.nil?
+        fail ArgumentError, 'id cannot be nil'
+      end
+
+      pattern = Regexp.new(/^[0-9a-z-_]+$/)
+      if id !~ pattern
+        fail ArgumentError, "invalid value for \"id\", must conform to the pattern #{pattern}."
+      end
+
+      @id = id
     end
 
     # Custom attribute writer method with validation
