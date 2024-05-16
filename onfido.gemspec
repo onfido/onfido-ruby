@@ -21,10 +21,10 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["OpenAPI-Generator"]
   s.email       = [""]
-  s.homepage    = "https://openapi-generator.tech"
-  s.summary     = "Onfido API v3.6 Ruby Gem"
-  s.description = "The Onfido API (v3.6)"
-  s.license     = "Unlicense"
+  s.homepage    = "https://github.com/onfido/onfido-ruby"
+  s.summary     = "The official Ruby library for integrating with the Onfido API."
+  s.description = "Ruby Library for the Onfido API"
+  s.license     = "MIT"
   s.required_ruby_version = ">= 2.7"
   s.metadata    = {}
 
