@@ -19,13 +19,13 @@ module Onfido
     attr_accessor :id
 
     # Monitor status
-    attr_accessor :status
+    attr_accessor :enabled
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'id' => :'id',
-        :'status' => :'status'
+        :'enabled' => :'enabled'
       }
     end
 
@@ -38,7 +38,7 @@ module Onfido
     def self.openapi_types
       {
         :'id' => :'String',
-        :'status' => :'Boolean'
+        :'enabled' => :'Boolean'
       }
     end
 
@@ -67,8 +67,8 @@ module Onfido
         self.id = attributes[:'id']
       end
 
-      if attributes.key?(:'status')
-        self.status = attributes[:'status']
+      if attributes.key?(:'enabled')
+        self.enabled = attributes[:'enabled']
       end
     end
 
@@ -93,7 +93,7 @@ module Onfido
       return true if self.equal?(o)
       self.class == o.class &&
           id == o.id &&
-          status == o.status
+          enabled == o.enabled
     end
 
     # @see the `==` method
@@ -105,7 +105,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, status].hash
+      [id, enabled].hash
     end
 
     # Builds the object from hash

@@ -14,14 +14,44 @@ require 'date'
 require 'time'
 
 module Onfido
-  class CompleteTaskRequest
-    # The Task completion payload.
-    attr_accessor :data
+  class WatchlistMonitorBuilder
+    # The ID for the applicant associated with the monitor.
+    attr_accessor :applicant_id
+
+    # The name of the report type the monitor creates.
+    attr_accessor :report_name
+
+    # A list of tags associated with this monitor. These tags will be applied to each check this monitor creates.
+    attr_accessor :tags
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'data' => :'data'
+        :'applicant_id' => :'applicant_id',
+        :'report_name' => :'report_name',
+        :'tags' => :'tags'
       }
     end
 
@@ -33,7 +63,9 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'data' => :'Object'
+        :'applicant_id' => :'String',
+        :'report_name' => :'String',
+        :'tags' => :'Array<String>'
       }
     end
 
@@ -43,23 +75,44 @@ module Onfido
       ])
     end
 
+    # List of class defined in allOf (OpenAPI v3)
+    def self.openapi_all_of
+      [
+      :'WatchlistMonitorShared'
+      ]
+    end
+
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::CompleteTaskRequest` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WatchlistMonitorBuilder` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::CompleteTaskRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WatchlistMonitorBuilder`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'data')
-        self.data = attributes[:'data']
+      if attributes.key?(:'applicant_id')
+        self.applicant_id = attributes[:'applicant_id']
+      else
+        self.applicant_id = nil
+      end
+
+      if attributes.key?(:'report_name')
+        self.report_name = attributes[:'report_name']
+      else
+        self.report_name = nil
+      end
+
+      if attributes.key?(:'tags')
+        if (value = attributes[:'tags']).is_a?(Array)
+          self.tags = value
+        end
       end
     end
 
@@ -68,6 +121,14 @@ module Onfido
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @applicant_id.nil?
+        invalid_properties.push('invalid value for "applicant_id", applicant_id cannot be nil.')
+      end
+
+      if @report_name.nil?
+        invalid_properties.push('invalid value for "report_name", report_name cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -75,7 +136,21 @@ module Onfido
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @applicant_id.nil?
+      return false if @report_name.nil?
+      report_name_validator = EnumAttributeValidator.new('String', ["watchlist_standard", "watchlist_aml", "unknown_default_open_api"])
+      return false unless report_name_validator.valid?(@report_name)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] report_name Object to be assigned
+    def report_name=(report_name)
+      validator = EnumAttributeValidator.new('String', ["watchlist_standard", "watchlist_aml", "unknown_default_open_api"])
+      unless validator.valid?(report_name)
+        fail ArgumentError, "invalid value for \"report_name\", must be one of #{validator.allowable_values}."
+      end
+      @report_name = report_name
     end
 
     # Checks equality by comparing each attribute.
@@ -83,7 +158,9 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          data == o.data
+          applicant_id == o.applicant_id &&
+          report_name == o.report_name &&
+          tags == o.tags
     end
 
     # @see the `==` method
@@ -95,7 +172,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [data].hash
+      [applicant_id, report_name, tags].hash
     end
 
     # Builds the object from hash

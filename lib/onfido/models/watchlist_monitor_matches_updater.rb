@@ -14,60 +14,16 @@ require 'date'
 require 'time'
 
 module Onfido
-  class WatchlistMonitor
-    # The ID for the applicant associated with the monitor.
-    attr_accessor :applicant_id
+  class WatchlistMonitorMatchesUpdater
+    attr_accessor :enable
 
-    # The name of the report type the monitor creates.
-    attr_accessor :report_name
-
-    # A list of tags associated with this monitor. These tags will be applied to each check this monitor creates.
-    attr_accessor :tags
-
-    # The unique identifier for the monitor.
-    attr_accessor :id
-
-    # The date and time at which the monitor was created.
-    attr_accessor :created_at
-
-    # The date and time at which the monitor was deleted. If the monitor is still active, this field will be null.
-    attr_accessor :deleted_at
-
-    # Indicates whether the object was created in the sandbox or not.
-    attr_accessor :is_sandbox
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
+    attr_accessor :disable
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'applicant_id' => :'applicant_id',
-        :'report_name' => :'report_name',
-        :'tags' => :'tags',
-        :'id' => :'id',
-        :'created_at' => :'created_at',
-        :'deleted_at' => :'deleted_at',
-        :'is_sandbox' => :'is_sandbox'
+        :'enable' => :'enable',
+        :'disable' => :'disable'
       }
     end
 
@@ -79,13 +35,8 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'applicant_id' => :'String',
-        :'report_name' => :'String',
-        :'tags' => :'Array<String>',
-        :'id' => :'String',
-        :'created_at' => :'Time',
-        :'deleted_at' => :'Time',
-        :'is_sandbox' => :'Boolean'
+        :'enable' => :'Array<String>',
+        :'disable' => :'Array<String>'
       }
     end
 
@@ -95,65 +46,31 @@ module Onfido
       ])
     end
 
-    # List of class defined in allOf (OpenAPI v3)
-    def self.openapi_all_of
-      [
-      :'WatchlistMonitorResponse',
-      :'WatchlistMonitorShared'
-      ]
-    end
-
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WatchlistMonitor` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WatchlistMonitorMatchesUpdater` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WatchlistMonitor`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WatchlistMonitorMatchesUpdater`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'applicant_id')
-        self.applicant_id = attributes[:'applicant_id']
-      else
-        self.applicant_id = nil
-      end
-
-      if attributes.key?(:'report_name')
-        self.report_name = attributes[:'report_name']
-      else
-        self.report_name = nil
-      end
-
-      if attributes.key?(:'tags')
-        if (value = attributes[:'tags']).is_a?(Array)
-          self.tags = value
+      if attributes.key?(:'enable')
+        if (value = attributes[:'enable']).is_a?(Array)
+          self.enable = value
         end
       end
 
-      if attributes.key?(:'id')
-        self.id = attributes[:'id']
-      else
-        self.id = nil
-      end
-
-      if attributes.key?(:'created_at')
-        self.created_at = attributes[:'created_at']
-      end
-
-      if attributes.key?(:'deleted_at')
-        self.deleted_at = attributes[:'deleted_at']
-      end
-
-      if attributes.key?(:'is_sandbox')
-        self.is_sandbox = attributes[:'is_sandbox']
-      else
-        self.is_sandbox = false
+      if attributes.key?(:'disable')
+        if (value = attributes[:'disable']).is_a?(Array)
+          self.disable = value
+        end
       end
     end
 
@@ -162,18 +79,6 @@ module Onfido
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @applicant_id.nil?
-        invalid_properties.push('invalid value for "applicant_id", applicant_id cannot be nil.')
-      end
-
-      if @report_name.nil?
-        invalid_properties.push('invalid value for "report_name", report_name cannot be nil.')
-      end
-
-      if @id.nil?
-        invalid_properties.push('invalid value for "id", id cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -181,22 +86,7 @@ module Onfido
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @applicant_id.nil?
-      return false if @report_name.nil?
-      report_name_validator = EnumAttributeValidator.new('String', ["watchlist_standard", "watchlist_aml", "unknown_default_open_api"])
-      return false unless report_name_validator.valid?(@report_name)
-      return false if @id.nil?
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] report_name Object to be assigned
-    def report_name=(report_name)
-      validator = EnumAttributeValidator.new('String', ["watchlist_standard", "watchlist_aml", "unknown_default_open_api"])
-      unless validator.valid?(report_name)
-        fail ArgumentError, "invalid value for \"report_name\", must be one of #{validator.allowable_values}."
-      end
-      @report_name = report_name
     end
 
     # Checks equality by comparing each attribute.
@@ -204,13 +94,8 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          applicant_id == o.applicant_id &&
-          report_name == o.report_name &&
-          tags == o.tags &&
-          id == o.id &&
-          created_at == o.created_at &&
-          deleted_at == o.deleted_at &&
-          is_sandbox == o.is_sandbox
+          enable == o.enable &&
+          disable == o.disable
     end
 
     # @see the `==` method
@@ -222,7 +107,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [applicant_id, report_name, tags, id, created_at, deleted_at, is_sandbox].hash
+      [enable, disable].hash
     end
 
     # Builds the object from hash
