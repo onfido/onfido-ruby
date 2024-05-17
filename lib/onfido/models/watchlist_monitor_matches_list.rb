@@ -14,16 +14,13 @@ require 'date'
 require 'time'
 
 module Onfido
-  class UpdateMonitorMatchRequest
-    attr_accessor :enable
-
-    attr_accessor :disable
+  class WatchlistMonitorMatchesList
+    attr_accessor :matches
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'enable' => :'enable',
-        :'disable' => :'disable'
+        :'matches' => :'matches'
       }
     end
 
@@ -35,8 +32,7 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'enable' => :'Array<String>',
-        :'disable' => :'Array<String>'
+        :'matches' => :'Array<WatchlistMonitorMatch>'
       }
     end
 
@@ -50,27 +46,23 @@ module Onfido
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::UpdateMonitorMatchRequest` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WatchlistMonitorMatchesList` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::UpdateMonitorMatchRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WatchlistMonitorMatchesList`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'enable')
-        if (value = attributes[:'enable']).is_a?(Array)
-          self.enable = value
+      if attributes.key?(:'matches')
+        if (value = attributes[:'matches']).is_a?(Array)
+          self.matches = value
         end
-      end
-
-      if attributes.key?(:'disable')
-        if (value = attributes[:'disable']).is_a?(Array)
-          self.disable = value
-        end
+      else
+        self.matches = nil
       end
     end
 
@@ -79,6 +71,10 @@ module Onfido
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @matches.nil?
+        invalid_properties.push('invalid value for "matches", matches cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -86,6 +82,7 @@ module Onfido
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @matches.nil?
       true
     end
 
@@ -94,8 +91,7 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          enable == o.enable &&
-          disable == o.disable
+          matches == o.matches
     end
 
     # @see the `==` method
@@ -107,7 +103,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [enable, disable].hash
+      [matches].hash
     end
 
     # Builds the object from hash

@@ -86,11 +86,11 @@ module Onfido
     # Completes a Send / Receive Data Task. 
     # @param workflow_run_id [String] The unique identifier of the Workflow Run to which the Task belongs.
     # @param task_id [String] The identifier of the Task you want to complete.
-    # @param complete_task_request [CompleteTaskRequest] 
+    # @param complete_task_builder [CompleteTaskBuilder] 
     # @param [Hash] opts the optional parameters
     # @return [nil]
-    def complete_task(workflow_run_id, task_id, complete_task_request, opts = {})
-      complete_task_with_http_info(workflow_run_id, task_id, complete_task_request, opts)
+    def complete_task(workflow_run_id, task_id, complete_task_builder, opts = {})
+      complete_task_with_http_info(workflow_run_id, task_id, complete_task_builder, opts)
       nil
     end
 
@@ -98,10 +98,10 @@ module Onfido
     # Completes a Send / Receive Data Task. 
     # @param workflow_run_id [String] The unique identifier of the Workflow Run to which the Task belongs.
     # @param task_id [String] The identifier of the Task you want to complete.
-    # @param complete_task_request [CompleteTaskRequest] 
+    # @param complete_task_builder [CompleteTaskBuilder] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
-    def complete_task_with_http_info(workflow_run_id, task_id, complete_task_request, opts = {})
+    def complete_task_with_http_info(workflow_run_id, task_id, complete_task_builder, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.complete_task ...'
       end
@@ -113,9 +113,9 @@ module Onfido
       if @api_client.config.client_side_validation && task_id.nil?
         fail ArgumentError, "Missing the required parameter 'task_id' when calling DefaultApi.complete_task"
       end
-      # verify the required parameter 'complete_task_request' is set
-      if @api_client.config.client_side_validation && complete_task_request.nil?
-        fail ArgumentError, "Missing the required parameter 'complete_task_request' when calling DefaultApi.complete_task"
+      # verify the required parameter 'complete_task_builder' is set
+      if @api_client.config.client_side_validation && complete_task_builder.nil?
+        fail ArgumentError, "Missing the required parameter 'complete_task_builder' when calling DefaultApi.complete_task"
       end
       # resource path
       local_var_path = '/workflow_runs/{workflow_run_id}/tasks/{task_id}/complete'.sub('{' + 'workflow_run_id' + '}', CGI.escape(workflow_run_id.to_s)).sub('{' + 'task_id' + '}', CGI.escape(task_id.to_s))
@@ -137,7 +137,7 @@ module Onfido
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:debug_body] || @api_client.object_to_http_body(complete_task_request)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(complete_task_builder)
 
       # return_type
       return_type = opts[:debug_return_type]
@@ -300,26 +300,26 @@ module Onfido
 
     # Create monitor
     # Creates a new monitor for the applicant 
-    # @param watchlist_monitor [WatchlistMonitor] 
+    # @param watchlist_monitor_builder [WatchlistMonitorBuilder] 
     # @param [Hash] opts the optional parameters
     # @return [WatchlistMonitor]
-    def create_watchlist_monitor(watchlist_monitor, opts = {})
-      data, _status_code, _headers = create_watchlist_monitor_with_http_info(watchlist_monitor, opts)
+    def create_watchlist_monitor(watchlist_monitor_builder, opts = {})
+      data, _status_code, _headers = create_watchlist_monitor_with_http_info(watchlist_monitor_builder, opts)
       data
     end
 
     # Create monitor
     # Creates a new monitor for the applicant 
-    # @param watchlist_monitor [WatchlistMonitor] 
+    # @param watchlist_monitor_builder [WatchlistMonitorBuilder] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(WatchlistMonitor, Integer, Hash)>] WatchlistMonitor data, response status code and response headers
-    def create_watchlist_monitor_with_http_info(watchlist_monitor, opts = {})
+    def create_watchlist_monitor_with_http_info(watchlist_monitor_builder, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.create_watchlist_monitor ...'
       end
-      # verify the required parameter 'watchlist_monitor' is set
-      if @api_client.config.client_side_validation && watchlist_monitor.nil?
-        fail ArgumentError, "Missing the required parameter 'watchlist_monitor' when calling DefaultApi.create_watchlist_monitor"
+      # verify the required parameter 'watchlist_monitor_builder' is set
+      if @api_client.config.client_side_validation && watchlist_monitor_builder.nil?
+        fail ArgumentError, "Missing the required parameter 'watchlist_monitor_builder' when calling DefaultApi.create_watchlist_monitor"
       end
       # resource path
       local_var_path = '/watchlist_monitors'
@@ -341,7 +341,7 @@ module Onfido
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:debug_body] || @api_client.object_to_http_body(watchlist_monitor)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(watchlist_monitor_builder)
 
       # return_type
       return_type = opts[:debug_return_type] || 'WatchlistMonitor'
@@ -2219,24 +2219,24 @@ module Onfido
     # Triggers a new check with an updated report to be generated by the monitor, as if the monitor had received an update. 
     # @param monitor_id [String] 
     # @param [Hash] opts the optional parameters
-    # @return [Applicant]
-    def force_new_record_creation(monitor_id, opts = {})
-      data, _status_code, _headers = force_new_record_creation_with_http_info(monitor_id, opts)
-      data
+    # @return [nil]
+    def force_report_creation_from_watchlist_monitor(monitor_id, opts = {})
+      force_report_creation_from_watchlist_monitor_with_http_info(monitor_id, opts)
+      nil
     end
 
     # Force new report creation (BETA)
     # Triggers a new check with an updated report to be generated by the monitor, as if the monitor had received an update. 
     # @param monitor_id [String] 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Applicant, Integer, Hash)>] Applicant data, response status code and response headers
-    def force_new_record_creation_with_http_info(monitor_id, opts = {})
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def force_report_creation_from_watchlist_monitor_with_http_info(monitor_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: DefaultApi.force_new_record_creation ...'
+        @api_client.config.logger.debug 'Calling API: DefaultApi.force_report_creation_from_watchlist_monitor ...'
       end
       # verify the required parameter 'monitor_id' is set
       if @api_client.config.client_side_validation && monitor_id.nil?
-        fail ArgumentError, "Missing the required parameter 'monitor_id' when calling DefaultApi.force_new_record_creation"
+        fail ArgumentError, "Missing the required parameter 'monitor_id' when calling DefaultApi.force_report_creation_from_watchlist_monitor"
       end
       # resource path
       local_var_path = '/watchlist_monitors/{monitor_id}/new_report'.sub('{' + 'monitor_id' + '}', CGI.escape(monitor_id.to_s))
@@ -2256,13 +2256,13 @@ module Onfido
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'Applicant'
+      return_type = opts[:debug_return_type]
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['Token']
 
       new_options = opts.merge(
-        :operation => :"DefaultApi.force_new_record_creation",
+        :operation => :"DefaultApi.force_report_creation_from_watchlist_monitor",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -2273,7 +2273,7 @@ module Onfido
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: DefaultApi#force_new_record_creation\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: DefaultApi#force_report_creation_from_watchlist_monitor\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -2990,7 +2990,7 @@ module Onfido
     # List match IDs on this monitor, as well as their enabled/disabled status 
     # @param monitor_id [String] 
     # @param [Hash] opts the optional parameters
-    # @return [Array<WatchlistMonitorMatch>]
+    # @return [WatchlistMonitorMatchesList]
     def list_watchlist_monitor_matches(monitor_id, opts = {})
       data, _status_code, _headers = list_watchlist_monitor_matches_with_http_info(monitor_id, opts)
       data
@@ -3000,7 +3000,7 @@ module Onfido
     # List match IDs on this monitor, as well as their enabled/disabled status 
     # @param monitor_id [String] 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Array<WatchlistMonitorMatch>, Integer, Hash)>] Array<WatchlistMonitorMatch> data, response status code and response headers
+    # @return [Array<(WatchlistMonitorMatchesList, Integer, Hash)>] WatchlistMonitorMatchesList data, response status code and response headers
     def list_watchlist_monitor_matches_with_http_info(monitor_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.list_watchlist_monitor_matches ...'
@@ -3027,7 +3027,7 @@ module Onfido
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'Array<WatchlistMonitorMatch>'
+      return_type = opts[:debug_return_type] || 'WatchlistMonitorMatchesList'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['Token']
@@ -3054,7 +3054,7 @@ module Onfido
     # @param applicant_id [String] The id of the applicant the watchlist monitors belong to. If omitted, all monitors for the account will be listed.
     # @param [Hash] opts the optional parameters
     # @option opts [Boolean] :include_deleted Whether to also include deleted (inactive) monitors. (default to false)
-    # @return [Array<WatchlistMonitor>]
+    # @return [WatchlistMonitorsList]
     def list_watchlist_monitors(applicant_id, opts = {})
       data, _status_code, _headers = list_watchlist_monitors_with_http_info(applicant_id, opts)
       data
@@ -3065,7 +3065,7 @@ module Onfido
     # @param applicant_id [String] The id of the applicant the watchlist monitors belong to. If omitted, all monitors for the account will be listed.
     # @param [Hash] opts the optional parameters
     # @option opts [Boolean] :include_deleted Whether to also include deleted (inactive) monitors. (default to false)
-    # @return [Array<(Array<WatchlistMonitor>, Integer, Hash)>] Array<WatchlistMonitor> data, response status code and response headers
+    # @return [Array<(WatchlistMonitorsList, Integer, Hash)>] WatchlistMonitorsList data, response status code and response headers
     def list_watchlist_monitors_with_http_info(applicant_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.list_watchlist_monitors ...'
@@ -3094,7 +3094,7 @@ module Onfido
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'Array<WatchlistMonitor>'
+      return_type = opts[:debug_return_type] || 'WatchlistMonitorsList'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['Token']
@@ -3708,31 +3708,31 @@ module Onfido
     # Set match status (BETA)
     # Update the status of the given matches 
     # @param monitor_id [String] 
-    # @param update_monitor_match_request [UpdateMonitorMatchRequest] 
+    # @param watchlist_monitor_matches_updater [WatchlistMonitorMatchesUpdater] 
     # @param [Hash] opts the optional parameters
-    # @return [nil]
-    def update_monitor_match(monitor_id, update_monitor_match_request, opts = {})
-      update_monitor_match_with_http_info(monitor_id, update_monitor_match_request, opts)
-      nil
+    # @return [WatchlistMonitorMatchesList]
+    def update_watchlist_monitor_match(monitor_id, watchlist_monitor_matches_updater, opts = {})
+      data, _status_code, _headers = update_watchlist_monitor_match_with_http_info(monitor_id, watchlist_monitor_matches_updater, opts)
+      data
     end
 
     # Set match status (BETA)
     # Update the status of the given matches 
     # @param monitor_id [String] 
-    # @param update_monitor_match_request [UpdateMonitorMatchRequest] 
+    # @param watchlist_monitor_matches_updater [WatchlistMonitorMatchesUpdater] 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
-    def update_monitor_match_with_http_info(monitor_id, update_monitor_match_request, opts = {})
+    # @return [Array<(WatchlistMonitorMatchesList, Integer, Hash)>] WatchlistMonitorMatchesList data, response status code and response headers
+    def update_watchlist_monitor_match_with_http_info(monitor_id, watchlist_monitor_matches_updater, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: DefaultApi.update_monitor_match ...'
+        @api_client.config.logger.debug 'Calling API: DefaultApi.update_watchlist_monitor_match ...'
       end
       # verify the required parameter 'monitor_id' is set
       if @api_client.config.client_side_validation && monitor_id.nil?
-        fail ArgumentError, "Missing the required parameter 'monitor_id' when calling DefaultApi.update_monitor_match"
+        fail ArgumentError, "Missing the required parameter 'monitor_id' when calling DefaultApi.update_watchlist_monitor_match"
       end
-      # verify the required parameter 'update_monitor_match_request' is set
-      if @api_client.config.client_side_validation && update_monitor_match_request.nil?
-        fail ArgumentError, "Missing the required parameter 'update_monitor_match_request' when calling DefaultApi.update_monitor_match"
+      # verify the required parameter 'watchlist_monitor_matches_updater' is set
+      if @api_client.config.client_side_validation && watchlist_monitor_matches_updater.nil?
+        fail ArgumentError, "Missing the required parameter 'watchlist_monitor_matches_updater' when calling DefaultApi.update_watchlist_monitor_match"
       end
       # resource path
       local_var_path = '/watchlist_monitors/{monitor_id}/matches'.sub('{' + 'monitor_id' + '}', CGI.escape(monitor_id.to_s))
@@ -3754,16 +3754,16 @@ module Onfido
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:debug_body] || @api_client.object_to_http_body(update_monitor_match_request)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(watchlist_monitor_matches_updater)
 
       # return_type
-      return_type = opts[:debug_return_type]
+      return_type = opts[:debug_return_type] || 'WatchlistMonitorMatchesList'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['Token']
 
       new_options = opts.merge(
-        :operation => :"DefaultApi.update_monitor_match",
+        :operation => :"DefaultApi.update_watchlist_monitor_match",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -3774,7 +3774,7 @@ module Onfido
 
       data, status_code, headers = @api_client.call_api(:PATCH, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: DefaultApi#update_monitor_match\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: DefaultApi#update_watchlist_monitor_match\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
