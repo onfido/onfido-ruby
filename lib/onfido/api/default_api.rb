@@ -2927,7 +2927,7 @@ module Onfido
     # The tasks of a Workflow can be retrieved by calling this endpoint with the unique identifier of the Workflow Run. 
     # @param workflow_run_id [String] The unique identifier of the Workflow Run to which the Tasks belong.
     # @param [Hash] opts the optional parameters
-    # @return [Array<Task>]
+    # @return [Array<TaskItem>]
     def list_tasks(workflow_run_id, opts = {})
       data, _status_code, _headers = list_tasks_with_http_info(workflow_run_id, opts)
       data
@@ -2937,7 +2937,7 @@ module Onfido
     # The tasks of a Workflow can be retrieved by calling this endpoint with the unique identifier of the Workflow Run. 
     # @param workflow_run_id [String] The unique identifier of the Workflow Run to which the Tasks belong.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Array<Task>, Integer, Hash)>] Array<Task> data, response status code and response headers
+    # @return [Array<(Array<TaskItem>, Integer, Hash)>] Array<TaskItem> data, response status code and response headers
     def list_tasks_with_http_info(workflow_run_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.list_tasks ...'
@@ -2964,7 +2964,7 @@ module Onfido
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'Array<Task>'
+      return_type = opts[:debug_return_type] || 'Array<TaskItem>'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['Token']
