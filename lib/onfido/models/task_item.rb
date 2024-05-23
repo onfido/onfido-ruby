@@ -14,13 +14,26 @@ require 'date'
 require 'time'
 
 module Onfido
-  class CompleteTaskBuilder
-    attr_accessor :data
+  class TaskItem
+    # The identifier for the Task.
+    attr_accessor :id
+
+    # The identifier for the Task Definition.
+    attr_accessor :task_def_id
+
+    # The date and time when the Task was created.
+    attr_accessor :created_at
+
+    # The date and time when the Task was last updated.
+    attr_accessor :updated_at
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'data' => :'data'
+        :'id' => :'id',
+        :'task_def_id' => :'task_def_id',
+        :'created_at' => :'created_at',
+        :'updated_at' => :'updated_at'
       }
     end
 
@@ -32,7 +45,10 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'data' => :'CompleteTaskDataBuilder'
+        :'id' => :'String',
+        :'task_def_id' => :'String',
+        :'created_at' => :'Time',
+        :'updated_at' => :'Time'
       }
     end
 
@@ -46,21 +62,31 @@ module Onfido
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::CompleteTaskBuilder` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::TaskItem` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::CompleteTaskBuilder`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::TaskItem`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'data')
-        self.data = attributes[:'data']
-      else
-        self.data = nil
+      if attributes.key?(:'id')
+        self.id = attributes[:'id']
+      end
+
+      if attributes.key?(:'task_def_id')
+        self.task_def_id = attributes[:'task_def_id']
+      end
+
+      if attributes.key?(:'created_at')
+        self.created_at = attributes[:'created_at']
+      end
+
+      if attributes.key?(:'updated_at')
+        self.updated_at = attributes[:'updated_at']
       end
     end
 
@@ -69,8 +95,14 @@ module Onfido
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @data.nil?
-        invalid_properties.push('invalid value for "data", data cannot be nil.')
+      pattern = Regexp.new(/^[0-9a-z-_]+$/)
+      if !@id.nil? && @id !~ pattern
+        invalid_properties.push("invalid value for \"id\", must conform to the pattern #{pattern}.")
+      end
+
+      pattern = Regexp.new(/^[0-9a-z-_]+$/)
+      if !@task_def_id.nil? && @task_def_id !~ pattern
+        invalid_properties.push("invalid value for \"task_def_id\", must conform to the pattern #{pattern}.")
       end
 
       invalid_properties
@@ -80,8 +112,39 @@ module Onfido
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @data.nil?
+      return false if !@id.nil? && @id !~ Regexp.new(/^[0-9a-z-_]+$/)
+      return false if !@task_def_id.nil? && @task_def_id !~ Regexp.new(/^[0-9a-z-_]+$/)
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] id Value to be assigned
+    def id=(id)
+      if id.nil?
+        fail ArgumentError, 'id cannot be nil'
+      end
+
+      pattern = Regexp.new(/^[0-9a-z-_]+$/)
+      if id !~ pattern
+        fail ArgumentError, "invalid value for \"id\", must conform to the pattern #{pattern}."
+      end
+
+      @id = id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] task_def_id Value to be assigned
+    def task_def_id=(task_def_id)
+      if task_def_id.nil?
+        fail ArgumentError, 'task_def_id cannot be nil'
+      end
+
+      pattern = Regexp.new(/^[0-9a-z-_]+$/)
+      if task_def_id !~ pattern
+        fail ArgumentError, "invalid value for \"task_def_id\", must conform to the pattern #{pattern}."
+      end
+
+      @task_def_id = task_def_id
     end
 
     # Checks equality by comparing each attribute.
@@ -89,7 +152,10 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          data == o.data
+          id == o.id &&
+          task_def_id == o.task_def_id &&
+          created_at == o.created_at &&
+          updated_at == o.updated_at
     end
 
     # @see the `==` method
@@ -101,7 +167,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [data].hash
+      [id, task_def_id, created_at, updated_at].hash
     end
 
     # Builds the object from hash

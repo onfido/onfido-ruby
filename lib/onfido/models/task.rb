@@ -18,8 +18,20 @@ module Onfido
     # The identifier for the Task.
     attr_accessor :id
 
+    # The workflow run id the task belongs to.
+    attr_accessor :workflow_run_id
+
     # The identifier for the Task Definition.
     attr_accessor :task_def_id
+
+    # The task definition version.
+    attr_accessor :task_def_version
+
+    # Input object with the fields used by the Task to execute.
+    attr_accessor :input
+
+    # Output object with the fields produced by the Task execution.
+    attr_accessor :output
 
     # The date and time when the Task was created.
     attr_accessor :created_at
@@ -31,7 +43,11 @@ module Onfido
     def self.attribute_map
       {
         :'id' => :'id',
+        :'workflow_run_id' => :'workflow_run_id',
         :'task_def_id' => :'task_def_id',
+        :'task_def_version' => :'task_def_version',
+        :'input' => :'input',
+        :'output' => :'output',
         :'created_at' => :'created_at',
         :'updated_at' => :'updated_at'
       }
@@ -46,7 +62,11 @@ module Onfido
     def self.openapi_types
       {
         :'id' => :'String',
+        :'workflow_run_id' => :'String',
         :'task_def_id' => :'String',
+        :'task_def_version' => :'String',
+        :'input' => :'Object',
+        :'output' => :'Object',
         :'created_at' => :'Time',
         :'updated_at' => :'Time'
       }
@@ -55,6 +75,8 @@ module Onfido
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'task_def_version',
+        :'output',
       ])
     end
 
@@ -77,8 +99,24 @@ module Onfido
         self.id = attributes[:'id']
       end
 
+      if attributes.key?(:'workflow_run_id')
+        self.workflow_run_id = attributes[:'workflow_run_id']
+      end
+
       if attributes.key?(:'task_def_id')
         self.task_def_id = attributes[:'task_def_id']
+      end
+
+      if attributes.key?(:'task_def_version')
+        self.task_def_version = attributes[:'task_def_version']
+      end
+
+      if attributes.key?(:'input')
+        self.input = attributes[:'input']
+      end
+
+      if attributes.key?(:'output')
+        self.output = attributes[:'output']
       end
 
       if attributes.key?(:'created_at')
@@ -153,7 +191,11 @@ module Onfido
       return true if self.equal?(o)
       self.class == o.class &&
           id == o.id &&
+          workflow_run_id == o.workflow_run_id &&
           task_def_id == o.task_def_id &&
+          task_def_version == o.task_def_version &&
+          input == o.input &&
+          output == o.output &&
           created_at == o.created_at &&
           updated_at == o.updated_at
     end
@@ -167,7 +209,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, task_def_id, created_at, updated_at].hash
+      [id, workflow_run_id, task_def_id, task_def_version, input, output, created_at, updated_at].hash
     end
 
     # Builds the object from hash
