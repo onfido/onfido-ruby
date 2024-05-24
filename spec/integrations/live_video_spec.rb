@@ -1,36 +1,27 @@
 # frozen_string_literal: true
 
-require 'onfido'
-
-Onfido.configure do |config|
-  config.api_token = ENV["ONFIDO_API_TOKEN"]
-  config.debugging = true
-  config.region = config.region[:EU]
-end
+require_relative '../shared_contexts/with_onfido'
 
 describe Onfido::LiveVideo do
+  describe 'Live Video' do
+    include_context 'with onfido'
 
-  let(:applicant_id) { ENV['ONFIDO_SAMPLE_APPLICANT_ID'] }
-  let(:live_video_id) { ENV['ONFIDO_SAMPLE_VIDEO_ID_1'] }
+    let(:applicant_id) { ENV['ONFIDO_SAMPLE_APPLICANT_ID'] }
+    let(:live_video_id) { ENV['ONFIDO_SAMPLE_VIDEO_ID_1'] }
 
-  let(:onfido_api) do
-    Onfido::DefaultApi.new
-  end
-
-  describe '#Live Videos' do
     it 'lists live videos' do
       live_videos = onfido_api.list_live_videos(applicant_id)
 
       expect(live_videos.live_videos.length).to be > 0
-      expect(live_videos).to be_a(Onfido::LiveVideosList)
-      expect(live_videos.live_videos.first).to be_a(Onfido::LiveVideo)
+      expect(live_videos).to be_an_instance_of Onfido::LiveVideosList
+      expect(live_videos.live_videos.first).to be_an_instance_of Onfido::LiveVideo
     end
 
     it 'retrieves live videos' do
       get_live_video = onfido_api.find_live_video(live_video_id)
 
       expect(get_live_video.id).to eq(live_video_id)
-      expect(get_live_video).to be_a(Onfido::LiveVideo)
+      expect(get_live_video).to be_an_instance_of Onfido::LiveVideo
     end
 
     it 'downloads live video' do

@@ -1,36 +1,27 @@
 # frozen_string_literal: true
 
-require 'onfido'
-
-Onfido.configure do |config|
-  config.api_token = ENV["ONFIDO_API_TOKEN"]
-  config.debugging = true
-  config.region = config.region[:EU]
-end
+require_relative '../shared_contexts/with_onfido'
 
 describe Onfido::MotionCapture do
+  describe 'Motion Capture' do
+    include_context 'with onfido'
 
-  let(:applicant_id) { ENV['ONFIDO_SAMPLE_APPLICANT_ID'] }
-  let(:motion_id) { ENV['ONFIDO_SAMPLE_MOTION_ID_1'] }
+    let(:applicant_id) { ENV['ONFIDO_SAMPLE_APPLICANT_ID'] }
+    let(:motion_id) { ENV['ONFIDO_SAMPLE_MOTION_ID_1'] }
 
-  let(:onfido_api) do
-    Onfido::DefaultApi.new
-  end
-
-  describe '#Motion Captures' do
     it 'lists motion captures' do
       motion_captures = onfido_api.list_motion_captures(applicant_id)
 
       expect(motion_captures.motion_captures.length).to be > 0
-      expect(motion_captures).to be_a(Onfido::MotionCapturesList)
-      expect(motion_captures.motion_captures.first).to be_a(Onfido::MotionCapture)
+      expect(motion_captures).to be_an_instance_of Onfido::MotionCapturesList
+      expect(motion_captures.motion_captures.first).to be_an_instance_of Onfido::MotionCapture
     end
 
     it 'retrieves motion capture' do
       get_motion_capture = onfido_api.find_motion_capture(motion_id)
 
       expect(get_motion_capture.id).to eq(motion_id)
-      expect(get_motion_capture).to be_a(Onfido::MotionCapture)
+      expect(get_motion_capture).to be_an_instance_of Onfido::MotionCapture
     end
 
     it 'downloads motion capture' do
