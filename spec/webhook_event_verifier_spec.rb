@@ -14,7 +14,7 @@ describe Onfido::WebhookEventVerifier do
 
     it "returns the decoded event payload" do
       expected_payload = JSON.parse(event_body)["payload"]
-      expected_webhook_event = Onfido::WebhookEvent.new({payload: Onfido::WebhookEventPayload.build_from_hash(expected_payload)})
+      expected_webhook_event = Onfido::WebhookEvent.new({ payload: Onfido::WebhookEventPayload.build_from_hash(expected_payload) })
       
       webhook_event = subject.read_payload(event_body, sig)
       expect(webhook_event.payload).to eq(expected_webhook_event.payload)
