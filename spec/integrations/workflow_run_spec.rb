@@ -51,5 +51,34 @@ describe Onfido::WorkflowRun do
 
       expect(file.size).to be > 0
     end
+
+    context 'with start -> approved workflow' do
+      let(:workflow_id) { '221f9d24-cf72-4762-ac4a-01bf3ccc09dd' }
+
+      it 'generates a timeline file' do
+        repeat_request_until_status_changes('approved') do
+          onfido_api.find_workflow_run(workflow_run_id)
+        end
+
+        workflow_timeline_file_data = onfido_api.create_timeline_file(workflow_run_id)
+
+        expect(workflow_timeline_file_data).to be_an_instance_of Onfido::TimelineFileReference
+        expect(workflow_timeline_file_data.workflow_timeline_file_id).to_not be_nil
+        expect(workflow_timeline_file_data.href).to_not be_nil
+      end
+
+      it 'finds a timeline file' do
+        repeat_request_until_status_changes('approved') do
+          onfido_api.find_workflow_run(workflow_run_id)
+        end
+
+        timeline_file_id = onfido_api.create_timeline_file(workflow_run_id).workflow_timeline_file_id
+        file = repeat_request_unti_http_code_changes do
+          onfido_api.find_timeline_file(workflow_run_id, timeline_file_id)
+        end
+
+        expect(file.size).to be > 0
+      end
+    end
   end
 end
