@@ -298,6 +298,69 @@ module Onfido
       return data, status_code, headers
     end
 
+    # Create Timeline File for Workflow Run
+    # Triggers the generation of the Timeline File for the designated Workflow Run. 
+    # @param workflow_run_id [String] The unique identifier of the Workflow Run.
+    # @param [Hash] opts the optional parameters
+    # @return [TimelineFileReference]
+    def create_timeline_file(workflow_run_id, opts = {})
+      data, _status_code, _headers = create_timeline_file_with_http_info(workflow_run_id, opts)
+      data
+    end
+
+    # Create Timeline File for Workflow Run
+    # Triggers the generation of the Timeline File for the designated Workflow Run. 
+    # @param workflow_run_id [String] The unique identifier of the Workflow Run.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(TimelineFileReference, Integer, Hash)>] TimelineFileReference data, response status code and response headers
+    def create_timeline_file_with_http_info(workflow_run_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.create_timeline_file ...'
+      end
+      # verify the required parameter 'workflow_run_id' is set
+      if @api_client.config.client_side_validation && workflow_run_id.nil?
+        fail ArgumentError, "Missing the required parameter 'workflow_run_id' when calling DefaultApi.create_timeline_file"
+      end
+      # resource path
+      local_var_path = '/workflow_runs/{workflow_run_id}/timeline_file'.sub('{' + 'workflow_run_id' + '}', CGI.escape(workflow_run_id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'TimelineFileReference'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Token']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.create_timeline_file",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#create_timeline_file\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Create monitor
     # Creates a new monitor for the applicant 
     # @param watchlist_monitor_builder [WatchlistMonitorBuilder] 
@@ -1290,7 +1353,7 @@ module Onfido
       # header parameters
       header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['binary/octet-stream', 'application/json'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/pdf', 'application/json'])
 
       # form parameters
       form_params = opts[:form_params] || {}
@@ -2022,6 +2085,75 @@ module Onfido
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DefaultApi#find_task\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Retrieve Timeline File for Workflow Run
+    # Retrieves the Timeline File for the designated Workflow Run. 
+    # @param workflow_run_id [String] The unique identifier of the Workflow Run.
+    # @param timeline_file_id [String] The unique identifier for the Timefile File.
+    # @param [Hash] opts the optional parameters
+    # @return [File]
+    def find_timeline_file(workflow_run_id, timeline_file_id, opts = {})
+      data, _status_code, _headers = find_timeline_file_with_http_info(workflow_run_id, timeline_file_id, opts)
+      data
+    end
+
+    # Retrieve Timeline File for Workflow Run
+    # Retrieves the Timeline File for the designated Workflow Run. 
+    # @param workflow_run_id [String] The unique identifier of the Workflow Run.
+    # @param timeline_file_id [String] The unique identifier for the Timefile File.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(File, Integer, Hash)>] File data, response status code and response headers
+    def find_timeline_file_with_http_info(workflow_run_id, timeline_file_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.find_timeline_file ...'
+      end
+      # verify the required parameter 'workflow_run_id' is set
+      if @api_client.config.client_side_validation && workflow_run_id.nil?
+        fail ArgumentError, "Missing the required parameter 'workflow_run_id' when calling DefaultApi.find_timeline_file"
+      end
+      # verify the required parameter 'timeline_file_id' is set
+      if @api_client.config.client_side_validation && timeline_file_id.nil?
+        fail ArgumentError, "Missing the required parameter 'timeline_file_id' when calling DefaultApi.find_timeline_file"
+      end
+      # resource path
+      local_var_path = '/workflow_runs/{workflow_run_id}/timeline_file/{timeline_file_id}'.sub('{' + 'workflow_run_id' + '}', CGI.escape(workflow_run_id.to_s)).sub('{' + 'timeline_file_id' + '}', CGI.escape(timeline_file_id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/pdf', 'application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'File'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Token']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.find_timeline_file",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#find_timeline_file\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

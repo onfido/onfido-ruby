@@ -7,3 +7,5 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rubocop', '~> 0.66.0'
 end
+
+gem "faraday-follow_redirects", "~> 0.3.0"

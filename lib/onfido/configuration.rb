@@ -10,6 +10,8 @@ Generator version: 7.5.0
 
 =end
 
+require 'faraday/follow_redirects'
+
 module Onfido
   class Configuration
     REGIONS = {
@@ -179,6 +181,8 @@ module Onfido
       @inject_format = false
       @force_ending_format = false
       @logger = defined?(Rails) ? Rails.logger : Logger.new(STDOUT)
+
+      use( Faraday::FollowRedirects::Middleware ) 
 
       yield(self) if block_given?
     end
