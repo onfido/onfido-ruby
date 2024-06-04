@@ -26,9 +26,82 @@ RSpec.configure do |config|
   config.warnings = false
   config.expose_dsl_globally = true
 
+  config.after(:suite) do
+    # clean-up applicants and webhooks
+    sample_applicant_id = ENV['ONFIDO_SAMPLE_APPLICANT_ID']
+    onfido_api = Onfido::DefaultApi.new
+
+    applicants = onfido_api.list_applicants(
+      page: 1,
+      per_page: 100,
+      include_deleted: false,
+    ).applicants
+
+    applicants.each do |applicant|
+      if applicant.id != sample_applicant_id
+        begin
+          onfido_api.delete_applicant(applicant.id)
+        rescue Onfido::ApiError
+          # ignore failures during cleanup
+        end
+      end
+    end
+
+    webhooks = onfido_api.list_webhooks().webhooks
+
+    webhooks.each do |webhook|
+      begin
+        onfido_api.delete_webhook(webhook.id)
+      rescue Onfido::ApiError
+        # ignore failures during cleanup
+      end
+    end
+  end
+
   # Seed global randomization in this process using the `--seed` CLI option.
   # Setting this allows you to use `--seed` to deterministically reproduce
   # test failures related to randomization by passing the same `--seed` value
   # as the one that triggered the failure.
   Kernel.srand config.seed
+end
+
+def repeat_request_until_status_changes(expected_status, max_retries = 10,
+  interval = 1, &proc)
+  # expected_status --> desired status
+  # max_retries     --> how many times to retry the request
+  # interval        --> how many seconds to wait until the next retry
+  # proc            --> code containing the request
+
+  instance = proc.call
+
+  iteration = 0
+  while instance.status != expected_status
+    raise "status did not change in time" if iteration > max_retries
+
+    iteration += 1
+    sleep(interval)
+    instance = proc.call
+  end
+
+  instance
+end
+
+def repeat_request_unti_http_code_changes(max_retries = 10,
+  interval = 1, &proc)
+  # max_retries        --> how many times to retry the request
+  # interval           --> how many seconds to wait until the next retry
+  # proc               --> code containing the request
+
+  iteration = 0
+  while iteration <= max_retries
+    begin
+      instance = proc.call
+      break
+    rescue Onfido::ApiError
+      sleep(interval)
+      iteration += 1
+    end
+  end
+
+  instance
 end
