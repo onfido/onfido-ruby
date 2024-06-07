@@ -23,7 +23,7 @@ Configure with your API token, region and optional timeout (default value is 30)
 require onfido
 
 Onfido.configure do |config|
-  config.api_token = ENV["ONFIDO_API_TOKEN"]
+  config.api_token = ENV["ONFIDO_WEBHOOK_SECRET_TOKEN"]
   config.region = config.region[:EU]
   config.timeout = 30
 end
@@ -86,7 +86,7 @@ Webhook events payload needs to be verified before it can be accessed. Library a
 
 ## Contributing
 
-This library is automatically generated using [OpenAPI Generator](https://openapi-generator.tech) - version: 7.5.0; therefore all the contributions, except tests files, should target [Onfido OpenAPI specification repository](https://github.com/onfido/onfido-openapi-spec/tree/master) instead of this repository.
+This library is automatically generated using [OpenAPI Generator](https://openapi-generator.tech) - version: 7.6.0; therefore all the contributions, except tests files, should target [Onfido OpenAPI specification repository](https://github.com/onfido/onfido-openapi-spec/tree/master) instead of this repository.
 
 For contributions to the tests instead, please follow the steps below:
 
