@@ -25,7 +25,7 @@ describe Onfido::IdPhoto do
       id_photos = onfido_api.list_id_photos(applicant_id)
 
       expect(id_photos.id_photos.length).to be > 0
-      expect(id_photos).to be_an_instance_of Onfido::IDPhotosList
+      expect(id_photos).to be_an_instance_of Onfido::IdPhotosList
     end
 
     it 'retrieves id photo' do
