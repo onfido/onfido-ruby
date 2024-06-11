@@ -21,6 +21,10 @@ describe Onfido::Report do
       ) { onfido_api.find_report(document_report_id) }
 
       expect(document_report).to be_an_instance_of Onfido::DocumentReport
+
+      expect(document_report.name).to eq("document")
+      expect(document_report.breakdown.data_comparison.breakdown.issuing_country.result).to eq("clear")
+      expect(document_report.properties.date_of_birth).to eq(Date.parse("1990-01-01"))
     end
 
     it 'schema of Facial Similarity report is valid' do
