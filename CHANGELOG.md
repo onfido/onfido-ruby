@@ -1,10 +1,5 @@
 # Changelog
 
-## v3.0.0 14th Jun 2024
-
-- Make library auto-generated and based on [Onfido OpenAPI spec](https://github.com/onfido/onfido-openapi-spec)
-- Refresh library up to commit: [169dd4d](https://github.com/onfido/onfido-openapi-spec/commit/169dd4d6598dab5d9822c9b87e7f0f16b3aef5dc)
-
 ## v2.9.0 24 November 2023
 
 - Added `signed_evidence_file` method for WorkflowRuns
