@@ -6,15 +6,15 @@ Documentation can be found at <https://documentation.onfido.com>.
 
 This version uses Onfido API v3.6. Refer to our [API versioning guide](https://developers.onfido.com/guide/api-versioning-policy#client-libraries) for details of which client library versions use which versions of the API.
 
-[![Gem Version](https://badge.fury.io/rb/onfido.svg)](http://badge.fury.io/rb/onfido)
-[![Build Status](https://travis-ci.org/onfido/onfido-ruby.svg?branch=master)](https://travis-ci.org/onfido/onfido-ruby)
+[![Gem Version](https://badge.fury.io/rb/onfido.svg)](https://badge.fury.io/rb/onfido)
+![Build Status](https://github.com/onfido/onfido-ruby/actions/workflows/ruby.yml/badge.svg)
 
 ## Installation & Usage
 
 ### Installation
 
 ```ruby
-gem onfido, '~> 3.0.0'
+gem onfido, '~> 3.1.0'
 ```
 
 Configure with your API token, region and optional timeout (default value is 30):
