@@ -19,6 +19,8 @@ module Onfido
 
     attr_accessor :date_of_expiry
 
+    attr_accessor :personal_number
+
     attr_accessor :document_numbers
 
     attr_accessor :document_type
@@ -57,7 +59,37 @@ module Onfido
 
     attr_accessor :issuing_authority
 
+    attr_accessor :remarks
+
+    attr_accessor :civil_state
+
+    attr_accessor :expatriation
+
+    attr_accessor :father_name
+
+    attr_accessor :mother_name
+
+    attr_accessor :religion
+
+    attr_accessor :type_of_permit
+
+    attr_accessor :version_number
+
+    attr_accessor :document_subtype
+
+    attr_accessor :profession
+
+    attr_accessor :security_document_number
+
+    attr_accessor :tax_number
+
+    attr_accessor :nist_identity_evidence_strength
+
+    attr_accessor :has_issuance_confirmation
+
     attr_accessor :real_id_compliance
+
+    attr_accessor :security_tier
 
     attr_accessor :address_lines
 
@@ -88,11 +120,34 @@ module Onfido
 
     attr_accessor :passenger_vehicle
 
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'date_of_birth' => :'date_of_birth',
         :'date_of_expiry' => :'date_of_expiry',
+        :'personal_number' => :'personal_number',
         :'document_numbers' => :'document_numbers',
         :'document_type' => :'document_type',
         :'first_name' => :'first_name',
@@ -112,7 +167,22 @@ module Onfido
         :'widow_name' => :'widow_name',
         :'alias_name' => :'alias_name',
         :'issuing_authority' => :'issuing_authority',
+        :'remarks' => :'remarks',
+        :'civil_state' => :'civil_state',
+        :'expatriation' => :'expatriation',
+        :'father_name' => :'father_name',
+        :'mother_name' => :'mother_name',
+        :'religion' => :'religion',
+        :'type_of_permit' => :'type_of_permit',
+        :'version_number' => :'version_number',
+        :'document_subtype' => :'document_subtype',
+        :'profession' => :'profession',
+        :'security_document_number' => :'security_document_number',
+        :'tax_number' => :'tax_number',
+        :'nist_identity_evidence_strength' => :'nist_identity_evidence_strength',
+        :'has_issuance_confirmation' => :'has_issuance_confirmation',
         :'real_id_compliance' => :'real_id_compliance',
+        :'security_tier' => :'security_tier',
         :'address_lines' => :'address_lines',
         :'barcode' => :'barcode',
         :'nfc' => :'nfc',
@@ -138,6 +208,7 @@ module Onfido
       {
         :'date_of_birth' => :'Date',
         :'date_of_expiry' => :'Date',
+        :'personal_number' => :'String',
         :'document_numbers' => :'Array<DocumentPropertiesDocumentNumbersInner>',
         :'document_type' => :'String',
         :'first_name' => :'String',
@@ -157,7 +228,22 @@ module Onfido
         :'widow_name' => :'String',
         :'alias_name' => :'String',
         :'issuing_authority' => :'String',
+        :'remarks' => :'String',
+        :'civil_state' => :'String',
+        :'expatriation' => :'String',
+        :'father_name' => :'String',
+        :'mother_name' => :'String',
+        :'religion' => :'String',
+        :'type_of_permit' => :'String',
+        :'version_number' => :'String',
+        :'document_subtype' => :'String',
+        :'profession' => :'String',
+        :'security_document_number' => :'String',
+        :'tax_number' => :'String',
+        :'nist_identity_evidence_strength' => :'String',
+        :'has_issuance_confirmation' => :'String',
         :'real_id_compliance' => :'Boolean',
+        :'security_tier' => :'String',
         :'address_lines' => :'DocumentPropertiesAddressLines',
         :'barcode' => :'Array<DocumentPropertiesBarcodeInner>',
         :'nfc' => :'DocumentPropertiesNfc',
@@ -207,6 +293,10 @@ module Onfido
 
       if attributes.key?(:'date_of_expiry')
         self.date_of_expiry = attributes[:'date_of_expiry']
+      end
+
+      if attributes.key?(:'personal_number')
+        self.personal_number = attributes[:'personal_number']
       end
 
       if attributes.key?(:'document_numbers')
@@ -287,8 +377,68 @@ module Onfido
         self.issuing_authority = attributes[:'issuing_authority']
       end
 
+      if attributes.key?(:'remarks')
+        self.remarks = attributes[:'remarks']
+      end
+
+      if attributes.key?(:'civil_state')
+        self.civil_state = attributes[:'civil_state']
+      end
+
+      if attributes.key?(:'expatriation')
+        self.expatriation = attributes[:'expatriation']
+      end
+
+      if attributes.key?(:'father_name')
+        self.father_name = attributes[:'father_name']
+      end
+
+      if attributes.key?(:'mother_name')
+        self.mother_name = attributes[:'mother_name']
+      end
+
+      if attributes.key?(:'religion')
+        self.religion = attributes[:'religion']
+      end
+
+      if attributes.key?(:'type_of_permit')
+        self.type_of_permit = attributes[:'type_of_permit']
+      end
+
+      if attributes.key?(:'version_number')
+        self.version_number = attributes[:'version_number']
+      end
+
+      if attributes.key?(:'document_subtype')
+        self.document_subtype = attributes[:'document_subtype']
+      end
+
+      if attributes.key?(:'profession')
+        self.profession = attributes[:'profession']
+      end
+
+      if attributes.key?(:'security_document_number')
+        self.security_document_number = attributes[:'security_document_number']
+      end
+
+      if attributes.key?(:'tax_number')
+        self.tax_number = attributes[:'tax_number']
+      end
+
+      if attributes.key?(:'nist_identity_evidence_strength')
+        self.nist_identity_evidence_strength = attributes[:'nist_identity_evidence_strength']
+      end
+
+      if attributes.key?(:'has_issuance_confirmation')
+        self.has_issuance_confirmation = attributes[:'has_issuance_confirmation']
+      end
+
       if attributes.key?(:'real_id_compliance')
         self.real_id_compliance = attributes[:'real_id_compliance']
+      end
+
+      if attributes.key?(:'security_tier')
+        self.security_tier = attributes[:'security_tier']
       end
 
       if attributes.key?(:'address_lines')
@@ -356,7 +506,43 @@ module Onfido
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      nist_identity_evidence_strength_validator = EnumAttributeValidator.new('String', ["superior", "strong", "fair", "weak", "unacceptable", "unspecified_identity_evidence_strength", "unknown_default_open_api"])
+      return false unless nist_identity_evidence_strength_validator.valid?(@nist_identity_evidence_strength)
+      has_issuance_confirmation_validator = EnumAttributeValidator.new('String', ["true", "false", "unspecified", "unknown_default_open_api"])
+      return false unless has_issuance_confirmation_validator.valid?(@has_issuance_confirmation)
+      security_tier_validator = EnumAttributeValidator.new('String', ["tier_1", "tier_2", "tier_3", "tier_4", "tier_5", "unspecified_security_tier", "unknown_default_open_api"])
+      return false unless security_tier_validator.valid?(@security_tier)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] nist_identity_evidence_strength Object to be assigned
+    def nist_identity_evidence_strength=(nist_identity_evidence_strength)
+      validator = EnumAttributeValidator.new('String', ["superior", "strong", "fair", "weak", "unacceptable", "unspecified_identity_evidence_strength", "unknown_default_open_api"])
+      unless validator.valid?(nist_identity_evidence_strength)
+        fail ArgumentError, "invalid value for \"nist_identity_evidence_strength\", must be one of #{validator.allowable_values}."
+      end
+      @nist_identity_evidence_strength = nist_identity_evidence_strength
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] has_issuance_confirmation Object to be assigned
+    def has_issuance_confirmation=(has_issuance_confirmation)
+      validator = EnumAttributeValidator.new('String', ["true", "false", "unspecified", "unknown_default_open_api"])
+      unless validator.valid?(has_issuance_confirmation)
+        fail ArgumentError, "invalid value for \"has_issuance_confirmation\", must be one of #{validator.allowable_values}."
+      end
+      @has_issuance_confirmation = has_issuance_confirmation
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] security_tier Object to be assigned
+    def security_tier=(security_tier)
+      validator = EnumAttributeValidator.new('String', ["tier_1", "tier_2", "tier_3", "tier_4", "tier_5", "unspecified_security_tier", "unknown_default_open_api"])
+      unless validator.valid?(security_tier)
+        fail ArgumentError, "invalid value for \"security_tier\", must be one of #{validator.allowable_values}."
+      end
+      @security_tier = security_tier
     end
 
     # Checks equality by comparing each attribute.
@@ -366,6 +552,7 @@ module Onfido
       self.class == o.class &&
           date_of_birth == o.date_of_birth &&
           date_of_expiry == o.date_of_expiry &&
+          personal_number == o.personal_number &&
           document_numbers == o.document_numbers &&
           document_type == o.document_type &&
           first_name == o.first_name &&
@@ -385,7 +572,22 @@ module Onfido
           widow_name == o.widow_name &&
           alias_name == o.alias_name &&
           issuing_authority == o.issuing_authority &&
+          remarks == o.remarks &&
+          civil_state == o.civil_state &&
+          expatriation == o.expatriation &&
+          father_name == o.father_name &&
+          mother_name == o.mother_name &&
+          religion == o.religion &&
+          type_of_permit == o.type_of_permit &&
+          version_number == o.version_number &&
+          document_subtype == o.document_subtype &&
+          profession == o.profession &&
+          security_document_number == o.security_document_number &&
+          tax_number == o.tax_number &&
+          nist_identity_evidence_strength == o.nist_identity_evidence_strength &&
+          has_issuance_confirmation == o.has_issuance_confirmation &&
           real_id_compliance == o.real_id_compliance &&
+          security_tier == o.security_tier &&
           address_lines == o.address_lines &&
           barcode == o.barcode &&
           nfc == o.nfc &&
@@ -409,7 +611,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [date_of_birth, date_of_expiry, document_numbers, document_type, first_name, gender, issuing_country, last_name, nationality, issuing_state, issuing_date, categorisation, mrz_line1, mrz_line2, mrz_line3, address, place_of_birth, spouse_name, widow_name, alias_name, issuing_authority, real_id_compliance, address_lines, barcode, nfc, driving_licence_information, document_classification, extracted_data, drivers_licence, restricted_licence, raw_licence_category, raw_vehicle_classes, vehicle_class_details, passenger_vehicle].hash
+      [date_of_birth, date_of_expiry, personal_number, document_numbers, document_type, first_name, gender, issuing_country, last_name, nationality, issuing_state, issuing_date, categorisation, mrz_line1, mrz_line2, mrz_line3, address, place_of_birth, spouse_name, widow_name, alias_name, issuing_authority, remarks, civil_state, expatriation, father_name, mother_name, religion, type_of_permit, version_number, document_subtype, profession, security_document_number, tax_number, nist_identity_evidence_strength, has_issuance_confirmation, real_id_compliance, security_tier, address_lines, barcode, nfc, driving_licence_information, document_classification, extracted_data, drivers_licence, restricted_licence, raw_licence_category, raw_vehicle_classes, vehicle_class_details, passenger_vehicle].hash
     end
 
     # Builds the object from hash
