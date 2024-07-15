@@ -201,7 +201,7 @@ module Onfido
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      file_type_validator = EnumAttributeValidator.new('String', ["jpg", "png", "pdf", "unknown_default_open_api"])
+      file_type_validator = EnumAttributeValidator.new('String', ["jpg", "jpeg", "png", "pdf", "unknown_default_open_api"])
       return false unless file_type_validator.valid?(@file_type)
       side_validator = EnumAttributeValidator.new('String', ["front", "back", "unknown_default_open_api"])
       return false unless side_validator.valid?(@side)
@@ -212,7 +212,7 @@ module Onfido
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] file_type Object to be assigned
     def file_type=(file_type)
-      validator = EnumAttributeValidator.new('String', ["jpg", "png", "pdf", "unknown_default_open_api"])
+      validator = EnumAttributeValidator.new('String', ["jpg", "jpeg", "png", "pdf", "unknown_default_open_api"])
       unless validator.valid?(file_type)
         fail ArgumentError, "invalid value for \"file_type\", must be one of #{validator.allowable_values}."
       end

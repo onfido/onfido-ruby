@@ -27,11 +27,13 @@ module Onfido
 
     attr_accessor :first_name
 
+    attr_accessor :middle_name
+
+    attr_accessor :last_name
+
     attr_accessor :gender
 
     attr_accessor :issuing_country
-
-    attr_accessor :last_name
 
     attr_accessor :nationality
 
@@ -134,9 +136,10 @@ module Onfido
         :'document_numbers' => :'document_numbers',
         :'document_type' => :'document_type',
         :'first_name' => :'first_name',
+        :'middle_name' => :'middle_name',
+        :'last_name' => :'last_name',
         :'gender' => :'gender',
         :'issuing_country' => :'issuing_country',
-        :'last_name' => :'last_name',
         :'nationality' => :'nationality',
         :'issuing_state' => :'issuing_state',
         :'issuing_date' => :'issuing_date',
@@ -189,9 +192,10 @@ module Onfido
         :'document_numbers' => :'Array<DocumentPropertiesDocumentNumbersInner>',
         :'document_type' => :'String',
         :'first_name' => :'String',
+        :'middle_name' => :'String',
+        :'last_name' => :'String',
         :'gender' => :'String',
         :'issuing_country' => :'String',
-        :'last_name' => :'String',
         :'nationality' => :'String',
         :'issuing_state' => :'String',
         :'issuing_date' => :'Date',
@@ -277,16 +281,20 @@ module Onfido
         self.first_name = attributes[:'first_name']
       end
 
+      if attributes.key?(:'middle_name')
+        self.middle_name = attributes[:'middle_name']
+      end
+
+      if attributes.key?(:'last_name')
+        self.last_name = attributes[:'last_name']
+      end
+
       if attributes.key?(:'gender')
         self.gender = attributes[:'gender']
       end
 
       if attributes.key?(:'issuing_country')
         self.issuing_country = attributes[:'issuing_country']
-      end
-
-      if attributes.key?(:'last_name')
-        self.last_name = attributes[:'last_name']
       end
 
       if attributes.key?(:'nationality')
@@ -494,9 +502,10 @@ module Onfido
           document_numbers == o.document_numbers &&
           document_type == o.document_type &&
           first_name == o.first_name &&
+          middle_name == o.middle_name &&
+          last_name == o.last_name &&
           gender == o.gender &&
           issuing_country == o.issuing_country &&
-          last_name == o.last_name &&
           nationality == o.nationality &&
           issuing_state == o.issuing_state &&
           issuing_date == o.issuing_date &&
@@ -543,7 +552,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [date_of_birth, date_of_expiry, personal_number, document_numbers, document_type, first_name, gender, issuing_country, last_name, nationality, issuing_state, issuing_date, categorisation, mrz_line1, mrz_line2, mrz_line3, address, place_of_birth, spouse_name, widow_name, alias_name, issuing_authority, remarks, civil_state, expatriation, father_name, mother_name, religion, type_of_permit, version_number, document_subtype, profession, security_document_number, tax_number, nist_identity_evidence_strength, has_issuance_confirmation, real_id_compliance, security_tier, address_lines, barcode, nfc, driving_licence_information, document_classification, extracted_data].hash
+      [date_of_birth, date_of_expiry, personal_number, document_numbers, document_type, first_name, middle_name, last_name, gender, issuing_country, nationality, issuing_state, issuing_date, categorisation, mrz_line1, mrz_line2, mrz_line3, address, place_of_birth, spouse_name, widow_name, alias_name, issuing_authority, remarks, civil_state, expatriation, father_name, mother_name, religion, type_of_permit, version_number, document_subtype, profession, security_document_number, tax_number, nist_identity_evidence_strength, has_issuance_confirmation, real_id_compliance, security_tier, address_lines, barcode, nfc, driving_licence_information, document_classification, extracted_data].hash
     end
 
     # Builds the object from hash

@@ -22,6 +22,9 @@ module Onfido
     # The current state of the object, if available.
     attr_accessor :status
 
+    # The date and time when the operation was started, if available.
+    attr_accessor :started_at_iso8601
+
     # The date and time when the operation was completed, if available.
     attr_accessor :completed_at_iso8601
 
@@ -33,6 +36,7 @@ module Onfido
       {
         :'id' => :'id',
         :'status' => :'status',
+        :'started_at_iso8601' => :'started_at_iso8601',
         :'completed_at_iso8601' => :'completed_at_iso8601',
         :'href' => :'href'
       }
@@ -48,6 +52,7 @@ module Onfido
       {
         :'id' => :'String',
         :'status' => :'String',
+        :'started_at_iso8601' => :'Time',
         :'completed_at_iso8601' => :'Time',
         :'href' => :'String'
       }
@@ -82,6 +87,10 @@ module Onfido
 
       if attributes.key?(:'status')
         self.status = attributes[:'status']
+      end
+
+      if attributes.key?(:'started_at_iso8601')
+        self.started_at_iso8601 = attributes[:'started_at_iso8601']
       end
 
       if attributes.key?(:'completed_at_iso8601')
@@ -127,6 +136,7 @@ module Onfido
       self.class == o.class &&
           id == o.id &&
           status == o.status &&
+          started_at_iso8601 == o.started_at_iso8601 &&
           completed_at_iso8601 == o.completed_at_iso8601 &&
           href == o.href
     end
@@ -140,7 +150,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, status, completed_at_iso8601, href].hash
+      [id, status, started_at_iso8601, completed_at_iso8601, href].hash
     end
 
     # Builds the object from hash
