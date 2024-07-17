@@ -15,6 +15,8 @@ RSpec.shared_context 'with applicant', shared_context: :metadata do
     {
       'first_name' => 'Test',
       'last_name' => 'Applicant',
+      'email' => "first.last@gmail.com",
+      'phone_number' => "351911111111",
       'location' => {
         'ip_address' => '127.0.0.1',
         'country_of_residence' => 'GBR'

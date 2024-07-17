@@ -86,6 +86,26 @@ def repeat_request_until_status_changes(expected_status, max_retries = 10,
   instance
 end
 
+def repeat_request_until_task_output_changes(max_retries = 10,
+  interval = 1, &proc)
+  # max_retries     --> how many times to retry the request
+  # interval        --> how many seconds to wait until the next retry
+  # proc            --> code containing the request
+
+  instance = proc.call
+
+  iteration = 0
+  while instance.output == nil
+    raise "task output did not change in time" if iteration > max_retries
+
+    iteration += 1
+    sleep(interval)
+    instance = proc.call
+  end
+
+  instance
+end
+
 def repeat_request_unti_http_code_changes(max_retries = 10,
   interval = 1, &proc)
   # max_retries        --> how many times to retry the request
