@@ -14,7 +14,7 @@ describe Onfido::Webhook do
     end
 
     let(:webhook) { onfido_api.create_webhook(webhook_builder) }
-    let(:webhook_id) { webhook.id }
+    let!(:webhook_id) { webhook.id }
 
     it 'creates a webhook' do
       expect(webhook).to be_an_instance_of Onfido::Webhook
