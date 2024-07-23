@@ -24,6 +24,9 @@ module Onfido
     # Tags or labels assigned to the workflow run.
     attr_accessor :tags
 
+    # Customer-provided user identifier.
+    attr_accessor :customer_user_id
+
     attr_accessor :link
 
     # The date and time when the Workflow Run was created.
@@ -51,6 +54,9 @@ module Onfido
     attr_accessor :reasons
 
     attr_accessor :error
+
+    # Client token to use when loading this workflow run in the Onfido SDK.
+    attr_accessor :sdk_token
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -80,6 +86,7 @@ module Onfido
         :'applicant_id' => :'applicant_id',
         :'workflow_id' => :'workflow_id',
         :'tags' => :'tags',
+        :'customer_user_id' => :'customer_user_id',
         :'link' => :'link',
         :'created_at' => :'created_at',
         :'updated_at' => :'updated_at',
@@ -89,7 +96,8 @@ module Onfido
         :'status' => :'status',
         :'output' => :'output',
         :'reasons' => :'reasons',
-        :'error' => :'error'
+        :'error' => :'error',
+        :'sdk_token' => :'sdk_token'
       }
     end
 
@@ -104,6 +112,7 @@ module Onfido
         :'applicant_id' => :'String',
         :'workflow_id' => :'String',
         :'tags' => :'Array<String>',
+        :'customer_user_id' => :'String',
         :'link' => :'WorkflowRunSharedLink',
         :'created_at' => :'Time',
         :'updated_at' => :'Time',
@@ -113,7 +122,8 @@ module Onfido
         :'status' => :'String',
         :'output' => :'Object',
         :'reasons' => :'Array<String>',
-        :'error' => :'WorkflowRunResponseError'
+        :'error' => :'WorkflowRunResponseError',
+        :'sdk_token' => :'String'
       }
     end
 
@@ -121,6 +131,7 @@ module Onfido
     def self.openapi_nullable
       Set.new([
         :'tags',
+        :'sdk_token'
       ])
     end
 
@@ -163,6 +174,10 @@ module Onfido
         if (value = attributes[:'tags']).is_a?(Array)
           self.tags = value
         end
+      end
+
+      if attributes.key?(:'customer_user_id')
+        self.customer_user_id = attributes[:'customer_user_id']
       end
 
       if attributes.key?(:'link')
@@ -208,6 +223,10 @@ module Onfido
       if attributes.key?(:'error')
         self.error = attributes[:'error']
       end
+
+      if attributes.key?(:'sdk_token')
+        self.sdk_token = attributes[:'sdk_token']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -227,6 +246,10 @@ module Onfido
         invalid_properties.push('invalid value for "tags", number of items must be less than or equal to 30.')
       end
 
+      if !@customer_user_id.nil? && @customer_user_id.to_s.length > 256
+        invalid_properties.push('invalid value for "customer_user_id", the character length must be smaller than or equal to 256.')
+      end
+
       if @id.nil?
         invalid_properties.push('invalid value for "id", id cannot be nil.')
       end
@@ -241,6 +264,7 @@ module Onfido
       return false if @applicant_id.nil?
       return false if @workflow_id.nil?
       return false if !@tags.nil? && @tags.length > 30
+      return false if !@customer_user_id.nil? && @customer_user_id.to_s.length > 256
       return false if @id.nil?
       status_validator = EnumAttributeValidator.new('String', ["awaiting_input", "processing", "abandoned", "error", "approved", "review", "declined", "unknown_default_open_api"])
       return false unless status_validator.valid?(@status)
@@ -255,6 +279,20 @@ module Onfido
       end
 
       @tags = tags
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] customer_user_id Value to be assigned
+    def customer_user_id=(customer_user_id)
+      if customer_user_id.nil?
+        fail ArgumentError, 'customer_user_id cannot be nil'
+      end
+
+      if customer_user_id.to_s.length > 256
+        fail ArgumentError, 'invalid value for "customer_user_id", the character length must be smaller than or equal to 256.'
+      end
+
+      @customer_user_id = customer_user_id
     end
 
     # Custom attribute writer method checking allowed values (enum).
@@ -275,6 +313,7 @@ module Onfido
           applicant_id == o.applicant_id &&
           workflow_id == o.workflow_id &&
           tags == o.tags &&
+          customer_user_id == o.customer_user_id &&
           link == o.link &&
           created_at == o.created_at &&
           updated_at == o.updated_at &&
@@ -284,7 +323,8 @@ module Onfido
           status == o.status &&
           output == o.output &&
           reasons == o.reasons &&
-          error == o.error
+          error == o.error &&
+          sdk_token == o.sdk_token
     end
 
     # @see the `==` method
@@ -296,7 +336,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [applicant_id, workflow_id, tags, link, created_at, updated_at, id, workflow_version_id, dashboard_url, status, output, reasons, error].hash
+      [applicant_id, workflow_id, tags, customer_user_id, link, created_at, updated_at, id, workflow_version_id, dashboard_url, status, output, reasons, error, sdk_token].hash
     end
 
     # Builds the object from hash
