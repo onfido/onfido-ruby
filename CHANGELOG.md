@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.3.0 24th July 2024
+
+- Release based on Onfido OpenAPI spec version [v3.3.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v3.3.0):
+  - Expose `customer_user_id` in `workflow_runs`
+  - Add `sdk_token` to workflow run schema
+
 ## v3.2.0 18th July 2024
 
 - Release based on Onfido OpenAPI spec version [v3.2.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v3.2.0):
