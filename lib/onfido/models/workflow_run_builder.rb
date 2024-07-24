@@ -24,6 +24,9 @@ module Onfido
     # Tags or labels assigned to the workflow run.
     attr_accessor :tags
 
+    # Customer-provided user identifier.
+    attr_accessor :customer_user_id
+
     attr_accessor :link
 
     # The date and time when the Workflow Run was created.
@@ -41,6 +44,7 @@ module Onfido
         :'applicant_id' => :'applicant_id',
         :'workflow_id' => :'workflow_id',
         :'tags' => :'tags',
+        :'customer_user_id' => :'customer_user_id',
         :'link' => :'link',
         :'created_at' => :'created_at',
         :'updated_at' => :'updated_at',
@@ -59,6 +63,7 @@ module Onfido
         :'applicant_id' => :'String',
         :'workflow_id' => :'String',
         :'tags' => :'Array<String>',
+        :'customer_user_id' => :'String',
         :'link' => :'WorkflowRunSharedLink',
         :'created_at' => :'Time',
         :'updated_at' => :'Time',
@@ -114,6 +119,10 @@ module Onfido
         end
       end
 
+      if attributes.key?(:'customer_user_id')
+        self.customer_user_id = attributes[:'customer_user_id']
+      end
+
       if attributes.key?(:'link')
         self.link = attributes[:'link']
       end
@@ -150,6 +159,10 @@ module Onfido
         invalid_properties.push('invalid value for "tags", number of items must be less than or equal to 30.')
       end
 
+      if !@customer_user_id.nil? && @customer_user_id.to_s.length > 256
+        invalid_properties.push('invalid value for "customer_user_id", the character length must be smaller than or equal to 256.')
+      end
+
       invalid_properties
     end
 
@@ -160,6 +173,7 @@ module Onfido
       return false if @applicant_id.nil?
       return false if @workflow_id.nil?
       return false if !@tags.nil? && @tags.length > 30
+      return false if !@customer_user_id.nil? && @customer_user_id.to_s.length > 256
       true
     end
 
@@ -173,6 +187,20 @@ module Onfido
       @tags = tags
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] customer_user_id Value to be assigned
+    def customer_user_id=(customer_user_id)
+      if customer_user_id.nil?
+        fail ArgumentError, 'customer_user_id cannot be nil'
+      end
+
+      if customer_user_id.to_s.length > 256
+        fail ArgumentError, 'invalid value for "customer_user_id", the character length must be smaller than or equal to 256.'
+      end
+
+      @customer_user_id = customer_user_id
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -181,6 +209,7 @@ module Onfido
           applicant_id == o.applicant_id &&
           workflow_id == o.workflow_id &&
           tags == o.tags &&
+          customer_user_id == o.customer_user_id &&
           link == o.link &&
           created_at == o.created_at &&
           updated_at == o.updated_at &&
@@ -196,7 +225,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [applicant_id, workflow_id, tags, link, created_at, updated_at, custom_data].hash
+      [applicant_id, workflow_id, tags, customer_user_id, link, created_at, updated_at, custom_data].hash
     end
 
     # Builds the object from hash

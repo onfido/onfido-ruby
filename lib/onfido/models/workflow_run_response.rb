@@ -35,6 +35,9 @@ module Onfido
 
     attr_accessor :error
 
+    # Client token to use when loading this workflow run in the Onfido SDK.
+    attr_accessor :sdk_token
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -66,7 +69,8 @@ module Onfido
         :'status' => :'status',
         :'output' => :'output',
         :'reasons' => :'reasons',
-        :'error' => :'error'
+        :'error' => :'error',
+        :'sdk_token' => :'sdk_token'
       }
     end
 
@@ -84,13 +88,15 @@ module Onfido
         :'status' => :'String',
         :'output' => :'Object',
         :'reasons' => :'Array<String>',
-        :'error' => :'WorkflowRunResponseError'
+        :'error' => :'WorkflowRunResponseError',
+        :'sdk_token' => :'String'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'sdk_token'
       ])
     end
 
@@ -140,6 +146,10 @@ module Onfido
       if attributes.key?(:'error')
         self.error = attributes[:'error']
       end
+
+      if attributes.key?(:'sdk_token')
+        self.sdk_token = attributes[:'sdk_token']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -185,7 +195,8 @@ module Onfido
           status == o.status &&
           output == o.output &&
           reasons == o.reasons &&
-          error == o.error
+          error == o.error &&
+          sdk_token == o.sdk_token
     end
 
     # @see the `==` method
@@ -197,7 +208,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, workflow_version_id, dashboard_url, status, output, reasons, error].hash
+      [id, workflow_version_id, dashboard_url, status, output, reasons, error, sdk_token].hash
     end
 
     # Builds the object from hash
