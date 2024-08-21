@@ -14,7 +14,7 @@ This version uses Onfido API v3.6. Refer to our [API versioning guide](https://d
 ### Installation
 
 ```ruby
-gem onfido, '~> 3.3.0'
+gem onfido, '~> 3.3.1'
 ```
 
 Configure with your API token, region and optional timeout (default value is 30):
