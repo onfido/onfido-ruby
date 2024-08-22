@@ -1,5 +1,10 @@
 # Changelog
 
+## v3.3.1 22nd August 2024
+
+- Release based on Onfido OpenAPI spec version [v3.3.1](https://github.com/onfido/onfido-openapi-spec/releases/tag/v3.3.1):
+  - Including `faraday-follow_redirects` as a runtime dependency in ruby
+
 ## v3.3.0 24th July 2024
 
 - Release based on Onfido OpenAPI spec version [v3.3.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v3.3.0):
