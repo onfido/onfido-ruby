@@ -14,14 +14,22 @@ require 'date'
 require 'time'
 
 module Onfido
-  class WatchlistEnhancedProperties
-    # Returns any matches including, but not limited to, name and date of birth of match, aliases and associates, and relevant events and sources.
-    attr_accessor :records
+  class WatchlistEnhancedPropertiesRecordsInnerEventInnerSource
+    attr_accessor :source_date
+
+    attr_accessor :source_format
+
+    attr_accessor :source_name
+
+    attr_accessor :source_url
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'records' => :'records'
+        :'source_date' => :'source_date',
+        :'source_format' => :'source_format',
+        :'source_name' => :'source_name',
+        :'source_url' => :'source_url'
       }
     end
 
@@ -33,7 +41,10 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'records' => :'Array<WatchlistEnhancedPropertiesRecordsInner>'
+        :'source_date' => :'Date',
+        :'source_format' => :'String',
+        :'source_name' => :'String',
+        :'source_url' => :'String'
       }
     end
 
@@ -47,21 +58,31 @@ module Onfido
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WatchlistEnhancedProperties` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WatchlistEnhancedPropertiesRecordsInnerEventInnerSource` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WatchlistEnhancedProperties`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WatchlistEnhancedPropertiesRecordsInnerEventInnerSource`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'records')
-        if (value = attributes[:'records']).is_a?(Array)
-          self.records = value
-        end
+      if attributes.key?(:'source_date')
+        self.source_date = attributes[:'source_date']
+      end
+
+      if attributes.key?(:'source_format')
+        self.source_format = attributes[:'source_format']
+      end
+
+      if attributes.key?(:'source_name')
+        self.source_name = attributes[:'source_name']
+      end
+
+      if attributes.key?(:'source_url')
+        self.source_url = attributes[:'source_url']
       end
     end
 
@@ -85,7 +106,10 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          records == o.records
+          source_date == o.source_date &&
+          source_format == o.source_format &&
+          source_name == o.source_name &&
+          source_url == o.source_url
     end
 
     # @see the `==` method
@@ -97,7 +121,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [records].hash
+      [source_date, source_format, source_name, source_url].hash
     end
 
     # Builds the object from hash
