@@ -14,14 +14,16 @@ require 'date'
 require 'time'
 
 module Onfido
-  class WatchlistEnhancedProperties
-    # Returns any matches including, but not limited to, name and date of birth of match, aliases and associates, and relevant events and sources.
-    attr_accessor :records
+  class WatchlistEnhancedPropertiesRecordsInnerAttributeInner
+    attr_accessor :attribute_type
+
+    attr_accessor :attribute_value
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'records' => :'records'
+        :'attribute_type' => :'attribute_type',
+        :'attribute_value' => :'attribute_value'
       }
     end
 
@@ -33,7 +35,8 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'records' => :'Array<WatchlistEnhancedPropertiesRecordsInner>'
+        :'attribute_type' => :'String',
+        :'attribute_value' => :'String'
       }
     end
 
@@ -47,21 +50,23 @@ module Onfido
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WatchlistEnhancedProperties` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WatchlistEnhancedPropertiesRecordsInnerAttributeInner` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WatchlistEnhancedProperties`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WatchlistEnhancedPropertiesRecordsInnerAttributeInner`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'records')
-        if (value = attributes[:'records']).is_a?(Array)
-          self.records = value
-        end
+      if attributes.key?(:'attribute_type')
+        self.attribute_type = attributes[:'attribute_type']
+      end
+
+      if attributes.key?(:'attribute_value')
+        self.attribute_value = attributes[:'attribute_value']
       end
     end
 
@@ -85,7 +90,8 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          records == o.records
+          attribute_type == o.attribute_type &&
+          attribute_value == o.attribute_value
     end
 
     # @see the `==` method
@@ -97,7 +103,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [records].hash
+      [attribute_type, attribute_value].hash
     end
 
     # Builds the object from hash

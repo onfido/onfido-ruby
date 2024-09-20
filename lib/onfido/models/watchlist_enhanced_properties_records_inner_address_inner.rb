@@ -14,14 +14,50 @@ require 'date'
 require 'time'
 
 module Onfido
-  class WatchlistEnhancedProperties
-    # Returns any matches including, but not limited to, name and date of birth of match, aliases and associates, and relevant events and sources.
-    attr_accessor :records
+  class WatchlistEnhancedPropertiesRecordsInnerAddressInner
+    attr_accessor :address_line1
+
+    attr_accessor :country
+
+    attr_accessor :postal_code
+
+    attr_accessor :state_province
+
+    attr_accessor :town
+
+    attr_accessor :locator_type
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'records' => :'records'
+        :'address_line1' => :'address_line1',
+        :'country' => :'country',
+        :'postal_code' => :'postal_code',
+        :'state_province' => :'state_province',
+        :'town' => :'town',
+        :'locator_type' => :'locator_type'
       }
     end
 
@@ -33,7 +69,12 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'records' => :'Array<WatchlistEnhancedPropertiesRecordsInner>'
+        :'address_line1' => :'String',
+        :'country' => :'CountryCodes',
+        :'postal_code' => :'String',
+        :'state_province' => :'String',
+        :'town' => :'String',
+        :'locator_type' => :'String'
       }
     end
 
@@ -47,21 +88,39 @@ module Onfido
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WatchlistEnhancedProperties` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WatchlistEnhancedPropertiesRecordsInnerAddressInner` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WatchlistEnhancedProperties`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WatchlistEnhancedPropertiesRecordsInnerAddressInner`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'records')
-        if (value = attributes[:'records']).is_a?(Array)
-          self.records = value
-        end
+      if attributes.key?(:'address_line1')
+        self.address_line1 = attributes[:'address_line1']
+      end
+
+      if attributes.key?(:'country')
+        self.country = attributes[:'country']
+      end
+
+      if attributes.key?(:'postal_code')
+        self.postal_code = attributes[:'postal_code']
+      end
+
+      if attributes.key?(:'state_province')
+        self.state_province = attributes[:'state_province']
+      end
+
+      if attributes.key?(:'town')
+        self.town = attributes[:'town']
+      end
+
+      if attributes.key?(:'locator_type')
+        self.locator_type = attributes[:'locator_type']
       end
     end
 
@@ -85,7 +144,12 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          records == o.records
+          address_line1 == o.address_line1 &&
+          country == o.country &&
+          postal_code == o.postal_code &&
+          state_province == o.state_province &&
+          town == o.town &&
+          locator_type == o.locator_type
     end
 
     # @see the `==` method
@@ -97,7 +161,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [records].hash
+      [address_line1, country, postal_code, state_province, town, locator_type].hash
     end
 
     # Builds the object from hash

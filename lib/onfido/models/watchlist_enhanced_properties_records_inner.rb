@@ -14,14 +14,46 @@ require 'date'
 require 'time'
 
 module Onfido
-  class WatchlistEnhancedProperties
-    # Returns any matches including, but not limited to, name and date of birth of match, aliases and associates, and relevant events and sources.
-    attr_accessor :records
+  class WatchlistEnhancedPropertiesRecordsInner
+    # All addresses on file.
+    attr_accessor :address
+
+    # Any names that the person is also known as.
+    attr_accessor :_alias
+
+    # Any linked persons, for example family relatives or business partners.
+    attr_accessor :associate
+
+    # Information about the person, for example hair color or nationality.
+    attr_accessor :attribute
+
+    # All the date of births on file.
+    attr_accessor :date_of_birth
+
+    # Information about events that have occurred to the person, for example deportation or arrest.
+    attr_accessor :event
+
+    # The name on file
+    attr_accessor :full_name
+
+    # The role, country and date of each position.
+    attr_accessor :position
+
+    # Details about where the information was obtained.
+    attr_accessor :source
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'records' => :'records'
+        :'address' => :'address',
+        :'_alias' => :'alias',
+        :'associate' => :'associate',
+        :'attribute' => :'attribute',
+        :'date_of_birth' => :'date_of_birth',
+        :'event' => :'event',
+        :'full_name' => :'full_name',
+        :'position' => :'position',
+        :'source' => :'source'
       }
     end
 
@@ -33,7 +65,15 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'records' => :'Array<WatchlistEnhancedPropertiesRecordsInner>'
+        :'address' => :'Array<WatchlistEnhancedPropertiesRecordsInnerAddressInner>',
+        :'_alias' => :'Array<WatchlistEnhancedPropertiesRecordsInnerAliasInner>',
+        :'associate' => :'Array<WatchlistEnhancedPropertiesRecordsInnerAssociateInner>',
+        :'attribute' => :'Array<WatchlistEnhancedPropertiesRecordsInnerAttributeInner>',
+        :'date_of_birth' => :'Array<String>',
+        :'event' => :'Array<WatchlistEnhancedPropertiesRecordsInnerEventInner>',
+        :'full_name' => :'String',
+        :'position' => :'Array<String>',
+        :'source' => :'Array<WatchlistEnhancedPropertiesRecordsInnerSourceInner>'
       }
     end
 
@@ -47,20 +87,66 @@ module Onfido
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WatchlistEnhancedProperties` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WatchlistEnhancedPropertiesRecordsInner` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WatchlistEnhancedProperties`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WatchlistEnhancedPropertiesRecordsInner`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'records')
-        if (value = attributes[:'records']).is_a?(Array)
-          self.records = value
+      if attributes.key?(:'address')
+        if (value = attributes[:'address']).is_a?(Array)
+          self.address = value
+        end
+      end
+
+      if attributes.key?(:'_alias')
+        if (value = attributes[:'_alias']).is_a?(Array)
+          self._alias = value
+        end
+      end
+
+      if attributes.key?(:'associate')
+        if (value = attributes[:'associate']).is_a?(Array)
+          self.associate = value
+        end
+      end
+
+      if attributes.key?(:'attribute')
+        if (value = attributes[:'attribute']).is_a?(Array)
+          self.attribute = value
+        end
+      end
+
+      if attributes.key?(:'date_of_birth')
+        if (value = attributes[:'date_of_birth']).is_a?(Array)
+          self.date_of_birth = value
+        end
+      end
+
+      if attributes.key?(:'event')
+        if (value = attributes[:'event']).is_a?(Array)
+          self.event = value
+        end
+      end
+
+      if attributes.key?(:'full_name')
+        self.full_name = attributes[:'full_name']
+      end
+
+      if attributes.key?(:'position')
+        if (value = attributes[:'position']).is_a?(Array)
+          self.position = value
+        end
+      end
+
+      if attributes.key?(:'source')
+        if (value = attributes[:'source']).is_a?(Array)
+          self.source = value
         end
       end
     end
@@ -85,7 +171,15 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          records == o.records
+          address == o.address &&
+          _alias == o._alias &&
+          associate == o.associate &&
+          attribute == o.attribute &&
+          date_of_birth == o.date_of_birth &&
+          event == o.event &&
+          full_name == o.full_name &&
+          position == o.position &&
+          source == o.source
     end
 
     # @see the `==` method
@@ -97,7 +191,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [records].hash
+      [address, _alias, associate, attribute, date_of_birth, event, full_name, position, source].hash
     end
 
     # Builds the object from hash
