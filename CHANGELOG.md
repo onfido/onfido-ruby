@@ -1,5 +1,10 @@
 # Changelog
 
+## v3.4.0 20th September 2024
+
+- Release based on Onfido OpenAPI spec version [v3.5.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v3.5.0):
+  - [CAT-1376] Add record item object definition for watchlist enhanced properties field
+
 ## v3.3.1 22nd August 2024
 
 - Release based on Onfido OpenAPI spec version [v3.3.1](https://github.com/onfido/onfido-openapi-spec/releases/tag/v3.3.1):
