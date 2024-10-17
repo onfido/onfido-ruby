@@ -280,7 +280,7 @@ module Onfido
             type: 'api_key',
             in: 'header',
             key: 'Authorization',
-            value: api_key_with_prefix('Authorization')
+            value: api_key_with_prefix('Token')
           },
       }
     end
