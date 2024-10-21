@@ -30,6 +30,8 @@ module Onfido
     # For checks where `applicant_provides_data` is `true`, redirect to this URI when the applicant has submitted their data.
     attr_accessor :redirect_uri
 
+    attr_accessor :privacy_notices_read_consent_given
+
     # The unique identifier for the check.
     attr_accessor :id
 
@@ -39,7 +41,6 @@ module Onfido
     # The uri of this resource.
     attr_accessor :href
 
-    # The current state of the check in the checking process.
     attr_accessor :status
 
     # The overall result of the check, based on the results of the constituent reports.
@@ -56,6 +57,10 @@ module Onfido
 
     # Indicates whether the object was created in the sandbox or not.
     attr_accessor :sandbox
+
+    attr_accessor :paused
+
+    attr_accessor :version
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -87,6 +92,7 @@ module Onfido
         :'applicant_provides_data' => :'applicant_provides_data',
         :'tags' => :'tags',
         :'redirect_uri' => :'redirect_uri',
+        :'privacy_notices_read_consent_given' => :'privacy_notices_read_consent_given',
         :'id' => :'id',
         :'created_at' => :'created_at',
         :'href' => :'href',
@@ -95,7 +101,9 @@ module Onfido
         :'form_uri' => :'form_uri',
         :'results_uri' => :'results_uri',
         :'report_ids' => :'report_ids',
-        :'sandbox' => :'sandbox'
+        :'sandbox' => :'sandbox',
+        :'paused' => :'paused',
+        :'version' => :'version'
       }
     end
 
@@ -112,15 +120,18 @@ module Onfido
         :'applicant_provides_data' => :'Boolean',
         :'tags' => :'Array<String>',
         :'redirect_uri' => :'String',
+        :'privacy_notices_read_consent_given' => :'Boolean',
         :'id' => :'String',
         :'created_at' => :'Time',
         :'href' => :'String',
-        :'status' => :'String',
+        :'status' => :'CheckStatus',
         :'result' => :'String',
         :'form_uri' => :'String',
         :'results_uri' => :'String',
         :'report_ids' => :'Array<String>',
-        :'sandbox' => :'Boolean'
+        :'sandbox' => :'Boolean',
+        :'paused' => :'Boolean',
+        :'version' => :'String'
       }
     end
 
@@ -179,6 +190,10 @@ module Onfido
         self.redirect_uri = attributes[:'redirect_uri']
       end
 
+      if attributes.key?(:'privacy_notices_read_consent_given')
+        self.privacy_notices_read_consent_given = attributes[:'privacy_notices_read_consent_given']
+      end
+
       if attributes.key?(:'id')
         self.id = attributes[:'id']
       else
@@ -218,6 +233,14 @@ module Onfido
       if attributes.key?(:'sandbox')
         self.sandbox = attributes[:'sandbox']
       end
+
+      if attributes.key?(:'paused')
+        self.paused = attributes[:'paused']
+      end
+
+      if attributes.key?(:'version')
+        self.version = attributes[:'version']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -242,21 +265,9 @@ module Onfido
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @applicant_id.nil?
       return false if @id.nil?
-      status_validator = EnumAttributeValidator.new('String', ["in_progress", "awaiting_applicant", "complete", "withdrawn", "paused", "reopened", "unknown_default_open_api"])
-      return false unless status_validator.valid?(@status)
       result_validator = EnumAttributeValidator.new('String', ["clear", "consider", "unknown_default_open_api"])
       return false unless result_validator.valid?(@result)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] status Object to be assigned
-    def status=(status)
-      validator = EnumAttributeValidator.new('String', ["in_progress", "awaiting_applicant", "complete", "withdrawn", "paused", "reopened", "unknown_default_open_api"])
-      unless validator.valid?(status)
-        fail ArgumentError, "invalid value for \"status\", must be one of #{validator.allowable_values}."
-      end
-      @status = status
     end
 
     # Custom attribute writer method checking allowed values (enum).
@@ -279,6 +290,7 @@ module Onfido
           applicant_provides_data == o.applicant_provides_data &&
           tags == o.tags &&
           redirect_uri == o.redirect_uri &&
+          privacy_notices_read_consent_given == o.privacy_notices_read_consent_given &&
           id == o.id &&
           created_at == o.created_at &&
           href == o.href &&
@@ -287,7 +299,9 @@ module Onfido
           form_uri == o.form_uri &&
           results_uri == o.results_uri &&
           report_ids == o.report_ids &&
-          sandbox == o.sandbox
+          sandbox == o.sandbox &&
+          paused == o.paused &&
+          version == o.version
     end
 
     # @see the `==` method
@@ -299,7 +313,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [webhook_ids, applicant_id, applicant_provides_data, tags, redirect_uri, id, created_at, href, status, result, form_uri, results_uri, report_ids, sandbox].hash
+      [webhook_ids, applicant_id, applicant_provides_data, tags, redirect_uri, privacy_notices_read_consent_given, id, created_at, href, status, result, form_uri, results_uri, report_ids, sandbox, paused, version].hash
     end
 
     # Builds the object from hash

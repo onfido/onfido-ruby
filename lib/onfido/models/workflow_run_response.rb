@@ -33,6 +33,7 @@ module Onfido
     # The reasons the Workflow Run outcome was reached. Configurable when creating the Workflow version.
     attr_accessor :reasons
 
+    # Error object. Only set when the Workflow Run status is 'error'.
     attr_accessor :error
 
     # Client token to use when loading this workflow run in the Onfido SDK.
@@ -85,10 +86,10 @@ module Onfido
         :'id' => :'String',
         :'workflow_version_id' => :'Integer',
         :'dashboard_url' => :'String',
-        :'status' => :'String',
+        :'status' => :'WorkflowRunStatus',
         :'output' => :'Object',
         :'reasons' => :'Array<String>',
-        :'error' => :'WorkflowRunResponseError',
+        :'error' => :'WorkflowRunError',
         :'sdk_token' => :'String'
       }
     end
@@ -169,19 +170,7 @@ module Onfido
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @id.nil?
-      status_validator = EnumAttributeValidator.new('String', ["awaiting_input", "processing", "abandoned", "error", "approved", "review", "declined", "unknown_default_open_api"])
-      return false unless status_validator.valid?(@status)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] status Object to be assigned
-    def status=(status)
-      validator = EnumAttributeValidator.new('String', ["awaiting_input", "processing", "abandoned", "error", "approved", "review", "declined", "unknown_default_open_api"])
-      unless validator.valid?(status)
-        fail ArgumentError, "invalid value for \"status\", must be one of #{validator.allowable_values}."
-      end
-      @status = status
     end
 
     # Checks equality by comparing each attribute.

@@ -35,7 +35,7 @@ describe Onfido::Document do
 
     it 'cannot download an inexistent document' do
       inexistent_document_id = '00000000-0000-0000-0000-000000000000'
-      
+
       expect {
         onfido_api.download_document(inexistent_document_id)
       }.to raise_error(Onfido::ApiError) { |e|

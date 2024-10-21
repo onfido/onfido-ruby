@@ -26,6 +26,7 @@ module Onfido
     # The applicant's phone number
     attr_accessor :phone_number
 
+    # The applicant's consents
     attr_accessor :consents
 
     attr_accessor :address
@@ -65,7 +66,7 @@ module Onfido
         :'dob' => :'Date',
         :'id_numbers' => :'Array<IdNumber>',
         :'phone_number' => :'String',
-        :'consents' => :'ConsentsBuilder',
+        :'consents' => :'Array<ApplicantConsentBuilder>',
         :'address' => :'AddressBuilder',
         :'location' => :'LocationBuilder',
         :'first_name' => :'String',
@@ -122,7 +123,9 @@ module Onfido
       end
 
       if attributes.key?(:'consents')
-        self.consents = attributes[:'consents']
+        if (value = attributes[:'consents']).is_a?(Array)
+          self.consents = value
+        end
       end
 
       if attributes.key?(:'address')

@@ -27,6 +27,7 @@ module Onfido
     # Customer-provided user identifier.
     attr_accessor :customer_user_id
 
+    # Object for the configuration of the Workflow Run link.
     attr_accessor :link
 
     # The date and time when the Workflow Run was created.
@@ -53,6 +54,7 @@ module Onfido
     # The reasons the Workflow Run outcome was reached. Configurable when creating the Workflow version.
     attr_accessor :reasons
 
+    # Error object. Only set when the Workflow Run status is 'error'.
     attr_accessor :error
 
     # Client token to use when loading this workflow run in the Onfido SDK.
@@ -113,16 +115,16 @@ module Onfido
         :'workflow_id' => :'String',
         :'tags' => :'Array<String>',
         :'customer_user_id' => :'String',
-        :'link' => :'WorkflowRunSharedLink',
+        :'link' => :'WorkflowRunLink',
         :'created_at' => :'Time',
         :'updated_at' => :'Time',
         :'id' => :'String',
         :'workflow_version_id' => :'Integer',
         :'dashboard_url' => :'String',
-        :'status' => :'String',
+        :'status' => :'WorkflowRunStatus',
         :'output' => :'Object',
         :'reasons' => :'Array<String>',
-        :'error' => :'WorkflowRunResponseError',
+        :'error' => :'WorkflowRunError',
         :'sdk_token' => :'String'
       }
     end
@@ -266,8 +268,6 @@ module Onfido
       return false if !@tags.nil? && @tags.length > 30
       return false if !@customer_user_id.nil? && @customer_user_id.to_s.length > 256
       return false if @id.nil?
-      status_validator = EnumAttributeValidator.new('String', ["awaiting_input", "processing", "abandoned", "error", "approved", "review", "declined", "unknown_default_open_api"])
-      return false unless status_validator.valid?(@status)
       true
     end
 
@@ -293,16 +293,6 @@ module Onfido
       end
 
       @customer_user_id = customer_user_id
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] status Object to be assigned
-    def status=(status)
-      validator = EnumAttributeValidator.new('String', ["awaiting_input", "processing", "abandoned", "error", "approved", "review", "declined", "unknown_default_open_api"])
-      unless validator.valid?(status)
-        fail ArgumentError, "invalid value for \"status\", must be one of #{validator.allowable_values}."
-      end
-      @status = status
     end
 
     # Checks equality by comparing each attribute.

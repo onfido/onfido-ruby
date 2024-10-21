@@ -30,6 +30,8 @@ module Onfido
     # For checks where `applicant_provides_data` is `true`, redirect to this URI when the applicant has submitted their data.
     attr_accessor :redirect_uri
 
+    attr_accessor :privacy_notices_read_consent_given
+
     # An array of report names (strings).
     attr_accessor :report_names
 
@@ -58,6 +60,7 @@ module Onfido
         :'applicant_provides_data' => :'applicant_provides_data',
         :'tags' => :'tags',
         :'redirect_uri' => :'redirect_uri',
+        :'privacy_notices_read_consent_given' => :'privacy_notices_read_consent_given',
         :'report_names' => :'report_names',
         :'document_ids' => :'document_ids',
         :'asynchronous' => :'asynchronous',
@@ -81,6 +84,7 @@ module Onfido
         :'applicant_provides_data' => :'Boolean',
         :'tags' => :'Array<String>',
         :'redirect_uri' => :'String',
+        :'privacy_notices_read_consent_given' => :'Boolean',
         :'report_names' => :'Array<ReportName>',
         :'document_ids' => :'Array<String>',
         :'asynchronous' => :'Boolean',
@@ -146,6 +150,10 @@ module Onfido
 
       if attributes.key?(:'redirect_uri')
         self.redirect_uri = attributes[:'redirect_uri']
+      end
+
+      if attributes.key?(:'privacy_notices_read_consent_given')
+        self.privacy_notices_read_consent_given = attributes[:'privacy_notices_read_consent_given']
       end
 
       if attributes.key?(:'report_names')
@@ -222,6 +230,7 @@ module Onfido
           applicant_provides_data == o.applicant_provides_data &&
           tags == o.tags &&
           redirect_uri == o.redirect_uri &&
+          privacy_notices_read_consent_given == o.privacy_notices_read_consent_given &&
           report_names == o.report_names &&
           document_ids == o.document_ids &&
           asynchronous == o.asynchronous &&
@@ -240,7 +249,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [webhook_ids, applicant_id, applicant_provides_data, tags, redirect_uri, report_names, document_ids, asynchronous, suppress_form_emails, sub_result, consider, us_driving_licence].hash
+      [webhook_ids, applicant_id, applicant_provides_data, tags, redirect_uri, privacy_notices_read_consent_given, report_names, document_ids, asynchronous, suppress_form_emails, sub_result, consider, us_driving_licence].hash
     end
 
     # Builds the object from hash

@@ -19,7 +19,6 @@ module Onfido
     # The unique identifier of the resource.
     attr_accessor :id
 
-    # The current state of the object, if available.
     attr_accessor :status
 
     # The date and time when the operation was started, if available.
@@ -30,6 +29,28 @@ module Onfido
 
     # The uri of the resource.
     attr_accessor :href
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -51,7 +72,7 @@ module Onfido
     def self.openapi_types
       {
         :'id' => :'String',
-        :'status' => :'String',
+        :'status' => :'WebhookEventObjectStatus',
         :'started_at_iso8601' => :'Time',
         :'completed_at_iso8601' => :'Time',
         :'href' => :'String'

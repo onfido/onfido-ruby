@@ -10,6 +10,7 @@ RSpec.shared_context 'with check', shared_context: :metadata do
       applicant_id: applicant_id,
       document_ids: [document_id],
       report_names: [Onfido::ReportName::DOCUMENT, Onfido::ReportName::IDENTITY_ENHANCED],
+      privacy_notices_read_consent_given: true
     })
   end
 

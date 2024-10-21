@@ -14,10 +14,38 @@ require 'date'
 require 'time'
 
 module Onfido
-  class ConsentsBuilder
+  class ApplicantConsentBuilder
+    attr_accessor :name
+
+    attr_accessor :granted
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'name' => :'name',
+        :'granted' => :'granted'
       }
     end
 
@@ -29,6 +57,8 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'name' => :'ApplicantConsentName',
+        :'granted' => :'Boolean'
       }
     end
 
@@ -42,16 +72,28 @@ module Onfido
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::ConsentsBuilder` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::ApplicantConsentBuilder` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::ConsentsBuilder`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::ApplicantConsentBuilder`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
+
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
+      else
+        self.name = nil
+      end
+
+      if attributes.key?(:'granted')
+        self.granted = attributes[:'granted']
+      else
+        self.granted = nil
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -59,6 +101,14 @@ module Onfido
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @name.nil?
+        invalid_properties.push('invalid value for "name", name cannot be nil.')
+      end
+
+      if @granted.nil?
+        invalid_properties.push('invalid value for "granted", granted cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -66,6 +116,8 @@ module Onfido
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @name.nil?
+      return false if @granted.nil?
       true
     end
 
@@ -73,7 +125,9 @@ module Onfido
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
-      self.class == o.class
+      self.class == o.class &&
+          name == o.name &&
+          granted == o.granted
     end
 
     # @see the `==` method
@@ -85,7 +139,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [].hash
+      [name, granted].hash
     end
 
     # Builds the object from hash

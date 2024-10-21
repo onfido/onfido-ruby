@@ -15,6 +15,7 @@ require 'time'
 
 module Onfido
   class ApplicantRequest
+    # The applicant's consents
     attr_accessor :consents
 
     attr_accessor :address
@@ -38,7 +39,7 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'consents' => :'ConsentsBuilder',
+        :'consents' => :'Array<ApplicantConsentBuilder>',
         :'address' => :'AddressBuilder',
         :'location' => :'LocationBuilder'
       }
@@ -66,7 +67,9 @@ module Onfido
       }
 
       if attributes.key?(:'consents')
-        self.consents = attributes[:'consents']
+        if (value = attributes[:'consents']).is_a?(Array)
+          self.consents = value
+        end
       end
 
       if attributes.key?(:'address')
