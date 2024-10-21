@@ -27,7 +27,7 @@ describe Onfido::WorkflowRun do
   let!(:workflow_run_id) { workflow_run.id }
 
   let(:file_id) do
-    task = onfido_api.list_tasks(workflow_run_id)[0]
+    task = onfido_api.list_tasks(workflow_run_id)[1]
 
     output = repeat_request_until_task_output_changes(
       max_retries = 10,

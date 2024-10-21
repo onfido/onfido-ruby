@@ -15,13 +15,13 @@ describe Onfido::WebhookEventVerifier do
     it "returns the decoded event payload" do
       expected_payload = JSON.parse(event_body)["payload"]
       expected_webhook_event = Onfido::WebhookEvent.new({ payload: Onfido::WebhookEventPayload.build_from_hash(expected_payload) })
-      
+
       webhook_event = subject.read_payload(event_body, sig)
       expect(webhook_event.payload).to eq(expected_webhook_event.payload)
-      expect(webhook_event.payload.resource_type).to eq('check')
-      expect(webhook_event.payload.action).to eq('check.completed')
+      expect(webhook_event.payload.resource_type).to eq(Onfido::WebhookEventResourceType::CHECK)
+      expect(webhook_event.payload.action).to eq(Onfido::WebhookEventType::CHECK_COMPLETED)
       expect(webhook_event.payload.object.id).to eq('f2302f45-227d-413d-ad61-09ec077a086a')
-      expect(webhook_event.payload.object.status).to eq('complete')
+      expect(webhook_event.payload.object.status).to eq(Onfido::WebhookEventObjectStatus::COMPLETE)
       expect(webhook_event.payload.object.completed_at_iso8601).to eq(Time.parse('2024-04-04T09:21:21Z'))
       expect(webhook_event.payload.object.href).to eq('https://api.onfido.com/v3.6/checks/f2302f45-227d-413d-ad61-09ec077a086a')
     end
