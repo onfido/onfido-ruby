@@ -18,22 +18,10 @@ module Onfido
     # The IP address that uploaded the media.
     attr_accessor :address
 
-    # The likelihood of the network connection being a VPN.
-    attr_accessor :vpn_detection
-
-    # The likelihood of the network connection being a Proxy.
-    attr_accessor :proxy_detection
-
-    # The type of organization that owns this IP address.
-    attr_accessor :type
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'address' => :'address',
-        :'vpn_detection' => :'vpn_detection',
-        :'proxy_detection' => :'proxy_detection',
-        :'type' => :'type'
+        :'address' => :'address'
       }
     end
 
@@ -45,10 +33,7 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'address' => :'String',
-        :'vpn_detection' => :'String',
-        :'proxy_detection' => :'String',
-        :'type' => :'String'
+        :'address' => :'String'
       }
     end
 
@@ -76,18 +61,6 @@ module Onfido
       if attributes.key?(:'address')
         self.address = attributes[:'address']
       end
-
-      if attributes.key?(:'vpn_detection')
-        self.vpn_detection = attributes[:'vpn_detection']
-      end
-
-      if attributes.key?(:'proxy_detection')
-        self.proxy_detection = attributes[:'proxy_detection']
-      end
-
-      if attributes.key?(:'type')
-        self.type = attributes[:'type']
-      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -110,10 +83,7 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          address == o.address &&
-          vpn_detection == o.vpn_detection &&
-          proxy_detection == o.proxy_detection &&
-          type == o.type
+          address == o.address
     end
 
     # @see the `==` method
@@ -125,7 +95,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [address, vpn_detection, proxy_detection, type].hash
+      [address].hash
     end
 
     # Builds the object from hash

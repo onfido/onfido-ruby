@@ -42,18 +42,6 @@ module Onfido
     # Whether device is using stolen security tokens to send the network information.
     attr_accessor :fake_network_request
 
-    # The true operating system of the device.
-    attr_accessor :true_os
-
-    # The likelihood of an operating system anomaly between the true OS and the OS sent by the device.
-    attr_accessor :os_anomaly
-
-    # Whether the device is rooted.
-    attr_accessor :rooted
-
-    # Whether the device is controlled via remote software.
-    attr_accessor :remote_software
-
     # Whether there is highly suspicious traffic related to the IP address. The risk depends on the overall ratio of clear checks on a given IP.
     attr_accessor :ip_reputation
 
@@ -103,10 +91,6 @@ module Onfido
         :'emulator' => :'emulator',
         :'randomized_device' => :'randomized_device',
         :'fake_network_request' => :'fake_network_request',
-        :'true_os' => :'true_os',
-        :'os_anomaly' => :'os_anomaly',
-        :'rooted' => :'rooted',
-        :'remote_software' => :'remote_software',
         :'ip_reputation' => :'ip_reputation',
         :'device_fingerprint_reuse' => :'device_fingerprint_reuse',
         :'single_device_used' => :'single_device_used',
@@ -132,10 +116,6 @@ module Onfido
         :'emulator' => :'Boolean',
         :'randomized_device' => :'Boolean',
         :'fake_network_request' => :'Boolean',
-        :'true_os' => :'String',
-        :'os_anomaly' => :'String',
-        :'rooted' => :'Boolean',
-        :'remote_software' => :'Boolean',
         :'ip_reputation' => :'String',
         :'device_fingerprint_reuse' => :'Integer',
         :'single_device_used' => :'Boolean',
@@ -200,22 +180,6 @@ module Onfido
 
       if attributes.key?(:'fake_network_request')
         self.fake_network_request = attributes[:'fake_network_request']
-      end
-
-      if attributes.key?(:'true_os')
-        self.true_os = attributes[:'true_os']
-      end
-
-      if attributes.key?(:'os_anomaly')
-        self.os_anomaly = attributes[:'os_anomaly']
-      end
-
-      if attributes.key?(:'rooted')
-        self.rooted = attributes[:'rooted']
-      end
-
-      if attributes.key?(:'remote_software')
-        self.remote_software = attributes[:'remote_software']
       end
 
       if attributes.key?(:'ip_reputation')
@@ -328,10 +292,6 @@ module Onfido
           emulator == o.emulator &&
           randomized_device == o.randomized_device &&
           fake_network_request == o.fake_network_request &&
-          true_os == o.true_os &&
-          os_anomaly == o.os_anomaly &&
-          rooted == o.rooted &&
-          remote_software == o.remote_software &&
           ip_reputation == o.ip_reputation &&
           device_fingerprint_reuse == o.device_fingerprint_reuse &&
           single_device_used == o.single_device_used &&
@@ -348,7 +308,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [sdk_version, sdk_source, authentication_type, raw_model, os, browser, emulator, randomized_device, fake_network_request, true_os, os_anomaly, rooted, remote_software, ip_reputation, device_fingerprint_reuse, single_device_used, document_capture, biometric_capture].hash
+      [sdk_version, sdk_source, authentication_type, raw_model, os, browser, emulator, randomized_device, fake_network_request, ip_reputation, device_fingerprint_reuse, single_device_used, document_capture, biometric_capture].hash
     end
 
     # Builds the object from hash

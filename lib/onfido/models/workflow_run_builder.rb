@@ -27,6 +27,7 @@ module Onfido
     # Customer-provided user identifier.
     attr_accessor :customer_user_id
 
+    # Object for the configuration of the Workflow Run link.
     attr_accessor :link
 
     # The date and time when the Workflow Run was created.
@@ -64,7 +65,7 @@ module Onfido
         :'workflow_id' => :'String',
         :'tags' => :'Array<String>',
         :'customer_user_id' => :'String',
-        :'link' => :'WorkflowRunSharedLink',
+        :'link' => :'WorkflowRunLink',
         :'created_at' => :'Time',
         :'updated_at' => :'Time',
         :'custom_data' => :'Hash<String, Object>'

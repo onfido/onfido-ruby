@@ -14,8 +14,7 @@ require 'date'
 require 'time'
 
 module Onfido
-  # Object for the configuration of the Workflow Run link.
-  class WorkflowRunSharedLink
+  class WorkflowRunLink
     # Link to access the Workflow Run without the need to integrate with Onfido's SDKs.
     attr_accessor :url
 
@@ -83,6 +82,10 @@ module Onfido
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'completed_redirect_url',
+        :'expired_redirect_url',
+        :'expires_at',
+        :'language'
       ])
     end
 
@@ -90,13 +93,13 @@ module Onfido
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WorkflowRunSharedLink` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WorkflowRunLink` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WorkflowRunSharedLink`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WorkflowRunLink`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
