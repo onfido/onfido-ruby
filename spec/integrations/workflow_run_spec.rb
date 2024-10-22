@@ -9,7 +9,7 @@ describe Onfido::WorkflowRun do
     it 'creates a workflow run' do
       expect(workflow_run).to be_an_instance_of Onfido::WorkflowRun
       expect(workflow_run.applicant_id).to eq applicant_id
-      expect(workflow_run.status).to eq 'awaiting_input'
+      expect(workflow_run.status).to eq Onfido::WorkflowRunStatus::AWAITING_INPUT
     end
 
     context 'workflow run with custom inputs' do
@@ -24,11 +24,11 @@ describe Onfido::WorkflowRun do
           }
         })
       end
-      
+
       it 'creates a workflow run with custom inputs' do
         expect(workflow_run).to be_an_instance_of Onfido::WorkflowRun
         expect(workflow_run.workflow_id).to eq workflow_id
-        expect(workflow_run.status).to eq 'approved'
+        expect(workflow_run.status).to eq Onfido::WorkflowRunStatus::APPROVED
       end
     end
 

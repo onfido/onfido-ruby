@@ -11,7 +11,7 @@ describe Onfido::Check do
       expect(check).to be_an_instance_of Onfido::Check
       expect(check.applicant_id).to eq applicant_id
       expect(check.report_ids.size).to eq 2
-      expect(check.status).to eq 'in_progress'
+      expect(check.status).to eq Onfido::CheckStatus::IN_PROGRESS
     end
 
     context 'consider check' do
@@ -47,7 +47,7 @@ describe Onfido::Check do
           us_driving_licence: us_driving_licence_builder,
         })
       end
-    
+
       it 'creates a driving licence check' do
         expect(check).not_to be_nil
         expect(check).to be_an_instance_of Onfido::Check
@@ -65,9 +65,9 @@ describe Onfido::Check do
 
     it 'finds a check' do
       get_check = onfido_api.find_check(check_id)
-      
+
       expect(get_check).to be_an_instance_of(Onfido::Check)
-      expect(get_check.id).to eq check_id      
+      expect(get_check.id).to eq check_id
     end
 
     it 'restarts a check' do

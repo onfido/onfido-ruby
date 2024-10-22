@@ -72,7 +72,7 @@ module Onfido
     def self.openapi_types
       {
         :'file_type' => :'String',
-        :'type' => :'String',
+        :'type' => :'DocumentTypes',
         :'side' => :'String',
         :'issuing_country' => :'CountryCodes',
         :'applicant_id' => :'String'

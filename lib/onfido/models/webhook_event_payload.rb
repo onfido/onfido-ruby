@@ -23,7 +23,6 @@ module Onfido
 
     attr_accessor :object
 
-    # The resource affected by this event.
     attr_accessor :resource
 
     class EnumAttributeValidator
@@ -66,10 +65,10 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'resource_type' => :'String',
+        :'resource_type' => :'WebhookEventResourceType',
         :'action' => :'WebhookEventType',
         :'object' => :'WebhookEventPayloadObject',
-        :'resource' => :'Object'
+        :'resource' => :'WebhookEventPayloadResource'
       }
     end
 

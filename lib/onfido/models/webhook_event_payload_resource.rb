@@ -14,76 +14,70 @@ require 'date'
 require 'time'
 
 module Onfido
-  class Document
-    # The file type of the uploaded file
-    attr_accessor :file_type
-
-    # The type of document
-    attr_accessor :type
-
-    # The side of the document, if applicable. The possible values are front and back
-    attr_accessor :side
-
-    # The issuing country of the document, a 3-letter ISO code.
-    attr_accessor :issuing_country
-
-    # The ID of the applicant whose document is being uploaded.
-    attr_accessor :applicant_id
-
-    # The unique identifier for the document
+  # The resource affected by this event.
+  class WebhookEventPayloadResource
+    # The identifier of the resource.
     attr_accessor :id
 
-    # The date and time at which the document was uploaded
+    # The unique identifier for the Applicant.
+    attr_accessor :applicant_id
+
+    # The date and time when the resource was created.
     attr_accessor :created_at
 
-    # The uri of this resource
-    attr_accessor :href
+    # The date and time when the resource was last updated.
+    attr_accessor :updated_at
 
-    # The uri that can be used to download the document
-    attr_accessor :download_href
+    # The URL for viewing the resource on Onfido Dashboard.
+    attr_accessor :dashboard_url
 
-    # The name of the uploaded file
-    attr_accessor :file_name
+    # The unique identifier for the Workflow.
+    attr_accessor :workflow_id
 
-    # The size of the file in bytes
-    attr_accessor :file_size
+    attr_accessor :workflow_run_id
 
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
+    # The identifier for the Workflow version.
+    attr_accessor :workflow_version_id
 
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
+    # The identifier for the Task Definition.
+    attr_accessor :task_def_id
 
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
+    # The task definition version.
+    attr_accessor :task_def_version
+
+    # Input object with the fields used by the Task execution.
+    attr_accessor :input
+
+    # Output object with the fields produced by the Task execution.
+    attr_accessor :output
+
+    # The reasons the Workflow Run outcome was reached. Configurable when creating the Workflow Version.
+    attr_accessor :reasons
+
+    # Object for the configuration of the Workflow Run link.
+    attr_accessor :link
+
+    # Error object that details why a Workflow Run is in Error status.
+    attr_accessor :error
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'file_type' => :'file_type',
-        :'type' => :'type',
-        :'side' => :'side',
-        :'issuing_country' => :'issuing_country',
-        :'applicant_id' => :'applicant_id',
         :'id' => :'id',
+        :'applicant_id' => :'applicant_id',
         :'created_at' => :'created_at',
-        :'href' => :'href',
-        :'download_href' => :'download_href',
-        :'file_name' => :'file_name',
-        :'file_size' => :'file_size'
+        :'updated_at' => :'updated_at',
+        :'dashboard_url' => :'dashboard_url',
+        :'workflow_id' => :'workflow_id',
+        :'workflow_run_id' => :'workflow_run_id',
+        :'workflow_version_id' => :'workflow_version_id',
+        :'task_def_id' => :'task_def_id',
+        :'task_def_version' => :'task_def_version',
+        :'input' => :'input',
+        :'output' => :'output',
+        :'reasons' => :'reasons',
+        :'link' => :'link',
+        :'error' => :'error'
       }
     end
 
@@ -95,93 +89,107 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'file_type' => :'String',
-        :'type' => :'DocumentTypes',
-        :'side' => :'String',
-        :'issuing_country' => :'CountryCodes',
-        :'applicant_id' => :'String',
         :'id' => :'String',
+        :'applicant_id' => :'String',
         :'created_at' => :'Time',
-        :'href' => :'String',
-        :'download_href' => :'String',
-        :'file_name' => :'String',
-        :'file_size' => :'Integer'
+        :'updated_at' => :'Time',
+        :'dashboard_url' => :'String',
+        :'workflow_id' => :'String',
+        :'workflow_run_id' => :'String',
+        :'workflow_version_id' => :'Integer',
+        :'task_def_id' => :'String',
+        :'task_def_version' => :'String',
+        :'input' => :'Object',
+        :'output' => :'Object',
+        :'reasons' => :'Array<String>',
+        :'link' => :'WorkflowRunLink',
+        :'error' => :'WorkflowRunError'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'task_def_version',
+        :'output',
       ])
-    end
-
-    # List of class defined in allOf (OpenAPI v3)
-    def self.openapi_all_of
-      [
-      :'DocumentResponse',
-      :'DocumentShared'
-      ]
     end
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::Document` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WebhookEventPayloadResource` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::Document`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WebhookEventPayloadResource`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'file_type')
-        self.file_type = attributes[:'file_type']
-      end
-
-      if attributes.key?(:'type')
-        self.type = attributes[:'type']
-      end
-
-      if attributes.key?(:'side')
-        self.side = attributes[:'side']
-      end
-
-      if attributes.key?(:'issuing_country')
-        self.issuing_country = attributes[:'issuing_country']
+      if attributes.key?(:'id')
+        self.id = attributes[:'id']
       end
 
       if attributes.key?(:'applicant_id')
         self.applicant_id = attributes[:'applicant_id']
       end
 
-      if attributes.key?(:'id')
-        self.id = attributes[:'id']
-      else
-        self.id = nil
-      end
-
       if attributes.key?(:'created_at')
         self.created_at = attributes[:'created_at']
       end
 
-      if attributes.key?(:'href')
-        self.href = attributes[:'href']
+      if attributes.key?(:'updated_at')
+        self.updated_at = attributes[:'updated_at']
       end
 
-      if attributes.key?(:'download_href')
-        self.download_href = attributes[:'download_href']
+      if attributes.key?(:'dashboard_url')
+        self.dashboard_url = attributes[:'dashboard_url']
       end
 
-      if attributes.key?(:'file_name')
-        self.file_name = attributes[:'file_name']
+      if attributes.key?(:'workflow_id')
+        self.workflow_id = attributes[:'workflow_id']
       end
 
-      if attributes.key?(:'file_size')
-        self.file_size = attributes[:'file_size']
+      if attributes.key?(:'workflow_run_id')
+        self.workflow_run_id = attributes[:'workflow_run_id']
+      end
+
+      if attributes.key?(:'workflow_version_id')
+        self.workflow_version_id = attributes[:'workflow_version_id']
+      end
+
+      if attributes.key?(:'task_def_id')
+        self.task_def_id = attributes[:'task_def_id']
+      end
+
+      if attributes.key?(:'task_def_version')
+        self.task_def_version = attributes[:'task_def_version']
+      end
+
+      if attributes.key?(:'input')
+        self.input = attributes[:'input']
+      end
+
+      if attributes.key?(:'output')
+        self.output = attributes[:'output']
+      end
+
+      if attributes.key?(:'reasons')
+        if (value = attributes[:'reasons']).is_a?(Array)
+          self.reasons = value
+        end
+      end
+
+      if attributes.key?(:'link')
+        self.link = attributes[:'link']
+      end
+
+      if attributes.key?(:'error')
+        self.error = attributes[:'error']
       end
     end
 
@@ -190,8 +198,9 @@ module Onfido
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      pattern = Regexp.new(/^[0-9a-z_-]+$/)
+      if !@task_def_id.nil? && @task_def_id !~ pattern
+        invalid_properties.push("invalid value for \"task_def_id\", must conform to the pattern #{pattern}.")
       end
 
       invalid_properties
@@ -201,32 +210,23 @@ module Onfido
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      file_type_validator = EnumAttributeValidator.new('String', ["jpg", "jpeg", "png", "pdf", "unknown_default_open_api"])
-      return false unless file_type_validator.valid?(@file_type)
-      side_validator = EnumAttributeValidator.new('String', ["front", "back", "unknown_default_open_api"])
-      return false unless side_validator.valid?(@side)
-      return false if @id.nil?
+      return false if !@task_def_id.nil? && @task_def_id !~ Regexp.new(/^[0-9a-z_-]+$/)
       true
     end
 
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] file_type Object to be assigned
-    def file_type=(file_type)
-      validator = EnumAttributeValidator.new('String', ["jpg", "jpeg", "png", "pdf", "unknown_default_open_api"])
-      unless validator.valid?(file_type)
-        fail ArgumentError, "invalid value for \"file_type\", must be one of #{validator.allowable_values}."
+    # Custom attribute writer method with validation
+    # @param [Object] task_def_id Value to be assigned
+    def task_def_id=(task_def_id)
+      if task_def_id.nil?
+        fail ArgumentError, 'task_def_id cannot be nil'
       end
-      @file_type = file_type
-    end
 
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] side Object to be assigned
-    def side=(side)
-      validator = EnumAttributeValidator.new('String', ["front", "back", "unknown_default_open_api"])
-      unless validator.valid?(side)
-        fail ArgumentError, "invalid value for \"side\", must be one of #{validator.allowable_values}."
+      pattern = Regexp.new(/^[0-9a-z_-]+$/)
+      if task_def_id !~ pattern
+        fail ArgumentError, "invalid value for \"task_def_id\", must conform to the pattern #{pattern}."
       end
-      @side = side
+
+      @task_def_id = task_def_id
     end
 
     # Checks equality by comparing each attribute.
@@ -234,17 +234,21 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          file_type == o.file_type &&
-          type == o.type &&
-          side == o.side &&
-          issuing_country == o.issuing_country &&
-          applicant_id == o.applicant_id &&
           id == o.id &&
+          applicant_id == o.applicant_id &&
           created_at == o.created_at &&
-          href == o.href &&
-          download_href == o.download_href &&
-          file_name == o.file_name &&
-          file_size == o.file_size
+          updated_at == o.updated_at &&
+          dashboard_url == o.dashboard_url &&
+          workflow_id == o.workflow_id &&
+          workflow_run_id == o.workflow_run_id &&
+          workflow_version_id == o.workflow_version_id &&
+          task_def_id == o.task_def_id &&
+          task_def_version == o.task_def_version &&
+          input == o.input &&
+          output == o.output &&
+          reasons == o.reasons &&
+          link == o.link &&
+          error == o.error
     end
 
     # @see the `==` method
@@ -256,7 +260,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [file_type, type, side, issuing_country, applicant_id, id, created_at, href, download_href, file_name, file_size].hash
+      [id, applicant_id, created_at, updated_at, dashboard_url, workflow_id, workflow_run_id, workflow_version_id, task_def_id, task_def_version, input, output, reasons, link, error].hash
     end
 
     # Builds the object from hash

@@ -4058,7 +4058,7 @@ module Onfido
 
     # Upload a document
     # Documents are uploaded using this endpoint. Along with the file upload the relevant document type must be specified. Documents must be uploaded as a multipart form. The valid file types are: jpg, png and pdf. The file size must be between 2KB and 3MB. 
-    # @param type [String] The type of document
+    # @param type [DocumentTypes] The type of document
     # @param applicant_id [String] The ID of the applicant whose document is being uploaded.
     # @param file [File] The file to be uploaded.
     # @param [Hash] opts the optional parameters
@@ -4075,7 +4075,7 @@ module Onfido
 
     # Upload a document
     # Documents are uploaded using this endpoint. Along with the file upload the relevant document type must be specified. Documents must be uploaded as a multipart form. The valid file types are: jpg, png and pdf. The file size must be between 2KB and 3MB. 
-    # @param type [String] The type of document
+    # @param type [DocumentTypes] The type of document
     # @param applicant_id [String] The ID of the applicant whose document is being uploaded.
     # @param file [File] The file to be uploaded.
     # @param [Hash] opts the optional parameters

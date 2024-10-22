@@ -27,7 +27,11 @@ describe Onfido::Applicant do
         'location' => {
           'ip_address' => '127.0.0.1',
           'country_of_residence' => 'GBR'
-        }
+        },
+        'consents' => [{
+          'name' => Onfido::ApplicantConsentName::PRIVACY_NOTICES_READ,
+          'granted' => true
+        }]
       }
 
       applicant = onfido_api.create_applicant(params)
