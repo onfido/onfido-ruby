@@ -14,7 +14,7 @@ This version uses Onfido API v3.6. Refer to our [API versioning guide](https://d
 ### Installation
 
 ```ruby
-gem onfido, '~> 3.4.0'
+gem onfido, '~> 4.0.0'
 ```
 
 Configure with your API token, region and optional timeout (default value is 30):
@@ -86,7 +86,7 @@ Webhook events payload needs to be verified before it can be accessed. Library a
 
 ## Contributing
 
-This library is automatically generated using [OpenAPI Generator](https://openapi-generator.tech) (version: 7.6.0); therefore all the contributions, except tests files, should target [Onfido OpenAPI specification repository](https://github.com/onfido/onfido-openapi-spec/tree/master) instead of this repository.
+This library is automatically generated using [OpenAPI Generator](https://openapi-generator.tech) (version: 7.9.0); therefore all the contributions, except tests files, should target [Onfido OpenAPI specification repository](https://github.com/onfido/onfido-openapi-spec/tree/master) instead of this repository.
 
 For contributions to the tests instead, please follow the steps below:
 
