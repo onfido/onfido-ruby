@@ -249,7 +249,7 @@ module Onfido
         :'real_id_compliance' => :'Boolean',
         :'security_tier' => :'String',
         :'address_lines' => :'DocumentPropertiesAddressLines',
-        :'barcode' => :'Array<DocumentPropertiesBarcodeInner>',
+        :'barcode' => :'DocumentPropertiesBarcode',
         :'nfc' => :'DocumentPropertiesNfc',
         :'driving_licence_information' => :'DocumentPropertiesDrivingLicenceInformation',
         :'document_classification' => :'DocumentPropertiesDocumentClassification',
@@ -454,9 +454,7 @@ module Onfido
       end
 
       if attributes.key?(:'barcode')
-        if (value = attributes[:'barcode']).is_a?(Array)
-          self.barcode = value
-        end
+        self.barcode = attributes[:'barcode']
       end
 
       if attributes.key?(:'nfc')
