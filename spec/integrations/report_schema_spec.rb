@@ -41,5 +41,22 @@ describe Onfido::Report do
 
       expect(facial_similarity_report).to be_an_instance_of Onfido::FacialSimilarityPhotoReport
     end
+
+    it 'schema of Document With Address Information report is valid' do
+      report_id = onfido_api.create_check(
+        Onfido::CheckBuilder.new(
+          applicant_id: applicant_id,
+          document_ids: [document_id],
+          report_names: [Onfido::ReportName::DOCUMENT_WITH_ADDRESS_INFORMATION],
+      )).report_ids[0]
+
+      report = repeat_request_until_status_changes(
+        Onfido::ReportStatus::COMPLETE
+      ) { onfido_api.find_report(report_id) }
+
+      expect(report).to be_an_instance_of Onfido::DocumentWithAddressInformationReport
+      expect(report.properties.barcode).to be_an_instance_of Onfido::DocumentPropertiesBarcode
+      expect(report.properties.barcode.document_type).to eq("driving_licence")
+    end
   end
 end
