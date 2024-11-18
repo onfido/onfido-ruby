@@ -38,6 +38,18 @@ module Onfido
 
     attr_accessor :name
 
+    # Array of objects with live photo ids that were used in the Onfido engine.
+    attr_accessor :live_photos
+
+    # Array of objects with live video ids that were used in the Onfido engine.
+    attr_accessor :live_videos
+
+    # Array of objects with motion capture ids that were used in the Onfido engine.
+    attr_accessor :motion_captures
+
+    # Array of objects with id photo ids that were used in the Onfido engine.
+    attr_accessor :id_photos
+
     attr_accessor :breakdown
 
     attr_accessor :properties
@@ -76,6 +88,10 @@ module Onfido
         :'check_id' => :'check_id',
         :'documents' => :'documents',
         :'name' => :'name',
+        :'live_photos' => :'live_photos',
+        :'live_videos' => :'live_videos',
+        :'motion_captures' => :'motion_captures',
+        :'id_photos' => :'id_photos',
         :'breakdown' => :'breakdown',
         :'properties' => :'properties'
       }
@@ -98,6 +114,10 @@ module Onfido
         :'check_id' => :'String',
         :'documents' => :'Array<ReportDocument>',
         :'name' => :'ReportName',
+        :'live_photos' => :'Array<FacialSimilarityReportMedia>',
+        :'live_videos' => :'Array<FacialSimilarityReportMedia>',
+        :'motion_captures' => :'Array<FacialSimilarityReportMedia>',
+        :'id_photos' => :'Array<FacialSimilarityReportMedia>',
         :'breakdown' => :'FacialSimilarityPhotoFullyAutoBreakdown',
         :'properties' => :'FacialSimilarityPhotoFullyAutoProperties'
       }
@@ -112,6 +132,7 @@ module Onfido
     # List of class defined in allOf (OpenAPI v3)
     def self.openapi_all_of
       [
+      :'FacialSimilarityReportShared',
       :'ReportShared'
       ]
     end
@@ -173,6 +194,30 @@ module Onfido
         self.name = nil
       end
 
+      if attributes.key?(:'live_photos')
+        if (value = attributes[:'live_photos']).is_a?(Array)
+          self.live_photos = value
+        end
+      end
+
+      if attributes.key?(:'live_videos')
+        if (value = attributes[:'live_videos']).is_a?(Array)
+          self.live_videos = value
+        end
+      end
+
+      if attributes.key?(:'motion_captures')
+        if (value = attributes[:'motion_captures']).is_a?(Array)
+          self.motion_captures = value
+        end
+      end
+
+      if attributes.key?(:'id_photos')
+        if (value = attributes[:'id_photos']).is_a?(Array)
+          self.id_photos = value
+        end
+      end
+
       if attributes.key?(:'breakdown')
         self.breakdown = attributes[:'breakdown']
       end
@@ -221,6 +266,10 @@ module Onfido
           check_id == o.check_id &&
           documents == o.documents &&
           name == o.name &&
+          live_photos == o.live_photos &&
+          live_videos == o.live_videos &&
+          motion_captures == o.motion_captures &&
+          id_photos == o.id_photos &&
           breakdown == o.breakdown &&
           properties == o.properties
     end
@@ -234,7 +283,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, created_at, href, status, result, sub_result, check_id, documents, name, breakdown, properties].hash
+      [id, created_at, href, status, result, sub_result, check_id, documents, name, live_photos, live_videos, motion_captures, id_photos, breakdown, properties].hash
     end
 
     # Builds the object from hash

@@ -14,86 +14,14 @@ require 'date'
 require 'time'
 
 module Onfido
-  class FacialSimilarityPhotoReport
-    # The unique identifier for the report. Read-only.
+  class FacialSimilarityReportMedia
+    # ID of uploaded biometric media to use.
     attr_accessor :id
-
-    # The date and time at which the report was first initiated. Read-only.
-    attr_accessor :created_at
-
-    # The API endpoint to retrieve the report. Read-only.
-    attr_accessor :href
-
-    attr_accessor :status
-
-    attr_accessor :result
-
-    attr_accessor :sub_result
-
-    # The ID of the check to which the report belongs. Read-only.
-    attr_accessor :check_id
-
-    # Array of objects with document ids that were used in the Onfido engine. [ONLY POPULATED FOR DOCUMENT AND FACIAL SIMILARITY REPORTS]
-    attr_accessor :documents
-
-    attr_accessor :name
-
-    # Array of objects with live photo ids that were used in the Onfido engine.
-    attr_accessor :live_photos
-
-    # Array of objects with live video ids that were used in the Onfido engine.
-    attr_accessor :live_videos
-
-    # Array of objects with motion capture ids that were used in the Onfido engine.
-    attr_accessor :motion_captures
-
-    # Array of objects with id photo ids that were used in the Onfido engine.
-    attr_accessor :id_photos
-
-    attr_accessor :breakdown
-
-    attr_accessor :properties
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id',
-        :'created_at' => :'created_at',
-        :'href' => :'href',
-        :'status' => :'status',
-        :'result' => :'result',
-        :'sub_result' => :'sub_result',
-        :'check_id' => :'check_id',
-        :'documents' => :'documents',
-        :'name' => :'name',
-        :'live_photos' => :'live_photos',
-        :'live_videos' => :'live_videos',
-        :'motion_captures' => :'motion_captures',
-        :'id_photos' => :'id_photos',
-        :'breakdown' => :'breakdown',
-        :'properties' => :'properties'
+        :'id' => :'id'
       }
     end
 
@@ -105,21 +33,7 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id' => :'String',
-        :'created_at' => :'Time',
-        :'href' => :'String',
-        :'status' => :'ReportStatus',
-        :'result' => :'ReportResult',
-        :'sub_result' => :'ReportSubResult',
-        :'check_id' => :'String',
-        :'documents' => :'Array<ReportDocument>',
-        :'name' => :'ReportName',
-        :'live_photos' => :'Array<FacialSimilarityReportMedia>',
-        :'live_videos' => :'Array<FacialSimilarityReportMedia>',
-        :'motion_captures' => :'Array<FacialSimilarityReportMedia>',
-        :'id_photos' => :'Array<FacialSimilarityReportMedia>',
-        :'breakdown' => :'FacialSimilarityPhotoBreakdown',
-        :'properties' => :'FacialSimilarityPhotoProperties'
+        :'id' => :'String'
       }
     end
 
@@ -129,25 +43,17 @@ module Onfido
       ])
     end
 
-    # List of class defined in allOf (OpenAPI v3)
-    def self.openapi_all_of
-      [
-      :'FacialSimilarityReportShared',
-      :'ReportShared'
-      ]
-    end
-
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::FacialSimilarityPhotoReport` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::FacialSimilarityReportMedia` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::FacialSimilarityPhotoReport`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::FacialSimilarityReportMedia`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -156,74 +62,6 @@ module Onfido
         self.id = attributes[:'id']
       else
         self.id = nil
-      end
-
-      if attributes.key?(:'created_at')
-        self.created_at = attributes[:'created_at']
-      end
-
-      if attributes.key?(:'href')
-        self.href = attributes[:'href']
-      end
-
-      if attributes.key?(:'status')
-        self.status = attributes[:'status']
-      end
-
-      if attributes.key?(:'result')
-        self.result = attributes[:'result']
-      end
-
-      if attributes.key?(:'sub_result')
-        self.sub_result = attributes[:'sub_result']
-      end
-
-      if attributes.key?(:'check_id')
-        self.check_id = attributes[:'check_id']
-      end
-
-      if attributes.key?(:'documents')
-        if (value = attributes[:'documents']).is_a?(Array)
-          self.documents = value
-        end
-      end
-
-      if attributes.key?(:'name')
-        self.name = attributes[:'name']
-      else
-        self.name = nil
-      end
-
-      if attributes.key?(:'live_photos')
-        if (value = attributes[:'live_photos']).is_a?(Array)
-          self.live_photos = value
-        end
-      end
-
-      if attributes.key?(:'live_videos')
-        if (value = attributes[:'live_videos']).is_a?(Array)
-          self.live_videos = value
-        end
-      end
-
-      if attributes.key?(:'motion_captures')
-        if (value = attributes[:'motion_captures']).is_a?(Array)
-          self.motion_captures = value
-        end
-      end
-
-      if attributes.key?(:'id_photos')
-        if (value = attributes[:'id_photos']).is_a?(Array)
-          self.id_photos = value
-        end
-      end
-
-      if attributes.key?(:'breakdown')
-        self.breakdown = attributes[:'breakdown']
-      end
-
-      if attributes.key?(:'properties')
-        self.properties = attributes[:'properties']
       end
     end
 
@@ -236,10 +74,6 @@ module Onfido
         invalid_properties.push('invalid value for "id", id cannot be nil.')
       end
 
-      if @name.nil?
-        invalid_properties.push('invalid value for "name", name cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -248,7 +82,6 @@ module Onfido
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @id.nil?
-      return false if @name.nil?
       true
     end
 
@@ -257,21 +90,7 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id &&
-          created_at == o.created_at &&
-          href == o.href &&
-          status == o.status &&
-          result == o.result &&
-          sub_result == o.sub_result &&
-          check_id == o.check_id &&
-          documents == o.documents &&
-          name == o.name &&
-          live_photos == o.live_photos &&
-          live_videos == o.live_videos &&
-          motion_captures == o.motion_captures &&
-          id_photos == o.id_photos &&
-          breakdown == o.breakdown &&
-          properties == o.properties
+          id == o.id
     end
 
     # @see the `==` method
@@ -283,7 +102,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, created_at, href, status, result, sub_result, check_id, documents, name, live_photos, live_videos, motion_captures, id_photos, breakdown, properties].hash
+      [id].hash
     end
 
     # Builds the object from hash
