@@ -55,8 +55,8 @@ describe Onfido::Report do
       ) { onfido_api.find_report(report_id) }
 
       expect(report).to be_an_instance_of Onfido::DocumentWithAddressInformationReport
-      expect(report.properties.barcode).to be_an_instance_of Onfido::DocumentPropertiesBarcode
-      expect(report.properties.barcode.document_type).to eq("driving_licence")
+      expect(report.properties.barcode[0]).to be_an_instance_of Onfido::DocumentPropertiesBarcodeInner
+      expect(report.properties.barcode[0].document_type).to eq("driving_licence")
     end
   end
 end
