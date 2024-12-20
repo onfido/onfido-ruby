@@ -30,7 +30,7 @@ module Onfido
     # Input object with the fields used by the Task to execute.
     attr_accessor :input
 
-    # Output object with the fields produced by the Task execution.
+    # Value field (it can be an Object, List, etc.) with the fields produced by the Task execution.
     attr_accessor :output
 
     # The date and time when the Task was created.
