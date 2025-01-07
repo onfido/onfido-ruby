@@ -943,6 +943,69 @@ module Onfido
       return data, status_code, headers
     end
 
+    # Retrieve Workflow Run Evidence Folder
+    # Retrieves the evidence folder for the designated Workflow Run 
+    # @param workflow_run_id [String] Workflow Run ID
+    # @param [Hash] opts the optional parameters
+    # @return [File]
+    def download_evidence_folder(workflow_run_id, opts = {})
+      data, _status_code, _headers = download_evidence_folder_with_http_info(workflow_run_id, opts)
+      data
+    end
+
+    # Retrieve Workflow Run Evidence Folder
+    # Retrieves the evidence folder for the designated Workflow Run 
+    # @param workflow_run_id [String] Workflow Run ID
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(File, Integer, Hash)>] File data, response status code and response headers
+    def download_evidence_folder_with_http_info(workflow_run_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.download_evidence_folder ...'
+      end
+      # verify the required parameter 'workflow_run_id' is set
+      if @api_client.config.client_side_validation && workflow_run_id.nil?
+        fail ArgumentError, "Missing the required parameter 'workflow_run_id' when calling DefaultApi.download_evidence_folder"
+      end
+      # resource path
+      local_var_path = '/workflow_runs/{workflow_run_id}/evidence_folder'.sub('{' + 'workflow_run_id' + '}', CGI.escape(workflow_run_id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/zip', 'application/json']) unless header_params['Accept']
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'File'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Token']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.download_evidence_folder",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#download_evidence_folder\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Download ID photo
     # ID photos are downloaded using this endpoint.
     # @param id_photo_id [String] The ID photo&#39;s unique identifier.
