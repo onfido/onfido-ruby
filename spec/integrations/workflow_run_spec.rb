@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../shared_contexts/with_workflow_run'
+require 'zip'
 
 describe Onfido::WorkflowRun do
   describe 'Workflow run' do
@@ -80,10 +81,12 @@ describe Onfido::WorkflowRun do
         expect(file.size).to be > 0
       end
 
-      it 'downloads evidence folder' do
+      it 'downloads an evidence folder' do
         file = onfido_api.download_evidence_folder(workflow_run_id)
 
-        expect(file.size).to be > 0
+        Zip::File.open(file.path) do |zip|
+          expect(zip.entries.size).to be > 0
+        end
       end
     end
   end
