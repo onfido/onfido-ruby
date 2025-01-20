@@ -65,7 +65,7 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 end
 
-def repeat_request_until_status_changes(expected_status, max_retries = 10,
+def repeat_request_until_status_changes(expected_status, max_retries = 15,
   interval = 1, &proc)
   # expected_status --> desired status
   # max_retries     --> how many times to retry the request
@@ -86,7 +86,7 @@ def repeat_request_until_status_changes(expected_status, max_retries = 10,
   instance
 end
 
-def repeat_request_until_task_output_changes(max_retries = 10,
+def repeat_request_until_task_output_changes(max_retries = 15,
   interval = 1, &proc)
   # max_retries     --> how many times to retry the request
   # interval        --> how many seconds to wait until the next retry
@@ -106,7 +106,7 @@ def repeat_request_until_task_output_changes(max_retries = 10,
   instance
 end
 
-def repeat_request_unti_http_code_changes(max_retries = 10,
+def repeat_request_unti_http_code_changes(max_retries = 15,
   interval = 1, &proc)
   # max_retries        --> how many times to retry the request
   # interval           --> how many seconds to wait until the next retry

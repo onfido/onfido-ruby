@@ -23,13 +23,15 @@ describe Onfido::Report do
     end
 
     it 'finds a report' do
-      get_document_report = onfido_api.find_report(document_report_id)
+      get_document_report = repeat_request_until_status_changes(Onfido::ReportStatus::COMPLETE) {
+        onfido_api.find_report(document_report_id)
+      }
       get_identity_report = onfido_api.find_report(identity_report_id)
 
       expect(get_document_report).to be_an_instance_of Onfido::DocumentReport
       expect(get_document_report.id).to eq document_report_id
       expect(get_document_report.name).to eq Onfido::ReportName::DOCUMENT
-      expect(get_document_report.status).to eq Onfido::ReportStatus::AWAITING_DATA
+      expect(get_document_report.status).to eq Onfido::ReportStatus::COMPLETE
 
       expect(get_identity_report).to be_an_instance_of Onfido::IdentityEnhancedReport
       expect(get_identity_report.id).to eq identity_report_id
