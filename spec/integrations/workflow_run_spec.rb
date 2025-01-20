@@ -82,7 +82,9 @@ describe Onfido::WorkflowRun do
       end
 
       it 'downloads an evidence folder' do
-        file = onfido_api.download_evidence_folder(workflow_run_id)
+        file = repeat_request_unti_http_code_changes do
+          onfido_api.download_evidence_folder(workflow_run_id)
+        end
 
         Zip::File.open(file.path) do |zip|
           expect(zip.entries.size).to be > 0
