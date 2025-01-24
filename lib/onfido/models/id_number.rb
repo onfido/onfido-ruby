@@ -115,7 +115,7 @@ module Onfido
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      type_validator = EnumAttributeValidator.new('String', ["ssn", "social_insurance", "tax_id", "identity_card", "driving_licence", "share_code", "voter_id", "passport", "other", "unknown_default_open_api"])
+      type_validator = EnumAttributeValidator.new('String', ["ssn", "social_insurance", "tax_id", "identity_card", "driving_license", "driving_licence", "share_code", "voter_id", "passport", "other", "unknown_default_open_api"])
       return false unless type_validator.valid?(@type)
       true
     end
@@ -123,7 +123,7 @@ module Onfido
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] type Object to be assigned
     def type=(type)
-      validator = EnumAttributeValidator.new('String', ["ssn", "social_insurance", "tax_id", "identity_card", "driving_licence", "share_code", "voter_id", "passport", "other", "unknown_default_open_api"])
+      validator = EnumAttributeValidator.new('String', ["ssn", "social_insurance", "tax_id", "identity_card", "driving_license", "driving_licence", "share_code", "voter_id", "passport", "other", "unknown_default_open_api"])
       unless validator.valid?(type)
         fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
       end

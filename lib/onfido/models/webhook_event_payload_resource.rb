@@ -60,6 +60,9 @@ module Onfido
     # Error object that details why a Workflow Run is in Error status.
     attr_accessor :error
 
+    # Customer-provided user identifier.
+    attr_accessor :customer_user_id
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -77,7 +80,8 @@ module Onfido
         :'output' => :'output',
         :'reasons' => :'reasons',
         :'link' => :'link',
-        :'error' => :'error'
+        :'error' => :'error',
+        :'customer_user_id' => :'customer_user_id'
       }
     end
 
@@ -103,7 +107,8 @@ module Onfido
         :'output' => :'Object',
         :'reasons' => :'Array<String>',
         :'link' => :'WorkflowRunLink',
-        :'error' => :'WorkflowRunError'
+        :'error' => :'WorkflowRunError',
+        :'customer_user_id' => :'String'
       }
     end
 
@@ -191,6 +196,10 @@ module Onfido
       if attributes.key?(:'error')
         self.error = attributes[:'error']
       end
+
+      if attributes.key?(:'customer_user_id')
+        self.customer_user_id = attributes[:'customer_user_id']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -203,6 +212,10 @@ module Onfido
         invalid_properties.push("invalid value for \"task_def_id\", must conform to the pattern #{pattern}.")
       end
 
+      if !@customer_user_id.nil? && @customer_user_id.to_s.length > 256
+        invalid_properties.push('invalid value for "customer_user_id", the character length must be smaller than or equal to 256.')
+      end
+
       invalid_properties
     end
 
@@ -211,6 +224,7 @@ module Onfido
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if !@task_def_id.nil? && @task_def_id !~ Regexp.new(/^[0-9a-z_-]+$/)
+      return false if !@customer_user_id.nil? && @customer_user_id.to_s.length > 256
       true
     end
 
@@ -227,6 +241,20 @@ module Onfido
       end
 
       @task_def_id = task_def_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] customer_user_id Value to be assigned
+    def customer_user_id=(customer_user_id)
+      if customer_user_id.nil?
+        fail ArgumentError, 'customer_user_id cannot be nil'
+      end
+
+      if customer_user_id.to_s.length > 256
+        fail ArgumentError, 'invalid value for "customer_user_id", the character length must be smaller than or equal to 256.'
+      end
+
+      @customer_user_id = customer_user_id
     end
 
     # Checks equality by comparing each attribute.
@@ -248,7 +276,8 @@ module Onfido
           output == o.output &&
           reasons == o.reasons &&
           link == o.link &&
-          error == o.error
+          error == o.error &&
+          customer_user_id == o.customer_user_id
     end
 
     # @see the `==` method
@@ -260,7 +289,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, applicant_id, created_at, updated_at, dashboard_url, workflow_id, workflow_run_id, workflow_version_id, task_def_id, task_def_version, input, output, reasons, link, error].hash
+      [id, applicant_id, created_at, updated_at, dashboard_url, workflow_id, workflow_run_id, workflow_version_id, task_def_id, task_def_version, input, output, reasons, link, error, customer_user_id].hash
     end
 
     # Builds the object from hash
