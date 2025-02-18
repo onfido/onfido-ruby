@@ -15,6 +15,9 @@ require 'time'
 
 module Onfido
   class FacialSimilarityReportShared
+    # Array of objects with document ids that were used in the Onfido engine.
+    attr_accessor :documents
+
     # Array of objects with live photo ids that were used in the Onfido engine.
     attr_accessor :live_photos
 
@@ -30,6 +33,7 @@ module Onfido
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'documents' => :'documents',
         :'live_photos' => :'live_photos',
         :'live_videos' => :'live_videos',
         :'motion_captures' => :'motion_captures',
@@ -45,6 +49,7 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'documents' => :'Array<ReportDocument>',
         :'live_photos' => :'Array<FacialSimilarityReportMedia>',
         :'live_videos' => :'Array<FacialSimilarityReportMedia>',
         :'motion_captures' => :'Array<FacialSimilarityReportMedia>',
@@ -72,6 +77,12 @@ module Onfido
         end
         h[k.to_sym] = v
       }
+
+      if attributes.key?(:'documents')
+        if (value = attributes[:'documents']).is_a?(Array)
+          self.documents = value
+        end
+      end
 
       if attributes.key?(:'live_photos')
         if (value = attributes[:'live_photos']).is_a?(Array)
@@ -118,6 +129,7 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          documents == o.documents &&
           live_photos == o.live_photos &&
           live_videos == o.live_videos &&
           motion_captures == o.motion_captures &&
@@ -133,7 +145,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [live_photos, live_videos, motion_captures, id_photos].hash
+      [documents, live_photos, live_videos, motion_captures, id_photos].hash
     end
 
     # Builds the object from hash

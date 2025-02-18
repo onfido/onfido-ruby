@@ -19,6 +19,7 @@ require 'faraday'
 require 'faraday/multipart' if Gem::Version.new(Faraday::VERSION) >= Gem::Version.new('2.0')
 require 'marcel'
 
+require 'pathname'  
 
 module Onfido
   class ApiClient
@@ -34,7 +35,7 @@ module Onfido
     # @option config [Configuration] Configuration for initializing the object, default to Configuration.default
     def initialize(config = Configuration.default)
       @config = config
-      @user_agent = "onfido-ruby/4.6.0"
+      @user_agent = "onfido-ruby/5.0.0"
       @default_headers = {
         'Content-Type' => 'application/json',
         'User-Agent' => @user_agent

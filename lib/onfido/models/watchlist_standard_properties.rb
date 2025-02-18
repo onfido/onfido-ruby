@@ -33,7 +33,7 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'records' => :'Array<String>'
+        :'records' => :'Array<Object>'
       }
     end
 

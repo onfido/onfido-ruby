@@ -120,8 +120,6 @@ module Onfido
 
       if attributes.key?(:'href')
         self.href = attributes[:'href']
-      else
-        self.href = nil
       end
     end
 
@@ -134,10 +132,6 @@ module Onfido
         invalid_properties.push('invalid value for "id", id cannot be nil.')
       end
 
-      if @href.nil?
-        invalid_properties.push('invalid value for "href", href cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -146,7 +140,6 @@ module Onfido
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @id.nil?
-      return false if @href.nil?
       true
     end
 

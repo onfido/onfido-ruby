@@ -33,10 +33,10 @@ module Onfido
     # The ID of the check to which the report belongs. Read-only.
     attr_accessor :check_id
 
-    # Array of objects with document ids that were used in the Onfido engine. [ONLY POPULATED FOR DOCUMENT AND FACIAL SIMILARITY REPORTS]
-    attr_accessor :documents
-
     attr_accessor :name
+
+    # Array of objects with document ids that were used in the Onfido engine.
+    attr_accessor :documents
 
     # Array of objects with live photo ids that were used in the Onfido engine.
     attr_accessor :live_photos
@@ -86,8 +86,8 @@ module Onfido
         :'result' => :'result',
         :'sub_result' => :'sub_result',
         :'check_id' => :'check_id',
-        :'documents' => :'documents',
         :'name' => :'name',
+        :'documents' => :'documents',
         :'live_photos' => :'live_photos',
         :'live_videos' => :'live_videos',
         :'motion_captures' => :'motion_captures',
@@ -112,8 +112,8 @@ module Onfido
         :'result' => :'ReportResult',
         :'sub_result' => :'ReportSubResult',
         :'check_id' => :'String',
-        :'documents' => :'Array<ReportDocument>',
         :'name' => :'ReportName',
+        :'documents' => :'Array<ReportDocument>',
         :'live_photos' => :'Array<FacialSimilarityReportMedia>',
         :'live_videos' => :'Array<FacialSimilarityReportMedia>',
         :'motion_captures' => :'Array<FacialSimilarityReportMedia>',
@@ -182,16 +182,16 @@ module Onfido
         self.check_id = attributes[:'check_id']
       end
 
-      if attributes.key?(:'documents')
-        if (value = attributes[:'documents']).is_a?(Array)
-          self.documents = value
-        end
-      end
-
       if attributes.key?(:'name')
         self.name = attributes[:'name']
       else
         self.name = nil
+      end
+
+      if attributes.key?(:'documents')
+        if (value = attributes[:'documents']).is_a?(Array)
+          self.documents = value
+        end
       end
 
       if attributes.key?(:'live_photos')
@@ -264,8 +264,8 @@ module Onfido
           result == o.result &&
           sub_result == o.sub_result &&
           check_id == o.check_id &&
-          documents == o.documents &&
           name == o.name &&
+          documents == o.documents &&
           live_photos == o.live_photos &&
           live_videos == o.live_videos &&
           motion_captures == o.motion_captures &&
@@ -283,7 +283,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, created_at, href, status, result, sub_result, check_id, documents, name, live_photos, live_videos, motion_captures, id_photos, breakdown, properties].hash
+      [id, created_at, href, status, result, sub_result, check_id, name, documents, live_photos, live_videos, motion_captures, id_photos, breakdown, properties].hash
     end
 
     # Builds the object from hash
