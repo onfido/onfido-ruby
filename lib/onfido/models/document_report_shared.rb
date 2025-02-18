@@ -14,66 +14,14 @@ require 'date'
 require 'time'
 
 module Onfido
-  class WatchlistEnhancedReport
-    # The unique identifier for the report. Read-only.
-    attr_accessor :id
-
-    # The date and time at which the report was first initiated. Read-only.
-    attr_accessor :created_at
-
-    # The API endpoint to retrieve the report. Read-only.
-    attr_accessor :href
-
-    attr_accessor :status
-
-    attr_accessor :result
-
-    attr_accessor :sub_result
-
-    # The ID of the check to which the report belongs. Read-only.
-    attr_accessor :check_id
-
-    attr_accessor :name
-
-    attr_accessor :breakdown
-
-    attr_accessor :properties
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
+  class DocumentReportShared
+    # Array of objects with document ids that were used in the Onfido engine.
+    attr_accessor :documents
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id',
-        :'created_at' => :'created_at',
-        :'href' => :'href',
-        :'status' => :'status',
-        :'result' => :'result',
-        :'sub_result' => :'sub_result',
-        :'check_id' => :'check_id',
-        :'name' => :'name',
-        :'breakdown' => :'breakdown',
-        :'properties' => :'properties'
+        :'documents' => :'documents'
       }
     end
 
@@ -85,16 +33,7 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id' => :'String',
-        :'created_at' => :'Time',
-        :'href' => :'String',
-        :'status' => :'ReportStatus',
-        :'result' => :'ReportResult',
-        :'sub_result' => :'ReportSubResult',
-        :'check_id' => :'String',
-        :'name' => :'ReportName',
-        :'breakdown' => :'WatchlistEnhancedBreakdown',
-        :'properties' => :'WatchlistEnhancedProperties'
+        :'documents' => :'Array<ReportDocument>'
       }
     end
 
@@ -104,70 +43,25 @@ module Onfido
       ])
     end
 
-    # List of class defined in allOf (OpenAPI v3)
-    def self.openapi_all_of
-      [
-      :'ReportShared'
-      ]
-    end
-
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WatchlistEnhancedReport` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::DocumentReportShared` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WatchlistEnhancedReport`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::DocumentReportShared`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'id')
-        self.id = attributes[:'id']
-      else
-        self.id = nil
-      end
-
-      if attributes.key?(:'created_at')
-        self.created_at = attributes[:'created_at']
-      end
-
-      if attributes.key?(:'href')
-        self.href = attributes[:'href']
-      end
-
-      if attributes.key?(:'status')
-        self.status = attributes[:'status']
-      end
-
-      if attributes.key?(:'result')
-        self.result = attributes[:'result']
-      end
-
-      if attributes.key?(:'sub_result')
-        self.sub_result = attributes[:'sub_result']
-      end
-
-      if attributes.key?(:'check_id')
-        self.check_id = attributes[:'check_id']
-      end
-
-      if attributes.key?(:'name')
-        self.name = attributes[:'name']
-      else
-        self.name = nil
-      end
-
-      if attributes.key?(:'breakdown')
-        self.breakdown = attributes[:'breakdown']
-      end
-
-      if attributes.key?(:'properties')
-        self.properties = attributes[:'properties']
+      if attributes.key?(:'documents')
+        if (value = attributes[:'documents']).is_a?(Array)
+          self.documents = value
+        end
       end
     end
 
@@ -176,14 +70,6 @@ module Onfido
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push('invalid value for "id", id cannot be nil.')
-      end
-
-      if @name.nil?
-        invalid_properties.push('invalid value for "name", name cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -191,8 +77,6 @@ module Onfido
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @id.nil?
-      return false if @name.nil?
       true
     end
 
@@ -201,16 +85,7 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id &&
-          created_at == o.created_at &&
-          href == o.href &&
-          status == o.status &&
-          result == o.result &&
-          sub_result == o.sub_result &&
-          check_id == o.check_id &&
-          name == o.name &&
-          breakdown == o.breakdown &&
-          properties == o.properties
+          documents == o.documents
     end
 
     # @see the `==` method
@@ -222,7 +97,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, created_at, href, status, result, sub_result, check_id, name, breakdown, properties].hash
+      [documents].hash
     end
 
     # Builds the object from hash

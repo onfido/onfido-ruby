@@ -33,10 +33,10 @@ module Onfido
     # The ID of the check to which the report belongs. Read-only.
     attr_accessor :check_id
 
-    # Array of objects with document ids that were used in the Onfido engine. [ONLY POPULATED FOR DOCUMENT AND FACIAL SIMILARITY REPORTS]
-    attr_accessor :documents
-
     attr_accessor :name
+
+    # Array of objects with document ids that were used in the Onfido engine.
+    attr_accessor :documents
 
     attr_accessor :breakdown
 
@@ -74,8 +74,8 @@ module Onfido
         :'result' => :'result',
         :'sub_result' => :'sub_result',
         :'check_id' => :'check_id',
-        :'documents' => :'documents',
         :'name' => :'name',
+        :'documents' => :'documents',
         :'breakdown' => :'breakdown',
         :'properties' => :'properties'
       }
@@ -96,8 +96,8 @@ module Onfido
         :'result' => :'ReportResult',
         :'sub_result' => :'ReportSubResult',
         :'check_id' => :'String',
-        :'documents' => :'Array<ReportDocument>',
         :'name' => :'ReportName',
+        :'documents' => :'Array<ReportDocument>',
         :'breakdown' => :'DocumentBreakdown',
         :'properties' => :'DocumentWithDriverVerificationReportAllOfProperties'
       }
@@ -112,6 +112,7 @@ module Onfido
     # List of class defined in allOf (OpenAPI v3)
     def self.openapi_all_of
       [
+      :'DocumentReportShared',
       :'ReportShared'
       ]
     end
@@ -161,16 +162,16 @@ module Onfido
         self.check_id = attributes[:'check_id']
       end
 
-      if attributes.key?(:'documents')
-        if (value = attributes[:'documents']).is_a?(Array)
-          self.documents = value
-        end
-      end
-
       if attributes.key?(:'name')
         self.name = attributes[:'name']
       else
         self.name = nil
+      end
+
+      if attributes.key?(:'documents')
+        if (value = attributes[:'documents']).is_a?(Array)
+          self.documents = value
+        end
       end
 
       if attributes.key?(:'breakdown')
@@ -219,8 +220,8 @@ module Onfido
           result == o.result &&
           sub_result == o.sub_result &&
           check_id == o.check_id &&
-          documents == o.documents &&
           name == o.name &&
+          documents == o.documents &&
           breakdown == o.breakdown &&
           properties == o.properties
     end
@@ -234,7 +235,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, created_at, href, status, result, sub_result, check_id, documents, name, breakdown, properties].hash
+      [id, created_at, href, status, result, sub_result, check_id, name, documents, breakdown, properties].hash
     end
 
     # Builds the object from hash

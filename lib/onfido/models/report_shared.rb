@@ -33,9 +33,6 @@ module Onfido
     # The ID of the check to which the report belongs. Read-only.
     attr_accessor :check_id
 
-    # Array of objects with document ids that were used in the Onfido engine. [ONLY POPULATED FOR DOCUMENT AND FACIAL SIMILARITY REPORTS]
-    attr_accessor :documents
-
     attr_accessor :name
 
     class EnumAttributeValidator
@@ -70,7 +67,6 @@ module Onfido
         :'result' => :'result',
         :'sub_result' => :'sub_result',
         :'check_id' => :'check_id',
-        :'documents' => :'documents',
         :'name' => :'name'
       }
     end
@@ -90,7 +86,6 @@ module Onfido
         :'result' => :'ReportResult',
         :'sub_result' => :'ReportSubResult',
         :'check_id' => :'String',
-        :'documents' => :'Array<ReportDocument>',
         :'name' => :'ReportName'
       }
     end
@@ -146,12 +141,6 @@ module Onfido
         self.check_id = attributes[:'check_id']
       end
 
-      if attributes.key?(:'documents')
-        if (value = attributes[:'documents']).is_a?(Array)
-          self.documents = value
-        end
-      end
-
       if attributes.key?(:'name')
         self.name = attributes[:'name']
       else
@@ -196,7 +185,6 @@ module Onfido
           result == o.result &&
           sub_result == o.sub_result &&
           check_id == o.check_id &&
-          documents == o.documents &&
           name == o.name
     end
 
@@ -209,7 +197,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, created_at, href, status, result, sub_result, check_id, documents, name].hash
+      [id, created_at, href, status, result, sub_result, check_id, name].hash
     end
 
     # Builds the object from hash

@@ -1384,6 +1384,69 @@ module Onfido
       return data, status_code, headers
     end
 
+    # Download NFC face
+    # Downloads digital photos extracted from specific documents belonging to an applicant. If successful, the response will be the binary data representing the image. 
+    # @param document_id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [File]
+    def download_nfc_face(document_id, opts = {})
+      data, _status_code, _headers = download_nfc_face_with_http_info(document_id, opts)
+      data
+    end
+
+    # Download NFC face
+    # Downloads digital photos extracted from specific documents belonging to an applicant. If successful, the response will be the binary data representing the image. 
+    # @param document_id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(File, Integer, Hash)>] File data, response status code and response headers
+    def download_nfc_face_with_http_info(document_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.download_nfc_face ...'
+      end
+      # verify the required parameter 'document_id' is set
+      if @api_client.config.client_side_validation && document_id.nil?
+        fail ArgumentError, "Missing the required parameter 'document_id' when calling DefaultApi.download_nfc_face"
+      end
+      # resource path
+      local_var_path = '/documents/{document_id}/nfc_face'.sub('{' + 'document_id' + '}', CGI.escape(document_id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['*/*', 'application/json']) unless header_params['Accept']
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'File'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Token']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.download_nfc_face",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#download_nfc_face\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Retrieves the signed document or application form
     # Retrieves the signed document or application form depending on the file_id provided. 
     # @param workflow_run_id [String] The unique identifier of the Workflow Run for which you want to retrieve the signed document.
@@ -3447,6 +3510,7 @@ module Onfido
     # @option opts [Time] :created_at_gt A ISO-8601 date to filter results with a created date greater than (after) the one provided.
     # @option opts [Time] :created_at_lt A ISO-8601 date to filter results with a created date less than (before) the one provided.
     # @option opts [String] :sort A string with the value &#39;desc&#39; or &#39;asc&#39; that allows to sort the returned list by the completed datetime either descending or ascending, respectively. If not specified, defaults to &#39;desc&#39;. (default to 'desc')
+    # @option opts [String] :applicant_id the applicant&#39;s id.
     # @return [Array<WorkflowRun>]
     def list_workflow_runs(opts = {})
       data, _status_code, _headers = list_workflow_runs_with_http_info(opts)
@@ -3461,6 +3525,7 @@ module Onfido
     # @option opts [Time] :created_at_gt A ISO-8601 date to filter results with a created date greater than (after) the one provided.
     # @option opts [Time] :created_at_lt A ISO-8601 date to filter results with a created date less than (before) the one provided.
     # @option opts [String] :sort A string with the value &#39;desc&#39; or &#39;asc&#39; that allows to sort the returned list by the completed datetime either descending or ascending, respectively. If not specified, defaults to &#39;desc&#39;. (default to 'desc')
+    # @option opts [String] :applicant_id the applicant&#39;s id.
     # @return [Array<(Array<WorkflowRun>, Integer, Hash)>] Array<WorkflowRun> data, response status code and response headers
     def list_workflow_runs_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -3480,6 +3545,7 @@ module Onfido
       query_params[:'created_at_gt'] = opts[:'created_at_gt'] if !opts[:'created_at_gt'].nil?
       query_params[:'created_at_lt'] = opts[:'created_at_lt'] if !opts[:'created_at_lt'].nil?
       query_params[:'sort'] = opts[:'sort'] if !opts[:'sort'].nil?
+      query_params[:'applicant_id'] = opts[:'applicant_id'] if !opts[:'applicant_id'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
@@ -4163,10 +4229,6 @@ module Onfido
       # verify the required parameter 'file' is set
       if @api_client.config.client_side_validation && file.nil?
         fail ArgumentError, "Missing the required parameter 'file' when calling DefaultApi.upload_document"
-      end
-      allowable_values = ["jpg", "jpeg", "png", "pdf", "unknown_default_open_api"]
-      if @api_client.config.client_side_validation && opts[:'file_type'] && !allowable_values.include?(opts[:'file_type'])
-        fail ArgumentError, "invalid value for \"file_type\", must be one of #{allowable_values}"
       end
       allowable_values = ["front", "back", "unknown_default_open_api"]
       if @api_client.config.client_side_validation && opts[:'side'] && !allowable_values.include?(opts[:'side'])
