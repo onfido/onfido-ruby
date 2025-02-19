@@ -10,4 +10,8 @@ RSpec.shared_context 'with document', shared_context: :metadata do
 
   let(:document) { onfido_api.upload_document(Onfido::DocumentTypes::PASSPORT, applicant_id, document_file) }
   let!(:document_id) { document.id }
+
+  let(:nfc_face_id) { 'cc2dc25f-2df6-4f8f-a5aa-60f49cef9b3c' }
+
+  let(:inexistent_document_id) { '00000000-0000-0000-0000-000000000000' }
 end
