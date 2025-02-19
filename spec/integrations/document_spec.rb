@@ -34,10 +34,22 @@ describe Onfido::Document do
     end
 
     it 'cannot download an inexistent document' do
-      inexistent_document_id = '00000000-0000-0000-0000-000000000000'
-
       expect {
         onfido_api.download_document(inexistent_document_id)
+      }.to raise_error(Onfido::ApiError) { |e|
+        expect(e.code).to eq(404)
+      }
+    end
+
+    it 'downloads an NFC face' do
+      file = onfido_api.download_nfc_face(nfc_face_id)
+
+      expect(file.size).to be > 0
+    end
+
+    it 'cannot download an inexistent NFC face' do
+      expect {
+        onfido_api.download_nfc_face(inexistent_document_id)
       }.to raise_error(Onfido::ApiError) { |e|
         expect(e.code).to eq(404)
       }
