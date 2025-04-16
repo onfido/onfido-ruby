@@ -1776,6 +1776,69 @@ module Onfido
       return data, status_code, headers
     end
 
+    # Retrieve Applicant Consents
+    # Retrieves consents for single applicant. 
+    # @param applicant_id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<ApplicantConsent>]
+    def find_applicant_consents(applicant_id, opts = {})
+      data, _status_code, _headers = find_applicant_consents_with_http_info(applicant_id, opts)
+      data
+    end
+
+    # Retrieve Applicant Consents
+    # Retrieves consents for single applicant. 
+    # @param applicant_id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Array<ApplicantConsent>, Integer, Hash)>] Array<ApplicantConsent> data, response status code and response headers
+    def find_applicant_consents_with_http_info(applicant_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.find_applicant_consents ...'
+      end
+      # verify the required parameter 'applicant_id' is set
+      if @api_client.config.client_side_validation && applicant_id.nil?
+        fail ArgumentError, "Missing the required parameter 'applicant_id' when calling DefaultApi.find_applicant_consents"
+      end
+      # resource path
+      local_var_path = '/applicants/{applicant_id}/consents'.sub('{' + 'applicant_id' + '}', CGI.escape(applicant_id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Array<ApplicantConsent>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Token']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.find_applicant_consents",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#find_applicant_consents\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Retrieve a Check
     # Retrieves a single check. Returns a check object. 
     # @param check_id [String] 

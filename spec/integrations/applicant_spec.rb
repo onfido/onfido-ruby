@@ -80,6 +80,34 @@ describe Onfido::Applicant do
       expect(updated_applicant.dob).to eq Date.parse('1968-04-08')
     end
 
+    it 'lists applicant consents' do
+      new_applicant_data = Onfido::ApplicantUpdater.new(
+        'consents' => [{
+                         'name' => Onfido::ApplicantConsentName::PRIVACY_NOTICES_READ,
+                         'granted' => true
+                       },
+                       {
+                         'name' => Onfido::ApplicantConsentName::SSN_VERIFICATION,
+                         'granted' => true
+                       },
+                       {
+                         'name' => Onfido::ApplicantConsentName::PHONE_NUMBER_VERIFICATION,
+                         'granted' => true
+                       }]
+      )
+      onfido_api.update_applicant(applicant_id, new_applicant_data)
+
+      expected_consents = [
+        have_attributes(name: "phone_number_verification", granted: true),
+        have_attributes(name: "privacy_notices_read", granted: true),
+        have_attributes(name: "ssn_verification", granted: true)
+      ]
+
+      consents = onfido_api.find_applicant_consents(applicant_id)
+      expect(consents).to contain_exactly(*expected_consents)
+
+    end
+
     it 'deletes an applicant' do
       onfido_api.delete_applicant(applicant_id)
 
