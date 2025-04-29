@@ -58,5 +58,38 @@ describe Onfido::Report do
       expect(report.properties.barcode[0]).to be_an_instance_of Onfido::DocumentPropertiesBarcodeInner
       expect(report.properties.barcode[0].document_type).to eq("driving_licence")
     end
+
+    it 'schema of Document With Driving Lincence Information report is valid' do
+      report_id = onfido_api.create_check(
+        Onfido::CheckBuilder.new(
+          applicant_id: applicant_id,
+          document_ids: [document_id],
+          report_names: [Onfido::ReportName::DOCUMENT_WITH_DRIVING_LICENCE_INFORMATION],
+      )).report_ids[0]
+
+      report = repeat_request_until_status_changes(
+        Onfido::ReportStatus::COMPLETE
+      ) { onfido_api.find_report(report_id) }
+
+      expect(report).to be_an_instance_of Onfido::DocumentWithDrivingLicenceInformationReport
+      expect(report.properties.driving_licence_information).not_to be_nil
+    end
+
+    it 'schema of Device Intelligence report is valid' do
+      report_id = onfido_api.create_check(
+        Onfido::CheckBuilder.new(
+          applicant_id: applicant_id,
+          document_ids: [document_id],
+          report_names: [Onfido::ReportName::DEVICE_INTELLIGENCE],
+      )).report_ids[0]
+
+      report = repeat_request_until_status_changes(
+        Onfido::ReportStatus::COMPLETE
+      ) { onfido_api.find_report(report_id) }
+
+      expect(report).to be_an_instance_of Onfido::DeviceIntelligenceReport
+      expect(report.breakdown).not_to be_nil
+      expect(report.properties).not_to be_nil
+    end
   end
 end
