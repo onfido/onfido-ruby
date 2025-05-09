@@ -32,7 +32,7 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'device' => :'DeviceIntelligenceBreakdownBreakdownDevice'
+        :'device' => :'DeviceIntelligenceBreakdownDevice'
       }
     end
 

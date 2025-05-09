@@ -117,7 +117,7 @@ module Onfido
         :'randomized_device' => :'Boolean',
         :'fake_network_request' => :'Boolean',
         :'ip_reputation' => :'String',
-        :'device_fingerprint_reuse' => :'Integer',
+        :'device_fingerprint_reuse' => :'Float',
         :'single_device_used' => :'Boolean',
         :'document_capture' => :'String',
         :'biometric_capture' => :'String'

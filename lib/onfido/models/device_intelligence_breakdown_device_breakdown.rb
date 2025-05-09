@@ -14,50 +14,19 @@ require 'date'
 require 'time'
 
 module Onfido
-  class WebhookBuilder
-    # Determine if the webhook is active.
-    attr_accessor :enabled
+  class DeviceIntelligenceBreakdownDeviceBreakdown
+    attr_accessor :application_authenticity
 
-    # The events that will be published to the webhook. If the events parameter is omitted all the events will be subscribed. 
-    attr_accessor :events
+    attr_accessor :device_integrity
 
-    # The environments from which the webhook will receive events. Allowed values are “sandbox” and “live”. If the environments parameter is omitted the webhook will receive events from both environments. 
-    attr_accessor :environments
-
-    # Webhook version used to control the payload object when sending webhooks.
-    attr_accessor :payload_version
-
-    # Determines if the webhook will fetch OAuth access tokens to send in the Authorization header.
-    attr_accessor :oauth_enabled
-
-    # The url to fetch the OAuth access token using client credentials grant.
-    attr_accessor :oauth_server_url
-
-    # The client id to authenticate the client credentials grant.
-    attr_accessor :oauth_server_client_id
-
-    # The client secret to authenticate the client credentials grant.
-    attr_accessor :oauth_server_client_secret
-
-    # The scopes to be sent when requesting the access token.
-    attr_accessor :oauth_server_scope
-
-    # The url that will listen to notifications (must be https).
-    attr_accessor :url
+    attr_accessor :device_reputation
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'enabled' => :'enabled',
-        :'events' => :'events',
-        :'environments' => :'environments',
-        :'payload_version' => :'payload_version',
-        :'oauth_enabled' => :'oauth_enabled',
-        :'oauth_server_url' => :'oauth_server_url',
-        :'oauth_server_client_id' => :'oauth_server_client_id',
-        :'oauth_server_client_secret' => :'oauth_server_client_secret',
-        :'oauth_server_scope' => :'oauth_server_scope',
-        :'url' => :'url'
+        :'application_authenticity' => :'application_authenticity',
+        :'device_integrity' => :'device_integrity',
+        :'device_reputation' => :'device_reputation'
       }
     end
 
@@ -69,16 +38,9 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'enabled' => :'Boolean',
-        :'events' => :'Array<WebhookEventType>',
-        :'environments' => :'Array<String>',
-        :'payload_version' => :'Integer',
-        :'oauth_enabled' => :'Boolean',
-        :'oauth_server_url' => :'String',
-        :'oauth_server_client_id' => :'String',
-        :'oauth_server_client_secret' => :'String',
-        :'oauth_server_scope' => :'String',
-        :'url' => :'String'
+        :'application_authenticity' => :'DocumentBreakdownDataComparisonBreakdownIssuingCountry',
+        :'device_integrity' => :'DocumentBreakdownDataComparisonBreakdownIssuingCountry',
+        :'device_reputation' => :'DocumentBreakdownDataComparisonBreakdownIssuingCountry'
       }
     end
 
@@ -88,73 +50,31 @@ module Onfido
       ])
     end
 
-    # List of class defined in allOf (OpenAPI v3)
-    def self.openapi_all_of
-      [
-      :'WebhookCreate',
-      :'WebhookShared'
-      ]
-    end
-
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WebhookBuilder` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::DeviceIntelligenceBreakdownDeviceBreakdown` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WebhookBuilder`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::DeviceIntelligenceBreakdownDeviceBreakdown`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'enabled')
-        self.enabled = attributes[:'enabled']
+      if attributes.key?(:'application_authenticity')
+        self.application_authenticity = attributes[:'application_authenticity']
       end
 
-      if attributes.key?(:'events')
-        if (value = attributes[:'events']).is_a?(Array)
-          self.events = value
-        end
+      if attributes.key?(:'device_integrity')
+        self.device_integrity = attributes[:'device_integrity']
       end
 
-      if attributes.key?(:'environments')
-        if (value = attributes[:'environments']).is_a?(Array)
-          self.environments = value
-        end
-      end
-
-      if attributes.key?(:'payload_version')
-        self.payload_version = attributes[:'payload_version']
-      end
-
-      if attributes.key?(:'oauth_enabled')
-        self.oauth_enabled = attributes[:'oauth_enabled']
-      end
-
-      if attributes.key?(:'oauth_server_url')
-        self.oauth_server_url = attributes[:'oauth_server_url']
-      end
-
-      if attributes.key?(:'oauth_server_client_id')
-        self.oauth_server_client_id = attributes[:'oauth_server_client_id']
-      end
-
-      if attributes.key?(:'oauth_server_client_secret')
-        self.oauth_server_client_secret = attributes[:'oauth_server_client_secret']
-      end
-
-      if attributes.key?(:'oauth_server_scope')
-        self.oauth_server_scope = attributes[:'oauth_server_scope']
-      end
-
-      if attributes.key?(:'url')
-        self.url = attributes[:'url']
-      else
-        self.url = nil
+      if attributes.key?(:'device_reputation')
+        self.device_reputation = attributes[:'device_reputation']
       end
     end
 
@@ -163,10 +83,6 @@ module Onfido
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @url.nil?
-        invalid_properties.push('invalid value for "url", url cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -174,7 +90,6 @@ module Onfido
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @url.nil?
       true
     end
 
@@ -183,16 +98,9 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          enabled == o.enabled &&
-          events == o.events &&
-          environments == o.environments &&
-          payload_version == o.payload_version &&
-          oauth_enabled == o.oauth_enabled &&
-          oauth_server_url == o.oauth_server_url &&
-          oauth_server_client_id == o.oauth_server_client_id &&
-          oauth_server_client_secret == o.oauth_server_client_secret &&
-          oauth_server_scope == o.oauth_server_scope &&
-          url == o.url
+          application_authenticity == o.application_authenticity &&
+          device_integrity == o.device_integrity &&
+          device_reputation == o.device_reputation
     end
 
     # @see the `==` method
@@ -204,7 +112,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [enabled, events, environments, payload_version, oauth_enabled, oauth_server_url, oauth_server_client_id, oauth_server_client_secret, oauth_server_scope, url].hash
+      [application_authenticity, device_integrity, device_reputation].hash
     end
 
     # Builds the object from hash

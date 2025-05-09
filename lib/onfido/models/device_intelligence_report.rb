@@ -37,6 +37,8 @@ module Onfido
 
     attr_accessor :breakdown
 
+    attr_accessor :properties
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -70,7 +72,8 @@ module Onfido
         :'sub_result' => :'sub_result',
         :'check_id' => :'check_id',
         :'name' => :'name',
-        :'breakdown' => :'breakdown'
+        :'breakdown' => :'breakdown',
+        :'properties' => :'properties'
       }
     end
 
@@ -90,7 +93,8 @@ module Onfido
         :'sub_result' => :'ReportSubResult',
         :'check_id' => :'String',
         :'name' => :'ReportName',
-        :'breakdown' => :'DeviceIntelligenceBreakdown'
+        :'breakdown' => :'DeviceIntelligenceBreakdown',
+        :'properties' => :'DeviceIntelligenceProperties'
       }
     end
 
@@ -161,6 +165,10 @@ module Onfido
       if attributes.key?(:'breakdown')
         self.breakdown = attributes[:'breakdown']
       end
+
+      if attributes.key?(:'properties')
+        self.properties = attributes[:'properties']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -201,7 +209,8 @@ module Onfido
           sub_result == o.sub_result &&
           check_id == o.check_id &&
           name == o.name &&
-          breakdown == o.breakdown
+          breakdown == o.breakdown &&
+          properties == o.properties
     end
 
     # @see the `==` method
@@ -213,7 +222,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, created_at, href, status, result, sub_result, check_id, name, breakdown].hash
+      [id, created_at, href, status, result, sub_result, check_id, name, breakdown, properties].hash
     end
 
     # Builds the object from hash
