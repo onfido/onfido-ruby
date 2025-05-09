@@ -27,6 +27,21 @@ module Onfido
     # Webhook version used to control the payload object when sending webhooks.
     attr_accessor :payload_version
 
+    # Determines if the webhook will fetch OAuth access tokens to send in the Authorization header.
+    attr_accessor :oauth_enabled
+
+    # The url to fetch the OAuth access token using client credentials grant.
+    attr_accessor :oauth_server_url
+
+    # The client id to authenticate the client credentials grant.
+    attr_accessor :oauth_server_client_id
+
+    # The client secret to authenticate the client credentials grant.
+    attr_accessor :oauth_server_client_secret
+
+    # The scopes to be sent when requesting the access token.
+    attr_accessor :oauth_server_scope
+
     # The url that will listen to notifications (must be https).
     attr_accessor :url
 
@@ -37,6 +52,11 @@ module Onfido
         :'events' => :'events',
         :'environments' => :'environments',
         :'payload_version' => :'payload_version',
+        :'oauth_enabled' => :'oauth_enabled',
+        :'oauth_server_url' => :'oauth_server_url',
+        :'oauth_server_client_id' => :'oauth_server_client_id',
+        :'oauth_server_client_secret' => :'oauth_server_client_secret',
+        :'oauth_server_scope' => :'oauth_server_scope',
         :'url' => :'url'
       }
     end
@@ -53,6 +73,11 @@ module Onfido
         :'events' => :'Array<WebhookEventType>',
         :'environments' => :'Array<String>',
         :'payload_version' => :'Integer',
+        :'oauth_enabled' => :'Boolean',
+        :'oauth_server_url' => :'String',
+        :'oauth_server_client_id' => :'String',
+        :'oauth_server_client_secret' => :'String',
+        :'oauth_server_scope' => :'String',
         :'url' => :'String'
       }
     end
@@ -106,6 +131,26 @@ module Onfido
         self.payload_version = attributes[:'payload_version']
       end
 
+      if attributes.key?(:'oauth_enabled')
+        self.oauth_enabled = attributes[:'oauth_enabled']
+      end
+
+      if attributes.key?(:'oauth_server_url')
+        self.oauth_server_url = attributes[:'oauth_server_url']
+      end
+
+      if attributes.key?(:'oauth_server_client_id')
+        self.oauth_server_client_id = attributes[:'oauth_server_client_id']
+      end
+
+      if attributes.key?(:'oauth_server_client_secret')
+        self.oauth_server_client_secret = attributes[:'oauth_server_client_secret']
+      end
+
+      if attributes.key?(:'oauth_server_scope')
+        self.oauth_server_scope = attributes[:'oauth_server_scope']
+      end
+
       if attributes.key?(:'url')
         self.url = attributes[:'url']
       end
@@ -135,6 +180,11 @@ module Onfido
           events == o.events &&
           environments == o.environments &&
           payload_version == o.payload_version &&
+          oauth_enabled == o.oauth_enabled &&
+          oauth_server_url == o.oauth_server_url &&
+          oauth_server_client_id == o.oauth_server_client_id &&
+          oauth_server_client_secret == o.oauth_server_client_secret &&
+          oauth_server_scope == o.oauth_server_scope &&
           url == o.url
     end
 
@@ -147,7 +197,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [enabled, events, environments, payload_version, url].hash
+      [enabled, events, environments, payload_version, oauth_enabled, oauth_server_url, oauth_server_client_id, oauth_server_client_secret, oauth_server_scope, url].hash
     end
 
     # Builds the object from hash

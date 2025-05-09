@@ -14,22 +14,14 @@ require 'date'
 require 'time'
 
 module Onfido
-  class DocumentPropertiesDrivingLicenceInformation
-    attr_accessor :category
-
-    attr_accessor :obtainment_date
-
-    attr_accessor :expiry_date
-
-    attr_accessor :codes
+  # Asserts whether the device used to upload the media is trustworthy, i.e. it is a real, physical device.
+  class DeviceIntelligenceBreakdownDevice
+    attr_accessor :breakdown
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'category' => :'category',
-        :'obtainment_date' => :'obtainment_date',
-        :'expiry_date' => :'expiry_date',
-        :'codes' => :'codes'
+        :'breakdown' => :'breakdown'
       }
     end
 
@@ -41,10 +33,7 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'category' => :'String',
-        :'obtainment_date' => :'Date',
-        :'expiry_date' => :'Date',
-        :'codes' => :'String'
+        :'breakdown' => :'DeviceIntelligenceBreakdownDeviceBreakdown'
       }
     end
 
@@ -58,31 +47,19 @@ module Onfido
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::DocumentPropertiesDrivingLicenceInformation` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::DeviceIntelligenceBreakdownDevice` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::DocumentPropertiesDrivingLicenceInformation`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::DeviceIntelligenceBreakdownDevice`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'category')
-        self.category = attributes[:'category']
-      end
-
-      if attributes.key?(:'obtainment_date')
-        self.obtainment_date = attributes[:'obtainment_date']
-      end
-
-      if attributes.key?(:'expiry_date')
-        self.expiry_date = attributes[:'expiry_date']
-      end
-
-      if attributes.key?(:'codes')
-        self.codes = attributes[:'codes']
+      if attributes.key?(:'breakdown')
+        self.breakdown = attributes[:'breakdown']
       end
     end
 
@@ -106,10 +83,7 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          category == o.category &&
-          obtainment_date == o.obtainment_date &&
-          expiry_date == o.expiry_date &&
-          codes == o.codes
+          breakdown == o.breakdown
     end
 
     # @see the `==` method
@@ -121,7 +95,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [category, obtainment_date, expiry_date, codes].hash
+      [breakdown].hash
     end
 
     # Builds the object from hash

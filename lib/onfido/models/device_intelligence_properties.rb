@@ -14,19 +14,19 @@ require 'date'
 require 'time'
 
 module Onfido
-  class DeviceIntelligenceBreakdownBreakdownDeviceBreakdown
-    attr_accessor :application_authenticity
+  class DeviceIntelligenceProperties
+    attr_accessor :device
 
-    attr_accessor :device_integrity
+    attr_accessor :ip
 
-    attr_accessor :device_reputation
+    attr_accessor :geolocation
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'application_authenticity' => :'application_authenticity',
-        :'device_integrity' => :'device_integrity',
-        :'device_reputation' => :'device_reputation'
+        :'device' => :'device',
+        :'ip' => :'ip',
+        :'geolocation' => :'geolocation'
       }
     end
 
@@ -38,9 +38,9 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'application_authenticity' => :'DocumentBreakdownDataComparisonBreakdownIssuingCountry',
-        :'device_integrity' => :'DocumentBreakdownDataComparisonBreakdownIssuingCountry',
-        :'device_reputation' => :'DocumentBreakdownDataComparisonBreakdownIssuingCountry'
+        :'device' => :'DeviceIntelligenceBreakdownPropertiesDevice',
+        :'ip' => :'DeviceIntelligenceBreakdownPropertiesIp',
+        :'geolocation' => :'DeviceIntelligenceBreakdownPropertiesGeolocation'
       }
     end
 
@@ -54,27 +54,27 @@ module Onfido
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::DeviceIntelligenceBreakdownBreakdownDeviceBreakdown` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::DeviceIntelligenceProperties` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::DeviceIntelligenceBreakdownBreakdownDeviceBreakdown`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::DeviceIntelligenceProperties`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'application_authenticity')
-        self.application_authenticity = attributes[:'application_authenticity']
+      if attributes.key?(:'device')
+        self.device = attributes[:'device']
       end
 
-      if attributes.key?(:'device_integrity')
-        self.device_integrity = attributes[:'device_integrity']
+      if attributes.key?(:'ip')
+        self.ip = attributes[:'ip']
       end
 
-      if attributes.key?(:'device_reputation')
-        self.device_reputation = attributes[:'device_reputation']
+      if attributes.key?(:'geolocation')
+        self.geolocation = attributes[:'geolocation']
       end
     end
 
@@ -98,9 +98,9 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          application_authenticity == o.application_authenticity &&
-          device_integrity == o.device_integrity &&
-          device_reputation == o.device_reputation
+          device == o.device &&
+          ip == o.ip &&
+          geolocation == o.geolocation
     end
 
     # @see the `==` method
@@ -112,7 +112,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [application_authenticity, device_integrity, device_reputation].hash
+      [device, ip, geolocation].hash
     end
 
     # Builds the object from hash

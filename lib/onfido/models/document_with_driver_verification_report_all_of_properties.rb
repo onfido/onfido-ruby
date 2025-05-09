@@ -251,7 +251,7 @@ module Onfido
         :'address_lines' => :'DocumentPropertiesAddressLines',
         :'barcode' => :'Array<DocumentPropertiesBarcodeInner>',
         :'nfc' => :'DocumentPropertiesNfc',
-        :'driving_licence_information' => :'DocumentPropertiesDrivingLicenceInformation',
+        :'driving_licence_information' => :'Array<DocumentPropertiesDrivingLicenceInformationItem>',
         :'document_classification' => :'DocumentPropertiesDocumentClassification',
         :'extracted_data' => :'DocumentPropertiesExtractedData',
         :'drivers_licence' => :'Boolean',
@@ -464,7 +464,9 @@ module Onfido
       end
 
       if attributes.key?(:'driving_licence_information')
-        self.driving_licence_information = attributes[:'driving_licence_information']
+        if (value = attributes[:'driving_licence_information']).is_a?(Array)
+          self.driving_licence_information = value
+        end
       end
 
       if attributes.key?(:'document_classification')
