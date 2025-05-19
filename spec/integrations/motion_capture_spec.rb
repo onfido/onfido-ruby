@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../shared_contexts/with_onfido'
+require_relative '../shared_examples/file_examples'
 
 describe Onfido::MotionCapture do
   describe 'Motion Capture' do
@@ -24,16 +25,16 @@ describe Onfido::MotionCapture do
       expect(get_motion_capture).to be_an_instance_of Onfido::MotionCapture
     end
 
-    it 'downloads motion capture' do
-      file = onfido_api.download_motion_capture(motion_id)
+    describe 'downloading live video' do
+      let(:file) { onfido_api.download_motion_capture(motion_id) }
 
-      expect(file.length).to be > 0
+      it_behaves_like "a valid MP4 file", 2720276
     end
 
-    it 'downloads motion capture frame' do
-      file = onfido_api.download_motion_capture_frame(motion_id)
+    describe 'downloading live video frame' do
+      let(:file) { onfido_api.download_motion_capture_frame(motion_id) }
 
-      expect(file.length).to be > 0
+      it_behaves_like "a valid JPEG file", 75627
     end
 
     it 'raises an error with the correct status code when trying to download an inexistent motion capture' do

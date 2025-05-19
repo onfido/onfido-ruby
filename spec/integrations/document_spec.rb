@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../shared_contexts/with_document'
+require_relative '../shared_examples/file_examples'
 
 describe Onfido::Document do
   describe 'Documents' do
@@ -27,10 +28,10 @@ describe Onfido::Document do
       expect(get_document.id).to eq document_id
     end
 
-    it 'downloads a document' do
-      file = onfido_api.download_document(document_id)
+    describe 'downloading a document' do
+      let(:file) { onfido_api.download_document(document_id) }
 
-      expect(file.size).to be > 0
+      it_behaves_like "a valid PNG file", 361771
     end
 
     it 'cannot download an inexistent document' do
@@ -41,10 +42,10 @@ describe Onfido::Document do
       }
     end
 
-    it 'downloads an NFC face' do
-      file = onfido_api.download_nfc_face(nfc_face_id)
+    describe 'downloading an NFC face' do
+      let(:file) { onfido_api.download_nfc_face(nfc_face_id) }
 
-      expect(file.size).to be > 0
+      it_behaves_like "a valid PNG file", 471345
     end
 
     it 'cannot download an inexistent NFC face' do

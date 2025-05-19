@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../shared_contexts/with_onfido'
+require_relative '../shared_examples/file_examples'
 
 describe Onfido::LiveVideo do
   describe 'Live Video' do
@@ -24,16 +25,16 @@ describe Onfido::LiveVideo do
       expect(get_live_video).to be_an_instance_of Onfido::LiveVideo
     end
 
-    it 'downloads live video' do
-      file = onfido_api.download_live_video(live_video_id)
+    describe 'downloading live video' do
+      let(:file) { onfido_api.download_live_video(live_video_id) }
 
-      expect(file.length).to be > 0
+      it_behaves_like "a valid MP4 file", 165093
     end
 
-    it 'downloads live video frame' do
-      file = onfido_api.download_live_video_frame(live_video_id)
+    describe 'downloading live video frame' do
+      let(:file) { onfido_api.download_live_video_frame(live_video_id) }
 
-      expect(file.length).to be > 0
+      it_behaves_like "a valid JPEG file", 1692
     end
 
     it 'raises an error with the correct status code when trying to download an inexistent live video' do

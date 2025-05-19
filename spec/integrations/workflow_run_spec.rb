@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require_relative '../shared_contexts/with_workflow_run'
+require_relative '../shared_examples/file_examples'
+
 require 'zip'
 
 describe Onfido::WorkflowRun do
@@ -47,10 +49,10 @@ describe Onfido::WorkflowRun do
       expect(get_workflow_run.id).to eq workflow_run_id
     end
 
-    it 'downloads evidence file' do
-      file = onfido_api.download_signed_evidence_file(workflow_run_id)
+    describe 'downloading evidence file' do
+      let(:file) { onfido_api.download_signed_evidence_file(workflow_run_id) }
 
-      expect(file.size).to be > 0
+      it_behaves_like "a valid PDF file", 497605
     end
 
     context 'with start -> approved workflow' do
@@ -78,7 +80,7 @@ describe Onfido::WorkflowRun do
           onfido_api.find_timeline_file(workflow_run_id, timeline_file_id)
         end
 
-        expect(file.size).to be > 0
+        expect(file.size).to be > 100000
       end
 
       it 'downloads an evidence folder' do
@@ -87,7 +89,7 @@ describe Onfido::WorkflowRun do
         end
 
         Zip::File.open(file.path) do |zip|
-          expect(zip.entries.size).to be > 0
+          expect(zip.entries.size).to be > 1
         end
       end
     end

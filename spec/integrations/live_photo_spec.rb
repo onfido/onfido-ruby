@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../shared_contexts/with_live_photo'
+require_relative '../shared_examples/file_examples'
 
 describe Onfido::LivePhoto do
   describe 'Live Photo' do
@@ -27,10 +28,10 @@ describe Onfido::LivePhoto do
       expect(live_photo).to be_an_instance_of Onfido::LivePhoto
     end
 
-    it 'downloads live photo' do
-      file = onfido_api.download_live_photo(live_photo_id)
+    describe 'downloading live photo' do
+      let(:file) { onfido_api.download_live_photo(live_photo_id) }
 
-      expect(file.length).to be > 0
+      it_behaves_like "a valid PNG file", 395856
     end
 
     it 'raises an error with the correct status code when trying to download an inexistent live photo' do

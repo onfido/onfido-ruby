@@ -35,7 +35,7 @@ module Onfido
     # @option config [Configuration] Configuration for initializing the object, default to Configuration.default
     def initialize(config = Configuration.default)
       @config = config
-      @user_agent = "onfido-ruby/5.1.0"
+      @user_agent = "onfido-ruby/5.1.1"
       @default_headers = {
         'Content-Type' => 'application/json',
         'User-Agent' => @user_agent
@@ -175,7 +175,7 @@ module Onfido
 
       # reconstruct content
       content = stream.join
-      content = content.unpack('m').join if response.headers['Content-Transfer-Encoding'] == 'binary'
+      content = content.unpack('m').join if response.headers['Content-Transfer-Encoding'] == 'base64'  
       content = content.force_encoding(encoding)
 
       # return byte stream

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../shared_contexts/with_check'
+require_relative '../shared_examples/file_examples'
 
 describe Onfido::Check do
   describe 'Checks' do
@@ -74,10 +75,10 @@ describe Onfido::Check do
       onfido_api.resume_check(check_id)
     end
 
-    it 'downloads a check' do
-      file = onfido_api.download_check(check_id)
+    describe 'downloading a check' do
+      let(:file) { onfido_api.download_check(check_id) }
 
-      expect(file.size).to be > 0
+      it_behaves_like "a valid PDF file"
     end
   end
 end
