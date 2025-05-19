@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../shared_contexts/with_applicant'
+require_relative '../shared_examples/file_examples'
 
 describe Onfido::IdPhoto do
   describe 'Id Photo' do
@@ -35,10 +36,10 @@ describe Onfido::IdPhoto do
       expect(get_id_photo.id).to eq id_photo_id
     end
 
-    it 'downloads id photo' do
-      file = onfido_api.download_id_photo(id_photo_id)
+    describe 'downloading id photo' do
+      let(:file) { onfido_api.download_id_photo(id_photo_id) }
 
-      expect(file.length).to be > 0
+      it_behaves_like "a valid PNG file", 395856
     end
 
     it 'raises an error with the correct status code when trying to download an inexistent id photo' do
