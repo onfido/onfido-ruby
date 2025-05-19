@@ -1,5 +1,10 @@
 # Changelog
 
+## v5.1.1 19th May 2025
+
+- Release based on Onfido OpenAPI spec version [v5.1.1](https://github.com/onfido/onfido-openapi-spec/releases/tag/v5.1.1):
+  - [CAT-1952] Fix corruption in file download
+
 ## v5.1.0 14th May 2025
 
 - Release based on Onfido OpenAPI spec version [v5.1.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v5.1.0):
