@@ -16,6 +16,8 @@
   - Fix storage of device_fingerprint_reuse breakdown and properties as float
   - Add .markdownlint.json to templates
 
+**DEPRECATION NOTICE**: This release has been **deprecated** in favour of [v5.1.1](#v511-19th-may-2025).
+
 ## v5.0.0 21st February 2025
 
 - Release based on Onfido OpenAPI spec version [v5.0.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v5.0.0):
@@ -32,6 +34,8 @@
 - Add tests for Download NFC Face endpoint
 - [Migration Guide](MIGRATION.md#upgrading-from-4x-to-5x)
 
+**DEPRECATION NOTICE**: This release has been **deprecated** in favour of [v5.1.1](#v511-19th-may-2025).
+
 ## v4.6.0 24th January 2025
 
 - Release based on Onfido OpenAPI spec version [v4.6.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v4.6.0):
@@ -41,21 +45,29 @@
   - Add customer_user_id in the webhook event resource
 - test: wait for evidence folder to be available
 
+**DEPRECATION NOTICE**: This release has been **deprecated** in favour of [v5.1.1](#v511-19th-may-2025).
+
 ## v4.5.0 8th January 2025
 
 - Release based on Onfido OpenAPI spec version [v4.5.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v4.5.0):
   - [STUDIO-4305] Add download evidence folder path
+
+**DEPRECATION NOTICE**: This release has been **deprecated** in favour of [v5.1.1](#v511-19th-may-2025).
 
 ## v4.4.0 20th December 2024
 
 - Release based on Onfido OpenAPI spec version [v4.4.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v4.4.0):
   - [CAT-1593] Fix missing webhook type and evidence folder webhook
   - [CAT-1590] Allow any type for the workflow task output
+ 
+**DEPRECATION NOTICE**: This release has been **deprecated** in favour of [v5.1.1](#v511-19th-may-2025).
 
 ## v4.3.0 27th November 2024
 
 - Release based on Onfido OpenAPI spec version [v4.3.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v4.3.0):
   - [CAT-1581] Revert "[CAT-1528] Fix barcode field in document properties object"
+ 
+**DEPRECATION NOTICE**: This release has been **deprecated** in favour of [v5.1.1](#v511-19th-may-2025).
 
 ## v4.2.0 19th November 2024
 
@@ -63,10 +75,14 @@
   - feat: add new fields to facial similarity report objects
   - [CAT-1552] Add missing document types
 
+**DEPRECATION NOTICE**: This release has been **deprecated** in favour of [v5.1.1](#v511-19th-may-2025).
+
 ## v4.1.0 8th November 2024
 
 - Release based on Onfido OpenAPI spec version [v4.1.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v4.1.0):
   - [CAT-1528] Fix barcode field in document properties object
+
+**DEPRECATION NOTICE**: This release has been **deprecated** in favour of [v5.1.1](#v511-19th-may-2025).
 
 ## v4.0.0 24th October 2024
 
@@ -78,6 +94,8 @@
   - [CAT-1306] Add webhooks event resource
   - Upgrade OpenAPI generator to v7.9.0 (was v7.6.0)
   - [Migration Guide](MIGRATION.md#upgrading-from-3x-to-4x)
+ 
+**DEPRECATION NOTICE**: This release has been **deprecated** in favour of [v5.1.1](#v511-19th-may-2025).
 
 ## v3.4.0 20th September 2024
 
