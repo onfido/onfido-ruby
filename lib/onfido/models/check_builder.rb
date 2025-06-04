@@ -52,6 +52,8 @@ module Onfido
 
     attr_accessor :us_driving_licence
 
+    attr_accessor :report_configuration
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -67,7 +69,8 @@ module Onfido
         :'suppress_form_emails' => :'suppress_form_emails',
         :'sub_result' => :'sub_result',
         :'consider' => :'consider',
-        :'us_driving_licence' => :'us_driving_licence'
+        :'us_driving_licence' => :'us_driving_licence',
+        :'report_configuration' => :'report_configuration'
       }
     end
 
@@ -91,7 +94,8 @@ module Onfido
         :'suppress_form_emails' => :'Boolean',
         :'sub_result' => :'String',
         :'consider' => :'Array<ReportName>',
-        :'us_driving_licence' => :'UsDrivingLicenceBuilder'
+        :'us_driving_licence' => :'UsDrivingLicenceBuilder',
+        :'report_configuration' => :'ReportConfiguration'
       }
     end
 
@@ -193,6 +197,10 @@ module Onfido
       if attributes.key?(:'us_driving_licence')
         self.us_driving_licence = attributes[:'us_driving_licence']
       end
+
+      if attributes.key?(:'report_configuration')
+        self.report_configuration = attributes[:'report_configuration']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -237,7 +245,8 @@ module Onfido
           suppress_form_emails == o.suppress_form_emails &&
           sub_result == o.sub_result &&
           consider == o.consider &&
-          us_driving_licence == o.us_driving_licence
+          us_driving_licence == o.us_driving_licence &&
+          report_configuration == o.report_configuration
     end
 
     # @see the `==` method
@@ -249,7 +258,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [webhook_ids, applicant_id, applicant_provides_data, tags, redirect_uri, privacy_notices_read_consent_given, report_names, document_ids, asynchronous, suppress_form_emails, sub_result, consider, us_driving_licence].hash
+      [webhook_ids, applicant_id, applicant_provides_data, tags, redirect_uri, privacy_notices_read_consent_given, report_names, document_ids, asynchronous, suppress_form_emails, sub_result, consider, us_driving_licence, report_configuration].hash
     end
 
     # Builds the object from hash
