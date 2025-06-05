@@ -14,44 +14,36 @@ require 'date'
 require 'time'
 
 module Onfido
-  class CheckRequest
-    # An array of report names (strings).
-    attr_accessor :report_names
+  class ReportConfigurationFacialSimilarity
+    # You should set it to \"reverification\" on a post-onboarding scenario (e.g. ongoing authentication). 
+    attr_accessor :use_case
 
-    # Optional. An array of document ids, for use with Document reports only. If omitted, the Document report will use the most recently uploaded document by default.
-    attr_accessor :document_ids
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
 
-    # Send an applicant form to applicant to complete to proceed with check. Defaults to false.
-    attr_accessor :applicant_provides_data
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
 
-    # Defaults to `true`. If set to `false`, you will only receive a response when all reports in your check have completed. 
-    attr_accessor :asynchronous
-
-    # For checks where `applicant_provides_data` is `true`, applicant form will not be automatically sent if `suppress_form_emails` is set to `true`. You can manually send the form at any time after the check has been created, using the link found in the form_uri attribute of the check object. Write-only. Defaults to false. 
-    attr_accessor :suppress_form_emails
-
-    # Triggers responses for particular sub-results for sandbox Document reports.
-    attr_accessor :sub_result
-
-    # Array of names of particular reports to return consider as their results. This is a feature available in sandbox testing
-    attr_accessor :consider
-
-    attr_accessor :us_driving_licence
-
-    attr_accessor :report_configuration
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'report_names' => :'report_names',
-        :'document_ids' => :'document_ids',
-        :'applicant_provides_data' => :'applicant_provides_data',
-        :'asynchronous' => :'asynchronous',
-        :'suppress_form_emails' => :'suppress_form_emails',
-        :'sub_result' => :'sub_result',
-        :'consider' => :'consider',
-        :'us_driving_licence' => :'us_driving_licence',
-        :'report_configuration' => :'report_configuration'
+        :'use_case' => :'use_case'
       }
     end
 
@@ -63,15 +55,7 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'report_names' => :'Array<ReportName>',
-        :'document_ids' => :'Array<String>',
-        :'applicant_provides_data' => :'Boolean',
-        :'asynchronous' => :'Boolean',
-        :'suppress_form_emails' => :'Boolean',
-        :'sub_result' => :'String',
-        :'consider' => :'Array<ReportName>',
-        :'us_driving_licence' => :'UsDrivingLicenceBuilder',
-        :'report_configuration' => :'ReportConfiguration'
+        :'use_case' => :'String'
       }
     end
 
@@ -85,63 +69,19 @@ module Onfido
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::CheckRequest` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::ReportConfigurationFacialSimilarity` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::CheckRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::ReportConfigurationFacialSimilarity`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'report_names')
-        if (value = attributes[:'report_names']).is_a?(Array)
-          self.report_names = value
-        end
-      else
-        self.report_names = nil
-      end
-
-      if attributes.key?(:'document_ids')
-        if (value = attributes[:'document_ids']).is_a?(Array)
-          self.document_ids = value
-        end
-      end
-
-      if attributes.key?(:'applicant_provides_data')
-        self.applicant_provides_data = attributes[:'applicant_provides_data']
-      else
-        self.applicant_provides_data = false
-      end
-
-      if attributes.key?(:'asynchronous')
-        self.asynchronous = attributes[:'asynchronous']
-      else
-        self.asynchronous = true
-      end
-
-      if attributes.key?(:'suppress_form_emails')
-        self.suppress_form_emails = attributes[:'suppress_form_emails']
-      end
-
-      if attributes.key?(:'sub_result')
-        self.sub_result = attributes[:'sub_result']
-      end
-
-      if attributes.key?(:'consider')
-        if (value = attributes[:'consider']).is_a?(Array)
-          self.consider = value
-        end
-      end
-
-      if attributes.key?(:'us_driving_licence')
-        self.us_driving_licence = attributes[:'us_driving_licence']
-      end
-
-      if attributes.key?(:'report_configuration')
-        self.report_configuration = attributes[:'report_configuration']
+      if attributes.key?(:'use_case')
+        self.use_case = attributes[:'use_case']
       end
     end
 
@@ -150,10 +90,6 @@ module Onfido
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @report_names.nil?
-        invalid_properties.push('invalid value for "report_names", report_names cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -161,8 +97,19 @@ module Onfido
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @report_names.nil?
+      use_case_validator = EnumAttributeValidator.new('String', ["onboarding", "reverification", "unknown_default_open_api"])
+      return false unless use_case_validator.valid?(@use_case)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] use_case Object to be assigned
+    def use_case=(use_case)
+      validator = EnumAttributeValidator.new('String', ["onboarding", "reverification", "unknown_default_open_api"])
+      unless validator.valid?(use_case)
+        fail ArgumentError, "invalid value for \"use_case\", must be one of #{validator.allowable_values}."
+      end
+      @use_case = use_case
     end
 
     # Checks equality by comparing each attribute.
@@ -170,15 +117,7 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          report_names == o.report_names &&
-          document_ids == o.document_ids &&
-          applicant_provides_data == o.applicant_provides_data &&
-          asynchronous == o.asynchronous &&
-          suppress_form_emails == o.suppress_form_emails &&
-          sub_result == o.sub_result &&
-          consider == o.consider &&
-          us_driving_licence == o.us_driving_licence &&
-          report_configuration == o.report_configuration
+          use_case == o.use_case
     end
 
     # @see the `==` method
@@ -190,7 +129,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [report_names, document_ids, applicant_provides_data, asynchronous, suppress_form_emails, sub_result, consider, us_driving_licence, report_configuration].hash
+      [use_case].hash
     end
 
     # Builds the object from hash

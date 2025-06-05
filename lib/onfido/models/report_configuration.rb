@@ -14,44 +14,23 @@ require 'date'
 require 'time'
 
 module Onfido
-  class CheckRequest
-    # An array of report names (strings).
-    attr_accessor :report_names
+  # Defines configuration options for facial similarity checks used to distinguish between onboarding and reverification scenarios. 
+  class ReportConfiguration
+    attr_accessor :facial_similarity_photo
 
-    # Optional. An array of document ids, for use with Document reports only. If omitted, the Document report will use the most recently uploaded document by default.
-    attr_accessor :document_ids
+    attr_accessor :facial_similarity_photo_fully_auto
 
-    # Send an applicant form to applicant to complete to proceed with check. Defaults to false.
-    attr_accessor :applicant_provides_data
+    attr_accessor :facial_similarity_video
 
-    # Defaults to `true`. If set to `false`, you will only receive a response when all reports in your check have completed. 
-    attr_accessor :asynchronous
-
-    # For checks where `applicant_provides_data` is `true`, applicant form will not be automatically sent if `suppress_form_emails` is set to `true`. You can manually send the form at any time after the check has been created, using the link found in the form_uri attribute of the check object. Write-only. Defaults to false. 
-    attr_accessor :suppress_form_emails
-
-    # Triggers responses for particular sub-results for sandbox Document reports.
-    attr_accessor :sub_result
-
-    # Array of names of particular reports to return consider as their results. This is a feature available in sandbox testing
-    attr_accessor :consider
-
-    attr_accessor :us_driving_licence
-
-    attr_accessor :report_configuration
+    attr_accessor :facial_similarity_motion
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'report_names' => :'report_names',
-        :'document_ids' => :'document_ids',
-        :'applicant_provides_data' => :'applicant_provides_data',
-        :'asynchronous' => :'asynchronous',
-        :'suppress_form_emails' => :'suppress_form_emails',
-        :'sub_result' => :'sub_result',
-        :'consider' => :'consider',
-        :'us_driving_licence' => :'us_driving_licence',
-        :'report_configuration' => :'report_configuration'
+        :'facial_similarity_photo' => :'facial_similarity_photo',
+        :'facial_similarity_photo_fully_auto' => :'facial_similarity_photo_fully_auto',
+        :'facial_similarity_video' => :'facial_similarity_video',
+        :'facial_similarity_motion' => :'facial_similarity_motion'
       }
     end
 
@@ -63,15 +42,10 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'report_names' => :'Array<ReportName>',
-        :'document_ids' => :'Array<String>',
-        :'applicant_provides_data' => :'Boolean',
-        :'asynchronous' => :'Boolean',
-        :'suppress_form_emails' => :'Boolean',
-        :'sub_result' => :'String',
-        :'consider' => :'Array<ReportName>',
-        :'us_driving_licence' => :'UsDrivingLicenceBuilder',
-        :'report_configuration' => :'ReportConfiguration'
+        :'facial_similarity_photo' => :'ReportConfigurationFacialSimilarity',
+        :'facial_similarity_photo_fully_auto' => :'ReportConfigurationFacialSimilarity',
+        :'facial_similarity_video' => :'ReportConfigurationFacialSimilarity',
+        :'facial_similarity_motion' => :'ReportConfigurationFacialSimilarity'
       }
     end
 
@@ -85,63 +59,31 @@ module Onfido
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::CheckRequest` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::ReportConfiguration` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::CheckRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::ReportConfiguration`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'report_names')
-        if (value = attributes[:'report_names']).is_a?(Array)
-          self.report_names = value
-        end
-      else
-        self.report_names = nil
+      if attributes.key?(:'facial_similarity_photo')
+        self.facial_similarity_photo = attributes[:'facial_similarity_photo']
       end
 
-      if attributes.key?(:'document_ids')
-        if (value = attributes[:'document_ids']).is_a?(Array)
-          self.document_ids = value
-        end
+      if attributes.key?(:'facial_similarity_photo_fully_auto')
+        self.facial_similarity_photo_fully_auto = attributes[:'facial_similarity_photo_fully_auto']
       end
 
-      if attributes.key?(:'applicant_provides_data')
-        self.applicant_provides_data = attributes[:'applicant_provides_data']
-      else
-        self.applicant_provides_data = false
+      if attributes.key?(:'facial_similarity_video')
+        self.facial_similarity_video = attributes[:'facial_similarity_video']
       end
 
-      if attributes.key?(:'asynchronous')
-        self.asynchronous = attributes[:'asynchronous']
-      else
-        self.asynchronous = true
-      end
-
-      if attributes.key?(:'suppress_form_emails')
-        self.suppress_form_emails = attributes[:'suppress_form_emails']
-      end
-
-      if attributes.key?(:'sub_result')
-        self.sub_result = attributes[:'sub_result']
-      end
-
-      if attributes.key?(:'consider')
-        if (value = attributes[:'consider']).is_a?(Array)
-          self.consider = value
-        end
-      end
-
-      if attributes.key?(:'us_driving_licence')
-        self.us_driving_licence = attributes[:'us_driving_licence']
-      end
-
-      if attributes.key?(:'report_configuration')
-        self.report_configuration = attributes[:'report_configuration']
+      if attributes.key?(:'facial_similarity_motion')
+        self.facial_similarity_motion = attributes[:'facial_similarity_motion']
       end
     end
 
@@ -150,10 +92,6 @@ module Onfido
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @report_names.nil?
-        invalid_properties.push('invalid value for "report_names", report_names cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -161,7 +99,6 @@ module Onfido
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @report_names.nil?
       true
     end
 
@@ -170,15 +107,10 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          report_names == o.report_names &&
-          document_ids == o.document_ids &&
-          applicant_provides_data == o.applicant_provides_data &&
-          asynchronous == o.asynchronous &&
-          suppress_form_emails == o.suppress_form_emails &&
-          sub_result == o.sub_result &&
-          consider == o.consider &&
-          us_driving_licence == o.us_driving_licence &&
-          report_configuration == o.report_configuration
+          facial_similarity_photo == o.facial_similarity_photo &&
+          facial_similarity_photo_fully_auto == o.facial_similarity_photo_fully_auto &&
+          facial_similarity_video == o.facial_similarity_video &&
+          facial_similarity_motion == o.facial_similarity_motion
     end
 
     # @see the `==` method
@@ -190,7 +122,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [report_names, document_ids, applicant_provides_data, asynchronous, suppress_form_emails, sub_result, consider, us_driving_licence, report_configuration].hash
+      [facial_similarity_photo, facial_similarity_photo_fully_auto, facial_similarity_video, facial_similarity_motion].hash
     end
 
     # Builds the object from hash
