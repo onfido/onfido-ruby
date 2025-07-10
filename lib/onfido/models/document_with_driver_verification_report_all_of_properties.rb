@@ -117,6 +117,9 @@ module Onfido
     # Comma-separated vehicle classes that the user is qualified for
     attr_accessor :raw_vehicle_classes
 
+    # True if the user is not qualified to drive a manual transmission
+    attr_accessor :manual_transmission_restriction
+
     # Detailed classes/categories information
     attr_accessor :vehicle_class_details
 
@@ -196,6 +199,7 @@ module Onfido
         :'restricted_licence' => :'restricted_licence',
         :'raw_licence_category' => :'raw_licence_category',
         :'raw_vehicle_classes' => :'raw_vehicle_classes',
+        :'manual_transmission_restriction' => :'manual_transmission_restriction',
         :'vehicle_class_details' => :'vehicle_class_details',
         :'passenger_vehicle' => :'passenger_vehicle'
       }
@@ -258,6 +262,7 @@ module Onfido
         :'restricted_licence' => :'Boolean',
         :'raw_licence_category' => :'String',
         :'raw_vehicle_classes' => :'String',
+        :'manual_transmission_restriction' => :'Boolean',
         :'vehicle_class_details' => :'Array<DocumentWithDriverVerificationReportAllOfPropertiesAllOfVehicleClassDetailsInner>',
         :'passenger_vehicle' => :'DocumentWithDriverVerificationReportAllOfPropertiesAllOfPassengerVehicle'
       }
@@ -493,6 +498,10 @@ module Onfido
         self.raw_vehicle_classes = attributes[:'raw_vehicle_classes']
       end
 
+      if attributes.key?(:'manual_transmission_restriction')
+        self.manual_transmission_restriction = attributes[:'manual_transmission_restriction']
+      end
+
       if attributes.key?(:'vehicle_class_details')
         if (value = attributes[:'vehicle_class_details']).is_a?(Array)
           self.vehicle_class_details = value
@@ -609,6 +618,7 @@ module Onfido
           restricted_licence == o.restricted_licence &&
           raw_licence_category == o.raw_licence_category &&
           raw_vehicle_classes == o.raw_vehicle_classes &&
+          manual_transmission_restriction == o.manual_transmission_restriction &&
           vehicle_class_details == o.vehicle_class_details &&
           passenger_vehicle == o.passenger_vehicle
     end
@@ -622,7 +632,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [date_of_birth, date_of_expiry, personal_number, document_numbers, document_type, first_name, middle_name, last_name, gender, issuing_country, nationality, issuing_state, issuing_date, categorisation, mrz_line1, mrz_line2, mrz_line3, address, place_of_birth, spouse_name, widow_name, alias_name, issuing_authority, remarks, civil_state, expatriation, father_name, mother_name, religion, type_of_permit, version_number, document_subtype, profession, security_document_number, tax_number, nist_identity_evidence_strength, has_issuance_confirmation, real_id_compliance, security_tier, address_lines, barcode, nfc, driving_licence_information, document_classification, extracted_data, drivers_licence, restricted_licence, raw_licence_category, raw_vehicle_classes, vehicle_class_details, passenger_vehicle].hash
+      [date_of_birth, date_of_expiry, personal_number, document_numbers, document_type, first_name, middle_name, last_name, gender, issuing_country, nationality, issuing_state, issuing_date, categorisation, mrz_line1, mrz_line2, mrz_line3, address, place_of_birth, spouse_name, widow_name, alias_name, issuing_authority, remarks, civil_state, expatriation, father_name, mother_name, religion, type_of_permit, version_number, document_subtype, profession, security_document_number, tax_number, nist_identity_evidence_strength, has_issuance_confirmation, real_id_compliance, security_tier, address_lines, barcode, nfc, driving_licence_information, document_classification, extracted_data, drivers_licence, restricted_licence, raw_licence_category, raw_vehicle_classes, manual_transmission_restriction, vehicle_class_details, passenger_vehicle].hash
     end
 
     # Builds the object from hash
