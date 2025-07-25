@@ -42,10 +42,10 @@ describe Onfido::WorkflowRun do
   describe 'Workflow run' do
     it 'downloads aes documents' do
       signed_document = onfido_api.download_aes_document(workflow_run_id, signed_document_file_id)
-      expect(signed_document.size).to be > 0
+      expect(signed_document.size).to eq 13264
 
       transaction_receipt = onfido_api.download_aes_document(workflow_run_id, transaction_receipt_file_id)
-      expect(transaction_receipt.size).to be > 0
+      expect(transaction_receipt.size).to eq 13264
     end
   end
 end
