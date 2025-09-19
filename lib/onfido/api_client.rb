@@ -1,7 +1,7 @@
 =begin
-#Onfido API v3.6
+#Onfido Public API v3.6
 
-#The Onfido API (v3.6)
+#The Onfido Public API (v3.6)
 
 The version of the OpenAPI document: v3.6
 
@@ -35,7 +35,7 @@ module Onfido
     # @option config [Configuration] Configuration for initializing the object, default to Configuration.default
     def initialize(config = Configuration.default)
       @config = config
-      @user_agent = "onfido-ruby/5.4.0"
+      @user_agent = "onfido-ruby/5.5.0"
       @default_headers = {
         'Content-Type' => 'application/json',
         'User-Agent' => @user_agent

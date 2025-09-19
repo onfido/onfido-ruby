@@ -1,7 +1,7 @@
 =begin
-#Onfido API v3.6
+#Onfido Public API v3.6
 
-#The Onfido API (v3.6)
+#The Onfido Public API (v3.6)
 
 The version of the OpenAPI document: v3.6
 
@@ -11,5 +11,5 @@ Generator version: 7.11.0
 =end
 
 module Onfido
-  VERSION = '5.4.0'
+  VERSION = '5.5.0'
 end

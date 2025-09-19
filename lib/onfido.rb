@@ -1,7 +1,7 @@
 =begin
-#Onfido API v3.6
+#Onfido Public API v3.6
 
-#The Onfido API (v3.6)
+#The Onfido Public API (v3.6)
 
 The version of the OpenAPI document: v3.6
 
@@ -191,6 +191,10 @@ require 'onfido/models/identity_enhanced_breakdown_sources_breakdown_total_sourc
 require 'onfido/models/identity_enhanced_properties'
 require 'onfido/models/identity_enhanced_properties_matched_addresses_inner'
 require 'onfido/models/identity_enhanced_report'
+require 'onfido/models/idr_ssn_breakdown'
+require 'onfido/models/idr_ssn_breakdown_breakdown'
+require 'onfido/models/idr_ssn_breakdown_breakdown_full_match'
+require 'onfido/models/idr_ssn_breakdown_breakdown_last4_digits_match'
 require 'onfido/models/india_pan_report'
 require 'onfido/models/india_pan_report_all_of_breakdown'
 require 'onfido/models/india_pan_report_all_of_breakdown_device'
