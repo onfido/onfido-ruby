@@ -1,7 +1,7 @@
 =begin
-#Onfido API v3.6
+#Onfido Public API v3.6
 
-#The Onfido API (v3.6)
+#The Onfido Public API (v3.6)
 
 The version of the OpenAPI document: v3.6
 
@@ -23,13 +23,19 @@ module Onfido
 
     attr_accessor :mortality
 
+    attr_accessor :ssn
+
+    attr_accessor :ssn1
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'sources' => :'sources',
         :'address' => :'address',
         :'date_of_birth' => :'date_of_birth',
-        :'mortality' => :'mortality'
+        :'mortality' => :'mortality',
+        :'ssn' => :'ssn',
+        :'ssn1' => :'ssn1'
       }
     end
 
@@ -44,7 +50,9 @@ module Onfido
         :'sources' => :'IdentityEnhancedBreakdownSources',
         :'address' => :'IdentityEnhancedBreakdownAddress',
         :'date_of_birth' => :'IdentityEnhancedBreakdownDateOfBirth',
-        :'mortality' => :'IdentityEnhancedBreakdownMortality'
+        :'mortality' => :'IdentityEnhancedBreakdownMortality',
+        :'ssn' => :'IdrSsnBreakdown',
+        :'ssn1' => :'IdrSsnBreakdown'
       }
     end
 
@@ -84,6 +92,14 @@ module Onfido
       if attributes.key?(:'mortality')
         self.mortality = attributes[:'mortality']
       end
+
+      if attributes.key?(:'ssn')
+        self.ssn = attributes[:'ssn']
+      end
+
+      if attributes.key?(:'ssn1')
+        self.ssn1 = attributes[:'ssn1']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -109,7 +125,9 @@ module Onfido
           sources == o.sources &&
           address == o.address &&
           date_of_birth == o.date_of_birth &&
-          mortality == o.mortality
+          mortality == o.mortality &&
+          ssn == o.ssn &&
+          ssn1 == o.ssn1
     end
 
     # @see the `==` method
@@ -121,7 +139,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [sources, address, date_of_birth, mortality].hash
+      [sources, address, date_of_birth, mortality, ssn, ssn1].hash
     end
 
     # Builds the object from hash
