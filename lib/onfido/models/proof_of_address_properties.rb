@@ -160,7 +160,7 @@ module Onfido
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      document_type_validator = EnumAttributeValidator.new('String', ["bank_building_society_statement", "utility_bill", "council_tax", "benefit_letters", "mortgage_statement", "mobile_phone_bill", "general_letter", "insurance_statement", "pension_property_statement_letter", "identity_document_with_address", "exchange_house_statement", "unknown_default_open_api"])
+      document_type_validator = EnumAttributeValidator.new('String', ["bank_building_society_statement", "utility_bill", "council_tax", "benefit_letters", "mortgage_statement", "mobile_phone_bill", "general_letter", "insurance_statement", "pension_property_statement_letter", "identity_document_with_address", "exchange_house_statement", "accommodation_tenancy_certificate", "address_certificate", "electricity_bill", "gas_bill", "internet_bill", "phone_bill", "water_bill", "unknown_default_open_api"])
       return false unless document_type_validator.valid?(@document_type)
       true
     end
@@ -168,7 +168,7 @@ module Onfido
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] document_type Object to be assigned
     def document_type=(document_type)
-      validator = EnumAttributeValidator.new('String', ["bank_building_society_statement", "utility_bill", "council_tax", "benefit_letters", "mortgage_statement", "mobile_phone_bill", "general_letter", "insurance_statement", "pension_property_statement_letter", "identity_document_with_address", "exchange_house_statement", "unknown_default_open_api"])
+      validator = EnumAttributeValidator.new('String', ["bank_building_society_statement", "utility_bill", "council_tax", "benefit_letters", "mortgage_statement", "mobile_phone_bill", "general_letter", "insurance_statement", "pension_property_statement_letter", "identity_document_with_address", "exchange_house_statement", "accommodation_tenancy_certificate", "address_certificate", "electricity_bill", "gas_bill", "internet_bill", "phone_bill", "water_bill", "unknown_default_open_api"])
       unless validator.valid?(document_type)
         fail ArgumentError, "invalid value for \"document_type\", must be one of #{validator.allowable_values}."
       end
