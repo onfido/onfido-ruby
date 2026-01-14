@@ -63,6 +63,9 @@ module Onfido
     # Customer-provided user identifier.
     attr_accessor :customer_user_id
 
+    # Pre-signed URL to download the timeline file for the Workflow Run.
+    attr_accessor :timeline_file_download_url
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -81,7 +84,8 @@ module Onfido
         :'reasons' => :'reasons',
         :'link' => :'link',
         :'error' => :'error',
-        :'customer_user_id' => :'customer_user_id'
+        :'customer_user_id' => :'customer_user_id',
+        :'timeline_file_download_url' => :'timeline_file_download_url'
       }
     end
 
@@ -108,7 +112,8 @@ module Onfido
         :'reasons' => :'Array<String>',
         :'link' => :'WorkflowRunLink',
         :'error' => :'WorkflowRunError',
-        :'customer_user_id' => :'String'
+        :'customer_user_id' => :'String',
+        :'timeline_file_download_url' => :'String'
       }
     end
 
@@ -200,6 +205,10 @@ module Onfido
       if attributes.key?(:'customer_user_id')
         self.customer_user_id = attributes[:'customer_user_id']
       end
+
+      if attributes.key?(:'timeline_file_download_url')
+        self.timeline_file_download_url = attributes[:'timeline_file_download_url']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -277,7 +286,8 @@ module Onfido
           reasons == o.reasons &&
           link == o.link &&
           error == o.error &&
-          customer_user_id == o.customer_user_id
+          customer_user_id == o.customer_user_id &&
+          timeline_file_download_url == o.timeline_file_download_url
     end
 
     # @see the `==` method
@@ -289,7 +299,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, applicant_id, created_at, updated_at, dashboard_url, workflow_id, workflow_run_id, workflow_version_id, task_def_id, task_def_version, input, output, reasons, link, error, customer_user_id].hash
+      [id, applicant_id, created_at, updated_at, dashboard_url, workflow_id, workflow_run_id, workflow_version_id, task_def_id, task_def_version, input, output, reasons, link, error, customer_user_id, timeline_file_download_url].hash
     end
 
     # Builds the object from hash

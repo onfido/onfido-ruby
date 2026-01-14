@@ -133,7 +133,7 @@ module Onfido
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      subtype_validator = EnumAttributeValidator.new('String', ["full", "not_full", "provisional", "unknown_default_open_api"])
+      subtype_validator = EnumAttributeValidator.new('String', ["SPE", "ali", "alien", "com", "commercial", "dom", "domestic", "full", "not_full", "full driving licence", "heavy_vehicle", "learner", "minor (u21 or u18)", "mot", "mul", "provisional", "provisional driving licence", "ser", "spe", "special", "standard", "tem", "u21", "unknown_default_open_api"])
       return false unless subtype_validator.valid?(@subtype)
       true
     end
@@ -141,7 +141,7 @@ module Onfido
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] subtype Object to be assigned
     def subtype=(subtype)
-      validator = EnumAttributeValidator.new('String', ["full", "not_full", "provisional", "unknown_default_open_api"])
+      validator = EnumAttributeValidator.new('String', ["SPE", "ali", "alien", "com", "commercial", "dom", "domestic", "full", "not_full", "full driving licence", "heavy_vehicle", "learner", "minor (u21 or u18)", "mot", "mul", "provisional", "provisional driving licence", "ser", "spe", "special", "standard", "tem", "u21", "unknown_default_open_api"])
       unless validator.valid?(subtype)
         fail ArgumentError, "invalid value for \"subtype\", must be one of #{validator.allowable_values}."
       end
