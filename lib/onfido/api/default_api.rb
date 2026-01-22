@@ -628,6 +628,138 @@ module Onfido
       return data, status_code, headers
     end
 
+    # Delete passkey
+    # Deletes a passkey. 
+    # @param username [String] Username that owns the passkey.
+    # @param passkey_id [String] Passkey ID.
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def delete_passkey(username, passkey_id, opts = {})
+      delete_passkey_with_http_info(username, passkey_id, opts)
+      nil
+    end
+
+    # Delete passkey
+    # Deletes a passkey. 
+    # @param username [String] Username that owns the passkey.
+    # @param passkey_id [String] Passkey ID.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def delete_passkey_with_http_info(username, passkey_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.delete_passkey ...'
+      end
+      # verify the required parameter 'username' is set
+      if @api_client.config.client_side_validation && username.nil?
+        fail ArgumentError, "Missing the required parameter 'username' when calling DefaultApi.delete_passkey"
+      end
+      # verify the required parameter 'passkey_id' is set
+      if @api_client.config.client_side_validation && passkey_id.nil?
+        fail ArgumentError, "Missing the required parameter 'passkey_id' when calling DefaultApi.delete_passkey"
+      end
+      # resource path
+      local_var_path = '/passkeys/{username}/{passkey_id}'.sub('{' + 'username' + '}', CGI.escape(username.to_s)).sub('{' + 'passkey_id' + '}', CGI.escape(passkey_id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type]
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Token']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.delete_passkey",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#delete_passkey\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Delete passkeys
+    # Removes every passkey for the username. 
+    # @param username [String] Username whose passkeys will be deleted.
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def delete_passkeys(username, opts = {})
+      delete_passkeys_with_http_info(username, opts)
+      nil
+    end
+
+    # Delete passkeys
+    # Removes every passkey for the username. 
+    # @param username [String] Username whose passkeys will be deleted.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def delete_passkeys_with_http_info(username, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.delete_passkeys ...'
+      end
+      # verify the required parameter 'username' is set
+      if @api_client.config.client_side_validation && username.nil?
+        fail ArgumentError, "Missing the required parameter 'username' when calling DefaultApi.delete_passkeys"
+      end
+      # resource path
+      local_var_path = '/passkeys/{username}'.sub('{' + 'username' + '}', CGI.escape(username.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type]
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Token']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.delete_passkeys",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#delete_passkeys\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Delete monitor
     # Deactivates the given monitor 
     # @param monitor_id [String] 
@@ -1589,6 +1721,77 @@ module Onfido
       return data, status_code, headers
     end
 
+    # Retrieves the signed document or signing transaction receipt
+    # Retrieves the signed document or signing transaction receipt depending on the id provided. 
+    # @param workflow_run_id [String] The unique identifier of the Workflow Run for which you want to retrieve the signed document.
+    # @param id [String] The unique identifier of the file which you want to retrieve.
+    # @param [Hash] opts the optional parameters
+    # @return [File]
+    def download_ses_document(workflow_run_id, id, opts = {})
+      data, _status_code, _headers = download_ses_document_with_http_info(workflow_run_id, id, opts)
+      data
+    end
+
+    # Retrieves the signed document or signing transaction receipt
+    # Retrieves the signed document or signing transaction receipt depending on the id provided. 
+    # @param workflow_run_id [String] The unique identifier of the Workflow Run for which you want to retrieve the signed document.
+    # @param id [String] The unique identifier of the file which you want to retrieve.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(File, Integer, Hash)>] File data, response status code and response headers
+    def download_ses_document_with_http_info(workflow_run_id, id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.download_ses_document ...'
+      end
+      # verify the required parameter 'workflow_run_id' is set
+      if @api_client.config.client_side_validation && workflow_run_id.nil?
+        fail ArgumentError, "Missing the required parameter 'workflow_run_id' when calling DefaultApi.download_ses_document"
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling DefaultApi.download_ses_document"
+      end
+      # resource path
+      local_var_path = '/simple_electronic_signature/documents'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'workflow_run_id'] = workflow_run_id
+      query_params[:'id'] = id
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/pdf', 'application/json']) unless header_params['Accept']
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'File'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Token']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.download_ses_document",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#download_ses_document\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Retrieve Workflow Run Evidence Summary File
     # Retrieves the signed evidence file for the designated Workflow Run 
     # @param workflow_run_id [String] Workflow Run ID
@@ -1648,6 +1851,69 @@ module Onfido
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DefaultApi#download_signed_evidence_file\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Download signing document
+    # Downloads specific signing documents belonging to an applicant. If successful, the response will be the binary data representing the pdf. 
+    # @param signing_document_id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [File]
+    def download_signing_document(signing_document_id, opts = {})
+      data, _status_code, _headers = download_signing_document_with_http_info(signing_document_id, opts)
+      data
+    end
+
+    # Download signing document
+    # Downloads specific signing documents belonging to an applicant. If successful, the response will be the binary data representing the pdf. 
+    # @param signing_document_id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(File, Integer, Hash)>] File data, response status code and response headers
+    def download_signing_document_with_http_info(signing_document_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.download_signing_document ...'
+      end
+      # verify the required parameter 'signing_document_id' is set
+      if @api_client.config.client_side_validation && signing_document_id.nil?
+        fail ArgumentError, "Missing the required parameter 'signing_document_id' when calling DefaultApi.download_signing_document"
+      end
+      # resource path
+      local_var_path = '/signing_documents/{signing_document_id}/download'.sub('{' + 'signing_document_id' + '}', CGI.escape(signing_document_id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['*/*', 'application/json']) unless header_params['Accept']
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'File'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Token']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.download_signing_document",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#download_signing_document\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -2288,6 +2554,75 @@ module Onfido
       return data, status_code, headers
     end
 
+    # Retrieve passkey
+    # Returns a passkey's details. 
+    # @param username [String] Username that owns the passkey.
+    # @param passkey_id [String] Passkey ID.
+    # @param [Hash] opts the optional parameters
+    # @return [Passkey]
+    def find_passkey(username, passkey_id, opts = {})
+      data, _status_code, _headers = find_passkey_with_http_info(username, passkey_id, opts)
+      data
+    end
+
+    # Retrieve passkey
+    # Returns a passkey&#39;s details. 
+    # @param username [String] Username that owns the passkey.
+    # @param passkey_id [String] Passkey ID.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Passkey, Integer, Hash)>] Passkey data, response status code and response headers
+    def find_passkey_with_http_info(username, passkey_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.find_passkey ...'
+      end
+      # verify the required parameter 'username' is set
+      if @api_client.config.client_side_validation && username.nil?
+        fail ArgumentError, "Missing the required parameter 'username' when calling DefaultApi.find_passkey"
+      end
+      # verify the required parameter 'passkey_id' is set
+      if @api_client.config.client_side_validation && passkey_id.nil?
+        fail ArgumentError, "Missing the required parameter 'passkey_id' when calling DefaultApi.find_passkey"
+      end
+      # resource path
+      local_var_path = '/passkeys/{username}/{passkey_id}'.sub('{' + 'username' + '}', CGI.escape(username.to_s)).sub('{' + 'passkey_id' + '}', CGI.escape(passkey_id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Passkey'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Token']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.find_passkey",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#find_passkey\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Retrieve report
     # A single report can be retrieved using this endpoint with the corresponding unique identifier. 
     # @param report_id [String] 
@@ -2347,6 +2682,69 @@ module Onfido
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DefaultApi#find_report\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Retrieve signing document
+    # A single signing document can be retrieved by calling this endpoint with the signing document's unique identifier. 
+    # @param signing_document_id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [SigningDocument]
+    def find_signing_document(signing_document_id, opts = {})
+      data, _status_code, _headers = find_signing_document_with_http_info(signing_document_id, opts)
+      data
+    end
+
+    # Retrieve signing document
+    # A single signing document can be retrieved by calling this endpoint with the signing document&#39;s unique identifier. 
+    # @param signing_document_id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(SigningDocument, Integer, Hash)>] SigningDocument data, response status code and response headers
+    def find_signing_document_with_http_info(signing_document_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.find_signing_document ...'
+      end
+      # verify the required parameter 'signing_document_id' is set
+      if @api_client.config.client_side_validation && signing_document_id.nil?
+        fail ArgumentError, "Missing the required parameter 'signing_document_id' when calling DefaultApi.find_signing_document"
+      end
+      # resource path
+      local_var_path = '/signing_documents/{signing_document_id}'.sub('{' + 'signing_document_id' + '}', CGI.escape(signing_document_id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'SigningDocument'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Token']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.find_signing_document",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#find_signing_document\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -3259,6 +3657,69 @@ module Onfido
       return data, status_code, headers
     end
 
+    # List passkeys
+    # Returns every passkey registered under the supplied username. 
+    # @param username [String] Username that owns the passkeys.
+    # @param [Hash] opts the optional parameters
+    # @return [PasskeysList]
+    def list_passkeys(username, opts = {})
+      data, _status_code, _headers = list_passkeys_with_http_info(username, opts)
+      data
+    end
+
+    # List passkeys
+    # Returns every passkey registered under the supplied username. 
+    # @param username [String] Username that owns the passkeys.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(PasskeysList, Integer, Hash)>] PasskeysList data, response status code and response headers
+    def list_passkeys_with_http_info(username, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.list_passkeys ...'
+      end
+      # verify the required parameter 'username' is set
+      if @api_client.config.client_side_validation && username.nil?
+        fail ArgumentError, "Missing the required parameter 'username' when calling DefaultApi.list_passkeys"
+      end
+      # resource path
+      local_var_path = '/passkeys/{username}'.sub('{' + 'username' + '}', CGI.escape(username.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'PasskeysList'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Token']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.list_passkeys",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#list_passkeys\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Retrieve repeat attempts
     # Returns all repeat attempts for a given Document report 
     # @param report_id [String] 
@@ -3382,6 +3843,70 @@ module Onfido
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DefaultApi#list_reports\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # List signing documents
+    # All signing documents belonging to an applicant can be listed from this endpoint
+    # @param applicant_id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [SigningDocumentsList]
+    def list_signing_documents(applicant_id, opts = {})
+      data, _status_code, _headers = list_signing_documents_with_http_info(applicant_id, opts)
+      data
+    end
+
+    # List signing documents
+    # All signing documents belonging to an applicant can be listed from this endpoint
+    # @param applicant_id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(SigningDocumentsList, Integer, Hash)>] SigningDocumentsList data, response status code and response headers
+    def list_signing_documents_with_http_info(applicant_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.list_signing_documents ...'
+      end
+      # verify the required parameter 'applicant_id' is set
+      if @api_client.config.client_side_validation && applicant_id.nil?
+        fail ArgumentError, "Missing the required parameter 'applicant_id' when calling DefaultApi.list_signing_documents"
+      end
+      # resource path
+      local_var_path = '/signing_documents'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'applicant_id'] = applicant_id
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'SigningDocumentsList'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Token']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.list_signing_documents",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#list_signing_documents\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -4171,6 +4696,86 @@ module Onfido
       return data, status_code, headers
     end
 
+    # Update passkey
+    # Updates a passkey's state. 
+    # @param username [String] Username that owns the passkey.
+    # @param passkey_id [String] Passkey ID.
+    # @param passkey_updater [PasskeyUpdater] Passkey update payload.
+    # @param [Hash] opts the optional parameters
+    # @return [Passkey]
+    def update_passkey(username, passkey_id, passkey_updater, opts = {})
+      data, _status_code, _headers = update_passkey_with_http_info(username, passkey_id, passkey_updater, opts)
+      data
+    end
+
+    # Update passkey
+    # Updates a passkey&#39;s state. 
+    # @param username [String] Username that owns the passkey.
+    # @param passkey_id [String] Passkey ID.
+    # @param passkey_updater [PasskeyUpdater] Passkey update payload.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Passkey, Integer, Hash)>] Passkey data, response status code and response headers
+    def update_passkey_with_http_info(username, passkey_id, passkey_updater, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.update_passkey ...'
+      end
+      # verify the required parameter 'username' is set
+      if @api_client.config.client_side_validation && username.nil?
+        fail ArgumentError, "Missing the required parameter 'username' when calling DefaultApi.update_passkey"
+      end
+      # verify the required parameter 'passkey_id' is set
+      if @api_client.config.client_side_validation && passkey_id.nil?
+        fail ArgumentError, "Missing the required parameter 'passkey_id' when calling DefaultApi.update_passkey"
+      end
+      # verify the required parameter 'passkey_updater' is set
+      if @api_client.config.client_side_validation && passkey_updater.nil?
+        fail ArgumentError, "Missing the required parameter 'passkey_updater' when calling DefaultApi.update_passkey"
+      end
+      # resource path
+      local_var_path = '/passkeys/{username}/{passkey_id}'.sub('{' + 'username' + '}', CGI.escape(username.to_s)).sub('{' + 'passkey_id' + '}', CGI.escape(passkey_id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(passkey_updater)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Passkey'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Token']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.update_passkey",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:PUT, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#update_passkey\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Set match status (BETA)
     # Update the status of the given matches 
     # @param monitor_id [String] 
@@ -4556,6 +5161,82 @@ module Onfido
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DefaultApi#upload_live_photo\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Upload a signing document
+    # Signing documents are uploaded using this endpoint. Signing documents must be uploaded as a multipart form. The only valid file type is pdf. The file size must be between 2KB and 3MB. 
+    # @param applicant_id [String] The ID of the applicant whose signing document is being uploaded.
+    # @param file [File] The file to be uploaded.
+    # @param [Hash] opts the optional parameters
+    # @return [SigningDocument]
+    def upload_signing_document(applicant_id, file, opts = {})
+      data, _status_code, _headers = upload_signing_document_with_http_info(applicant_id, file, opts)
+      data
+    end
+
+    # Upload a signing document
+    # Signing documents are uploaded using this endpoint. Signing documents must be uploaded as a multipart form. The only valid file type is pdf. The file size must be between 2KB and 3MB. 
+    # @param applicant_id [String] The ID of the applicant whose signing document is being uploaded.
+    # @param file [File] The file to be uploaded.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(SigningDocument, Integer, Hash)>] SigningDocument data, response status code and response headers
+    def upload_signing_document_with_http_info(applicant_id, file, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.upload_signing_document ...'
+      end
+      # verify the required parameter 'applicant_id' is set
+      if @api_client.config.client_side_validation && applicant_id.nil?
+        fail ArgumentError, "Missing the required parameter 'applicant_id' when calling DefaultApi.upload_signing_document"
+      end
+      # verify the required parameter 'file' is set
+      if @api_client.config.client_side_validation && file.nil?
+        fail ArgumentError, "Missing the required parameter 'file' when calling DefaultApi.upload_signing_document"
+      end
+      # resource path
+      local_var_path = '/signing_documents'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['multipart/form-data'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+      form_params['applicant_id'] = applicant_id
+      form_params['file'] = file
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'SigningDocument'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Token']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.upload_signing_document",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#upload_signing_document\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
