@@ -41,6 +41,8 @@ module Onfido
 
     attr_accessor :issuing_date
 
+    attr_accessor :valid_from
+
     attr_accessor :categorisation
 
     attr_accessor :mrz_line1
@@ -143,6 +145,7 @@ module Onfido
         :'nationality' => :'nationality',
         :'issuing_state' => :'issuing_state',
         :'issuing_date' => :'issuing_date',
+        :'valid_from' => :'valid_from',
         :'categorisation' => :'categorisation',
         :'mrz_line1' => :'mrz_line1',
         :'mrz_line2' => :'mrz_line2',
@@ -199,6 +202,7 @@ module Onfido
         :'nationality' => :'String',
         :'issuing_state' => :'String',
         :'issuing_date' => :'Date',
+        :'valid_from' => :'Date',
         :'categorisation' => :'String',
         :'mrz_line1' => :'String',
         :'mrz_line2' => :'String',
@@ -307,6 +311,10 @@ module Onfido
 
       if attributes.key?(:'issuing_date')
         self.issuing_date = attributes[:'issuing_date']
+      end
+
+      if attributes.key?(:'valid_from')
+        self.valid_from = attributes[:'valid_from']
       end
 
       if attributes.key?(:'categorisation')
@@ -511,6 +519,7 @@ module Onfido
           nationality == o.nationality &&
           issuing_state == o.issuing_state &&
           issuing_date == o.issuing_date &&
+          valid_from == o.valid_from &&
           categorisation == o.categorisation &&
           mrz_line1 == o.mrz_line1 &&
           mrz_line2 == o.mrz_line2 &&
@@ -554,7 +563,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [date_of_birth, date_of_expiry, personal_number, document_numbers, document_type, first_name, middle_name, last_name, gender, issuing_country, nationality, issuing_state, issuing_date, categorisation, mrz_line1, mrz_line2, mrz_line3, address, place_of_birth, spouse_name, widow_name, alias_name, issuing_authority, remarks, civil_state, expatriation, father_name, mother_name, religion, type_of_permit, version_number, document_subtype, profession, security_document_number, tax_number, nist_identity_evidence_strength, has_issuance_confirmation, real_id_compliance, security_tier, address_lines, barcode, nfc, driving_licence_information, document_classification, extracted_data].hash
+      [date_of_birth, date_of_expiry, personal_number, document_numbers, document_type, first_name, middle_name, last_name, gender, issuing_country, nationality, issuing_state, issuing_date, valid_from, categorisation, mrz_line1, mrz_line2, mrz_line3, address, place_of_birth, spouse_name, widow_name, alias_name, issuing_authority, remarks, civil_state, expatriation, father_name, mother_name, religion, type_of_permit, version_number, document_subtype, profession, security_document_number, tax_number, nist_identity_evidence_strength, has_issuance_confirmation, real_id_compliance, security_tier, address_lines, barcode, nfc, driving_licence_information, document_classification, extracted_data].hash
     end
 
     # Builds the object from hash
