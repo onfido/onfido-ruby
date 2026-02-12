@@ -11,5 +11,5 @@ Generator version: 7.11.0
 =end
 
 module Onfido
-  VERSION = '5.7.0'
+  VERSION = '6.0.0'
 end

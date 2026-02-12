@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Onfido
-  class DocumentProperties
+  class DocumentPropertiesWithDrivingLicenceInformation
     attr_accessor :date_of_birth
 
     attr_accessor :date_of_expiry
@@ -105,6 +105,8 @@ module Onfido
 
     attr_accessor :extracted_data
 
+    attr_accessor :driving_licence_information
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -174,7 +176,8 @@ module Onfido
         :'barcode' => :'barcode',
         :'nfc' => :'nfc',
         :'document_classification' => :'document_classification',
-        :'extracted_data' => :'extracted_data'
+        :'extracted_data' => :'extracted_data',
+        :'driving_licence_information' => :'driving_licence_information'
       }
     end
 
@@ -230,7 +233,8 @@ module Onfido
         :'barcode' => :'Array<DocumentPropertiesBarcodeInner>',
         :'nfc' => :'DocumentPropertiesNfc',
         :'document_classification' => :'DocumentPropertiesDocumentClassification',
-        :'extracted_data' => :'DocumentPropertiesExtractedData'
+        :'extracted_data' => :'DocumentPropertiesExtractedData',
+        :'driving_licence_information' => :'Array<DocumentPropertiesDrivingLicenceInformationItem>'
       }
     end
 
@@ -240,17 +244,25 @@ module Onfido
       ])
     end
 
+    # List of class defined in allOf (OpenAPI v3)
+    def self.openapi_all_of
+      [
+      :'DocumentProperties',
+      :'DocumentPropertiesWithDrivingLicenceInformation'
+      ]
+    end
+
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::DocumentProperties` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::DocumentPropertiesWithDrivingLicenceInformation` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::DocumentProperties`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::DocumentPropertiesWithDrivingLicenceInformation`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -438,6 +450,12 @@ module Onfido
       if attributes.key?(:'extracted_data')
         self.extracted_data = attributes[:'extracted_data']
       end
+
+      if attributes.key?(:'driving_licence_information')
+        if (value = attributes[:'driving_licence_information']).is_a?(Array)
+          self.driving_licence_information = value
+        end
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -540,7 +558,8 @@ module Onfido
           barcode == o.barcode &&
           nfc == o.nfc &&
           document_classification == o.document_classification &&
-          extracted_data == o.extracted_data
+          extracted_data == o.extracted_data &&
+          driving_licence_information == o.driving_licence_information
     end
 
     # @see the `==` method
@@ -552,7 +571,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [date_of_birth, date_of_expiry, personal_number, document_numbers, document_type, first_name, middle_name, last_name, gender, issuing_country, nationality, issuing_state, issuing_date, valid_from, categorisation, mrz_line1, mrz_line2, mrz_line3, address, place_of_birth, spouse_name, widow_name, alias_name, issuing_authority, remarks, civil_state, expatriation, father_name, mother_name, religion, type_of_permit, version_number, document_subtype, profession, security_document_number, tax_number, nist_identity_evidence_strength, has_issuance_confirmation, real_id_compliance, security_tier, address_lines, barcode, nfc, document_classification, extracted_data].hash
+      [date_of_birth, date_of_expiry, personal_number, document_numbers, document_type, first_name, middle_name, last_name, gender, issuing_country, nationality, issuing_state, issuing_date, valid_from, categorisation, mrz_line1, mrz_line2, mrz_line3, address, place_of_birth, spouse_name, widow_name, alias_name, issuing_authority, remarks, civil_state, expatriation, father_name, mother_name, religion, type_of_permit, version_number, document_subtype, profession, security_document_number, tax_number, nist_identity_evidence_strength, has_issuance_confirmation, real_id_compliance, security_tier, address_lines, barcode, nfc, document_classification, extracted_data, driving_licence_information].hash
     end
 
     # Builds the object from hash

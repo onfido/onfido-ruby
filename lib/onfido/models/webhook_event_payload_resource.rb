@@ -54,6 +54,9 @@ module Onfido
     # The reasons the Workflow Run outcome was reached. Configurable when creating the Workflow Version.
     attr_accessor :reasons
 
+    # A list of tags associated with the Workflow Run.
+    attr_accessor :tags
+
     # Object for the configuration of the Workflow Run link.
     attr_accessor :link
 
@@ -82,6 +85,7 @@ module Onfido
         :'input' => :'input',
         :'output' => :'output',
         :'reasons' => :'reasons',
+        :'tags' => :'tags',
         :'link' => :'link',
         :'error' => :'error',
         :'customer_user_id' => :'customer_user_id',
@@ -110,6 +114,7 @@ module Onfido
         :'input' => :'Object',
         :'output' => :'Object',
         :'reasons' => :'Array<String>',
+        :'tags' => :'Array<String>',
         :'link' => :'WorkflowRunLink',
         :'error' => :'WorkflowRunError',
         :'customer_user_id' => :'String',
@@ -191,6 +196,12 @@ module Onfido
       if attributes.key?(:'reasons')
         if (value = attributes[:'reasons']).is_a?(Array)
           self.reasons = value
+        end
+      end
+
+      if attributes.key?(:'tags')
+        if (value = attributes[:'tags']).is_a?(Array)
+          self.tags = value
         end
       end
 
@@ -284,6 +295,7 @@ module Onfido
           input == o.input &&
           output == o.output &&
           reasons == o.reasons &&
+          tags == o.tags &&
           link == o.link &&
           error == o.error &&
           customer_user_id == o.customer_user_id &&
@@ -299,7 +311,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, applicant_id, created_at, updated_at, dashboard_url, workflow_id, workflow_run_id, workflow_version_id, task_def_id, task_def_version, input, output, reasons, link, error, customer_user_id, timeline_file_download_url].hash
+      [id, applicant_id, created_at, updated_at, dashboard_url, workflow_id, workflow_run_id, workflow_version_id, task_def_id, task_def_version, input, output, reasons, tags, link, error, customer_user_id, timeline_file_download_url].hash
     end
 
     # Builds the object from hash

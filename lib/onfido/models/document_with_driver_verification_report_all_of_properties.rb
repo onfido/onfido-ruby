@@ -101,8 +101,6 @@ module Onfido
 
     attr_accessor :nfc
 
-    attr_accessor :driving_licence_information
-
     attr_accessor :document_classification
 
     attr_accessor :extracted_data
@@ -195,7 +193,6 @@ module Onfido
         :'address_lines' => :'address_lines',
         :'barcode' => :'barcode',
         :'nfc' => :'nfc',
-        :'driving_licence_information' => :'driving_licence_information',
         :'document_classification' => :'document_classification',
         :'extracted_data' => :'extracted_data',
         :'drivers_licence' => :'drivers_licence',
@@ -259,7 +256,6 @@ module Onfido
         :'address_lines' => :'DocumentPropertiesAddressLines',
         :'barcode' => :'Array<DocumentPropertiesBarcodeInner>',
         :'nfc' => :'DocumentPropertiesNfc',
-        :'driving_licence_information' => :'Array<DocumentPropertiesDrivingLicenceInformationItem>',
         :'document_classification' => :'DocumentPropertiesDocumentClassification',
         :'extracted_data' => :'DocumentPropertiesExtractedData',
         :'drivers_licence' => :'Boolean',
@@ -476,12 +472,6 @@ module Onfido
         self.nfc = attributes[:'nfc']
       end
 
-      if attributes.key?(:'driving_licence_information')
-        if (value = attributes[:'driving_licence_information']).is_a?(Array)
-          self.driving_licence_information = value
-        end
-      end
-
       if attributes.key?(:'document_classification')
         self.document_classification = attributes[:'document_classification']
       end
@@ -620,7 +610,6 @@ module Onfido
           address_lines == o.address_lines &&
           barcode == o.barcode &&
           nfc == o.nfc &&
-          driving_licence_information == o.driving_licence_information &&
           document_classification == o.document_classification &&
           extracted_data == o.extracted_data &&
           drivers_licence == o.drivers_licence &&
@@ -641,7 +630,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [date_of_birth, date_of_expiry, personal_number, document_numbers, document_type, first_name, middle_name, last_name, gender, issuing_country, nationality, issuing_state, issuing_date, valid_from, categorisation, mrz_line1, mrz_line2, mrz_line3, address, place_of_birth, spouse_name, widow_name, alias_name, issuing_authority, remarks, civil_state, expatriation, father_name, mother_name, religion, type_of_permit, version_number, document_subtype, profession, security_document_number, tax_number, nist_identity_evidence_strength, has_issuance_confirmation, real_id_compliance, security_tier, address_lines, barcode, nfc, driving_licence_information, document_classification, extracted_data, drivers_licence, restricted_licence, raw_licence_category, raw_vehicle_classes, manual_transmission_restriction, vehicle_class_details, passenger_vehicle].hash
+      [date_of_birth, date_of_expiry, personal_number, document_numbers, document_type, first_name, middle_name, last_name, gender, issuing_country, nationality, issuing_state, issuing_date, valid_from, categorisation, mrz_line1, mrz_line2, mrz_line3, address, place_of_birth, spouse_name, widow_name, alias_name, issuing_authority, remarks, civil_state, expatriation, father_name, mother_name, religion, type_of_permit, version_number, document_subtype, profession, security_document_number, tax_number, nist_identity_evidence_strength, has_issuance_confirmation, real_id_compliance, security_tier, address_lines, barcode, nfc, document_classification, extracted_data, drivers_licence, restricted_licence, raw_licence_category, raw_vehicle_classes, manual_transmission_restriction, vehicle_class_details, passenger_vehicle].hash
     end
 
     # Builds the object from hash

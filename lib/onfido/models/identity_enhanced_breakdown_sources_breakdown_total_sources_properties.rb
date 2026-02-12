@@ -32,7 +32,7 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'total_number_of_sources' => :'Integer'
+        :'total_number_of_sources' => :'String'
       }
     end
 
