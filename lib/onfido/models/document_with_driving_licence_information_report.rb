@@ -99,7 +99,7 @@ module Onfido
         :'name' => :'ReportName',
         :'documents' => :'Array<ReportDocument>',
         :'breakdown' => :'DocumentBreakdown',
-        :'properties' => :'DocumentProperties'
+        :'properties' => :'DocumentPropertiesWithDrivingLicenceInformation'
       }
     end
 

@@ -4166,10 +4166,11 @@ module Onfido
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :page The number of the page to be retrieved. If not specified, defaults to 1. (default to 1)
     # @option opts [String] :status A list of comma separated status values to filter the results. Possible values are &#39;processing&#39;, &#39;awaiting_input&#39;, &#39;approved&#39;, &#39;declined&#39;, &#39;review&#39;, &#39;abandoned&#39; and &#39;error&#39;.
-    # @option opts [Time] :created_at_gt A ISO-8601 date to filter results with a created date greater than (after) the one provided.
-    # @option opts [Time] :created_at_lt A ISO-8601 date to filter results with a created date less than (before) the one provided.
+    # @option opts [Date] :created_at_gt A ISO-8601 date to filter results with a created date greater than (after) the one provided.
+    # @option opts [Date] :created_at_lt A ISO-8601 date to filter results with a created date less than (before) the one provided.
     # @option opts [String] :sort A string with the value &#39;desc&#39; or &#39;asc&#39; that allows to sort the returned list by the completed datetime either descending or ascending, respectively. If not specified, defaults to &#39;desc&#39;. (default to 'desc')
     # @option opts [String] :applicant_id the applicant&#39;s id.
+    # @option opts [Array<String>] :tags A list of tags to filter the results.
     # @return [Array<WorkflowRun>]
     def list_workflow_runs(opts = {})
       data, _status_code, _headers = list_workflow_runs_with_http_info(opts)
@@ -4181,10 +4182,11 @@ module Onfido
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :page The number of the page to be retrieved. If not specified, defaults to 1. (default to 1)
     # @option opts [String] :status A list of comma separated status values to filter the results. Possible values are &#39;processing&#39;, &#39;awaiting_input&#39;, &#39;approved&#39;, &#39;declined&#39;, &#39;review&#39;, &#39;abandoned&#39; and &#39;error&#39;.
-    # @option opts [Time] :created_at_gt A ISO-8601 date to filter results with a created date greater than (after) the one provided.
-    # @option opts [Time] :created_at_lt A ISO-8601 date to filter results with a created date less than (before) the one provided.
+    # @option opts [Date] :created_at_gt A ISO-8601 date to filter results with a created date greater than (after) the one provided.
+    # @option opts [Date] :created_at_lt A ISO-8601 date to filter results with a created date less than (before) the one provided.
     # @option opts [String] :sort A string with the value &#39;desc&#39; or &#39;asc&#39; that allows to sort the returned list by the completed datetime either descending or ascending, respectively. If not specified, defaults to &#39;desc&#39;. (default to 'desc')
     # @option opts [String] :applicant_id the applicant&#39;s id.
+    # @option opts [Array<String>] :tags A list of tags to filter the results.
     # @return [Array<(Array<WorkflowRun>, Integer, Hash)>] Array<WorkflowRun> data, response status code and response headers
     def list_workflow_runs_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -4205,6 +4207,7 @@ module Onfido
       query_params[:'created_at_lt'] = opts[:'created_at_lt'] if !opts[:'created_at_lt'].nil?
       query_params[:'sort'] = opts[:'sort'] if !opts[:'sort'].nil?
       query_params[:'applicant_id'] = opts[:'applicant_id'] if !opts[:'applicant_id'].nil?
+      query_params[:'tags'] = @api_client.build_collection_param(opts[:'tags'], :csv) if !opts[:'tags'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
