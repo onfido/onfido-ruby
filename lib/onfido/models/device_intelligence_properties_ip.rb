@@ -14,19 +14,14 @@ require 'date'
 require 'time'
 
 module Onfido
-  class DeviceIntelligenceBreakdownProperties
-    attr_accessor :device
-
-    attr_accessor :ip
-
-    attr_accessor :geolocation
+  class DeviceIntelligencePropertiesIp
+    # The IP address that uploaded the media.
+    attr_accessor :address
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'device' => :'device',
-        :'ip' => :'ip',
-        :'geolocation' => :'geolocation'
+        :'address' => :'address'
       }
     end
 
@@ -43,9 +38,7 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'device' => :'DeviceIntelligenceBreakdownPropertiesDevice',
-        :'ip' => :'DeviceIntelligenceBreakdownPropertiesIp',
-        :'geolocation' => :'DeviceIntelligenceBreakdownPropertiesGeolocation'
+        :'address' => :'String'
       }
     end
 
@@ -59,28 +52,20 @@ module Onfido
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::DeviceIntelligenceBreakdownProperties` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::DeviceIntelligencePropertiesIp` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!acceptable_attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::DeviceIntelligenceBreakdownProperties`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::DeviceIntelligencePropertiesIp`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'device')
-        self.device = attributes[:'device']
-      end
-
-      if attributes.key?(:'ip')
-        self.ip = attributes[:'ip']
-      end
-
-      if attributes.key?(:'geolocation')
-        self.geolocation = attributes[:'geolocation']
+      if attributes.key?(:'address')
+        self.address = attributes[:'address']
       end
     end
 
@@ -104,9 +89,7 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          device == o.device &&
-          ip == o.ip &&
-          geolocation == o.geolocation
+          address == o.address
     end
 
     # @see the `==` method
@@ -118,7 +101,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [device, ip, geolocation].hash
+      [address].hash
     end
 
     # Builds the object from hash

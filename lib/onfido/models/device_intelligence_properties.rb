@@ -43,9 +43,9 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'device' => :'DeviceIntelligenceBreakdownPropertiesDevice',
-        :'ip' => :'DeviceIntelligenceBreakdownPropertiesIp',
-        :'geolocation' => :'DeviceIntelligenceBreakdownPropertiesGeolocation'
+        :'device' => :'DeviceIntelligencePropertiesDevice',
+        :'ip' => :'DeviceIntelligencePropertiesIp',
+        :'geolocation' => :'DeviceIntelligencePropertiesGeolocation'
       }
     end
 

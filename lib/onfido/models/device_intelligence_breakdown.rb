@@ -17,13 +17,10 @@ module Onfido
   class DeviceIntelligenceBreakdown
     attr_accessor :device
 
-    attr_accessor :properties
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'device' => :'device',
-        :'properties' => :'properties'
+        :'device' => :'device'
       }
     end
 
@@ -40,8 +37,7 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'device' => :'DeviceIntelligenceBreakdownDevice',
-        :'properties' => :'DeviceIntelligenceBreakdownProperties'
+        :'device' => :'DeviceIntelligenceBreakdownDevice'
       }
     end
 
@@ -70,10 +66,6 @@ module Onfido
       if attributes.key?(:'device')
         self.device = attributes[:'device']
       end
-
-      if attributes.key?(:'properties')
-        self.properties = attributes[:'properties']
-      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -96,8 +88,7 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          device == o.device &&
-          properties == o.properties
+          device == o.device
     end
 
     # @see the `==` method
@@ -109,7 +100,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [device, properties].hash
+      [device].hash
     end
 
     # Builds the object from hash

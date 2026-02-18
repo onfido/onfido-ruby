@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Onfido
-  class DeviceIntelligenceBreakdownPropertiesDevice
+  class DeviceIntelligencePropertiesDevice
     # The SDK version that was used.
     attr_accessor :sdk_version
 
@@ -140,14 +140,14 @@ module Onfido
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::DeviceIntelligenceBreakdownPropertiesDevice` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::DeviceIntelligencePropertiesDevice` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!acceptable_attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::DeviceIntelligenceBreakdownPropertiesDevice`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::DeviceIntelligencePropertiesDevice`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
