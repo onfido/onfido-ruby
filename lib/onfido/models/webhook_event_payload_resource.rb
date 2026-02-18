@@ -22,6 +22,8 @@ module Onfido
     # The unique identifier for the Applicant.
     attr_accessor :applicant_id
 
+    attr_accessor :status
+
     # The date and time when the resource was created.
     attr_accessor :created_at
 
@@ -69,11 +71,34 @@ module Onfido
     # Pre-signed URL to download the timeline file for the Workflow Run.
     attr_accessor :timeline_file_download_url
 
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'id' => :'id',
         :'applicant_id' => :'applicant_id',
+        :'status' => :'status',
         :'created_at' => :'created_at',
         :'updated_at' => :'updated_at',
         :'dashboard_url' => :'dashboard_url',
@@ -108,6 +133,7 @@ module Onfido
       {
         :'id' => :'String',
         :'applicant_id' => :'String',
+        :'status' => :'WebhookEventResourceStatus',
         :'created_at' => :'Time',
         :'updated_at' => :'Time',
         :'dashboard_url' => :'String',
@@ -157,6 +183,10 @@ module Onfido
 
       if attributes.key?(:'applicant_id')
         self.applicant_id = attributes[:'applicant_id']
+      end
+
+      if attributes.key?(:'status')
+        self.status = attributes[:'status']
       end
 
       if attributes.key?(:'created_at')
@@ -290,6 +320,7 @@ module Onfido
       self.class == o.class &&
           id == o.id &&
           applicant_id == o.applicant_id &&
+          status == o.status &&
           created_at == o.created_at &&
           updated_at == o.updated_at &&
           dashboard_url == o.dashboard_url &&
@@ -317,7 +348,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, applicant_id, created_at, updated_at, dashboard_url, workflow_id, workflow_run_id, workflow_version_id, task_def_id, task_def_version, input, output, reasons, tags, link, error, customer_user_id, timeline_file_download_url].hash
+      [id, applicant_id, status, created_at, updated_at, dashboard_url, workflow_id, workflow_run_id, workflow_version_id, task_def_id, task_def_version, input, output, reasons, tags, link, error, customer_user_id, timeline_file_download_url].hash
     end
 
     # Builds the object from hash
