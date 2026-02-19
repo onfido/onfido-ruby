@@ -106,7 +106,7 @@ def repeat_request_until_task_output_changes(max_retries = 15,
   instance
 end
 
-def repeat_request_unti_http_code_changes(max_retries = 15,
+def repeat_request_until_http_code_changes(max_retries = 15,
   interval = 1, &proc)
   # max_retries        --> how many times to retry the request
   # interval           --> how many seconds to wait until the next retry

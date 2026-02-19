@@ -50,7 +50,11 @@ describe Onfido::WorkflowRun do
     end
 
     describe 'downloading evidence file' do
-      let(:file) { onfido_api.download_signed_evidence_file(workflow_run_id) }
+      let(:file) do
+        repeat_request_until_http_code_changes(15, 2) do
+          onfido_api.download_signed_evidence_file(workflow_run_id)
+        end
+      end
 
       it_behaves_like "a valid PDF file", 497605
     end
@@ -76,7 +80,7 @@ describe Onfido::WorkflowRun do
         end
 
         timeline_file_id = onfido_api.create_timeline_file(workflow_run_id).workflow_timeline_file_id
-        file = repeat_request_unti_http_code_changes do
+        file = repeat_request_until_http_code_changes do
           onfido_api.find_timeline_file(workflow_run_id, timeline_file_id)
         end
 
@@ -84,7 +88,7 @@ describe Onfido::WorkflowRun do
       end
 
       it 'downloads an evidence folder' do
-        file = repeat_request_unti_http_code_changes do
+        file = repeat_request_until_http_code_changes(15, 2) do
           onfido_api.download_evidence_folder(workflow_run_id)
         end
 
