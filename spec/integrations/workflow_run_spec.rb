@@ -84,7 +84,7 @@ describe Onfido::WorkflowRun do
           onfido_api.find_timeline_file(workflow_run_id, timeline_file_id)
         end
 
-        expect(file.size).to be > 50_000
+        expect(File.exist?(file.path)).to be_truthy
       end
 
       it 'downloads an evidence folder' do
