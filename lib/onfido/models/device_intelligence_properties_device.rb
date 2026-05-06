@@ -39,6 +39,12 @@ module Onfido
     # Whether the device is providing false randomized device and network information.
     attr_accessor :randomized_device
 
+    # Counts the number of distinct document reports submitted in the last 24 hours that are associated with the applicant’s IP address.
+    attr_accessor :number_of_ip_reuse_reports
+
+    # Counts the number of distinct document reports from the last 24 hours associated with the applicant’s IP address that have a result of suspected and other document integrity or authenticity signals have been flagged.
+    attr_accessor :number_of_suspected_ip_reuse_reports
+
     # Whether device is using stolen security tokens to send the network information.
     attr_accessor :fake_network_request
 
@@ -90,6 +96,8 @@ module Onfido
         :'browser' => :'browser',
         :'emulator' => :'emulator',
         :'randomized_device' => :'randomized_device',
+        :'number_of_ip_reuse_reports' => :'number_of_ip_reuse_reports',
+        :'number_of_suspected_ip_reuse_reports' => :'number_of_suspected_ip_reuse_reports',
         :'fake_network_request' => :'fake_network_request',
         :'ip_reputation' => :'ip_reputation',
         :'device_fingerprint_reuse' => :'device_fingerprint_reuse',
@@ -120,6 +128,8 @@ module Onfido
         :'browser' => :'String',
         :'emulator' => :'Boolean',
         :'randomized_device' => :'Boolean',
+        :'number_of_ip_reuse_reports' => :'Float',
+        :'number_of_suspected_ip_reuse_reports' => :'Float',
         :'fake_network_request' => :'Boolean',
         :'ip_reputation' => :'String',
         :'device_fingerprint_reuse' => :'Float',
@@ -182,6 +192,14 @@ module Onfido
 
       if attributes.key?(:'randomized_device')
         self.randomized_device = attributes[:'randomized_device']
+      end
+
+      if attributes.key?(:'number_of_ip_reuse_reports')
+        self.number_of_ip_reuse_reports = attributes[:'number_of_ip_reuse_reports']
+      end
+
+      if attributes.key?(:'number_of_suspected_ip_reuse_reports')
+        self.number_of_suspected_ip_reuse_reports = attributes[:'number_of_suspected_ip_reuse_reports']
       end
 
       if attributes.key?(:'fake_network_request')
@@ -297,6 +315,8 @@ module Onfido
           browser == o.browser &&
           emulator == o.emulator &&
           randomized_device == o.randomized_device &&
+          number_of_ip_reuse_reports == o.number_of_ip_reuse_reports &&
+          number_of_suspected_ip_reuse_reports == o.number_of_suspected_ip_reuse_reports &&
           fake_network_request == o.fake_network_request &&
           ip_reputation == o.ip_reputation &&
           device_fingerprint_reuse == o.device_fingerprint_reuse &&
@@ -314,7 +334,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [sdk_version, sdk_source, authentication_type, raw_model, os, browser, emulator, randomized_device, fake_network_request, ip_reputation, device_fingerprint_reuse, single_device_used, document_capture, biometric_capture].hash
+      [sdk_version, sdk_source, authentication_type, raw_model, os, browser, emulator, randomized_device, number_of_ip_reuse_reports, number_of_suspected_ip_reuse_reports, fake_network_request, ip_reputation, device_fingerprint_reuse, single_device_used, document_capture, biometric_capture].hash
     end
 
     # Builds the object from hash
