@@ -20,8 +20,8 @@ module Onfido
       @api_client = api_client
     end
     # Cancel report
-    # Cancels single paused reports. 
-    # @param report_id [String] 
+    # Cancels single paused reports.
+    # @param report_id [String]
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def cancel_report(report_id, opts = {})
@@ -30,8 +30,8 @@ module Onfido
     end
 
     # Cancel report
-    # Cancels single paused reports. 
-    # @param report_id [String] 
+    # Cancels single paused reports.
+    # @param report_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
     def cancel_report_with_http_info(report_id, opts = {})
@@ -63,7 +63,7 @@ module Onfido
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['Token', 'OAuth2ClientCredentials']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.cancel_report",
@@ -83,10 +83,10 @@ module Onfido
     end
 
     # Complete Task
-    # Completes a Send / Receive Data Task. 
+    # Completes a Send / Receive Data Task.
     # @param workflow_run_id [String] The unique identifier of the Workflow Run to which the Task belongs.
     # @param task_id [String] The identifier of the Task you want to complete.
-    # @param complete_task_builder [CompleteTaskBuilder] 
+    # @param complete_task_builder [CompleteTaskBuilder]
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def complete_task(workflow_run_id, task_id, complete_task_builder, opts = {})
@@ -95,10 +95,10 @@ module Onfido
     end
 
     # Complete Task
-    # Completes a Send / Receive Data Task. 
+    # Completes a Send / Receive Data Task.
     # @param workflow_run_id [String] The unique identifier of the Workflow Run to which the Task belongs.
     # @param task_id [String] The identifier of the Task you want to complete.
-    # @param complete_task_builder [CompleteTaskBuilder] 
+    # @param complete_task_builder [CompleteTaskBuilder]
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
     def complete_task_with_http_info(workflow_run_id, task_id, complete_task_builder, opts = {})
@@ -143,7 +143,7 @@ module Onfido
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.complete_task",
@@ -163,8 +163,8 @@ module Onfido
     end
 
     # Create Applicant
-    # Creates a single applicant. Returns an applicant object. 
-    # @param applicant_builder [ApplicantBuilder] 
+    # Creates a single applicant. Returns an applicant object.
+    # @param applicant_builder [ApplicantBuilder]
     # @param [Hash] opts the optional parameters
     # @return [Applicant]
     def create_applicant(applicant_builder, opts = {})
@@ -173,8 +173,8 @@ module Onfido
     end
 
     # Create Applicant
-    # Creates a single applicant. Returns an applicant object. 
-    # @param applicant_builder [ApplicantBuilder] 
+    # Creates a single applicant. Returns an applicant object.
+    # @param applicant_builder [ApplicantBuilder]
     # @param [Hash] opts the optional parameters
     # @return [Array<(Applicant, Integer, Hash)>] Applicant data, response status code and response headers
     def create_applicant_with_http_info(applicant_builder, opts = {})
@@ -211,7 +211,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Applicant'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.create_applicant",
@@ -231,8 +231,8 @@ module Onfido
     end
 
     # Create a check
-    # Initiates a check for an applicant, which can contain one or more reports. Returns a check object. 
-    # @param check_builder [CheckBuilder] 
+    # Initiates a check for an applicant, which can contain one or more reports. Returns a check object.
+    # @param check_builder [CheckBuilder]
     # @param [Hash] opts the optional parameters
     # @return [Check]
     def create_check(check_builder, opts = {})
@@ -241,8 +241,8 @@ module Onfido
     end
 
     # Create a check
-    # Initiates a check for an applicant, which can contain one or more reports. Returns a check object. 
-    # @param check_builder [CheckBuilder] 
+    # Initiates a check for an applicant, which can contain one or more reports. Returns a check object.
+    # @param check_builder [CheckBuilder]
     # @param [Hash] opts the optional parameters
     # @return [Array<(Check, Integer, Hash)>] Check data, response status code and response headers
     def create_check_with_http_info(check_builder, opts = {})
@@ -279,7 +279,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Check'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.create_check",
@@ -299,7 +299,7 @@ module Onfido
     end
 
     # Create Timeline File for Workflow Run
-    # Triggers the generation of the Timeline File for the designated Workflow Run. 
+    # Triggers the generation of the Timeline File for the designated Workflow Run.
     # @param workflow_run_id [String] The unique identifier of the Workflow Run.
     # @param [Hash] opts the optional parameters
     # @return [TimelineFileReference]
@@ -309,7 +309,7 @@ module Onfido
     end
 
     # Create Timeline File for Workflow Run
-    # Triggers the generation of the Timeline File for the designated Workflow Run. 
+    # Triggers the generation of the Timeline File for the designated Workflow Run.
     # @param workflow_run_id [String] The unique identifier of the Workflow Run.
     # @param [Hash] opts the optional parameters
     # @return [Array<(TimelineFileReference, Integer, Hash)>] TimelineFileReference data, response status code and response headers
@@ -342,7 +342,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'TimelineFileReference'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.create_timeline_file",
@@ -362,8 +362,8 @@ module Onfido
     end
 
     # Create monitor
-    # Creates a new monitor for the applicant 
-    # @param watchlist_monitor_builder [WatchlistMonitorBuilder] 
+    # Creates a new monitor for the applicant
+    # @param watchlist_monitor_builder [WatchlistMonitorBuilder]
     # @param [Hash] opts the optional parameters
     # @return [WatchlistMonitor]
     def create_watchlist_monitor(watchlist_monitor_builder, opts = {})
@@ -372,8 +372,8 @@ module Onfido
     end
 
     # Create monitor
-    # Creates a new monitor for the applicant 
-    # @param watchlist_monitor_builder [WatchlistMonitorBuilder] 
+    # Creates a new monitor for the applicant
+    # @param watchlist_monitor_builder [WatchlistMonitorBuilder]
     # @param [Hash] opts the optional parameters
     # @return [Array<(WatchlistMonitor, Integer, Hash)>] WatchlistMonitor data, response status code and response headers
     def create_watchlist_monitor_with_http_info(watchlist_monitor_builder, opts = {})
@@ -410,7 +410,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'WatchlistMonitor'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.create_watchlist_monitor",
@@ -430,8 +430,8 @@ module Onfido
     end
 
     # Register webhook
-    # Registers a webhook. Returns a webhook object. 
-    # @param webhook_builder [WebhookBuilder] 
+    # Registers a webhook. Returns a webhook object.
+    # @param webhook_builder [WebhookBuilder]
     # @param [Hash] opts the optional parameters
     # @return [Webhook]
     def create_webhook(webhook_builder, opts = {})
@@ -440,8 +440,8 @@ module Onfido
     end
 
     # Register webhook
-    # Registers a webhook. Returns a webhook object. 
-    # @param webhook_builder [WebhookBuilder] 
+    # Registers a webhook. Returns a webhook object.
+    # @param webhook_builder [WebhookBuilder]
     # @param [Hash] opts the optional parameters
     # @return [Array<(Webhook, Integer, Hash)>] Webhook data, response status code and response headers
     def create_webhook_with_http_info(webhook_builder, opts = {})
@@ -478,7 +478,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Webhook'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.create_webhook",
@@ -498,8 +498,8 @@ module Onfido
     end
 
     # Create a Workflow Run
-    # Creates and starts a Workflow Run. Returns a Workflow Run object. 
-    # @param workflow_run_builder [WorkflowRunBuilder] 
+    # Creates and starts a Workflow Run. Returns a Workflow Run object.
+    # @param workflow_run_builder [WorkflowRunBuilder]
     # @param [Hash] opts the optional parameters
     # @return [WorkflowRun]
     def create_workflow_run(workflow_run_builder, opts = {})
@@ -508,8 +508,8 @@ module Onfido
     end
 
     # Create a Workflow Run
-    # Creates and starts a Workflow Run. Returns a Workflow Run object. 
-    # @param workflow_run_builder [WorkflowRunBuilder] 
+    # Creates and starts a Workflow Run. Returns a Workflow Run object.
+    # @param workflow_run_builder [WorkflowRunBuilder]
     # @param [Hash] opts the optional parameters
     # @return [Array<(WorkflowRun, Integer, Hash)>] WorkflowRun data, response status code and response headers
     def create_workflow_run_with_http_info(workflow_run_builder, opts = {})
@@ -546,7 +546,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'WorkflowRun'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.create_workflow_run",
@@ -566,8 +566,8 @@ module Onfido
     end
 
     # Delete Applicant
-    # Deletes a single applicant. 
-    # @param applicant_id [String] 
+    # Deletes a single applicant.
+    # @param applicant_id [String]
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def delete_applicant(applicant_id, opts = {})
@@ -576,8 +576,8 @@ module Onfido
     end
 
     # Delete Applicant
-    # Deletes a single applicant. 
-    # @param applicant_id [String] 
+    # Deletes a single applicant.
+    # @param applicant_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
     def delete_applicant_with_http_info(applicant_id, opts = {})
@@ -609,7 +609,7 @@ module Onfido
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.delete_applicant",
@@ -629,7 +629,7 @@ module Onfido
     end
 
     # Delete passkey
-    # Deletes a passkey. 
+    # Deletes a passkey.
     # @param username [String] Username that owns the passkey.
     # @param passkey_id [String] Passkey ID.
     # @param [Hash] opts the optional parameters
@@ -640,7 +640,7 @@ module Onfido
     end
 
     # Delete passkey
-    # Deletes a passkey. 
+    # Deletes a passkey.
     # @param username [String] Username that owns the passkey.
     # @param passkey_id [String] Passkey ID.
     # @param [Hash] opts the optional parameters
@@ -678,7 +678,7 @@ module Onfido
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.delete_passkey",
@@ -698,7 +698,7 @@ module Onfido
     end
 
     # Delete passkeys
-    # Removes every passkey for the username. 
+    # Removes every passkey for the username.
     # @param username [String] Username whose passkeys will be deleted.
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -708,7 +708,7 @@ module Onfido
     end
 
     # Delete passkeys
-    # Removes every passkey for the username. 
+    # Removes every passkey for the username.
     # @param username [String] Username whose passkeys will be deleted.
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -741,7 +741,7 @@ module Onfido
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.delete_passkeys",
@@ -761,8 +761,8 @@ module Onfido
     end
 
     # Delete monitor
-    # Deactivates the given monitor 
-    # @param monitor_id [String] 
+    # Deactivates the given monitor
+    # @param monitor_id [String]
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def delete_watchlist_monitor(monitor_id, opts = {})
@@ -771,8 +771,8 @@ module Onfido
     end
 
     # Delete monitor
-    # Deactivates the given monitor 
-    # @param monitor_id [String] 
+    # Deactivates the given monitor
+    # @param monitor_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
     def delete_watchlist_monitor_with_http_info(monitor_id, opts = {})
@@ -804,7 +804,7 @@ module Onfido
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.delete_watchlist_monitor",
@@ -824,8 +824,8 @@ module Onfido
     end
 
     # Delete a webhook
-    # Deletes a webhook. 
-    # @param webhook_id [String] 
+    # Deletes a webhook.
+    # @param webhook_id [String]
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def delete_webhook(webhook_id, opts = {})
@@ -834,8 +834,8 @@ module Onfido
     end
 
     # Delete a webhook
-    # Deletes a webhook. 
-    # @param webhook_id [String] 
+    # Deletes a webhook.
+    # @param webhook_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
     def delete_webhook_with_http_info(webhook_id, opts = {})
@@ -867,7 +867,7 @@ module Onfido
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.delete_webhook",
@@ -887,7 +887,7 @@ module Onfido
     end
 
     # Retrieves the signed document or signing transaction receipt
-    # Retrieves the signed document or signing transaction receipt depending on the id provided. 
+    # Retrieves the signed document or signing transaction receipt depending on the id provided.
     # @param workflow_run_id [String] The unique identifier of the Workflow Run for which you want to retrieve the signed document.
     # @param id [String] The unique identifier of the file which you want to retrieve.
     # @param [Hash] opts the optional parameters
@@ -898,7 +898,7 @@ module Onfido
     end
 
     # Retrieves the signed document or signing transaction receipt
-    # Retrieves the signed document or signing transaction receipt depending on the id provided. 
+    # Retrieves the signed document or signing transaction receipt depending on the id provided.
     # @param workflow_run_id [String] The unique identifier of the Workflow Run for which you want to retrieve the signed document.
     # @param id [String] The unique identifier of the file which you want to retrieve.
     # @param [Hash] opts the optional parameters
@@ -938,7 +938,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_aes_document",
@@ -958,8 +958,8 @@ module Onfido
     end
 
     # Download check
-    # Downloads a PDF of a check with a given check ID. Returns the binary data representing the PDF. 
-    # @param check_id [String] 
+    # Downloads a PDF of a check with a given check ID. Returns the binary data representing the PDF.
+    # @param check_id [String]
     # @param [Hash] opts the optional parameters
     # @return [File]
     def download_check(check_id, opts = {})
@@ -968,8 +968,8 @@ module Onfido
     end
 
     # Download check
-    # Downloads a PDF of a check with a given check ID. Returns the binary data representing the PDF. 
-    # @param check_id [String] 
+    # Downloads a PDF of a check with a given check ID. Returns the binary data representing the PDF.
+    # @param check_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(File, Integer, Hash)>] File data, response status code and response headers
     def download_check_with_http_info(check_id, opts = {})
@@ -1001,7 +1001,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_check",
@@ -1021,8 +1021,8 @@ module Onfido
     end
 
     # Download document
-    # Downloads specific documents belonging to an applicant. If successful, the response will be the binary data representing the image. 
-    # @param document_id [String] 
+    # Downloads specific documents belonging to an applicant. If successful, the response will be the binary data representing the image.
+    # @param document_id [String]
     # @param [Hash] opts the optional parameters
     # @return [File]
     def download_document(document_id, opts = {})
@@ -1031,8 +1031,8 @@ module Onfido
     end
 
     # Download document
-    # Downloads specific documents belonging to an applicant. If successful, the response will be the binary data representing the image. 
-    # @param document_id [String] 
+    # Downloads specific documents belonging to an applicant. If successful, the response will be the binary data representing the image.
+    # @param document_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(File, Integer, Hash)>] File data, response status code and response headers
     def download_document_with_http_info(document_id, opts = {})
@@ -1064,7 +1064,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_document",
@@ -1084,8 +1084,8 @@ module Onfido
     end
 
     # Download document video
-    # Downloads a document video. If successful, the response will be the binary data representing the video. 
-    # @param document_id [String] 
+    # Downloads a document video. If successful, the response will be the binary data representing the video.
+    # @param document_id [String]
     # @param [Hash] opts the optional parameters
     # @return [File]
     def download_document_video(document_id, opts = {})
@@ -1094,8 +1094,8 @@ module Onfido
     end
 
     # Download document video
-    # Downloads a document video. If successful, the response will be the binary data representing the video. 
-    # @param document_id [String] 
+    # Downloads a document video. If successful, the response will be the binary data representing the video.
+    # @param document_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(File, Integer, Hash)>] File data, response status code and response headers
     def download_document_video_with_http_info(document_id, opts = {})
@@ -1127,7 +1127,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_document_video",
@@ -1147,7 +1147,7 @@ module Onfido
     end
 
     # Retrieve Workflow Run Evidence Folder
-    # Retrieves the evidence folder for the designated Workflow Run 
+    # Retrieves the evidence folder for the designated Workflow Run
     # @param workflow_run_id [String] Workflow Run ID
     # @param [Hash] opts the optional parameters
     # @return [File]
@@ -1157,7 +1157,7 @@ module Onfido
     end
 
     # Retrieve Workflow Run Evidence Folder
-    # Retrieves the evidence folder for the designated Workflow Run 
+    # Retrieves the evidence folder for the designated Workflow Run
     # @param workflow_run_id [String] Workflow Run ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(File, Integer, Hash)>] File data, response status code and response headers
@@ -1190,7 +1190,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_evidence_folder",
@@ -1253,7 +1253,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_id_photo",
@@ -1316,7 +1316,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_live_photo",
@@ -1379,7 +1379,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_live_video",
@@ -1442,7 +1442,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_live_video_frame",
@@ -1505,7 +1505,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_motion_capture",
@@ -1568,7 +1568,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_motion_capture_frame",
@@ -1588,8 +1588,8 @@ module Onfido
     end
 
     # Download NFC face
-    # Downloads digital photos extracted from specific documents belonging to an applicant. If successful, the response will be the binary data representing the image. 
-    # @param document_id [String] 
+    # Downloads digital photos extracted from specific documents belonging to an applicant. If successful, the response will be the binary data representing the image.
+    # @param document_id [String]
     # @param [Hash] opts the optional parameters
     # @return [File]
     def download_nfc_face(document_id, opts = {})
@@ -1598,8 +1598,8 @@ module Onfido
     end
 
     # Download NFC face
-    # Downloads digital photos extracted from specific documents belonging to an applicant. If successful, the response will be the binary data representing the image. 
-    # @param document_id [String] 
+    # Downloads digital photos extracted from specific documents belonging to an applicant. If successful, the response will be the binary data representing the image.
+    # @param document_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(File, Integer, Hash)>] File data, response status code and response headers
     def download_nfc_face_with_http_info(document_id, opts = {})
@@ -1631,7 +1631,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_nfc_face",
@@ -1651,7 +1651,7 @@ module Onfido
     end
 
     # Retrieves the signed document or application form
-    # Retrieves the signed document or application form depending on the file_id provided. 
+    # Retrieves the signed document or application form depending on the file_id provided.
     # @param workflow_run_id [String] The unique identifier of the Workflow Run for which you want to retrieve the signed document.
     # @param file_id [String] The unique identifier of the file which you want to retrieve.
     # @param [Hash] opts the optional parameters
@@ -1662,7 +1662,7 @@ module Onfido
     end
 
     # Retrieves the signed document or application form
-    # Retrieves the signed document or application form depending on the file_id provided. 
+    # Retrieves the signed document or application form depending on the file_id provided.
     # @param workflow_run_id [String] The unique identifier of the Workflow Run for which you want to retrieve the signed document.
     # @param file_id [String] The unique identifier of the file which you want to retrieve.
     # @param [Hash] opts the optional parameters
@@ -1702,7 +1702,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_qes_document",
@@ -1722,7 +1722,7 @@ module Onfido
     end
 
     # Retrieves the signed document or signing transaction receipt
-    # Retrieves the signed document or signing transaction receipt depending on the id provided. 
+    # Retrieves the signed document or signing transaction receipt depending on the id provided.
     # @param workflow_run_id [String] The unique identifier of the Workflow Run for which you want to retrieve the signed document.
     # @param id [String] The unique identifier of the file which you want to retrieve.
     # @param [Hash] opts the optional parameters
@@ -1733,7 +1733,7 @@ module Onfido
     end
 
     # Retrieves the signed document or signing transaction receipt
-    # Retrieves the signed document or signing transaction receipt depending on the id provided. 
+    # Retrieves the signed document or signing transaction receipt depending on the id provided.
     # @param workflow_run_id [String] The unique identifier of the Workflow Run for which you want to retrieve the signed document.
     # @param id [String] The unique identifier of the file which you want to retrieve.
     # @param [Hash] opts the optional parameters
@@ -1773,7 +1773,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_ses_document",
@@ -1793,7 +1793,7 @@ module Onfido
     end
 
     # Retrieve Workflow Run Evidence Summary File
-    # Retrieves the signed evidence file for the designated Workflow Run 
+    # Retrieves the signed evidence file for the designated Workflow Run
     # @param workflow_run_id [String] Workflow Run ID
     # @param [Hash] opts the optional parameters
     # @return [File]
@@ -1803,7 +1803,7 @@ module Onfido
     end
 
     # Retrieve Workflow Run Evidence Summary File
-    # Retrieves the signed evidence file for the designated Workflow Run 
+    # Retrieves the signed evidence file for the designated Workflow Run
     # @param workflow_run_id [String] Workflow Run ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(File, Integer, Hash)>] File data, response status code and response headers
@@ -1836,7 +1836,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_signed_evidence_file",
@@ -1856,8 +1856,8 @@ module Onfido
     end
 
     # Download signing document
-    # Downloads specific signing documents belonging to an applicant. If successful, the response will be the binary data representing the pdf. 
-    # @param signing_document_id [String] 
+    # Downloads specific signing documents belonging to an applicant. If successful, the response will be the binary data representing the pdf.
+    # @param signing_document_id [String]
     # @param [Hash] opts the optional parameters
     # @return [File]
     def download_signing_document(signing_document_id, opts = {})
@@ -1866,8 +1866,8 @@ module Onfido
     end
 
     # Download signing document
-    # Downloads specific signing documents belonging to an applicant. If successful, the response will be the binary data representing the pdf. 
-    # @param signing_document_id [String] 
+    # Downloads specific signing documents belonging to an applicant. If successful, the response will be the binary data representing the pdf.
+    # @param signing_document_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(File, Integer, Hash)>] File data, response status code and response headers
     def download_signing_document_with_http_info(signing_document_id, opts = {})
@@ -1899,7 +1899,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_signing_document",
@@ -1919,8 +1919,8 @@ module Onfido
     end
 
     # Autofill
-    # Extract information from a document 
-    # @param extract_request [ExtractRequest] 
+    # Extract information from a document
+    # @param extract_request [ExtractRequest]
     # @param [Hash] opts the optional parameters
     # @return [Extraction]
     def extract(extract_request, opts = {})
@@ -1929,8 +1929,8 @@ module Onfido
     end
 
     # Autofill
-    # Extract information from a document 
-    # @param extract_request [ExtractRequest] 
+    # Extract information from a document
+    # @param extract_request [ExtractRequest]
     # @param [Hash] opts the optional parameters
     # @return [Array<(Extraction, Integer, Hash)>] Extraction data, response status code and response headers
     def extract_with_http_info(extract_request, opts = {})
@@ -1967,7 +1967,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Extraction'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.extract",
@@ -1987,8 +1987,8 @@ module Onfido
     end
 
     # Address Picker
-    # Search for addresses by postcode 
-    # @param postcode [String] 
+    # Search for addresses by postcode
+    # @param postcode [String]
     # @param [Hash] opts the optional parameters
     # @return [AddressesList]
     def find_addresses(postcode, opts = {})
@@ -1997,8 +1997,8 @@ module Onfido
     end
 
     # Address Picker
-    # Search for addresses by postcode 
-    # @param postcode [String] 
+    # Search for addresses by postcode
+    # @param postcode [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(AddressesList, Integer, Hash)>] AddressesList data, response status code and response headers
     def find_addresses_with_http_info(postcode, opts = {})
@@ -2031,7 +2031,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'AddressesList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_addresses",
@@ -2051,8 +2051,8 @@ module Onfido
     end
 
     # Retrieve Applicant
-    # Retrieves a single applicant. Returns an applicant object. 
-    # @param applicant_id [String] 
+    # Retrieves a single applicant. Returns an applicant object.
+    # @param applicant_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Applicant]
     def find_applicant(applicant_id, opts = {})
@@ -2061,8 +2061,8 @@ module Onfido
     end
 
     # Retrieve Applicant
-    # Retrieves a single applicant. Returns an applicant object. 
-    # @param applicant_id [String] 
+    # Retrieves a single applicant. Returns an applicant object.
+    # @param applicant_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(Applicant, Integer, Hash)>] Applicant data, response status code and response headers
     def find_applicant_with_http_info(applicant_id, opts = {})
@@ -2094,7 +2094,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Applicant'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_applicant",
@@ -2114,8 +2114,8 @@ module Onfido
     end
 
     # Retrieve Applicant Consents
-    # Retrieves consents for single applicant. 
-    # @param applicant_id [String] 
+    # Retrieves consents for single applicant.
+    # @param applicant_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<ApplicantConsent>]
     def find_applicant_consents(applicant_id, opts = {})
@@ -2124,8 +2124,8 @@ module Onfido
     end
 
     # Retrieve Applicant Consents
-    # Retrieves consents for single applicant. 
-    # @param applicant_id [String] 
+    # Retrieves consents for single applicant.
+    # @param applicant_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(Array<ApplicantConsent>, Integer, Hash)>] Array<ApplicantConsent> data, response status code and response headers
     def find_applicant_consents_with_http_info(applicant_id, opts = {})
@@ -2157,7 +2157,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Array<ApplicantConsent>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_applicant_consents",
@@ -2177,8 +2177,8 @@ module Onfido
     end
 
     # Retrieve a Check
-    # Retrieves a single check. Returns a check object. 
-    # @param check_id [String] 
+    # Retrieves a single check. Returns a check object.
+    # @param check_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Check]
     def find_check(check_id, opts = {})
@@ -2187,8 +2187,8 @@ module Onfido
     end
 
     # Retrieve a Check
-    # Retrieves a single check. Returns a check object. 
-    # @param check_id [String] 
+    # Retrieves a single check. Returns a check object.
+    # @param check_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(Check, Integer, Hash)>] Check data, response status code and response headers
     def find_check_with_http_info(check_id, opts = {})
@@ -2220,7 +2220,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Check'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_check",
@@ -2240,8 +2240,8 @@ module Onfido
     end
 
     # Retrieve document
-    # A single document can be retrieved by calling this endpoint with the document's unique identifier. 
-    # @param document_id [String] 
+    # A single document can be retrieved by calling this endpoint with the document's unique identifier.
+    # @param document_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Document]
     def find_document(document_id, opts = {})
@@ -2250,8 +2250,8 @@ module Onfido
     end
 
     # Retrieve document
-    # A single document can be retrieved by calling this endpoint with the document&#39;s unique identifier. 
-    # @param document_id [String] 
+    # A single document can be retrieved by calling this endpoint with the document&#39;s unique identifier.
+    # @param document_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(Document, Integer, Hash)>] Document data, response status code and response headers
     def find_document_with_http_info(document_id, opts = {})
@@ -2283,7 +2283,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Document'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_document",
@@ -2303,7 +2303,7 @@ module Onfido
     end
 
     # Retrieve ID photo
-    # Retrieves a single ID photo. Returns a ID photo object. 
+    # Retrieves a single ID photo. Returns a ID photo object.
     # @param id_photo_id [String] The ID photo&#39;s unique identifier.
     # @param [Hash] opts the optional parameters
     # @return [IdPhoto]
@@ -2313,7 +2313,7 @@ module Onfido
     end
 
     # Retrieve ID photo
-    # Retrieves a single ID photo. Returns a ID photo object. 
+    # Retrieves a single ID photo. Returns a ID photo object.
     # @param id_photo_id [String] The ID photo&#39;s unique identifier.
     # @param [Hash] opts the optional parameters
     # @return [Array<(IdPhoto, Integer, Hash)>] IdPhoto data, response status code and response headers
@@ -2346,7 +2346,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'IdPhoto'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_id_photo",
@@ -2366,7 +2366,7 @@ module Onfido
     end
 
     # Retrieve live photo
-    # Retrieves a single live photo. Returns a live photo object. 
+    # Retrieves a single live photo. Returns a live photo object.
     # @param live_photo_id [String] The live photo&#39;s unique identifier.
     # @param [Hash] opts the optional parameters
     # @return [LivePhoto]
@@ -2376,7 +2376,7 @@ module Onfido
     end
 
     # Retrieve live photo
-    # Retrieves a single live photo. Returns a live photo object. 
+    # Retrieves a single live photo. Returns a live photo object.
     # @param live_photo_id [String] The live photo&#39;s unique identifier.
     # @param [Hash] opts the optional parameters
     # @return [Array<(LivePhoto, Integer, Hash)>] LivePhoto data, response status code and response headers
@@ -2409,7 +2409,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'LivePhoto'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_live_photo",
@@ -2429,7 +2429,7 @@ module Onfido
     end
 
     # Retrieve live video
-    # Retrieves a single live video. Returns the corresponding live video object. 
+    # Retrieves a single live video. Returns the corresponding live video object.
     # @param live_video_id [String] The live video&#39;s unique identifier.
     # @param [Hash] opts the optional parameters
     # @return [LiveVideo]
@@ -2439,7 +2439,7 @@ module Onfido
     end
 
     # Retrieve live video
-    # Retrieves a single live video. Returns the corresponding live video object. 
+    # Retrieves a single live video. Returns the corresponding live video object.
     # @param live_video_id [String] The live video&#39;s unique identifier.
     # @param [Hash] opts the optional parameters
     # @return [Array<(LiveVideo, Integer, Hash)>] LiveVideo data, response status code and response headers
@@ -2472,7 +2472,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'LiveVideo'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_live_video",
@@ -2492,7 +2492,7 @@ module Onfido
     end
 
     # Retrieve motion capture
-    # Retrieves a single motion capture. Returns the corresponding motion capture object. 
+    # Retrieves a single motion capture. Returns the corresponding motion capture object.
     # @param motion_capture_id [String] The motion capture&#39;s unique identifier.
     # @param [Hash] opts the optional parameters
     # @return [MotionCapture]
@@ -2502,7 +2502,7 @@ module Onfido
     end
 
     # Retrieve motion capture
-    # Retrieves a single motion capture. Returns the corresponding motion capture object. 
+    # Retrieves a single motion capture. Returns the corresponding motion capture object.
     # @param motion_capture_id [String] The motion capture&#39;s unique identifier.
     # @param [Hash] opts the optional parameters
     # @return [Array<(MotionCapture, Integer, Hash)>] MotionCapture data, response status code and response headers
@@ -2535,7 +2535,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'MotionCapture'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_motion_capture",
@@ -2555,7 +2555,7 @@ module Onfido
     end
 
     # Retrieve passkey
-    # Returns a passkey's details. 
+    # Returns a passkey's details.
     # @param username [String] Username that owns the passkey.
     # @param passkey_id [String] Passkey ID.
     # @param [Hash] opts the optional parameters
@@ -2566,7 +2566,7 @@ module Onfido
     end
 
     # Retrieve passkey
-    # Returns a passkey&#39;s details. 
+    # Returns a passkey&#39;s details.
     # @param username [String] Username that owns the passkey.
     # @param passkey_id [String] Passkey ID.
     # @param [Hash] opts the optional parameters
@@ -2604,7 +2604,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Passkey'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_passkey",
@@ -2624,8 +2624,8 @@ module Onfido
     end
 
     # Retrieve report
-    # A single report can be retrieved using this endpoint with the corresponding unique identifier. 
-    # @param report_id [String] 
+    # A single report can be retrieved using this endpoint with the corresponding unique identifier.
+    # @param report_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Report]
     def find_report(report_id, opts = {})
@@ -2634,8 +2634,8 @@ module Onfido
     end
 
     # Retrieve report
-    # A single report can be retrieved using this endpoint with the corresponding unique identifier. 
-    # @param report_id [String] 
+    # A single report can be retrieved using this endpoint with the corresponding unique identifier.
+    # @param report_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(Report, Integer, Hash)>] Report data, response status code and response headers
     def find_report_with_http_info(report_id, opts = {})
@@ -2667,7 +2667,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Report'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_report",
@@ -2687,8 +2687,8 @@ module Onfido
     end
 
     # Retrieve signing document
-    # A single signing document can be retrieved by calling this endpoint with the signing document's unique identifier. 
-    # @param signing_document_id [String] 
+    # A single signing document can be retrieved by calling this endpoint with the signing document's unique identifier.
+    # @param signing_document_id [String]
     # @param [Hash] opts the optional parameters
     # @return [SigningDocument]
     def find_signing_document(signing_document_id, opts = {})
@@ -2697,8 +2697,8 @@ module Onfido
     end
 
     # Retrieve signing document
-    # A single signing document can be retrieved by calling this endpoint with the signing document&#39;s unique identifier. 
-    # @param signing_document_id [String] 
+    # A single signing document can be retrieved by calling this endpoint with the signing document&#39;s unique identifier.
+    # @param signing_document_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(SigningDocument, Integer, Hash)>] SigningDocument data, response status code and response headers
     def find_signing_document_with_http_info(signing_document_id, opts = {})
@@ -2730,7 +2730,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'SigningDocument'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_signing_document",
@@ -2750,7 +2750,7 @@ module Onfido
     end
 
     # Retrieve Task
-    # A single task can be retrieved by calling this endpoint with the unique identifier of the Task and Workflow Run. 
+    # A single task can be retrieved by calling this endpoint with the unique identifier of the Task and Workflow Run.
     # @param workflow_run_id [String] The unique identifier of the Workflow Run to which the Task belongs.
     # @param task_id [String] The identifier of the Task you want to retrieve.
     # @param [Hash] opts the optional parameters
@@ -2761,7 +2761,7 @@ module Onfido
     end
 
     # Retrieve Task
-    # A single task can be retrieved by calling this endpoint with the unique identifier of the Task and Workflow Run. 
+    # A single task can be retrieved by calling this endpoint with the unique identifier of the Task and Workflow Run.
     # @param workflow_run_id [String] The unique identifier of the Workflow Run to which the Task belongs.
     # @param task_id [String] The identifier of the Task you want to retrieve.
     # @param [Hash] opts the optional parameters
@@ -2799,7 +2799,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Task'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_task",
@@ -2819,7 +2819,7 @@ module Onfido
     end
 
     # Retrieve Timeline File for Workflow Run
-    # Retrieves the Timeline File for the designated Workflow Run. 
+    # Retrieves the Timeline File for the designated Workflow Run.
     # @param workflow_run_id [String] The unique identifier of the Workflow Run.
     # @param timeline_file_id [String] The unique identifier for the Timefile File.
     # @param [Hash] opts the optional parameters
@@ -2830,7 +2830,7 @@ module Onfido
     end
 
     # Retrieve Timeline File for Workflow Run
-    # Retrieves the Timeline File for the designated Workflow Run. 
+    # Retrieves the Timeline File for the designated Workflow Run.
     # @param workflow_run_id [String] The unique identifier of the Workflow Run.
     # @param timeline_file_id [String] The unique identifier for the Timefile File.
     # @param [Hash] opts the optional parameters
@@ -2868,7 +2868,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_timeline_file",
@@ -2888,7 +2888,7 @@ module Onfido
     end
 
     # Retrieve monitor
-    # Retrieves a single monitor 
+    # Retrieves a single monitor
     # @param monitor_id [String] The watchlist monitor&#39;s unique identifier.
     # @param [Hash] opts the optional parameters
     # @return [WatchlistMonitor]
@@ -2898,7 +2898,7 @@ module Onfido
     end
 
     # Retrieve monitor
-    # Retrieves a single monitor 
+    # Retrieves a single monitor
     # @param monitor_id [String] The watchlist monitor&#39;s unique identifier.
     # @param [Hash] opts the optional parameters
     # @return [Array<(WatchlistMonitor, Integer, Hash)>] WatchlistMonitor data, response status code and response headers
@@ -2931,7 +2931,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'WatchlistMonitor'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_watchlist_monitor",
@@ -2951,8 +2951,8 @@ module Onfido
     end
 
     # Retrieve a Webhook
-    # Retrieves a single webhook. Returns a webhook object. 
-    # @param webhook_id [String] 
+    # Retrieves a single webhook. Returns a webhook object.
+    # @param webhook_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Webhook]
     def find_webhook(webhook_id, opts = {})
@@ -2961,8 +2961,8 @@ module Onfido
     end
 
     # Retrieve a Webhook
-    # Retrieves a single webhook. Returns a webhook object. 
-    # @param webhook_id [String] 
+    # Retrieves a single webhook. Returns a webhook object.
+    # @param webhook_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(Webhook, Integer, Hash)>] Webhook data, response status code and response headers
     def find_webhook_with_http_info(webhook_id, opts = {})
@@ -2994,7 +2994,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Webhook'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_webhook",
@@ -3014,7 +3014,7 @@ module Onfido
     end
 
     # Retrieve Workflow Run
-    # A single workflow run can be retrieved by calling this endpoint with the unique identifier of the Workflow Run. 
+    # A single workflow run can be retrieved by calling this endpoint with the unique identifier of the Workflow Run.
     # @param workflow_run_id [String] The unique identifier of the Workflow Run.
     # @param [Hash] opts the optional parameters
     # @return [WorkflowRun]
@@ -3024,7 +3024,7 @@ module Onfido
     end
 
     # Retrieve Workflow Run
-    # A single workflow run can be retrieved by calling this endpoint with the unique identifier of the Workflow Run. 
+    # A single workflow run can be retrieved by calling this endpoint with the unique identifier of the Workflow Run.
     # @param workflow_run_id [String] The unique identifier of the Workflow Run.
     # @param [Hash] opts the optional parameters
     # @return [Array<(WorkflowRun, Integer, Hash)>] WorkflowRun data, response status code and response headers
@@ -3057,7 +3057,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'WorkflowRun'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_workflow_run",
@@ -3077,8 +3077,8 @@ module Onfido
     end
 
     # Force new report creation (BETA)
-    # Triggers a new check with an updated report to be generated by the monitor, as if the monitor had received an update. 
-    # @param monitor_id [String] 
+    # Triggers a new check with an updated report to be generated by the monitor, as if the monitor had received an update.
+    # @param monitor_id [String]
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def force_report_creation_from_watchlist_monitor(monitor_id, opts = {})
@@ -3087,8 +3087,8 @@ module Onfido
     end
 
     # Force new report creation (BETA)
-    # Triggers a new check with an updated report to be generated by the monitor, as if the monitor had received an update. 
-    # @param monitor_id [String] 
+    # Triggers a new check with an updated report to be generated by the monitor, as if the monitor had received an update.
+    # @param monitor_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
     def force_report_creation_from_watchlist_monitor_with_http_info(monitor_id, opts = {})
@@ -3120,7 +3120,7 @@ module Onfido
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.force_report_creation_from_watchlist_monitor",
@@ -3140,8 +3140,8 @@ module Onfido
     end
 
     # Generate a SDK token
-    # Generates an SDK token. Returns a token object containing the SDK token. 
-    # @param sdk_token_builder [SdkTokenBuilder] 
+    # Generates an SDK token. Returns a token object containing the SDK token.
+    # @param sdk_token_builder [SdkTokenBuilder]
     # @param [Hash] opts the optional parameters
     # @return [SdkToken]
     def generate_sdk_token(sdk_token_builder, opts = {})
@@ -3150,8 +3150,8 @@ module Onfido
     end
 
     # Generate a SDK token
-    # Generates an SDK token. Returns a token object containing the SDK token. 
-    # @param sdk_token_builder [SdkTokenBuilder] 
+    # Generates an SDK token. Returns a token object containing the SDK token.
+    # @param sdk_token_builder [SdkTokenBuilder]
     # @param [Hash] opts the optional parameters
     # @return [Array<(SdkToken, Integer, Hash)>] SdkToken data, response status code and response headers
     def generate_sdk_token_with_http_info(sdk_token_builder, opts = {})
@@ -3188,7 +3188,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'SdkToken'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.generate_sdk_token",
@@ -3208,7 +3208,7 @@ module Onfido
     end
 
     # List Applicants
-    # Lists all applicants you've created, sorted by creation date in descending order. 
+    # Lists all applicants you've created, sorted by creation date in descending order.
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :page The page to return. The first page is &#x60;page&#x3D;1&#x60; (default to 1)
     # @option opts [Integer] :per_page The number of objects per page. (default to 20)
@@ -3220,7 +3220,7 @@ module Onfido
     end
 
     # List Applicants
-    # Lists all applicants you&#39;ve created, sorted by creation date in descending order. 
+    # Lists all applicants you&#39;ve created, sorted by creation date in descending order.
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :page The page to return. The first page is &#x60;page&#x3D;1&#x60; (default to 1)
     # @option opts [Integer] :per_page The number of objects per page. (default to 20)
@@ -3254,7 +3254,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'ApplicantsList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_applicants",
@@ -3274,8 +3274,8 @@ module Onfido
     end
 
     # Retrieve Checks
-    # Retrieves a single check. Returns a check object. 
-    # @param applicant_id [String] 
+    # Retrieves a single check. Returns a check object.
+    # @param applicant_id [String]
     # @param [Hash] opts the optional parameters
     # @return [ChecksList]
     def list_checks(applicant_id, opts = {})
@@ -3284,8 +3284,8 @@ module Onfido
     end
 
     # Retrieve Checks
-    # Retrieves a single check. Returns a check object. 
-    # @param applicant_id [String] 
+    # Retrieves a single check. Returns a check object.
+    # @param applicant_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(ChecksList, Integer, Hash)>] ChecksList data, response status code and response headers
     def list_checks_with_http_info(applicant_id, opts = {})
@@ -3318,7 +3318,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'ChecksList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_checks",
@@ -3339,7 +3339,7 @@ module Onfido
 
     # List documents
     # All documents belonging to an applicant can be listed from this endpoint
-    # @param applicant_id [String] 
+    # @param applicant_id [String]
     # @param [Hash] opts the optional parameters
     # @return [DocumentsList]
     def list_documents(applicant_id, opts = {})
@@ -3349,7 +3349,7 @@ module Onfido
 
     # List documents
     # All documents belonging to an applicant can be listed from this endpoint
-    # @param applicant_id [String] 
+    # @param applicant_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(DocumentsList, Integer, Hash)>] DocumentsList data, response status code and response headers
     def list_documents_with_http_info(applicant_id, opts = {})
@@ -3382,7 +3382,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'DocumentsList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_documents",
@@ -3402,7 +3402,7 @@ module Onfido
     end
 
     # List ID photos
-    # Lists the ID photos that belong to an applicant. 
+    # Lists the ID photos that belong to an applicant.
     # @param applicant_id [String] The id of the applicant the ID photos belong to.
     # @param [Hash] opts the optional parameters
     # @return [IdPhotosList]
@@ -3412,7 +3412,7 @@ module Onfido
     end
 
     # List ID photos
-    # Lists the ID photos that belong to an applicant. 
+    # Lists the ID photos that belong to an applicant.
     # @param applicant_id [String] The id of the applicant the ID photos belong to.
     # @param [Hash] opts the optional parameters
     # @return [Array<(IdPhotosList, Integer, Hash)>] IdPhotosList data, response status code and response headers
@@ -3446,7 +3446,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'IdPhotosList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_id_photos",
@@ -3466,7 +3466,7 @@ module Onfido
     end
 
     # List live photos
-    # Lists the live photos that belong to an applicant. 
+    # Lists the live photos that belong to an applicant.
     # @param applicant_id [String] The id of the applicant the live photos belong to.
     # @param [Hash] opts the optional parameters
     # @return [LivePhotosList]
@@ -3476,7 +3476,7 @@ module Onfido
     end
 
     # List live photos
-    # Lists the live photos that belong to an applicant. 
+    # Lists the live photos that belong to an applicant.
     # @param applicant_id [String] The id of the applicant the live photos belong to.
     # @param [Hash] opts the optional parameters
     # @return [Array<(LivePhotosList, Integer, Hash)>] LivePhotosList data, response status code and response headers
@@ -3510,7 +3510,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'LivePhotosList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_live_photos",
@@ -3530,7 +3530,7 @@ module Onfido
     end
 
     # List live videos
-    # Lists all the live videos that belong to an applicant. 
+    # Lists all the live videos that belong to an applicant.
     # @param applicant_id [String] The id of the applicant the live videos belong to.
     # @param [Hash] opts the optional parameters
     # @return [LiveVideosList]
@@ -3540,7 +3540,7 @@ module Onfido
     end
 
     # List live videos
-    # Lists all the live videos that belong to an applicant. 
+    # Lists all the live videos that belong to an applicant.
     # @param applicant_id [String] The id of the applicant the live videos belong to.
     # @param [Hash] opts the optional parameters
     # @return [Array<(LiveVideosList, Integer, Hash)>] LiveVideosList data, response status code and response headers
@@ -3574,7 +3574,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'LiveVideosList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_live_videos",
@@ -3594,7 +3594,7 @@ module Onfido
     end
 
     # List motion captures
-    # Lists all the motion captures that belong to an applicant. 
+    # Lists all the motion captures that belong to an applicant.
     # @param applicant_id [String] The id of the applicant the motion captures belong to.
     # @param [Hash] opts the optional parameters
     # @return [MotionCapturesList]
@@ -3604,7 +3604,7 @@ module Onfido
     end
 
     # List motion captures
-    # Lists all the motion captures that belong to an applicant. 
+    # Lists all the motion captures that belong to an applicant.
     # @param applicant_id [String] The id of the applicant the motion captures belong to.
     # @param [Hash] opts the optional parameters
     # @return [Array<(MotionCapturesList, Integer, Hash)>] MotionCapturesList data, response status code and response headers
@@ -3638,7 +3638,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'MotionCapturesList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_motion_captures",
@@ -3658,7 +3658,7 @@ module Onfido
     end
 
     # List passkeys
-    # Returns every passkey registered under the supplied username. 
+    # Returns every passkey registered under the supplied username.
     # @param username [String] Username that owns the passkeys.
     # @param [Hash] opts the optional parameters
     # @return [PasskeysList]
@@ -3668,7 +3668,7 @@ module Onfido
     end
 
     # List passkeys
-    # Returns every passkey registered under the supplied username. 
+    # Returns every passkey registered under the supplied username.
     # @param username [String] Username that owns the passkeys.
     # @param [Hash] opts the optional parameters
     # @return [Array<(PasskeysList, Integer, Hash)>] PasskeysList data, response status code and response headers
@@ -3701,7 +3701,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'PasskeysList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_passkeys",
@@ -3721,8 +3721,8 @@ module Onfido
     end
 
     # Retrieve repeat attempts
-    # Returns all repeat attempts for a given Document report 
-    # @param report_id [String] 
+    # Returns all repeat attempts for a given Document report
+    # @param report_id [String]
     # @param [Hash] opts the optional parameters
     # @return [RepeatAttemptsList]
     def list_repeat_attempts(report_id, opts = {})
@@ -3731,8 +3731,8 @@ module Onfido
     end
 
     # Retrieve repeat attempts
-    # Returns all repeat attempts for a given Document report 
-    # @param report_id [String] 
+    # Returns all repeat attempts for a given Document report
+    # @param report_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(RepeatAttemptsList, Integer, Hash)>] RepeatAttemptsList data, response status code and response headers
     def list_repeat_attempts_with_http_info(report_id, opts = {})
@@ -3764,7 +3764,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'RepeatAttemptsList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_repeat_attempts",
@@ -3784,8 +3784,8 @@ module Onfido
     end
 
     # List reports
-    # All the reports belonging to a particular check can be listed from this endpoint. 
-    # @param check_id [String] 
+    # All the reports belonging to a particular check can be listed from this endpoint.
+    # @param check_id [String]
     # @param [Hash] opts the optional parameters
     # @return [ReportsList]
     def list_reports(check_id, opts = {})
@@ -3794,8 +3794,8 @@ module Onfido
     end
 
     # List reports
-    # All the reports belonging to a particular check can be listed from this endpoint. 
-    # @param check_id [String] 
+    # All the reports belonging to a particular check can be listed from this endpoint.
+    # @param check_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(ReportsList, Integer, Hash)>] ReportsList data, response status code and response headers
     def list_reports_with_http_info(check_id, opts = {})
@@ -3828,7 +3828,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'ReportsList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_reports",
@@ -3849,7 +3849,7 @@ module Onfido
 
     # List signing documents
     # All signing documents belonging to an applicant can be listed from this endpoint
-    # @param applicant_id [String] 
+    # @param applicant_id [String]
     # @param [Hash] opts the optional parameters
     # @return [SigningDocumentsList]
     def list_signing_documents(applicant_id, opts = {})
@@ -3859,7 +3859,7 @@ module Onfido
 
     # List signing documents
     # All signing documents belonging to an applicant can be listed from this endpoint
-    # @param applicant_id [String] 
+    # @param applicant_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(SigningDocumentsList, Integer, Hash)>] SigningDocumentsList data, response status code and response headers
     def list_signing_documents_with_http_info(applicant_id, opts = {})
@@ -3892,7 +3892,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'SigningDocumentsList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_signing_documents",
@@ -3912,7 +3912,7 @@ module Onfido
     end
 
     # List Tasks
-    # The tasks of a Workflow can be retrieved by calling this endpoint with the unique identifier of the Workflow Run. 
+    # The tasks of a Workflow can be retrieved by calling this endpoint with the unique identifier of the Workflow Run.
     # @param workflow_run_id [String] The unique identifier of the Workflow Run to which the Tasks belong.
     # @param [Hash] opts the optional parameters
     # @return [Array<TaskItem>]
@@ -3922,7 +3922,7 @@ module Onfido
     end
 
     # List Tasks
-    # The tasks of a Workflow can be retrieved by calling this endpoint with the unique identifier of the Workflow Run. 
+    # The tasks of a Workflow can be retrieved by calling this endpoint with the unique identifier of the Workflow Run.
     # @param workflow_run_id [String] The unique identifier of the Workflow Run to which the Tasks belong.
     # @param [Hash] opts the optional parameters
     # @return [Array<(Array<TaskItem>, Integer, Hash)>] Array<TaskItem> data, response status code and response headers
@@ -3955,7 +3955,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Array<TaskItem>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_tasks",
@@ -3975,8 +3975,8 @@ module Onfido
     end
 
     # List matches (BETA)
-    # List match IDs on this monitor, as well as their enabled/disabled status 
-    # @param monitor_id [String] 
+    # List match IDs on this monitor, as well as their enabled/disabled status
+    # @param monitor_id [String]
     # @param [Hash] opts the optional parameters
     # @return [WatchlistMonitorMatchesList]
     def list_watchlist_monitor_matches(monitor_id, opts = {})
@@ -3985,8 +3985,8 @@ module Onfido
     end
 
     # List matches (BETA)
-    # List match IDs on this monitor, as well as their enabled/disabled status 
-    # @param monitor_id [String] 
+    # List match IDs on this monitor, as well as their enabled/disabled status
+    # @param monitor_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(WatchlistMonitorMatchesList, Integer, Hash)>] WatchlistMonitorMatchesList data, response status code and response headers
     def list_watchlist_monitor_matches_with_http_info(monitor_id, opts = {})
@@ -4018,7 +4018,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'WatchlistMonitorMatchesList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_watchlist_monitor_matches",
@@ -4038,7 +4038,7 @@ module Onfido
     end
 
     # List monitors
-    # List all available monitors for an applicant 
+    # List all available monitors for an applicant
     # @param applicant_id [String] The id of the applicant the watchlist monitors belong to. If omitted, all monitors for the account will be listed.
     # @param [Hash] opts the optional parameters
     # @option opts [Boolean] :include_deleted Whether to also include deleted (inactive) monitors. (default to false)
@@ -4049,7 +4049,7 @@ module Onfido
     end
 
     # List monitors
-    # List all available monitors for an applicant 
+    # List all available monitors for an applicant
     # @param applicant_id [String] The id of the applicant the watchlist monitors belong to. If omitted, all monitors for the account will be listed.
     # @param [Hash] opts the optional parameters
     # @option opts [Boolean] :include_deleted Whether to also include deleted (inactive) monitors. (default to false)
@@ -4085,7 +4085,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'WatchlistMonitorsList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_watchlist_monitors",
@@ -4105,7 +4105,7 @@ module Onfido
     end
 
     # List webhooks
-    # Lists all webhooks you've created. 
+    # Lists all webhooks you've created.
     # @param [Hash] opts the optional parameters
     # @return [WebhooksList]
     def list_webhooks(opts = {})
@@ -4114,7 +4114,7 @@ module Onfido
     end
 
     # List webhooks
-    # Lists all webhooks you&#39;ve created. 
+    # Lists all webhooks you&#39;ve created.
     # @param [Hash] opts the optional parameters
     # @return [Array<(WebhooksList, Integer, Hash)>] WebhooksList data, response status code and response headers
     def list_webhooks_with_http_info(opts = {})
@@ -4142,7 +4142,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'WebhooksList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_webhooks",
@@ -4162,7 +4162,7 @@ module Onfido
     end
 
     # List Workflow Runs
-    # Retrieves the Workflow Runs of the client. Returns a list of Workflow Run objects. 
+    # Retrieves the Workflow Runs of the client. Returns a list of Workflow Run objects.
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :page The number of the page to be retrieved. If not specified, defaults to 1. (default to 1)
     # @option opts [String] :status A list of comma separated status values to filter the results. Possible values are &#39;processing&#39;, &#39;awaiting_input&#39;, &#39;approved&#39;, &#39;declined&#39;, &#39;review&#39;, &#39;abandoned&#39; and &#39;error&#39;.
@@ -4178,7 +4178,7 @@ module Onfido
     end
 
     # List Workflow Runs
-    # Retrieves the Workflow Runs of the client. Returns a list of Workflow Run objects. 
+    # Retrieves the Workflow Runs of the client. Returns a list of Workflow Run objects.
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :page The number of the page to be retrieved. If not specified, defaults to 1. (default to 1)
     # @option opts [String] :status A list of comma separated status values to filter the results. Possible values are &#39;processing&#39;, &#39;awaiting_input&#39;, &#39;approved&#39;, &#39;declined&#39;, &#39;review&#39;, &#39;abandoned&#39; and &#39;error&#39;.
@@ -4224,7 +4224,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Array<WorkflowRun>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_workflow_runs",
@@ -4244,7 +4244,7 @@ module Onfido
     end
 
     # Ping
-    # Run a health check on the Onfido API 
+    # Run a health check on the Onfido API
     # @param [Hash] opts the optional parameters
     # @return [String]
     def ping(opts = {})
@@ -4253,7 +4253,7 @@ module Onfido
     end
 
     # Ping
-    # Run a health check on the Onfido API 
+    # Run a health check on the Onfido API
     # @param [Hash] opts the optional parameters
     # @return [Array<(String, Integer, Hash)>] String data, response status code and response headers
     def ping_with_http_info(opts = {})
@@ -4281,7 +4281,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'String'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.ping",
@@ -4301,8 +4301,8 @@ module Onfido
     end
 
     # Fraud reporting (ALPHA)
-    # Create Feedback on checks and reports 
-    # @param results_feedback [ResultsFeedback] 
+    # Create Feedback on checks and reports
+    # @param results_feedback [ResultsFeedback]
     # @param [Hash] opts the optional parameters
     # @return [ResultsFeedback]
     def post_results_feedback(results_feedback, opts = {})
@@ -4311,8 +4311,8 @@ module Onfido
     end
 
     # Fraud reporting (ALPHA)
-    # Create Feedback on checks and reports 
-    # @param results_feedback [ResultsFeedback] 
+    # Create Feedback on checks and reports
+    # @param results_feedback [ResultsFeedback]
     # @param [Hash] opts the optional parameters
     # @return [Array<(ResultsFeedback, Integer, Hash)>] ResultsFeedback data, response status code and response headers
     def post_results_feedback_with_http_info(results_feedback, opts = {})
@@ -4349,7 +4349,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'ResultsFeedback'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.post_results_feedback",
@@ -4369,8 +4369,8 @@ module Onfido
     end
 
     # Resends webhooks
-    # Resends events to all webhooks registered with a matching environment in your account. 
-    # @param webhook_resend [WebhookResend] 
+    # Resends events to all webhooks registered with a matching environment in your account.
+    # @param webhook_resend [WebhookResend]
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def resend_webhooks(webhook_resend, opts = {})
@@ -4379,8 +4379,8 @@ module Onfido
     end
 
     # Resends webhooks
-    # Resends events to all webhooks registered with a matching environment in your account. 
-    # @param webhook_resend [WebhookResend] 
+    # Resends events to all webhooks registered with a matching environment in your account.
+    # @param webhook_resend [WebhookResend]
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
     def resend_webhooks_with_http_info(webhook_resend, opts = {})
@@ -4417,7 +4417,7 @@ module Onfido
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.resend_webhooks",
@@ -4437,8 +4437,8 @@ module Onfido
     end
 
     # Restore Applicant
-    # Restores a single applicant scheduled for deletion. 
-    # @param applicant_id [String] 
+    # Restores a single applicant scheduled for deletion.
+    # @param applicant_id [String]
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def restore_applicant(applicant_id, opts = {})
@@ -4447,8 +4447,8 @@ module Onfido
     end
 
     # Restore Applicant
-    # Restores a single applicant scheduled for deletion. 
-    # @param applicant_id [String] 
+    # Restores a single applicant scheduled for deletion.
+    # @param applicant_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
     def restore_applicant_with_http_info(applicant_id, opts = {})
@@ -4480,7 +4480,7 @@ module Onfido
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.restore_applicant",
@@ -4500,8 +4500,8 @@ module Onfido
     end
 
     # Resume a Check
-    # Resumes a paused check. 
-    # @param check_id [String] 
+    # Resumes a paused check.
+    # @param check_id [String]
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def resume_check(check_id, opts = {})
@@ -4510,8 +4510,8 @@ module Onfido
     end
 
     # Resume a Check
-    # Resumes a paused check. 
-    # @param check_id [String] 
+    # Resumes a paused check.
+    # @param check_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
     def resume_check_with_http_info(check_id, opts = {})
@@ -4543,7 +4543,7 @@ module Onfido
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.resume_check",
@@ -4563,8 +4563,8 @@ module Onfido
     end
 
     # Resume report
-    # Resumes a single paused report. 
-    # @param report_id [String] 
+    # Resumes a single paused report.
+    # @param report_id [String]
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def resume_report(report_id, opts = {})
@@ -4573,8 +4573,8 @@ module Onfido
     end
 
     # Resume report
-    # Resumes a single paused report. 
-    # @param report_id [String] 
+    # Resumes a single paused report.
+    # @param report_id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
     def resume_report_with_http_info(report_id, opts = {})
@@ -4606,7 +4606,7 @@ module Onfido
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.resume_report",
@@ -4626,9 +4626,9 @@ module Onfido
     end
 
     # Update Applicant
-    # Allows updating applicant's information before any checks is created. - Partial updates - Addresses and ID numbers present will replace existing ones - Same applicant validations to create applicant 
-    # @param applicant_id [String] 
-    # @param applicant_updater [ApplicantUpdater] 
+    # Allows updating applicant's information before any checks is created. - Partial updates - Addresses and ID numbers present will replace existing ones - Same applicant validations to create applicant
+    # @param applicant_id [String]
+    # @param applicant_updater [ApplicantUpdater]
     # @param [Hash] opts the optional parameters
     # @return [Applicant]
     def update_applicant(applicant_id, applicant_updater, opts = {})
@@ -4637,9 +4637,9 @@ module Onfido
     end
 
     # Update Applicant
-    # Allows updating applicant&#39;s information before any checks is created. - Partial updates - Addresses and ID numbers present will replace existing ones - Same applicant validations to create applicant 
-    # @param applicant_id [String] 
-    # @param applicant_updater [ApplicantUpdater] 
+    # Allows updating applicant&#39;s information before any checks is created. - Partial updates - Addresses and ID numbers present will replace existing ones - Same applicant validations to create applicant
+    # @param applicant_id [String]
+    # @param applicant_updater [ApplicantUpdater]
     # @param [Hash] opts the optional parameters
     # @return [Array<(Applicant, Integer, Hash)>] Applicant data, response status code and response headers
     def update_applicant_with_http_info(applicant_id, applicant_updater, opts = {})
@@ -4680,7 +4680,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Applicant'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.update_applicant",
@@ -4700,7 +4700,7 @@ module Onfido
     end
 
     # Update passkey
-    # Updates a passkey's state. 
+    # Updates a passkey's state.
     # @param username [String] Username that owns the passkey.
     # @param passkey_id [String] Passkey ID.
     # @param passkey_updater [PasskeyUpdater] Passkey update payload.
@@ -4712,7 +4712,7 @@ module Onfido
     end
 
     # Update passkey
-    # Updates a passkey&#39;s state. 
+    # Updates a passkey&#39;s state.
     # @param username [String] Username that owns the passkey.
     # @param passkey_id [String] Passkey ID.
     # @param passkey_updater [PasskeyUpdater] Passkey update payload.
@@ -4760,7 +4760,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Passkey'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.update_passkey",
@@ -4780,9 +4780,9 @@ module Onfido
     end
 
     # Set match status (BETA)
-    # Update the status of the given matches 
-    # @param monitor_id [String] 
-    # @param watchlist_monitor_matches_updater [WatchlistMonitorMatchesUpdater] 
+    # Update the status of the given matches
+    # @param monitor_id [String]
+    # @param watchlist_monitor_matches_updater [WatchlistMonitorMatchesUpdater]
     # @param [Hash] opts the optional parameters
     # @return [WatchlistMonitorMatchesList]
     def update_watchlist_monitor_match(monitor_id, watchlist_monitor_matches_updater, opts = {})
@@ -4791,9 +4791,9 @@ module Onfido
     end
 
     # Set match status (BETA)
-    # Update the status of the given matches 
-    # @param monitor_id [String] 
-    # @param watchlist_monitor_matches_updater [WatchlistMonitorMatchesUpdater] 
+    # Update the status of the given matches
+    # @param monitor_id [String]
+    # @param watchlist_monitor_matches_updater [WatchlistMonitorMatchesUpdater]
     # @param [Hash] opts the optional parameters
     # @return [Array<(WatchlistMonitorMatchesList, Integer, Hash)>] WatchlistMonitorMatchesList data, response status code and response headers
     def update_watchlist_monitor_match_with_http_info(monitor_id, watchlist_monitor_matches_updater, opts = {})
@@ -4834,7 +4834,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'WatchlistMonitorMatchesList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.update_watchlist_monitor_match",
@@ -4854,9 +4854,9 @@ module Onfido
     end
 
     # Edit a webhook
-    # Edits a webhook. Returns the updated webhook object. 
-    # @param webhook_id [String] 
-    # @param webhook_updater [WebhookUpdater] 
+    # Edits a webhook. Returns the updated webhook object.
+    # @param webhook_id [String]
+    # @param webhook_updater [WebhookUpdater]
     # @param [Hash] opts the optional parameters
     # @return [Webhook]
     def update_webhook(webhook_id, webhook_updater, opts = {})
@@ -4865,9 +4865,9 @@ module Onfido
     end
 
     # Edit a webhook
-    # Edits a webhook. Returns the updated webhook object. 
-    # @param webhook_id [String] 
-    # @param webhook_updater [WebhookUpdater] 
+    # Edits a webhook. Returns the updated webhook object.
+    # @param webhook_id [String]
+    # @param webhook_updater [WebhookUpdater]
     # @param [Hash] opts the optional parameters
     # @return [Array<(Webhook, Integer, Hash)>] Webhook data, response status code and response headers
     def update_webhook_with_http_info(webhook_id, webhook_updater, opts = {})
@@ -4908,7 +4908,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Webhook'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.update_webhook",
@@ -4928,7 +4928,7 @@ module Onfido
     end
 
     # Upload a document
-    # Documents are uploaded using this endpoint. Along with the file upload the relevant document type must be specified. Documents must be uploaded as a multipart form. The valid file types are: jpg, png and pdf. The file size must be between 2KB and 3MB. 
+    # Documents are uploaded using this endpoint. Along with the file upload the relevant document type must be specified. Documents must be uploaded as a multipart form. The valid file types are: jpg, png and pdf. The file size must be between 2KB and 3MB.
     # @param type [DocumentTypes] The type of document
     # @param applicant_id [String] The ID of the applicant whose document is being uploaded.
     # @param file [File] The file to be uploaded.
@@ -4937,7 +4937,7 @@ module Onfido
     # @option opts [String] :side The side of the document, if applicable. The possible values are front and back
     # @option opts [CountryCodes] :issuing_country The issuing country of the document, a 3-letter ISO code.
     # @option opts [Boolean] :validate_image_quality Defaults to false. When true the submitted image will undergo an image quality validation which may take up to 5 seconds.
-    # @option opts [LocationBuilder] :location 
+    # @option opts [LocationBuilder] :location
     # @return [Document]
     def upload_document(type, applicant_id, file, opts = {})
       data, _status_code, _headers = upload_document_with_http_info(type, applicant_id, file, opts)
@@ -4945,7 +4945,7 @@ module Onfido
     end
 
     # Upload a document
-    # Documents are uploaded using this endpoint. Along with the file upload the relevant document type must be specified. Documents must be uploaded as a multipart form. The valid file types are: jpg, png and pdf. The file size must be between 2KB and 3MB. 
+    # Documents are uploaded using this endpoint. Along with the file upload the relevant document type must be specified. Documents must be uploaded as a multipart form. The valid file types are: jpg, png and pdf. The file size must be between 2KB and 3MB.
     # @param type [DocumentTypes] The type of document
     # @param applicant_id [String] The ID of the applicant whose document is being uploaded.
     # @param file [File] The file to be uploaded.
@@ -4954,7 +4954,7 @@ module Onfido
     # @option opts [String] :side The side of the document, if applicable. The possible values are front and back
     # @option opts [CountryCodes] :issuing_country The issuing country of the document, a 3-letter ISO code.
     # @option opts [Boolean] :validate_image_quality Defaults to false. When true the submitted image will undergo an image quality validation which may take up to 5 seconds.
-    # @option opts [LocationBuilder] :location 
+    # @option opts [LocationBuilder] :location
     # @return [Array<(Document, Integer, Hash)>] Document data, response status code and response headers
     def upload_document_with_http_info(type, applicant_id, file, opts = {})
       if @api_client.config.debugging
@@ -5010,7 +5010,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Document'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.upload_document",
@@ -5030,7 +5030,7 @@ module Onfido
     end
 
     # Upload ID photo
-    # You can upload ID photos to this endpoint. Like document upload, files must be uploaded as a multipart form. Valid file types are jpg, png and pdf. The file size must be between 32KB and 10MB. 
+    # You can upload ID photos to this endpoint. Like document upload, files must be uploaded as a multipart form. Valid file types are jpg, png and pdf. The file size must be between 32KB and 10MB.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :applicant_id The ID of the applicant whose ID photo is being uploaded.
     # @option opts [File] :file The file to be uploaded.
@@ -5041,7 +5041,7 @@ module Onfido
     end
 
     # Upload ID photo
-    # You can upload ID photos to this endpoint. Like document upload, files must be uploaded as a multipart form. Valid file types are jpg, png and pdf. The file size must be between 32KB and 10MB. 
+    # You can upload ID photos to this endpoint. Like document upload, files must be uploaded as a multipart form. Valid file types are jpg, png and pdf. The file size must be between 32KB and 10MB.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :applicant_id The ID of the applicant whose ID photo is being uploaded.
     # @option opts [File] :file The file to be uploaded.
@@ -5078,7 +5078,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'IdPhoto'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.upload_id_photo",
@@ -5098,7 +5098,7 @@ module Onfido
     end
 
     # Upload live photo
-    # You can upload live photos to this endpoint. Like document upload, files must be uploaded as a multipart form. Valid file types are jpg, png and pdf. The file size must be between 32KB and 10MB. Live photos are validated at the point of upload to check that they contain exactly one face. This validation can be disabled by setting the advanced_validation argument to false. 
+    # You can upload live photos to this endpoint. Like document upload, files must be uploaded as a multipart form. Valid file types are jpg, png and pdf. The file size must be between 32KB and 10MB. Live photos are validated at the point of upload to check that they contain exactly one face. This validation can be disabled by setting the advanced_validation argument to false.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :applicant_id The ID of the applicant whose live photo is being uploaded.
     # @option opts [File] :file The file to be uploaded.
@@ -5110,7 +5110,7 @@ module Onfido
     end
 
     # Upload live photo
-    # You can upload live photos to this endpoint. Like document upload, files must be uploaded as a multipart form. Valid file types are jpg, png and pdf. The file size must be between 32KB and 10MB. Live photos are validated at the point of upload to check that they contain exactly one face. This validation can be disabled by setting the advanced_validation argument to false. 
+    # You can upload live photos to this endpoint. Like document upload, files must be uploaded as a multipart form. Valid file types are jpg, png and pdf. The file size must be between 32KB and 10MB. Live photos are validated at the point of upload to check that they contain exactly one face. This validation can be disabled by setting the advanced_validation argument to false.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :applicant_id The ID of the applicant whose live photo is being uploaded.
     # @option opts [File] :file The file to be uploaded.
@@ -5149,7 +5149,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'LivePhoto'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.upload_live_photo",
@@ -5169,7 +5169,7 @@ module Onfido
     end
 
     # Upload a signing document
-    # Signing documents are uploaded using this endpoint. Signing documents must be uploaded as a multipart form. The only valid file type is pdf. The file size must be between 2KB and 3MB. 
+    # Signing documents are uploaded using this endpoint. Signing documents must be uploaded as a multipart form. The only valid file type is pdf. The file size must be between 2KB and 3MB.
     # @param applicant_id [String] The ID of the applicant whose signing document is being uploaded.
     # @param file [File] The file to be uploaded.
     # @param [Hash] opts the optional parameters
@@ -5180,7 +5180,7 @@ module Onfido
     end
 
     # Upload a signing document
-    # Signing documents are uploaded using this endpoint. Signing documents must be uploaded as a multipart form. The only valid file type is pdf. The file size must be between 2KB and 3MB. 
+    # Signing documents are uploaded using this endpoint. Signing documents must be uploaded as a multipart form. The only valid file type is pdf. The file size must be between 2KB and 3MB.
     # @param applicant_id [String] The ID of the applicant whose signing document is being uploaded.
     # @param file [File] The file to be uploaded.
     # @param [Hash] opts the optional parameters
@@ -5225,7 +5225,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'SigningDocument'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.upload_signing_document",

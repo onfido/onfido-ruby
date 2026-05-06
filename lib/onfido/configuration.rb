@@ -74,6 +74,14 @@ module Onfido
     # @return [Proc]
     attr_accessor :access_token_getter
 
+    # Defines the OAuth2 client ID for client credentials flow.
+    # @return [String]
+    attr_accessor :oauth_client_id
+
+    # Defines the OAuth2 client secret for client credentials flow.
+    # @return [String]
+    attr_accessor :oauth_client_secret
+
     # Set this to return data as binary instead of downloading a temp file. When enabled (set to true)
     # HTTP responses with return type `File` will be returned as a stream of binary data.
     # Default to false.
@@ -248,6 +256,61 @@ module Onfido
       @timeout = timeout
     end
 
+    # Sets OAuth2 client credentials for authentication.
+    # The client will automatically exchange credentials for an access token
+    # and refresh it when expired. This is mutually exclusive with api_token.
+    #
+    # @param client_id [String] OAuth2 client ID
+    # @param client_secret [String] OAuth2 client secret
+    def set_oauth_credentials(client_id, client_secret)
+      raise ArgumentError, 'OAuth client ID must not be nil or empty' if client_id.nil? || client_id.empty?
+      raise ArgumentError, 'OAuth client secret must not be nil or empty' if client_secret.nil? || client_secret.empty?
+
+      @oauth_client_id = client_id
+      @oauth_client_secret = client_secret
+      @oauth_access_token = nil
+      @oauth_token_expires_at = nil
+    end
+
+    private
+
+    def fetch_oauth_access_token
+      if @oauth_access_token && @oauth_token_expires_at && Time.now.to_f < @oauth_token_expires_at
+        return @oauth_access_token
+      end
+
+      token_url = "#{base_url}/oauth/token"
+
+      require 'net/http'
+      require 'json'
+
+      uri = URI(token_url)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = (uri.scheme == 'https')
+
+      request = Net::HTTP::Post.new(uri)
+      request.set_form_data(
+        'grant_type' => 'client_credentials',
+        'client_id' => @oauth_client_id,
+        'client_secret' => @oauth_client_secret
+      )
+
+      response = http.request(request)
+
+      unless response.is_a?(Net::HTTPSuccess)
+        raise "OAuth token exchange failed with status #{response.code}: #{response.body}"
+      end
+
+      data = JSON.parse(response.body)
+      @oauth_access_token = data['access_token']
+      expires_in = data['expires_in'].to_i
+      @oauth_token_expires_at = Time.now.to_f + (expires_in - 30)
+
+      @oauth_access_token
+    end
+
+    public
+
     # Gets API key (with prefix if set).
     # @param [String] param_name the parameter name of API key auth
     def api_key_with_prefix(param_name, param_alias = nil)
@@ -273,6 +336,17 @@ module Onfido
 
     # Returns Auth Settings hash for api client.
     def auth_settings
+      if @oauth_client_id && !@oauth_client_id.empty?
+        return {
+          'Token' =>
+            {
+              type: 'bearer',
+              in: 'header',
+              key: 'Authorization',
+              value: "Bearer #{fetch_oauth_access_token}"
+            },
+        }
+      end
       {
         'Token' =>
           {
@@ -280,6 +354,13 @@ module Onfido
             in: 'header',
             key: 'Authorization',
             value: api_key_with_prefix('Token')
+          },
+        'OAuth2ClientCredentials' =>
+          {
+            type: 'oauth2',
+            in: 'header',
+            key: 'Authorization',
+            value: "Bearer #{access_token_with_refresh}"
           },
       }
     end
