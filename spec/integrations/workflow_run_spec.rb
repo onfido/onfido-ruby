@@ -84,7 +84,7 @@ describe Onfido::WorkflowRun do
           onfido_api.find_timeline_file(workflow_run_id, timeline_file_id)
         end
 
-        expect(file.file?).to be_truthy
+        expect(File.file?(file)).to be_truthy
       end
 
       it 'downloads an evidence folder' do
