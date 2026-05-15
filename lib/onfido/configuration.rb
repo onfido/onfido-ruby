@@ -10,6 +10,8 @@ Generator version: 7.16.0
 =end
 
 require 'faraday/follow_redirects'
+require 'uri'
+require 'json'
 
 module Onfido
   class Configuration
@@ -73,6 +75,14 @@ module Onfido
     # Overrides the access_token if set
     # @return [Proc]
     attr_accessor :access_token_getter
+
+    # Defines the OAuth2 client ID for client credentials flow.
+    # @return [String]
+    attr_accessor :oauth_client_id
+
+    # Defines the OAuth2 client secret for client credentials flow.
+    # @return [String]
+    attr_accessor :oauth_client_secret
 
     # Set this to return data as binary instead of downloading a temp file. When enabled (set to true)
     # HTTP responses with return type `File` will be returned as a stream of binary data.
@@ -188,6 +198,7 @@ module Onfido
       @ignore_operation_servers = false
       @inject_format = false
       @force_ending_format = false
+      @oauth_mutex = Mutex.new 
       @logger = defined?(Rails) ? Rails.logger : Logger.new(STDOUT)
 
       use( Faraday::FollowRedirects::Middleware ) 
@@ -232,6 +243,7 @@ module Onfido
     end
 
     def api_token=(api_token)
+      raise ArgumentError, 'Cannot set API token when OAuth credentials are already configured' if @oauth_client_id 
       @api_key = {'Token' => "Token token=#{api_token}"}
     end
 
@@ -247,6 +259,64 @@ module Onfido
     def timeout=(timeout)
       @timeout = timeout
     end
+
+    # Sets OAuth2 client credentials for authentication.
+    # The client will automatically exchange credentials for an access token
+    # and refresh it when expired. This is mutually exclusive with api_token.
+    #
+    # @param client_id [String] OAuth2 client ID
+    # @param client_secret [String] OAuth2 client secret
+    def set_oauth_credentials(client_id, client_secret)
+      raise ArgumentError, 'OAuth client ID must not be nil or empty' if client_id.nil? || client_id.empty?
+      raise ArgumentError, 'OAuth client secret must not be nil or empty' if client_secret.nil? || client_secret.empty?
+      raise ArgumentError, 'Cannot set OAuth credentials when API token is already configured' if @api_key&.key?('Token') 
+
+      @oauth_client_id = client_id
+      @oauth_client_secret = client_secret
+      @oauth_access_token = nil
+      @oauth_token_expires_at = nil
+    end
+
+    private
+
+    def fetch_oauth_access_token
+      @oauth_mutex.synchronize do
+        return @oauth_access_token if @oauth_access_token && @oauth_token_expires_at && Time.now.to_f < @oauth_token_expires_at
+
+        conn = Faraday.new(
+          url: base_url,
+          ssl: { ca_file: ssl_ca_file, verify: ssl_verify, verify_mode: ssl_verify_mode,
+                 client_cert: ssl_client_cert, client_key: ssl_client_key },
+          proxy: proxy
+        ) do |f|
+          configure_middleware(f)
+          f.adapter(Faraday.default_adapter)
+          configure_connection(f)
+        end
+
+        response = conn.post('/oauth/token') do |req|
+          req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+          req.options.timeout = timeout
+          req.body = URI.encode_www_form(
+            'client_id' => @oauth_client_id,
+            'client_secret' => @oauth_client_secret
+          )
+        end
+
+        unless response.success?
+          raise "OAuth token exchange failed with status #{response.status}: #{response.body}"
+        end
+
+        data = JSON.parse(response.body)
+        @oauth_access_token = data['access_token']
+        expires_in = data['expires_in'].to_i
+        @oauth_token_expires_at = Time.now.to_f + (expires_in - 30)
+
+        @oauth_access_token
+      end
+    end
+
+    public
 
     # Gets API key (with prefix if set).
     # @param [String] param_name the parameter name of API key auth
@@ -273,6 +343,17 @@ module Onfido
 
     # Returns Auth Settings hash for api client.
     def auth_settings
+      if @oauth_client_id && !@oauth_client_id.empty?
+        return {
+          'Token' =>
+            {
+              type: 'bearer',
+              in: 'header',
+              key: 'Authorization',
+              value: "Bearer #{fetch_oauth_access_token}"
+            },
+        }
+      end
       {
         'Token' =>
           {
@@ -280,6 +361,13 @@ module Onfido
             in: 'header',
             key: 'Authorization',
             value: api_key_with_prefix('Token')
+          },
+        'OAuth2ClientCredentials' =>
+          {
+            type: 'oauth2',
+            in: 'header',
+            key: 'Authorization',
+            value: "Bearer #{access_token_with_refresh}"
           },
       }
     end

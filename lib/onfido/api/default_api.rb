@@ -63,7 +63,7 @@ module Onfido
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.cancel_report",
@@ -143,7 +143,7 @@ module Onfido
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.complete_task",
@@ -211,7 +211,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Applicant'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.create_applicant",
@@ -279,7 +279,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Check'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.create_check",
@@ -342,7 +342,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'TimelineFileReference'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.create_timeline_file",
@@ -410,7 +410,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'WatchlistMonitor'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.create_watchlist_monitor",
@@ -478,7 +478,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Webhook'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.create_webhook",
@@ -546,7 +546,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'WorkflowRun'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.create_workflow_run",
@@ -609,7 +609,7 @@ module Onfido
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.delete_applicant",
@@ -678,7 +678,7 @@ module Onfido
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.delete_passkey",
@@ -741,7 +741,7 @@ module Onfido
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.delete_passkeys",
@@ -804,7 +804,7 @@ module Onfido
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.delete_watchlist_monitor",
@@ -867,7 +867,7 @@ module Onfido
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.delete_webhook",
@@ -938,7 +938,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_aes_document",
@@ -1001,7 +1001,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_check",
@@ -1064,7 +1064,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_document",
@@ -1127,7 +1127,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_document_video",
@@ -1190,7 +1190,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_evidence_folder",
@@ -1253,7 +1253,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_id_photo",
@@ -1316,7 +1316,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_live_photo",
@@ -1379,7 +1379,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_live_video",
@@ -1442,7 +1442,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_live_video_frame",
@@ -1505,7 +1505,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_motion_capture",
@@ -1568,7 +1568,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_motion_capture_frame",
@@ -1631,7 +1631,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_nfc_face",
@@ -1702,7 +1702,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_qes_document",
@@ -1773,7 +1773,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_ses_document",
@@ -1836,7 +1836,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_signed_evidence_file",
@@ -1899,7 +1899,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.download_signing_document",
@@ -1967,7 +1967,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Extraction'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.extract",
@@ -2031,7 +2031,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'AddressesList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_addresses",
@@ -2094,7 +2094,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Applicant'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_applicant",
@@ -2157,7 +2157,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Array<ApplicantConsent>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_applicant_consents",
@@ -2220,7 +2220,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Check'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_check",
@@ -2283,7 +2283,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Document'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_document",
@@ -2346,7 +2346,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'IdPhoto'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_id_photo",
@@ -2409,7 +2409,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'LivePhoto'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_live_photo",
@@ -2472,7 +2472,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'LiveVideo'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_live_video",
@@ -2535,7 +2535,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'MotionCapture'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_motion_capture",
@@ -2604,7 +2604,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Passkey'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_passkey",
@@ -2667,7 +2667,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Report'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_report",
@@ -2730,7 +2730,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'SigningDocument'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_signing_document",
@@ -2799,7 +2799,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Task'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_task",
@@ -2868,7 +2868,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'File'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_timeline_file",
@@ -2931,7 +2931,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'WatchlistMonitor'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_watchlist_monitor",
@@ -2994,7 +2994,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Webhook'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_webhook",
@@ -3057,7 +3057,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'WorkflowRun'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.find_workflow_run",
@@ -3120,7 +3120,7 @@ module Onfido
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.force_report_creation_from_watchlist_monitor",
@@ -3188,7 +3188,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'SdkToken'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.generate_sdk_token",
@@ -3254,7 +3254,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'ApplicantsList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_applicants",
@@ -3318,7 +3318,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'ChecksList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_checks",
@@ -3382,7 +3382,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'DocumentsList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_documents",
@@ -3446,7 +3446,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'IdPhotosList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_id_photos",
@@ -3510,7 +3510,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'LivePhotosList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_live_photos",
@@ -3574,7 +3574,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'LiveVideosList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_live_videos",
@@ -3638,7 +3638,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'MotionCapturesList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_motion_captures",
@@ -3701,7 +3701,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'PasskeysList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_passkeys",
@@ -3764,7 +3764,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'RepeatAttemptsList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_repeat_attempts",
@@ -3828,7 +3828,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'ReportsList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_reports",
@@ -3892,7 +3892,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'SigningDocumentsList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_signing_documents",
@@ -3955,7 +3955,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Array<TaskItem>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_tasks",
@@ -4018,7 +4018,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'WatchlistMonitorMatchesList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_watchlist_monitor_matches",
@@ -4085,7 +4085,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'WatchlistMonitorsList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_watchlist_monitors",
@@ -4142,7 +4142,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'WebhooksList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_webhooks",
@@ -4224,7 +4224,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Array<WorkflowRun>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.list_workflow_runs",
@@ -4281,7 +4281,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'String'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.ping",
@@ -4349,7 +4349,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'ResultsFeedback'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.post_results_feedback",
@@ -4417,7 +4417,7 @@ module Onfido
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.resend_webhooks",
@@ -4480,7 +4480,7 @@ module Onfido
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.restore_applicant",
@@ -4543,7 +4543,7 @@ module Onfido
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.resume_check",
@@ -4606,7 +4606,7 @@ module Onfido
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.resume_report",
@@ -4680,7 +4680,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Applicant'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.update_applicant",
@@ -4760,7 +4760,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Passkey'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.update_passkey",
@@ -4834,7 +4834,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'WatchlistMonitorMatchesList'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.update_watchlist_monitor_match",
@@ -4908,7 +4908,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Webhook'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.update_webhook",
@@ -5010,7 +5010,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'Document'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.upload_document",
@@ -5078,7 +5078,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'IdPhoto'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.upload_id_photo",
@@ -5149,7 +5149,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'LivePhoto'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.upload_live_photo",
@@ -5225,7 +5225,7 @@ module Onfido
       return_type = opts[:debug_return_type] || 'SigningDocument'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Token']
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
         :operation => :"DefaultApi.upload_signing_document",
