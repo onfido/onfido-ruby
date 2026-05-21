@@ -14,7 +14,7 @@ This version uses Onfido API v3.6. Refer to our [API versioning guide](https://d
 ### Installation
 
 ```ruby
-gem 'onfido', '~> 6.1.0'
+gem 'onfido', '~> 6.2.0'
 ```
 
 Configure with your API token, region and optional timeout (default value is 30):
@@ -30,6 +30,22 @@ end
 
 onfido_api = Onfido::DefaultApi.new
 ```
+
+You can also authenticate using OAuth2 client credentials instead of an API token:
+
+```ruby
+require 'onfido'
+
+Onfido.configure do |config|
+  config.set_oauth_credentials(ENV["ONFIDO_OAUTH_CLIENT_ID"], ENV["ONFIDO_OAUTH_CLIENT_SECRET"])
+  config.region = config.region[:EU]
+  config.timeout = 30
+end
+
+onfido_api = Onfido::DefaultApi.new
+```
+
+The client will automatically exchange credentials for an access token and refresh it when it expires.
 
 All resources share the same interface when making API calls. Use `.create` to create a resource, `.find` to find one, and `.all` to fetch all resources.
 
