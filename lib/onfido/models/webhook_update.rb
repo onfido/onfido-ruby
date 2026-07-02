@@ -15,12 +15,16 @@ require 'time'
 
 module Onfido
   class WebhookUpdate
+    # Name of the webhook.
+    attr_accessor :name
+
     # The url that will listen to notifications (must be https).
     attr_accessor :url
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'name' => :'name',
         :'url' => :'url'
       }
     end
@@ -38,6 +42,7 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'name' => :'String',
         :'url' => :'String'
       }
     end
@@ -64,6 +69,10 @@ module Onfido
         h[k.to_sym] = v
       }
 
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
+      end
+
       if attributes.key?(:'url')
         self.url = attributes[:'url']
       end
@@ -89,6 +98,7 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          name == o.name &&
           url == o.url
     end
 
@@ -101,7 +111,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [url].hash
+      [name, url].hash
     end
 
     # Builds the object from hash

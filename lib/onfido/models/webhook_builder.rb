@@ -42,6 +42,9 @@ module Onfido
     # The scopes to be sent when requesting the access token.
     attr_accessor :oauth_server_scope
 
+    # Name of the webhook.
+    attr_accessor :name
+
     # The url that will listen to notifications (must be https).
     attr_accessor :url
 
@@ -57,6 +60,7 @@ module Onfido
         :'oauth_server_client_id' => :'oauth_server_client_id',
         :'oauth_server_client_secret' => :'oauth_server_client_secret',
         :'oauth_server_scope' => :'oauth_server_scope',
+        :'name' => :'name',
         :'url' => :'url'
       }
     end
@@ -83,6 +87,7 @@ module Onfido
         :'oauth_server_client_id' => :'String',
         :'oauth_server_client_secret' => :'String',
         :'oauth_server_scope' => :'String',
+        :'name' => :'String',
         :'url' => :'String'
       }
     end
@@ -157,6 +162,10 @@ module Onfido
         self.oauth_server_scope = attributes[:'oauth_server_scope']
       end
 
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
+      end
+
       if attributes.key?(:'url')
         self.url = attributes[:'url']
       else
@@ -208,6 +217,7 @@ module Onfido
           oauth_server_client_id == o.oauth_server_client_id &&
           oauth_server_client_secret == o.oauth_server_client_secret &&
           oauth_server_scope == o.oauth_server_scope &&
+          name == o.name &&
           url == o.url
     end
 
@@ -220,7 +230,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [enabled, events, environments, payload_version, oauth_enabled, oauth_server_url, oauth_server_client_id, oauth_server_client_secret, oauth_server_scope, url].hash
+      [enabled, events, environments, payload_version, oauth_enabled, oauth_server_url, oauth_server_client_id, oauth_server_client_secret, oauth_server_scope, name, url].hash
     end
 
     # Builds the object from hash

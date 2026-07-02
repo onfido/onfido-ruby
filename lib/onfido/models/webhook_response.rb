@@ -18,6 +18,9 @@ module Onfido
     # The unique identifier of the webhook.
     attr_accessor :id
 
+    # Name of the webhook.
+    attr_accessor :name
+
     # The url that will listen to notifications (must be https).
     attr_accessor :url
 
@@ -31,6 +34,7 @@ module Onfido
     def self.attribute_map
       {
         :'id' => :'id',
+        :'name' => :'name',
         :'url' => :'url',
         :'token' => :'token',
         :'href' => :'href'
@@ -51,6 +55,7 @@ module Onfido
     def self.openapi_types
       {
         :'id' => :'String',
+        :'name' => :'String',
         :'url' => :'String',
         :'token' => :'String',
         :'href' => :'String'
@@ -83,6 +88,10 @@ module Onfido
         self.id = attributes[:'id']
       else
         self.id = nil
+      end
+
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
       end
 
       if attributes.key?(:'url')
@@ -134,6 +143,7 @@ module Onfido
       return true if self.equal?(o)
       self.class == o.class &&
           id == o.id &&
+          name == o.name &&
           url == o.url &&
           token == o.token &&
           href == o.href
@@ -148,7 +158,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, url, token, href].hash
+      [id, name, url, token, href].hash
     end
 
     # Builds the object from hash
