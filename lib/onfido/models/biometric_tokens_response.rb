@@ -14,14 +14,13 @@ require 'date'
 require 'time'
 
 module Onfido
-  # Invalidated biometric tokens response payload.
-  class InvalidatedBiometricTokenSummary
-    attr_accessor :deleted_items
+  class BiometricTokensResponse
+    attr_accessor :biometric_tokens
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'deleted_items' => :'deleted_items'
+        :'biometric_tokens' => :'biometric_tokens'
       }
     end
 
@@ -38,7 +37,7 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'deleted_items' => :'InvalidatedBiometricTokenSummaryDeletedItems'
+        :'biometric_tokens' => :'Array<BiometricToken>'
       }
     end
 
@@ -52,22 +51,24 @@ module Onfido
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::InvalidatedBiometricTokenSummary` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::BiometricTokensResponse` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!acceptable_attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::InvalidatedBiometricTokenSummary`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::BiometricTokensResponse`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'deleted_items')
-        self.deleted_items = attributes[:'deleted_items']
+      if attributes.key?(:'biometric_tokens')
+        if (value = attributes[:'biometric_tokens']).is_a?(Array)
+          self.biometric_tokens = value
+        end
       else
-        self.deleted_items = nil
+        self.biometric_tokens = nil
       end
     end
 
@@ -76,8 +77,8 @@ module Onfido
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @deleted_items.nil?
-        invalid_properties.push('invalid value for "deleted_items", deleted_items cannot be nil.')
+      if @biometric_tokens.nil?
+        invalid_properties.push('invalid value for "biometric_tokens", biometric_tokens cannot be nil.')
       end
 
       invalid_properties
@@ -87,18 +88,18 @@ module Onfido
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @deleted_items.nil?
+      return false if @biometric_tokens.nil?
       true
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] deleted_items Value to be assigned
-    def deleted_items=(deleted_items)
-      if deleted_items.nil?
-        fail ArgumentError, 'deleted_items cannot be nil'
+    # @param [Object] biometric_tokens Value to be assigned
+    def biometric_tokens=(biometric_tokens)
+      if biometric_tokens.nil?
+        fail ArgumentError, 'biometric_tokens cannot be nil'
       end
 
-      @deleted_items = deleted_items
+      @biometric_tokens = biometric_tokens
     end
 
     # Checks equality by comparing each attribute.
@@ -106,7 +107,7 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          deleted_items == o.deleted_items
+          biometric_tokens == o.biometric_tokens
     end
 
     # @see the `==` method
@@ -118,7 +119,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [deleted_items].hash
+      [biometric_tokens].hash
     end
 
     # Builds the object from hash

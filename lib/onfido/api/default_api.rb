@@ -2181,7 +2181,7 @@ module Onfido
     # @param user_id [String] Customer user ID that owns the biometric token.
     # @param token_uuid [String] Biometric token UUID.
     # @param [Hash] opts the optional parameters
-    # @return [BiometricToken]
+    # @return [BiometricTokenResponse]
     def find_biometric_token(user_id, token_uuid, opts = {})
       data, _status_code, _headers = find_biometric_token_with_http_info(user_id, token_uuid, opts)
       data
@@ -2192,7 +2192,7 @@ module Onfido
     # @param user_id [String] Customer user ID that owns the biometric token.
     # @param token_uuid [String] Biometric token UUID.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(BiometricToken, Integer, Hash)>] BiometricToken data, response status code and response headers
+    # @return [Array<(BiometricTokenResponse, Integer, Hash)>] BiometricTokenResponse data, response status code and response headers
     def find_biometric_token_with_http_info(user_id, token_uuid, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.find_biometric_token ...'
@@ -2223,7 +2223,7 @@ module Onfido
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'BiometricToken'
+      return_type = opts[:debug_return_type] || 'BiometricTokenResponse'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
@@ -3281,7 +3281,7 @@ module Onfido
     # @param user_id [String] Customer user ID that owns the biometric token.
     # @param token_uuid [String] Biometric token UUID.
     # @param [Hash] opts the optional parameters
-    # @return [InvalidatedBiometricTokenSummary]
+    # @return [InvalidatedBiometricTokenResponse]
     def invalidate_biometric_token(user_id, token_uuid, opts = {})
       data, _status_code, _headers = invalidate_biometric_token_with_http_info(user_id, token_uuid, opts)
       data
@@ -3292,7 +3292,7 @@ module Onfido
     # @param user_id [String] Customer user ID that owns the biometric token.
     # @param token_uuid [String] Biometric token UUID.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InvalidatedBiometricTokenSummary, Integer, Hash)>] InvalidatedBiometricTokenSummary data, response status code and response headers
+    # @return [Array<(InvalidatedBiometricTokenResponse, Integer, Hash)>] InvalidatedBiometricTokenResponse data, response status code and response headers
     def invalidate_biometric_token_with_http_info(user_id, token_uuid, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.invalidate_biometric_token ...'
@@ -3323,7 +3323,7 @@ module Onfido
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'InvalidatedBiometricTokenSummary'
+      return_type = opts[:debug_return_type] || 'InvalidatedBiometricTokenResponse'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
@@ -3349,7 +3349,7 @@ module Onfido
     # Invalidates every biometric token associated with the supplied customer user ID. 
     # @param user_id [String] Customer user ID whose biometric tokens will be invalidated.
     # @param [Hash] opts the optional parameters
-    # @return [InvalidatedBiometricTokensSummary]
+    # @return [InvalidatedBiometricTokensResponse]
     def invalidate_biometric_tokens(user_id, opts = {})
       data, _status_code, _headers = invalidate_biometric_tokens_with_http_info(user_id, opts)
       data
@@ -3359,7 +3359,7 @@ module Onfido
     # Invalidates every biometric token associated with the supplied customer user ID. 
     # @param user_id [String] Customer user ID whose biometric tokens will be invalidated.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InvalidatedBiometricTokensSummary, Integer, Hash)>] InvalidatedBiometricTokensSummary data, response status code and response headers
+    # @return [Array<(InvalidatedBiometricTokensResponse, Integer, Hash)>] InvalidatedBiometricTokensResponse data, response status code and response headers
     def invalidate_biometric_tokens_with_http_info(user_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.invalidate_biometric_tokens ...'
@@ -3386,7 +3386,7 @@ module Onfido
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'InvalidatedBiometricTokensSummary'
+      return_type = opts[:debug_return_type] || 'InvalidatedBiometricTokensResponse'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
@@ -3478,7 +3478,7 @@ module Onfido
     # Returns the biometric tokens associated with the supplied customer user ID. 
     # @param user_id [String] Customer user ID that owns the biometric tokens.
     # @param [Hash] opts the optional parameters
-    # @return [BiometricTokensList]
+    # @return [BiometricTokensResponse]
     def list_biometric_tokens(user_id, opts = {})
       data, _status_code, _headers = list_biometric_tokens_with_http_info(user_id, opts)
       data
@@ -3488,7 +3488,7 @@ module Onfido
     # Returns the biometric tokens associated with the supplied customer user ID. 
     # @param user_id [String] Customer user ID that owns the biometric tokens.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(BiometricTokensList, Integer, Hash)>] BiometricTokensList data, response status code and response headers
+    # @return [Array<(BiometricTokensResponse, Integer, Hash)>] BiometricTokensResponse data, response status code and response headers
     def list_biometric_tokens_with_http_info(user_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.list_biometric_tokens ...'
@@ -3515,7 +3515,7 @@ module Onfido
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'BiometricTokensList'
+      return_type = opts[:debug_return_type] || 'BiometricTokensResponse'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
@@ -4969,7 +4969,7 @@ module Onfido
     # @param token_uuid [String] Biometric token UUID.
     # @param biometric_token_updater [BiometricTokenUpdater] Biometric token update payload.
     # @param [Hash] opts the optional parameters
-    # @return [UpdateBiometricToken200Response]
+    # @return [UpdatedBiometricTokenResponse]
     def update_biometric_token(user_id, token_uuid, biometric_token_updater, opts = {})
       data, _status_code, _headers = update_biometric_token_with_http_info(user_id, token_uuid, biometric_token_updater, opts)
       data
@@ -4981,7 +4981,7 @@ module Onfido
     # @param token_uuid [String] Biometric token UUID.
     # @param biometric_token_updater [BiometricTokenUpdater] Biometric token update payload.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(UpdateBiometricToken200Response, Integer, Hash)>] UpdateBiometricToken200Response data, response status code and response headers
+    # @return [Array<(UpdatedBiometricTokenResponse, Integer, Hash)>] UpdatedBiometricTokenResponse data, response status code and response headers
     def update_biometric_token_with_http_info(user_id, token_uuid, biometric_token_updater, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.update_biometric_token ...'
@@ -5021,7 +5021,7 @@ module Onfido
       post_body = opts[:debug_body] || @api_client.object_to_http_body(biometric_token_updater)
 
       # return_type
-      return_type = opts[:debug_return_type] || 'UpdateBiometricToken200Response'
+      return_type = opts[:debug_return_type] || 'UpdatedBiometricTokenResponse'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
