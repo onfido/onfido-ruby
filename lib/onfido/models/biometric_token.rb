@@ -14,13 +14,18 @@ require 'date'
 require 'time'
 
 module Onfido
+  # Biometric token.
   class BiometricToken
-    attr_accessor :biometric_token
+    # The biometric token's unique identifier.
+    attr_accessor :uuid
+
+    attr_accessor :data
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'biometric_token' => :'biometric_token'
+        :'uuid' => :'uuid',
+        :'data' => :'data'
       }
     end
 
@@ -37,7 +42,8 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'biometric_token' => :'BiometricToken'
+        :'uuid' => :'String',
+        :'data' => :'BiometricTokenData'
       }
     end
 
@@ -63,10 +69,16 @@ module Onfido
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'biometric_token')
-        self.biometric_token = attributes[:'biometric_token']
+      if attributes.key?(:'uuid')
+        self.uuid = attributes[:'uuid']
       else
-        self.biometric_token = nil
+        self.uuid = nil
+      end
+
+      if attributes.key?(:'data')
+        self.data = attributes[:'data']
+      else
+        self.data = nil
       end
     end
 
@@ -75,8 +87,12 @@ module Onfido
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @biometric_token.nil?
-        invalid_properties.push('invalid value for "biometric_token", biometric_token cannot be nil.')
+      if @uuid.nil?
+        invalid_properties.push('invalid value for "uuid", uuid cannot be nil.')
+      end
+
+      if @data.nil?
+        invalid_properties.push('invalid value for "data", data cannot be nil.')
       end
 
       invalid_properties
@@ -86,18 +102,29 @@ module Onfido
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @biometric_token.nil?
+      return false if @uuid.nil?
+      return false if @data.nil?
       true
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] biometric_token Value to be assigned
-    def biometric_token=(biometric_token)
-      if biometric_token.nil?
-        fail ArgumentError, 'biometric_token cannot be nil'
+    # @param [Object] uuid Value to be assigned
+    def uuid=(uuid)
+      if uuid.nil?
+        fail ArgumentError, 'uuid cannot be nil'
       end
 
-      @biometric_token = biometric_token
+      @uuid = uuid
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] data Value to be assigned
+    def data=(data)
+      if data.nil?
+        fail ArgumentError, 'data cannot be nil'
+      end
+
+      @data = data
     end
 
     # Checks equality by comparing each attribute.
@@ -105,7 +132,8 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          biometric_token == o.biometric_token
+          uuid == o.uuid &&
+          data == o.data
     end
 
     # @see the `==` method
@@ -117,7 +145,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [biometric_token].hash
+      [uuid, data].hash
     end
 
     # Builds the object from hash
