@@ -43,7 +43,14 @@ describe Onfido::Document do
     end
 
     describe 'downloading an NFC face' do
-      let(:file) { onfido_api.download_nfc_face(nfc_face_id) }
+      let(:nfc_document) do
+        onfido_api.upload_document(
+          Onfido::DocumentTypes::PASSPORT,
+          applicant_id,
+          File.open('spec/integrations/media/nfc_data.json')
+        )
+      end
+      let(:file) { onfido_api.download_nfc_face(nfc_document.id) }
 
       it_behaves_like "a valid PNG file", 471345
     end
