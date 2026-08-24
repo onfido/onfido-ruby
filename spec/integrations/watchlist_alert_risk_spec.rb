@@ -1,48 +1,39 @@
 # frozen_string_literal: true
 
-require_relative '../shared_contexts/with_onfido'
+require_relative '../shared_contexts/with_workflow_run'
 
 describe Onfido::WatchlistAlertRisk do
   describe 'Watchlist alert risks' do
-    include_context 'with onfido'
+    include_context 'with workflow run'
 
     let(:workflow_id) { '18effbfe-73c3-4680-ae43-e1c474767ff4' }
-    let(:onfido_api) do
-      configuration = Onfido::Configuration.new
-      configuration.api_token = 'api_tests_client_sandbox_token'
-
-      Onfido::DefaultApi.new(Onfido::ApiClient.new(configuration))
-    end
-    let(:applicant_id) do
-      @applicant_id = onfido_api.create_applicant(
-        first_name: 'Donald',
-        last_name: 'Consider',
-        dob: '1990-01-01',
-        address: {
-          country: 'PRT',
-          town: 'Town',
-          street: 'Street',
-          building_number: '12',
-          postcode: '12345',
+    let(:default_applicant_body) do
+      {
+        'first_name' => 'Donald',
+        'last_name' => 'Consider',
+        'dob' => '1990-01-01',
+        'address' => {
+          'country' => 'PRT',
+          'town' => 'Town',
+          'street' => 'Street',
+          'building_number' => '12',
+          'postcode' => '12345',
         },
-      ).id
+      }
     end
-    let(:workflow_run) do
-      onfido_api.create_workflow_run(
-        Onfido::WorkflowRunBuilder.new(
-          applicant_id: applicant_id,
-          workflow_id: workflow_id,
-          custom_data: {
-            national_id: {
-              type: 'passport',
-              value: 'P1234567',
-            },
-            nationality: 'PRT',
+    let(:workflow_run_builder) do
+      Onfido::WorkflowRunBuilder.new(
+        applicant_id: applicant_id,
+        workflow_id: workflow_id,
+        custom_data: {
+          national_id: {
+            type: 'passport',
+            value: 'P1234567',
           },
-        ),
+          nationality: 'PRT',
+        },
       )
     end
-    let(:workflow_run_id) { workflow_run.id }
     let(:watchlist_task) do
       task = onfido_api.list_tasks(workflow_run_id).find do |workflow_task|
         workflow_task.task_def_id == 'query_watchlists_complyadvantage_mesh'
@@ -59,12 +50,6 @@ describe Onfido::WatchlistAlertRisk do
 
       expect(properties[:alert_identifier]).not_to be_nil
       properties[:alert_identifier]
-    end
-
-    after do
-      onfido_api.delete_applicant(@applicant_id) if @applicant_id
-    rescue Onfido::ApiError
-      # Ignore cleanup failures.
     end
 
     it 'retrieves paginated risks for a sandbox alert' do
