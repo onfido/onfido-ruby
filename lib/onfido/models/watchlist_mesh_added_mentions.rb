@@ -14,16 +14,19 @@ require 'date'
 require 'time'
 
 module Onfido
-  class Name
-    attr_accessor :name
+  class WatchlistMeshAddedMentions
+    attr_accessor :added_aml_types
 
-    attr_accessor :type
+    attr_accessor :added_snippets
+
+    attr_accessor :added_listings
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'name' => :'name',
-        :'type' => :'type'
+        :'added_aml_types' => :'added_aml_types',
+        :'added_snippets' => :'added_snippets',
+        :'added_listings' => :'added_listings'
       }
     end
 
@@ -40,16 +43,18 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'name' => :'String',
-        :'type' => :'String'
+        :'added_aml_types' => :'Array<String>',
+        :'added_snippets' => :'Array<String>',
+        :'added_listings' => :'Array<String>'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'name',
-        :'type'
+        :'added_aml_types',
+        :'added_snippets',
+        :'added_listings'
       ])
     end
 
@@ -57,24 +62,34 @@ module Onfido
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::Name` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WatchlistMeshAddedMentions` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!acceptable_attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::Name`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WatchlistMeshAddedMentions`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'name')
-        self.name = attributes[:'name']
+      if attributes.key?(:'added_aml_types')
+        if (value = attributes[:'added_aml_types']).is_a?(Array)
+          self.added_aml_types = value
+        end
       end
 
-      if attributes.key?(:'type')
-        self.type = attributes[:'type']
+      if attributes.key?(:'added_snippets')
+        if (value = attributes[:'added_snippets']).is_a?(Array)
+          self.added_snippets = value
+        end
+      end
+
+      if attributes.key?(:'added_listings')
+        if (value = attributes[:'added_listings']).is_a?(Array)
+          self.added_listings = value
+        end
       end
     end
 
@@ -98,8 +113,9 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          name == o.name &&
-          type == o.type
+          added_aml_types == o.added_aml_types &&
+          added_snippets == o.added_snippets &&
+          added_listings == o.added_listings
     end
 
     # @see the `==` method
@@ -111,7 +127,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [name, type].hash
+      [added_aml_types, added_snippets, added_listings].hash
     end
 
     # Builds the object from hash

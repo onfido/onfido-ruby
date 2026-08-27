@@ -14,28 +14,52 @@ require 'date'
 require 'time'
 
 module Onfido
-  class Person
-    attr_accessor :associates
+  class WatchlistMeshPep
+    attr_accessor :aml_types
 
-    attr_accessor :dates_of_birth
+    attr_accessor :active_end_dates
 
-    attr_accessor :dates_of_death
+    attr_accessor :active_start_dates
 
-    attr_accessor :images
+    attr_accessor :country_codes
 
-    attr_accessor :names
+    attr_accessor :fields
 
-    attr_accessor :places_of_birth
+    attr_accessor :identifier
+
+    attr_accessor :listing_ended_utc
+
+    attr_accessor :listing_started_utc
+
+    attr_accessor :name
+
+    attr_accessor :political_parties
+
+    attr_accessor :political_positions
+
+    attr_accessor :political_regions
+
+    attr_accessor :related_urls
+
+    attr_accessor :url
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'associates' => :'associates',
-        :'dates_of_birth' => :'dates_of_birth',
-        :'dates_of_death' => :'dates_of_death',
-        :'images' => :'images',
-        :'names' => :'names',
-        :'places_of_birth' => :'places_of_birth'
+        :'aml_types' => :'aml_types',
+        :'active_end_dates' => :'active_end_dates',
+        :'active_start_dates' => :'active_start_dates',
+        :'country_codes' => :'country_codes',
+        :'fields' => :'fields',
+        :'identifier' => :'identifier',
+        :'listing_ended_utc' => :'listing_ended_utc',
+        :'listing_started_utc' => :'listing_started_utc',
+        :'name' => :'name',
+        :'political_parties' => :'political_parties',
+        :'political_positions' => :'political_positions',
+        :'political_regions' => :'political_regions',
+        :'related_urls' => :'related_urls',
+        :'url' => :'url'
       }
     end
 
@@ -52,24 +76,40 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'associates' => :'Array<Associate>',
-        :'dates_of_birth' => :'Array<DateValue>',
-        :'dates_of_death' => :'Array<DateValue>',
-        :'images' => :'Array<Image>',
-        :'names' => :'Array<Name>',
-        :'places_of_birth' => :'Array<String>'
+        :'aml_types' => :'Array<String>',
+        :'active_end_dates' => :'Array<String>',
+        :'active_start_dates' => :'Array<String>',
+        :'country_codes' => :'Array<String>',
+        :'fields' => :'Array<WatchlistMeshField>',
+        :'identifier' => :'String',
+        :'listing_ended_utc' => :'String',
+        :'listing_started_utc' => :'String',
+        :'name' => :'String',
+        :'political_parties' => :'Array<String>',
+        :'political_positions' => :'Array<String>',
+        :'political_regions' => :'Array<String>',
+        :'related_urls' => :'Array<String>',
+        :'url' => :'String'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'associates',
-        :'dates_of_birth',
-        :'dates_of_death',
-        :'images',
-        :'names',
-        :'places_of_birth'
+        :'aml_types',
+        :'active_end_dates',
+        :'active_start_dates',
+        :'country_codes',
+        :'fields',
+        :'identifier',
+        :'listing_ended_utc',
+        :'listing_started_utc',
+        :'name',
+        :'political_parties',
+        :'political_positions',
+        :'political_regions',
+        :'related_urls',
+        :'url'
       ])
     end
 
@@ -77,52 +117,90 @@ module Onfido
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::Person` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WatchlistMeshPep` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!acceptable_attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::Person`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WatchlistMeshPep`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'associates')
-        if (value = attributes[:'associates']).is_a?(Array)
-          self.associates = value
+      if attributes.key?(:'aml_types')
+        if (value = attributes[:'aml_types']).is_a?(Array)
+          self.aml_types = value
         end
       end
 
-      if attributes.key?(:'dates_of_birth')
-        if (value = attributes[:'dates_of_birth']).is_a?(Array)
-          self.dates_of_birth = value
+      if attributes.key?(:'active_end_dates')
+        if (value = attributes[:'active_end_dates']).is_a?(Array)
+          self.active_end_dates = value
         end
       end
 
-      if attributes.key?(:'dates_of_death')
-        if (value = attributes[:'dates_of_death']).is_a?(Array)
-          self.dates_of_death = value
+      if attributes.key?(:'active_start_dates')
+        if (value = attributes[:'active_start_dates']).is_a?(Array)
+          self.active_start_dates = value
         end
       end
 
-      if attributes.key?(:'images')
-        if (value = attributes[:'images']).is_a?(Array)
-          self.images = value
+      if attributes.key?(:'country_codes')
+        if (value = attributes[:'country_codes']).is_a?(Array)
+          self.country_codes = value
         end
       end
 
-      if attributes.key?(:'names')
-        if (value = attributes[:'names']).is_a?(Array)
-          self.names = value
+      if attributes.key?(:'fields')
+        if (value = attributes[:'fields']).is_a?(Array)
+          self.fields = value
         end
       end
 
-      if attributes.key?(:'places_of_birth')
-        if (value = attributes[:'places_of_birth']).is_a?(Array)
-          self.places_of_birth = value
+      if attributes.key?(:'identifier')
+        self.identifier = attributes[:'identifier']
+      end
+
+      if attributes.key?(:'listing_ended_utc')
+        self.listing_ended_utc = attributes[:'listing_ended_utc']
+      end
+
+      if attributes.key?(:'listing_started_utc')
+        self.listing_started_utc = attributes[:'listing_started_utc']
+      end
+
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
+      end
+
+      if attributes.key?(:'political_parties')
+        if (value = attributes[:'political_parties']).is_a?(Array)
+          self.political_parties = value
         end
+      end
+
+      if attributes.key?(:'political_positions')
+        if (value = attributes[:'political_positions']).is_a?(Array)
+          self.political_positions = value
+        end
+      end
+
+      if attributes.key?(:'political_regions')
+        if (value = attributes[:'political_regions']).is_a?(Array)
+          self.political_regions = value
+        end
+      end
+
+      if attributes.key?(:'related_urls')
+        if (value = attributes[:'related_urls']).is_a?(Array)
+          self.related_urls = value
+        end
+      end
+
+      if attributes.key?(:'url')
+        self.url = attributes[:'url']
       end
     end
 
@@ -146,12 +224,20 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          associates == o.associates &&
-          dates_of_birth == o.dates_of_birth &&
-          dates_of_death == o.dates_of_death &&
-          images == o.images &&
-          names == o.names &&
-          places_of_birth == o.places_of_birth
+          aml_types == o.aml_types &&
+          active_end_dates == o.active_end_dates &&
+          active_start_dates == o.active_start_dates &&
+          country_codes == o.country_codes &&
+          fields == o.fields &&
+          identifier == o.identifier &&
+          listing_ended_utc == o.listing_ended_utc &&
+          listing_started_utc == o.listing_started_utc &&
+          name == o.name &&
+          political_parties == o.political_parties &&
+          political_positions == o.political_positions &&
+          political_regions == o.political_regions &&
+          related_urls == o.related_urls &&
+          url == o.url
     end
 
     # @see the `==` method
@@ -163,7 +249,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [associates, dates_of_birth, dates_of_death, images, names, places_of_birth].hash
+      [aml_types, active_end_dates, active_start_dates, country_codes, fields, identifier, listing_ended_utc, listing_started_utc, name, political_parties, political_positions, political_regions, related_urls, url].hash
     end
 
     # Builds the object from hash

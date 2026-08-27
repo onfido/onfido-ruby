@@ -14,15 +14,24 @@ require 'date'
 require 'time'
 
 module Onfido
-  class Image
-    attr_accessor :source
+  class WatchlistMeshMedia
+    attr_accessor :identifier
+
+    attr_accessor :publishing_date
+
+    attr_accessor :snippet
+
+    attr_accessor :title
 
     attr_accessor :url
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'source' => :'source',
+        :'identifier' => :'identifier',
+        :'publishing_date' => :'publishing_date',
+        :'snippet' => :'snippet',
+        :'title' => :'title',
         :'url' => :'url'
       }
     end
@@ -40,7 +49,10 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'source' => :'String',
+        :'identifier' => :'String',
+        :'publishing_date' => :'String',
+        :'snippet' => :'String',
+        :'title' => :'String',
         :'url' => :'String'
       }
     end
@@ -48,7 +60,10 @@ module Onfido
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'source',
+        :'identifier',
+        :'publishing_date',
+        :'snippet',
+        :'title',
         :'url'
       ])
     end
@@ -57,20 +72,32 @@ module Onfido
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::Image` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WatchlistMeshMedia` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!acceptable_attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::Image`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WatchlistMeshMedia`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'source')
-        self.source = attributes[:'source']
+      if attributes.key?(:'identifier')
+        self.identifier = attributes[:'identifier']
+      end
+
+      if attributes.key?(:'publishing_date')
+        self.publishing_date = attributes[:'publishing_date']
+      end
+
+      if attributes.key?(:'snippet')
+        self.snippet = attributes[:'snippet']
+      end
+
+      if attributes.key?(:'title')
+        self.title = attributes[:'title']
       end
 
       if attributes.key?(:'url')
@@ -98,7 +125,10 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          source == o.source &&
+          identifier == o.identifier &&
+          publishing_date == o.publishing_date &&
+          snippet == o.snippet &&
+          title == o.title &&
           url == o.url
     end
 
@@ -111,7 +141,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [source, url].hash
+      [identifier, publishing_date, snippet, title, url].hash
     end
 
     # Builds the object from hash

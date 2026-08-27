@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Onfido
-  class Sanctions
+  class WatchlistMeshSanctions
     attr_accessor :aml_types
 
     attr_accessor :country_codes
@@ -63,7 +63,7 @@ module Onfido
       {
         :'aml_types' => :'Array<String>',
         :'country_codes' => :'Array<String>',
-        :'fields' => :'Array<Field>',
+        :'fields' => :'Array<WatchlistMeshField>',
         :'identifier' => :'String',
         :'listing_ended_utc' => :'String',
         :'listing_started_utc' => :'String',
@@ -92,14 +92,14 @@ module Onfido
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::Sanctions` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WatchlistMeshSanctions` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!acceptable_attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::Sanctions`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WatchlistMeshSanctions`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }

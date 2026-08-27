@@ -14,16 +14,28 @@ require 'date'
 require 'time'
 
 module Onfido
-  class Associate
-    attr_accessor :name
+  class WatchlistMeshPerson
+    attr_accessor :associates
 
-    attr_accessor :type
+    attr_accessor :dates_of_birth
+
+    attr_accessor :dates_of_death
+
+    attr_accessor :images
+
+    attr_accessor :names
+
+    attr_accessor :places_of_birth
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'name' => :'name',
-        :'type' => :'type'
+        :'associates' => :'associates',
+        :'dates_of_birth' => :'dates_of_birth',
+        :'dates_of_death' => :'dates_of_death',
+        :'images' => :'images',
+        :'names' => :'names',
+        :'places_of_birth' => :'places_of_birth'
       }
     end
 
@@ -40,16 +52,24 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'name' => :'String',
-        :'type' => :'String'
+        :'associates' => :'Array<WatchlistMeshAssociate>',
+        :'dates_of_birth' => :'Array<WatchlistMeshDateValue>',
+        :'dates_of_death' => :'Array<WatchlistMeshDateValue>',
+        :'images' => :'Array<WatchlistMeshImage>',
+        :'names' => :'Array<WatchlistMeshName>',
+        :'places_of_birth' => :'Array<String>'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'name',
-        :'type'
+        :'associates',
+        :'dates_of_birth',
+        :'dates_of_death',
+        :'images',
+        :'names',
+        :'places_of_birth'
       ])
     end
 
@@ -57,24 +77,52 @@ module Onfido
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::Associate` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WatchlistMeshPerson` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!acceptable_attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::Associate`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WatchlistMeshPerson`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'name')
-        self.name = attributes[:'name']
+      if attributes.key?(:'associates')
+        if (value = attributes[:'associates']).is_a?(Array)
+          self.associates = value
+        end
       end
 
-      if attributes.key?(:'type')
-        self.type = attributes[:'type']
+      if attributes.key?(:'dates_of_birth')
+        if (value = attributes[:'dates_of_birth']).is_a?(Array)
+          self.dates_of_birth = value
+        end
+      end
+
+      if attributes.key?(:'dates_of_death')
+        if (value = attributes[:'dates_of_death']).is_a?(Array)
+          self.dates_of_death = value
+        end
+      end
+
+      if attributes.key?(:'images')
+        if (value = attributes[:'images']).is_a?(Array)
+          self.images = value
+        end
+      end
+
+      if attributes.key?(:'names')
+        if (value = attributes[:'names']).is_a?(Array)
+          self.names = value
+        end
+      end
+
+      if attributes.key?(:'places_of_birth')
+        if (value = attributes[:'places_of_birth']).is_a?(Array)
+          self.places_of_birth = value
+        end
       end
     end
 
@@ -98,8 +146,12 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          name == o.name &&
-          type == o.type
+          associates == o.associates &&
+          dates_of_birth == o.dates_of_birth &&
+          dates_of_death == o.dates_of_death &&
+          images == o.images &&
+          names == o.names &&
+          places_of_birth == o.places_of_birth
     end
 
     # @see the `==` method
@@ -111,7 +163,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [name, type].hash
+      [associates, dates_of_birth, dates_of_death, images, names, places_of_birth].hash
     end
 
     # Builds the object from hash
