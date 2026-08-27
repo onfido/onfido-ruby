@@ -2,7 +2,7 @@
 
 require_relative '../shared_contexts/with_workflow_run'
 
-describe Onfido::WatchlistAlertRisk do
+describe Onfido::WatchlistMeshAlertRisk do
   describe 'Watchlist alert risks' do
     include_context 'with workflow run'
 
@@ -53,11 +53,11 @@ describe Onfido::WatchlistAlertRisk do
     end
 
     it 'retrieves paginated risks for a sandbox alert' do
-      risks = onfido_api.list_watchlist_alert_risks(alert_id, page: 1, per_page: 1)
+      risks = onfido_api.list_watchlist_mesh_alert_risks(alert_id, page: 1, per_page: 1)
 
       expect(risks).not_to be_empty
       expect(risks.size).to be <= 1
-      expect(risks.first).to be_an_instance_of(Onfido::WatchlistAlertRisk)
+      expect(risks.first).to be_an_instance_of(Onfido::WatchlistMeshAlertRisk)
       expect(risks.first.identifier).not_to be_nil
       expect(risks.first.decision).not_to be_nil
       expect(risks.first.detail).not_to be_nil
