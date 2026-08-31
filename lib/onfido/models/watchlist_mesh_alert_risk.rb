@@ -14,37 +14,64 @@ require 'date'
 require 'time'
 
 module Onfido
-  class Lists
-    attr_accessor :aml_types
+  class WatchlistMeshAlertRisk
+    # The date and time at which the risk record was created.
+    attr_accessor :created_at
 
-    attr_accessor :country_codes
+    # The review decision currently applied to the risk.
+    attr_accessor :decision
 
-    attr_accessor :fields
+    # The previous review decision, if one exists.
+    attr_accessor :previous_decision
 
+    # Additional details about the risk.
+    attr_accessor :detail
+
+    # The unique identifier of the risk record.
     attr_accessor :identifier
 
-    attr_accessor :listing_ended_utc
+    # The type of risk returned for the alert.
+    attr_accessor :type
 
-    attr_accessor :listing_started_utc
+    # The identifier of the user or system that last updated the risk decision.
+    attr_accessor :updated_by
 
-    attr_accessor :name
+    # The date and time at which the risk record was last updated.
+    attr_accessor :updated_at
 
-    attr_accessor :related_urls
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
 
-    attr_accessor :url
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'aml_types' => :'aml_types',
-        :'country_codes' => :'country_codes',
-        :'fields' => :'fields',
+        :'created_at' => :'created_at',
+        :'decision' => :'decision',
+        :'previous_decision' => :'previous_decision',
+        :'detail' => :'detail',
         :'identifier' => :'identifier',
-        :'listing_ended_utc' => :'listing_ended_utc',
-        :'listing_started_utc' => :'listing_started_utc',
-        :'name' => :'name',
-        :'related_urls' => :'related_urls',
-        :'url' => :'url'
+        :'type' => :'type',
+        :'updated_by' => :'updated_by',
+        :'updated_at' => :'updated_at'
       }
     end
 
@@ -61,91 +88,79 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'aml_types' => :'Array<String>',
-        :'country_codes' => :'Array<String>',
-        :'fields' => :'Array<Field>',
+        :'created_at' => :'Time',
+        :'decision' => :'WatchlistMeshRiskDecision',
+        :'previous_decision' => :'WatchlistMeshRiskDecision',
+        :'detail' => :'WatchlistMeshRiskDetail',
         :'identifier' => :'String',
-        :'listing_ended_utc' => :'String',
-        :'listing_started_utc' => :'String',
-        :'name' => :'String',
-        :'related_urls' => :'Array<String>',
-        :'url' => :'String'
+        :'type' => :'String',
+        :'updated_by' => :'String',
+        :'updated_at' => :'Time'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'aml_types',
-        :'country_codes',
-        :'fields',
-        :'identifier',
-        :'listing_ended_utc',
-        :'listing_started_utc',
-        :'name',
-        :'related_urls',
-        :'url'
+        :'previous_decision',
+        :'updated_by',
+        :'updated_at'
       ])
+    end
+
+    # List of class defined in allOf (OpenAPI v3)
+    def self.openapi_all_of
+      [
+      :'WatchlistMeshAlertRisk1'
+      ]
     end
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::Lists` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WatchlistMeshAlertRisk` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!acceptable_attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::Lists`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WatchlistMeshAlertRisk`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'aml_types')
-        if (value = attributes[:'aml_types']).is_a?(Array)
-          self.aml_types = value
-        end
+      if attributes.key?(:'created_at')
+        self.created_at = attributes[:'created_at']
       end
 
-      if attributes.key?(:'country_codes')
-        if (value = attributes[:'country_codes']).is_a?(Array)
-          self.country_codes = value
-        end
+      if attributes.key?(:'decision')
+        self.decision = attributes[:'decision']
       end
 
-      if attributes.key?(:'fields')
-        if (value = attributes[:'fields']).is_a?(Array)
-          self.fields = value
-        end
+      if attributes.key?(:'previous_decision')
+        self.previous_decision = attributes[:'previous_decision']
+      end
+
+      if attributes.key?(:'detail')
+        self.detail = attributes[:'detail']
       end
 
       if attributes.key?(:'identifier')
         self.identifier = attributes[:'identifier']
       end
 
-      if attributes.key?(:'listing_ended_utc')
-        self.listing_ended_utc = attributes[:'listing_ended_utc']
+      if attributes.key?(:'type')
+        self.type = attributes[:'type']
       end
 
-      if attributes.key?(:'listing_started_utc')
-        self.listing_started_utc = attributes[:'listing_started_utc']
+      if attributes.key?(:'updated_by')
+        self.updated_by = attributes[:'updated_by']
       end
 
-      if attributes.key?(:'name')
-        self.name = attributes[:'name']
-      end
-
-      if attributes.key?(:'related_urls')
-        if (value = attributes[:'related_urls']).is_a?(Array)
-          self.related_urls = value
-        end
-      end
-
-      if attributes.key?(:'url')
-        self.url = attributes[:'url']
+      if attributes.key?(:'updated_at')
+        self.updated_at = attributes[:'updated_at']
       end
     end
 
@@ -169,15 +184,14 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          aml_types == o.aml_types &&
-          country_codes == o.country_codes &&
-          fields == o.fields &&
+          created_at == o.created_at &&
+          decision == o.decision &&
+          previous_decision == o.previous_decision &&
+          detail == o.detail &&
           identifier == o.identifier &&
-          listing_ended_utc == o.listing_ended_utc &&
-          listing_started_utc == o.listing_started_utc &&
-          name == o.name &&
-          related_urls == o.related_urls &&
-          url == o.url
+          type == o.type &&
+          updated_by == o.updated_by &&
+          updated_at == o.updated_at
     end
 
     # @see the `==` method
@@ -189,7 +203,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [aml_types, country_codes, fields, identifier, listing_ended_utc, listing_started_utc, name, related_urls, url].hash
+      [created_at, decision, previous_decision, detail, identifier, type, updated_by, updated_at].hash
     end
 
     # Builds the object from hash

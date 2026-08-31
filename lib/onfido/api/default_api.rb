@@ -4238,32 +4238,32 @@ module Onfido
       return data, status_code, headers
     end
 
-    # Retrieve watchlist alert risks
-    # Retrieves the detailed risks associated with a watchlist alert. 
+    # Retrieve watchlist mesh alert risks
+    # Retrieves the detailed risks associated with a watchlist mesh alert. 
     # @param alert_id [String] The unique identifier of the alert whose risks you want to retrieve.
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :page The page of results to retrieve. (default to 1)
     # @option opts [Integer] :per_page The number of risks to return per page. (default to 25)
-    # @return [Array<WatchlistAlertRisk>]
-    def list_watchlist_alert_risks(alert_id, opts = {})
-      data, _status_code, _headers = list_watchlist_alert_risks_with_http_info(alert_id, opts)
+    # @return [Array<WatchlistMeshAlertRisk>]
+    def list_watchlist_mesh_alert_risks(alert_id, opts = {})
+      data, _status_code, _headers = list_watchlist_mesh_alert_risks_with_http_info(alert_id, opts)
       data
     end
 
-    # Retrieve watchlist alert risks
-    # Retrieves the detailed risks associated with a watchlist alert. 
+    # Retrieve watchlist mesh alert risks
+    # Retrieves the detailed risks associated with a watchlist mesh alert. 
     # @param alert_id [String] The unique identifier of the alert whose risks you want to retrieve.
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :page The page of results to retrieve. (default to 1)
     # @option opts [Integer] :per_page The number of risks to return per page. (default to 25)
-    # @return [Array<(Array<WatchlistAlertRisk>, Integer, Hash)>] Array<WatchlistAlertRisk> data, response status code and response headers
-    def list_watchlist_alert_risks_with_http_info(alert_id, opts = {})
+    # @return [Array<(Array<WatchlistMeshAlertRisk>, Integer, Hash)>] Array<WatchlistMeshAlertRisk> data, response status code and response headers
+    def list_watchlist_mesh_alert_risks_with_http_info(alert_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: DefaultApi.list_watchlist_alert_risks ...'
+        @api_client.config.logger.debug 'Calling API: DefaultApi.list_watchlist_mesh_alert_risks ...'
       end
       # verify the required parameter 'alert_id' is set
       if @api_client.config.client_side_validation && alert_id.nil?
-        fail ArgumentError, "Missing the required parameter 'alert_id' when calling DefaultApi.list_watchlist_alert_risks"
+        fail ArgumentError, "Missing the required parameter 'alert_id' when calling DefaultApi.list_watchlist_mesh_alert_risks"
       end
       # resource path
       local_var_path = '/complyadvantage_watchlists/alerts/{alert_id}/risks'.sub('{' + 'alert_id' + '}', CGI.escape(alert_id.to_s))
@@ -4285,13 +4285,13 @@ module Onfido
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'Array<WatchlistAlertRisk>'
+      return_type = opts[:debug_return_type] || 'Array<WatchlistMeshAlertRisk>'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials', 'Token']
 
       new_options = opts.merge(
-        :operation => :"DefaultApi.list_watchlist_alert_risks",
+        :operation => :"DefaultApi.list_watchlist_mesh_alert_risks",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -4302,7 +4302,7 @@ module Onfido
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: DefaultApi#list_watchlist_alert_risks\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: DefaultApi#list_watchlist_mesh_alert_risks\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

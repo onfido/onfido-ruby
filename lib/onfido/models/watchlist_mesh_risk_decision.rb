@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Onfido
-  class RiskDecision
+  class WatchlistMeshRiskDecision
     NOT_REVIEWED = "NOT_REVIEWED".freeze
     IN_REVIEW = "IN_REVIEW".freeze
     FALSE_POSITIVE = "FALSE_POSITIVE".freeze
@@ -36,8 +36,8 @@ module Onfido
     # @param [String] The enum value in the form of the string
     # @return [String] The enum value
     def build_from_hash(value)
-      return value if RiskDecision.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #RiskDecision"
+      return value if WatchlistMeshRiskDecision.all_vars.include?(value)
+      raise "Invalid ENUM value #{value} for class #WatchlistMeshRiskDecision"
     end
   end
 end

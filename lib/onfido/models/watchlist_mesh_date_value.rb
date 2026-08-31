@@ -14,26 +14,16 @@ require 'date'
 require 'time'
 
 module Onfido
-  class RiskDetail
-    # The type of change that triggered the risk, if available.
-    attr_accessor :change_type
+  class WatchlistMeshDateValue
+    attr_accessor :source
 
-    # The identifier of the screening configuration associated with the risk.
-    attr_accessor :configuration_identifier
-
-    # The matched profile associated with the risk.
-    attr_accessor :profile
-
-    # Newly added mentions associated with the risk.
-    attr_accessor :added_mentions
+    attr_accessor :value
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'change_type' => :'change_type',
-        :'configuration_identifier' => :'configuration_identifier',
-        :'profile' => :'profile',
-        :'added_mentions' => :'added_mentions'
+        :'source' => :'source',
+        :'value' => :'value'
       }
     end
 
@@ -50,20 +40,16 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'change_type' => :'String',
-        :'configuration_identifier' => :'String',
-        :'profile' => :'Profile',
-        :'added_mentions' => :'AddedMentions'
+        :'source' => :'String',
+        :'value' => :'String'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'change_type',
-        :'configuration_identifier',
-        :'profile',
-        :'added_mentions'
+        :'source',
+        :'value'
       ])
     end
 
@@ -71,32 +57,24 @@ module Onfido
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::RiskDetail` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WatchlistMeshDateValue` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!acceptable_attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::RiskDetail`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WatchlistMeshDateValue`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'change_type')
-        self.change_type = attributes[:'change_type']
+      if attributes.key?(:'source')
+        self.source = attributes[:'source']
       end
 
-      if attributes.key?(:'configuration_identifier')
-        self.configuration_identifier = attributes[:'configuration_identifier']
-      end
-
-      if attributes.key?(:'profile')
-        self.profile = attributes[:'profile']
-      end
-
-      if attributes.key?(:'added_mentions')
-        self.added_mentions = attributes[:'added_mentions']
+      if attributes.key?(:'value')
+        self.value = attributes[:'value']
       end
     end
 
@@ -120,10 +98,8 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          change_type == o.change_type &&
-          configuration_identifier == o.configuration_identifier &&
-          profile == o.profile &&
-          added_mentions == o.added_mentions
+          source == o.source &&
+          value == o.value
     end
 
     # @see the `==` method
@@ -135,7 +111,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [change_type, configuration_identifier, profile, added_mentions].hash
+      [source, value].hash
     end
 
     # Builds the object from hash

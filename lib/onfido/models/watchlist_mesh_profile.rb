@@ -14,19 +14,29 @@ require 'date'
 require 'time'
 
 module Onfido
-  class Field
-    attr_accessor :name
+  class WatchlistMeshProfile
+    attr_accessor :identifier
 
-    attr_accessor :tag
+    attr_accessor :match_types
 
-    attr_accessor :value
+    # The match score assigned to the profile.
+    attr_accessor :match_score
+
+    attr_accessor :matching_name
+
+    attr_accessor :person
+
+    attr_accessor :risk_indicators
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'name' => :'name',
-        :'tag' => :'tag',
-        :'value' => :'value'
+        :'identifier' => :'identifier',
+        :'match_types' => :'match_types',
+        :'match_score' => :'match_score',
+        :'matching_name' => :'matching_name',
+        :'person' => :'person',
+        :'risk_indicators' => :'risk_indicators'
       }
     end
 
@@ -43,18 +53,23 @@ module Onfido
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'name' => :'String',
-        :'tag' => :'String',
-        :'value' => :'String'
+        :'identifier' => :'String',
+        :'match_types' => :'Array<String>',
+        :'match_score' => :'Float',
+        :'matching_name' => :'String',
+        :'person' => :'WatchlistMeshPerson',
+        :'risk_indicators' => :'WatchlistMeshRiskIndicators'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'name',
-        :'tag',
-        :'value'
+        :'identifier',
+        :'match_types',
+        :'matching_name',
+        :'person',
+        :'risk_indicators'
       ])
     end
 
@@ -62,28 +77,42 @@ module Onfido
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::Field` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Onfido::WatchlistMeshProfile` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!acceptable_attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::Field`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Onfido::WatchlistMeshProfile`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'name')
-        self.name = attributes[:'name']
+      if attributes.key?(:'identifier')
+        self.identifier = attributes[:'identifier']
       end
 
-      if attributes.key?(:'tag')
-        self.tag = attributes[:'tag']
+      if attributes.key?(:'match_types')
+        if (value = attributes[:'match_types']).is_a?(Array)
+          self.match_types = value
+        end
       end
 
-      if attributes.key?(:'value')
-        self.value = attributes[:'value']
+      if attributes.key?(:'match_score')
+        self.match_score = attributes[:'match_score']
+      end
+
+      if attributes.key?(:'matching_name')
+        self.matching_name = attributes[:'matching_name']
+      end
+
+      if attributes.key?(:'person')
+        self.person = attributes[:'person']
+      end
+
+      if attributes.key?(:'risk_indicators')
+        self.risk_indicators = attributes[:'risk_indicators']
       end
     end
 
@@ -107,9 +136,12 @@ module Onfido
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          name == o.name &&
-          tag == o.tag &&
-          value == o.value
+          identifier == o.identifier &&
+          match_types == o.match_types &&
+          match_score == o.match_score &&
+          matching_name == o.matching_name &&
+          person == o.person &&
+          risk_indicators == o.risk_indicators
     end
 
     # @see the `==` method
@@ -121,7 +153,7 @@ module Onfido
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [name, tag, value].hash
+      [identifier, match_types, match_score, matching_name, person, risk_indicators].hash
     end
 
     # Builds the object from hash

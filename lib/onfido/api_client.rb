@@ -142,7 +142,11 @@ module Onfido
         form_params.each do |key, value|
           case value
           when ::File, ::Tempfile
-            data[key] = Faraday::FilePart.new(value.path, Marcel::MimeType.for(Pathname.new(value.path)))
+            mime = Marcel::MimeType.for(Pathname.new(value.path))
+            if mime == 'application/octet-stream'
+              mime = Marcel::MimeType.for(extension: File.extname(value.path).delete_prefix('.')) || mime
+            end
+            data[key] = Faraday::FilePart.new(value.path, mime)
           when ::Array, nil
             # let Faraday handle Array and nil parameters
             data[key] = value
