@@ -112,16 +112,15 @@ def repeat_request_until_http_code_changes(max_retries = 15,
   # interval           --> how many seconds to wait until the next retry
   # proc               --> code containing the request
 
-  iteration = 0
-  while iteration <= max_retries
+  last_error = nil
+  (max_retries + 1).times do
     begin
-      instance = proc.call
-      break
-    rescue Onfido::ApiError
+      return proc.call
+    rescue Onfido::ApiError => e
+      last_error = e
       sleep(interval)
-      iteration += 1
     end
   end
 
-  instance
+  raise last_error
 end
